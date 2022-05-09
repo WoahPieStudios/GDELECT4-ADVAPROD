@@ -384,8 +384,8 @@ MonoBehaviour:
     m_Bits: 1024
   _player: {fileID: 477285285}
   _maxDistance: 50
-  _spring: 4.5
-  _dampter: 7
+  _spring: 2
+  _damper: 7
   _massScale: 4.5
 --- !u!120 &357960535
 LineRenderer:
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7920ba98385f545aafd933643f9ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0
+  _moveSpeed: 7.9
 --- !u!114 &477285294
 MonoBehaviour:
   m_ObjectHideFlags: 0
