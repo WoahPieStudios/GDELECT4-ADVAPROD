@@ -62,6 +62,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fa8a85be-0c52-4630-a20b-14d53187bca6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""LookY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65f0ffeb-fb0f-4d1d-b836-152b991a35f6"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerControls_Grapple = m_PlayerControls.FindAction("Grapple", throwIfNotFound: true);
         m_PlayerControls_LookX = m_PlayerControls.FindAction("LookX", throwIfNotFound: true);
         m_PlayerControls_LookY = m_PlayerControls.FindAction("LookY", throwIfNotFound: true);
+        m_PlayerControls_Sprint = m_PlayerControls.FindAction("Sprint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +248,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Grapple;
     private readonly InputAction m_PlayerControls_LookX;
     private readonly InputAction m_PlayerControls_LookY;
+    private readonly InputAction m_PlayerControls_Sprint;
     public struct PlayerControlsActions
     {
         private @PlayerInputs m_Wrapper;
@@ -235,6 +257,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Grapple => m_Wrapper.m_PlayerControls_Grapple;
         public InputAction @LookX => m_Wrapper.m_PlayerControls_LookX;
         public InputAction @LookY => m_Wrapper.m_PlayerControls_LookY;
+        public InputAction @Sprint => m_Wrapper.m_PlayerControls_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,6 +279,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @LookY.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnLookY;
                 @LookY.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnLookY;
                 @LookY.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnLookY;
+                @Sprint.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -272,6 +298,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @LookY.started += instance.OnLookY;
                 @LookY.performed += instance.OnLookY;
                 @LookY.canceled += instance.OnLookY;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -282,5 +311,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnGrapple(InputAction.CallbackContext context);
         void OnLookX(InputAction.CallbackContext context);
         void OnLookY(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
 }
