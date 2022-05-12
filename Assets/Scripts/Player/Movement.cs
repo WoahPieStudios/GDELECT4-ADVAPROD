@@ -80,25 +80,24 @@ public class Movement : MonoBehaviour {
         _goingTo = transform.right * _direction.x + transform.forward * _direction.z;
 
         #region Custom Acceleration Deceleration
-        if (_direction != Vector3.zero)
-        {
-            _isMoving = true;
-            if (currentSpeed <= 0.05f)
-            {
-                _canAccelerate = true;
-            }
-            else if (currentSpeed >= _moveSpeed)
-            {
-                _canAccelerate = false;
-            }
-        }else
-        {
-            _isMoving = false;
-        }
+        //if (_direction != Vector3.zero)
+        //{
+        //    _isMoving = true;
+        //    if (currentSpeed <= 0.05f)
+        //    {
+        //        _canAccelerate = true;
+        //    }
+        //    else if (currentSpeed >= _moveSpeed)
+        //    {
+        //        _canAccelerate = false;
+        //    }
+        //}else
+        //{
+        //    _isMoving = false;
+        //}
 
-        _rigidBody.MovePosition(transform.position + (_goingTo * _currentSpeed * Time.deltaTime));
+        _rigidBody.MovePosition(transform.position + (_goingTo * _moveSpeed * Time.deltaTime));
         #endregion
-
     }
 
     private void MoveDirection(Vector2 direction)
