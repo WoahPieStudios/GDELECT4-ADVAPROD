@@ -13,6 +13,9 @@ public class InputManager : MonoBehaviour
     public static event Action onStartGrapple;
     public static event Action onEndGrapple;
 
+    public static event Action onStartHook;
+    public static event Action onEndHook;
+
     public static event Action<Vector2> onMouseLook;
     #endregion
 
@@ -27,12 +30,19 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
 
-
+        #region Grappling 
         _playerInputs.PlayerControls.Grapple.performed += EnableGrapple;
         _playerInputs.PlayerControls.Grapple.canceled += DisableGrapple;
 
+        _playerInputs.PlayerControls.Sprint.performed += EnableHookShot;
+        _playerInputs.PlayerControls.Sprint.canceled -= DisableHookShot;
+
+        #endregion 
+
         _playerInputs.PlayerControls.Movement.performed += EnableMovement;
         _playerInputs.PlayerControls.Movement.canceled += DisableMovement;
+
+
 
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
@@ -59,7 +69,18 @@ public class InputManager : MonoBehaviour
         _playerInputs.Disable();
     }
 
-    #region Grappling
+    #region Grappling & Hookshot
+
+    private void EnableHookShot(InputAction.CallbackContext obj)
+    {
+
+    }
+
+    private void DisableHookShot(InputAction.CallbackContext obj)
+    {
+
+    }
+
     private void EnableGrapple(InputAction.CallbackContext obj)
     {
         Debug.Log("Grappling!");
