@@ -503,6 +503,7 @@ GameObject:
   - component: {fileID: 477285292}
   - component: {fileID: 477285293}
   - component: {fileID: 477285294}
+  - component: {fileID: 477285295}
   m_Layer: 0
   m_Name: Player (Place Holder)
   m_TagString: Player
@@ -663,6 +664,19 @@ MonoBehaviour:
   _mouseSensitivityX: 5.79
   _mouseSensitivityY: 0.1
   _playerTransform: {fileID: 1683343805}
+--- !u!114 &477285295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477285285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84239b95919a044f810dd6c1352ce45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 7634ef67d5f208f4cb2d5ab76e13e8a1, type: 3}
 --- !u!1001 &542260761
 PrefabInstance:
   m_ObjectHideFlags: 0

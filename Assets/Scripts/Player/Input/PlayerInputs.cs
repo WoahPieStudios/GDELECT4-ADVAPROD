@@ -174,6 +174,34 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Testing"",
+            ""id"": ""2b0540de-d0ee-4146-8a5a-0903716811c8"",
+            ""actions"": [
+                {
+                    ""name"": ""Test"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""6b1de364-513f-4515-97bc-d8304376f02e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7fa56243-9548-4d70-95f4-931b8789f70f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Test"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -185,6 +213,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerControls_LookX = m_PlayerControls.FindAction("LookX", throwIfNotFound: true);
         m_PlayerControls_LookY = m_PlayerControls.FindAction("LookY", throwIfNotFound: true);
         m_PlayerControls_Sprint = m_PlayerControls.FindAction("Sprint", throwIfNotFound: true);
+        // Testing
+        m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
+        m_Testing_Test = m_Testing.FindAction("Test", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +336,39 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         }
     }
     public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
+
+    // Testing
+    private readonly InputActionMap m_Testing;
+    private ITestingActions m_TestingActionsCallbackInterface;
+    private readonly InputAction m_Testing_Test;
+    public struct TestingActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public TestingActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Test => m_Wrapper.m_Testing_Test;
+        public InputActionMap Get() { return m_Wrapper.m_Testing; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestingActions set) { return set.Get(); }
+        public void SetCallbacks(ITestingActions instance)
+        {
+            if (m_Wrapper.m_TestingActionsCallbackInterface != null)
+            {
+                @Test.started -= m_Wrapper.m_TestingActionsCallbackInterface.OnTest;
+                @Test.performed -= m_Wrapper.m_TestingActionsCallbackInterface.OnTest;
+                @Test.canceled -= m_Wrapper.m_TestingActionsCallbackInterface.OnTest;
+            }
+            m_Wrapper.m_TestingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Test.started += instance.OnTest;
+                @Test.performed += instance.OnTest;
+                @Test.canceled += instance.OnTest;
+            }
+        }
+    }
+    public TestingActions @Testing => new TestingActions(this);
     public interface IPlayerControlsActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -312,5 +376,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnLookX(InputAction.CallbackContext context);
         void OnLookY(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface ITestingActions
+    {
+        void OnTest(InputAction.CallbackContext context);
     }
 }
