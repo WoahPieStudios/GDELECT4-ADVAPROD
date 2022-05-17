@@ -6,10 +6,11 @@ namespace EnemySpawn.Scripts.Enemies
     {
 
         [Header("Properties")]
-        [SerializeField] float movementSpeed = 1f;
+        [SerializeField] float movementSpeed;
         private Rigidbody _rigidBody;
+        
         [Header("Player Reference")]
-        [SerializeField] private Transform _playerTransform;
+        private Transform _playerTransform;
 
         private void Awake()
         {
@@ -34,10 +35,20 @@ namespace EnemySpawn.Scripts.Enemies
         /// </summary>
         private void AttackPlayer()
         {
-            Vector3 direction = _playerTransform.position - _rigidBody.transform.position;
-            _rigidBody.MovePosition(_rigidBody.transform.position + direction * movementSpeed * Time.fixedDeltaTime);
+            var position = _rigidBody.transform.position;
+            var direction = _playerTransform.position - position;
+            _rigidBody.MovePosition(position + direction * movementSpeed * Time.fixedDeltaTime);
         }
 
+        /// <summary>
+        /// Sets the player transform for this drone.
+        /// </summary>
+        /// <param name="playerTransform">The transform of the player.</param>
+        public void SetPlayerTransform(Transform playerTransform)
+        {
+            _playerTransform = playerTransform;
+        }
+        
         private void OnCollisionEnter(Collision other)
         {
             if (other.collider.CompareTag("Player"))
