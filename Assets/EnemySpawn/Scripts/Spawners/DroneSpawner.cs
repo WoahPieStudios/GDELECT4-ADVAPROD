@@ -1,20 +1,20 @@
 using System.Collections;
 using EnemySpawn.Scripts.Enemies;
+using EnemySpawn.Scripts.Pools;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace EnemySpawn.Scripts.Spawners
 {
+    /// <summary>
+    /// Responsible for spawning <see cref="Drone">Drones</see> into the scene.
+    /// </summary>
     public class DroneSpawner : MonoBehaviour
     {
         [Header("Drone Pool")]
-        [SerializeField] private Drone dronePrefab;
-        [SerializeField] private bool collectionCheck;
-        [SerializeField] private int defaultCapacity;
-        [SerializeField] private int maxSize;
-        private ObjectPool<Drone> _dronePool;
+        [SerializeField] private DronePool dronePool;
 
         [Header("Spawn Properties")]
+        [SerializeField] private bool isSpawning;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private float spawnInterval;
         [SerializeField] private float spawnRadius;
@@ -24,52 +24,14 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Reset()
         {
-            collectionCheck = true;
-            defaultCapacity = 50;
-            maxSize = 200;
-            
+            isSpawning = true;
             spawnInterval = 1f;
             spawnRadius = 1f;
         }
 
         private void Awake()
         {
-            InitializePool();
             FindPlayerTransform();
-        }
-
-        private void InitializePool()
-        {
-            _dronePool = new ObjectPool<Drone>(
-                CreateDrone,
-                OnDroneGet,
-                OnDroneRelease,
-                OnDroneDestroy,
-                collectionCheck,
-                defaultCapacity,
-                maxSize
-            );
-        }
-
-        private void OnDroneDestroy(Drone drone)
-        {
-            Destroy(drone.gameObject);
-        }
-
-        private void OnDroneRelease(Drone drone)
-        {
-            drone.gameObject.SetActive(false);
-        }
-
-        private void OnDroneGet(Drone drone)
-        {
-            drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
-            drone.gameObject.SetActive(true);
-        }
-
-        private Drone CreateDrone()
-        {
-            return Instantiate(dronePrefab, transform);
         }
 
         private void Start()
@@ -77,19 +39,36 @@ namespace EnemySpawn.Scripts.Spawners
             StartCoroutine(SpawnDrones());
         }
         
-
+        /// <summary>
+        /// Sets the <see cref="_playerTransform"/> by looking for objects with the tag <c>Player</c>.
+        /// </summary>
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         
+        /// <summary>
+        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
+        /// </summary>
         private IEnumerator SpawnDrones()
         {
-            while (_playerTransform != null)
+            while (isSpawning)
             {
-                var drone = _dronePool.Get();
+                var drone = dronePool.Pool.Get();
+                drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
                 drone.SetPlayerTransform(_playerTransform);
-                drone.SetPool(_dronePool);
+                drone.SetPool(dronePool.Pool);
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
+        
+        /// <summary>
+        /// Flips the current state of <see cref="isSpawning"/>.
+        /// </summary>
+        public void ToggleSpawn() => isSpawning = !isSpawning;
+        
+        /// <summary>
+        /// Sets <see cref="isSpawning"/> according to the bypass value.
+        /// </summary>
+        /// <param name="bypassValue">The state that will be set to <see cref="isSpawning"/></param>
+        public void ToggleSpawn(bool bypassValue) => isSpawning = bypassValue;
         
         private void OnDrawGizmosSelected()
         {
