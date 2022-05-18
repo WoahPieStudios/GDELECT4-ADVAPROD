@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,18 +28,43 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
 
-        #region Grappling 
-        _playerInputs.PlayerControls.Grapple.performed += EnableGrapple;
-        _playerInputs.PlayerControls.Grapple.canceled += DisableGrapple;
+        #region Grappling & Hooking
+        _playerInputs.PlayerControls.Grapple.performed += ctx =>
+        {
+            Debug.Log("Grappling!");
+            onStartGrapple?.Invoke();
+        };
+        _playerInputs.PlayerControls.Grapple.canceled += ctx =>
+        {
+            Debug.Log("Stopped Grappling");
+            onEndGrapple?.Invoke();
+        };
 
-        _playerInputs.PlayerControls.Sprint.performed += EnableHookShot;
-        _playerInputs.PlayerControls.Sprint.canceled -= DisableHookShot;
+        _playerInputs.PlayerControls.Sprint.performed += ctx =>
+        {
+            Debug.Log("Hooking forward");
+            onStartHook?.Invoke();
+        };
+        _playerInputs.PlayerControls.Sprint.canceled += ctx =>
+        {
+            Debug.Log("Hook done");
+            onEndHook?.Invoke();
+        }; ;
 
-        #endregion 
+        #endregion
 
-        _playerInputs.PlayerControls.Movement.performed += EnableMovement;
-        _playerInputs.PlayerControls.Movement.canceled += DisableMovement;
-
+        #region GroundMovement
+        _playerInputs.PlayerControls.Movement.performed += axis =>
+        {
+            Vector2 direction = axis.ReadValue<Vector2>();
+            onStartMovement?.Invoke(direction);
+        };
+        _playerInputs.PlayerControls.Movement.canceled += axis =>
+        {
+            Vector2 direction = Vector2.zero;
+            onStartMovement?.Invoke(direction);
+        };
+        #endregion
 
 
         #region Mouse Look
@@ -68,44 +91,5 @@ public class InputManager : MonoBehaviour
     {
         _playerInputs.Disable();
     }
-
-    #region Grappling & Hookshot
-
-    private void EnableHookShot(InputAction.CallbackContext obj)
-    {
-
-    }
-
-    private void DisableHookShot(InputAction.CallbackContext obj)
-    {
-
-    }
-
-    private void EnableGrapple(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Grappling!");
-        onStartGrapple?.Invoke();
-    }
-    private void DisableGrapple(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Stopped Grappling");
-        onEndGrapple?.Invoke();
-    }
-    #endregion 
-
-    #region Movement
-    private void DisableMovement(InputAction.CallbackContext obj)
-    {
-        Vector2 direction = Vector2.zero;
-        onStartMovement?.Invoke(direction);
-    }
-
-    private void EnableMovement(InputAction.CallbackContext obj)
-    {
-        Vector2 direction = obj.ReadValue<Vector2>();
-        onStartMovement?.Invoke(direction);
-    }
-
-    #endregion
 
 }

@@ -78,6 +78,7 @@ public class Movement : MonoBehaviour {
     {
         //references the "forward" of the player where ever the player looks horizontally 
         _goingTo = transform.right * _direction.x + transform.forward * _direction.z;
+        MovePosition(transform.position, _goingTo, _moveSpeed);
 
         #region Custom Acceleration Deceleration
         //if (_direction != Vector3.zero)
@@ -96,8 +97,13 @@ public class Movement : MonoBehaviour {
         //    _isMoving = false;
         //}
 
-        _rigidBody.MovePosition(transform.position + (_goingTo * _moveSpeed * Time.deltaTime));
+        //_rigidBody.MovePosition(transform.position + (_goingTo * _moveSpeed * Time.deltaTime));
         #endregion
+    }
+
+    public void MovePosition(in Vector3 position, Vector3 direction, float moveSpeed)
+    {
+        _rigidBody.MovePosition(position + (direction * moveSpeed * Time.deltaTime));
     }
 
     private void MoveDirection(Vector2 direction)
