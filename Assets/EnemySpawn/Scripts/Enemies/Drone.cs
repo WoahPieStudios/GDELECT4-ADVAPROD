@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace EnemySpawn.Scripts.Enemies
 {
@@ -11,6 +12,10 @@ namespace EnemySpawn.Scripts.Enemies
         
         [Header("Player Reference")]
         private Transform _playerTransform;
+
+        [Header("Drone Pool Reference")]
+        private ObjectPool<Drone> _dronePool;
+
 
         private void Awake()
         {
@@ -37,23 +42,22 @@ namespace EnemySpawn.Scripts.Enemies
         {
             var position = _rigidBody.transform.position;
             var direction = _playerTransform.position - position;
-            _rigidBody.MovePosition(position + direction * movementSpeed * Time.fixedDeltaTime);
+            _rigidBody.MovePosition(position + direction.normalized * movementSpeed * Time.fixedDeltaTime);
         }
 
         /// <summary>
         /// Sets the player transform for this drone.
         /// </summary>
         /// <param name="playerTransform">The transform of the player.</param>
-        public void SetPlayerTransform(Transform playerTransform)
-        {
-            _playerTransform = playerTransform;
-        }
+        public void SetPlayerTransform(Transform playerTransform) => _playerTransform = playerTransform;
+
+        public void SetPool(ObjectPool<Drone> dronePool) => _dronePool = dronePool; 
         
         private void OnCollisionEnter(Collision other)
         {
             if (other.collider.CompareTag("Player"))
             {
-                Destroy(gameObject);
+               _dronePool.Release(this);
             }
         }
     }

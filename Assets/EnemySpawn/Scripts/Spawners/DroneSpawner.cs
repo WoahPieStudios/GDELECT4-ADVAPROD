@@ -9,6 +9,7 @@ namespace EnemySpawn.Scripts.Spawners
     {
         [Header("Drone Pool")]
         [SerializeField] private Drone dronePrefab;
+        [SerializeField] private bool collectionCheck;
         [SerializeField] private int defaultCapacity;
         [SerializeField] private int maxSize;
         private ObjectPool<Drone> _dronePool;
@@ -23,12 +24,13 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Reset()
         {
+            collectionCheck = true;
+            defaultCapacity = 50;
+            maxSize = 200;
+            
             spawnInterval = 1f;
             spawnRadius = 1f;
-            defaultCapacity = 20;
-            maxSize = 100;
         }
-
 
         private void Awake()
         {
@@ -36,37 +38,57 @@ namespace EnemySpawn.Scripts.Spawners
             FindPlayerTransform();
         }
 
-        private void Start()
-        {
-            StartCoroutine(SpawnDrones());
-        }
-
         private void InitializePool()
         {
             _dronePool = new ObjectPool<Drone>(
-                () => Instantiate(dronePrefab),
-                drone => drone.gameObject.SetActive(true),
-                drone => drone.gameObject.SetActive(false),
-                drone => Destroy(drone.gameObject),
-                false,
+                CreateDrone,
+                OnDroneGet,
+                OnDroneRelease,
+                OnDroneDestroy,
+                collectionCheck,
                 defaultCapacity,
                 maxSize
             );
         }
 
+        private void OnDroneDestroy(Drone drone)
+        {
+            Destroy(drone.gameObject);
+        }
+
+        private void OnDroneRelease(Drone drone)
+        {
+            drone.gameObject.SetActive(false);
+        }
+
+        private void OnDroneGet(Drone drone)
+        {
+            drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
+            drone.gameObject.SetActive(true);
+        }
+
+        private Drone CreateDrone()
+        {
+            return Instantiate(dronePrefab, transform);
+        }
+
+        private void Start()
+        {
+            StartCoroutine(SpawnDrones());
+        }
+        
+
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         
         private IEnumerator SpawnDrones()
         {
-            if (_playerTransform == null)
+            while (_playerTransform != null)
             {
-                Debug.LogWarning("No player found, unable to spawn drones.");
-                yield break;
+                var drone = _dronePool.Get();
+                drone.SetPlayerTransform(_playerTransform);
+                drone.SetPool(_dronePool);
+                yield return new WaitForSeconds(spawnInterval);
             }
-            var drone = _dronePool.Get();
-            drone.transform.position = Random.insideUnitSphere + spawnPoint.position;
-            drone.SetPlayerTransform(_playerTransform);
-            yield return new WaitForSeconds(spawnInterval);
         }
         
         private void OnDrawGizmosSelected()
