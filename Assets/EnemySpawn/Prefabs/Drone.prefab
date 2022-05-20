@@ -98,7 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b6e4d11ee23c64fa47eef6669153d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStandalone: 0
   movementSpeed: 5
+  objectsToDetect:
+    serializedVersion: 2
+    m_Bits: 1032
+  attackDistance: 1
 --- !u!135 &1053614422555756814
 SphereCollider:
   m_ObjectHideFlags: 0

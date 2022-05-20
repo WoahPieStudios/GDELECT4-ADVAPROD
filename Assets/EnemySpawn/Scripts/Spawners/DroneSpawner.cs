@@ -19,7 +19,7 @@ namespace EnemySpawn.Scripts.Spawners
         [SerializeField] private float spawnInterval;
         [SerializeField] private float spawnRadius;
 
-        [Header("Player Reference")] 
+        [Header("Player Reference")]
         private Transform _playerTransform;
 
         private void Reset()
@@ -38,12 +38,12 @@ namespace EnemySpawn.Scripts.Spawners
         {
             StartCoroutine(SpawnDrones());
         }
-        
+
         /// <summary>
         /// Sets the <see cref="_playerTransform"/> by looking for objects with the tag <c>Player</c>.
         /// </summary>
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
-        
+
         /// <summary>
         /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
         /// </summary>
@@ -55,21 +55,22 @@ namespace EnemySpawn.Scripts.Spawners
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
                 drone.SetPlayerTransform(_playerTransform);
                 drone.SetPool(dronePool.Pool);
+                drone.SetPlayerLookState(true);
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
-        
+
         /// <summary>
         /// Flips the current state of <see cref="isSpawning"/>.
         /// </summary>
         public void ToggleSpawn() => isSpawning = !isSpawning;
-        
+
         /// <summary>
         /// Sets <see cref="isSpawning"/> according to the bypass value.
         /// </summary>
         /// <param name="bypassValue">The state that will be set to <see cref="isSpawning"/></param>
         public void ToggleSpawn(bool bypassValue) => isSpawning = bypassValue;
-        
+
         private void OnDrawGizmosSelected()
         {
             if (spawnPoint == null) return;
