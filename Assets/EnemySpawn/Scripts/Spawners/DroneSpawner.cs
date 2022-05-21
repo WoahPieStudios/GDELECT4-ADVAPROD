@@ -44,21 +44,27 @@ namespace EnemySpawn.Scripts.Spawners
         /// </summary>
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        /// <summary>
-        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
-        /// </summary>
+
         private IEnumerator SpawnDrones()
         {
             while (isSpawning)
             {
-                var drone = dronePool.Pool.Get();
-                drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
-                drone.SetPlayerTransform(_playerTransform);
-                drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
-                drone.SetPool(dronePool.Pool);
-                drone.SetPlayerLookState(true);
+                SpawnDrone();
                 yield return new WaitForSeconds(spawnInterval);
             }
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
+        /// </summary>
+        private void SpawnDrone()
+        {
+            var drone = dronePool.Pool.Get();
+            drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
+            drone.SetPlayerTransform(_playerTransform);
+            drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
+            drone.SetPool(dronePool.Pool);
+            drone.SetPlayerLookState(true);
         }
 
         /// <summary>
