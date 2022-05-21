@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Hook done");
             onEndHook?.Invoke();
-        }; ;
+        }; 
 
         #endregion
 
@@ -61,8 +61,9 @@ public class InputManager : MonoBehaviour
         };
         _playerInputs.PlayerControls.Movement.canceled += axis =>
         {
-            Vector2 direction = Vector2.zero;
-            onStartMovement?.Invoke(direction);
+            //Vector2 direction = Vector2.zero;
+            //onStartMovement?.Invoke(direction);
+            onEndMovement?.Invoke();
         };
         #endregion
 
