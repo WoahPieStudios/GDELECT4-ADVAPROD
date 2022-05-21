@@ -54,6 +54,7 @@ namespace EnemySpawn.Scripts.Spawners
                 var drone = dronePool.Pool.Get();
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
                 drone.SetPlayerTransform(_playerTransform);
+                drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
                 drone.SetPool(dronePool.Pool);
                 drone.SetPlayerLookState(true);
                 yield return new WaitForSeconds(spawnInterval);

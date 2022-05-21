@@ -18,6 +18,7 @@ namespace EnemySpawn.Scripts.Enemies
         [Header("Player Reference")]
         [SerializeField] float attackDistance;
         private Transform _playerTransform;
+        [SerializeField] private Collider _playerCollider;
 
         [Header("Drone Pool Reference")]
         private ObjectPool<Drone> _dronePool;
@@ -31,6 +32,7 @@ namespace EnemySpawn.Scripts.Enemies
             if (isStandalone)
             {
                 _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+                _playerCollider = _playerTransform?.GetComponent<Collider>();
                 _isLookingForPlayer = true;
             }
         }
@@ -46,12 +48,8 @@ namespace EnemySpawn.Scripts.Enemies
             // Do not do anything if player is not yet found.
             if (_playerTransform == null) return;
 
-            var collisions = Physics.OverlapSphere(transform.position, attackDistance, objectsToDetect);
-            foreach (var collision in collisions)
-            {
-                // drone looks for player if it has not "seen" the player yet.
-                _isLookingForPlayer = !collision.CompareTag("Player");
-            }
+            // Sets the state depending on the distance of the drone to the player.
+            _isLookingForPlayer = !(Vector3.Distance(_transform.position, _playerTransform.position + _playerCollider.bounds.extents) < attackDistance);
 
             if (_isLookingForPlayer) { LookForPlayer(); }
             else { AttackPlayer(); }
@@ -77,10 +75,22 @@ namespace EnemySpawn.Scripts.Enemies
         }
 
         /// <summary>
-        /// Sets the player transform for this drone.
+        /// Sets the reference of player transform for this drone.
         /// </summary>
         /// <param name="playerTransform">The transform of the player.</param>
+        /// <remarks>
+        /// The transform of the player is needed in order for the drone to locate the player.
+        /// </remarks>
         public void SetPlayerTransform(Transform playerTransform) => _playerTransform = playerTransform;
+
+        /// <summary>
+        /// Sets the reference of player collider for this drone.
+        /// </summary>
+        /// <param name="playerCollider">The collider of the player.</param>
+        /// <remarks>
+        /// The collider of the player is needed in order to quickly accurately compute the distance between the drone and the player.
+        /// </remarks>
+        public void SetPlayerCollider(Collider playerCollider) => _playerCollider = playerCollider;
 
         /// <summary>
         /// Sets a reference to which pool this drone belongs to.
