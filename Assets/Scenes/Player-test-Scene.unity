@@ -1295,8 +1295,10 @@ MonoBehaviour:
     m_Bits: 1024
   _player: {fileID: 477285285}
   _maxDistance: 100
-  _cancelSpeed: 10
-  _hookShotSpeed: 20
+  _percentageDistance: 0.4
+  _speedDirection: 18.78
+  _maxHookShotSpeed: 5
+  _accelerationMultiplier: 2
 --- !u!1 &708048418
 GameObject:
   m_ObjectHideFlags: 0

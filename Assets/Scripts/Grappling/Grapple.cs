@@ -12,39 +12,52 @@ public class Grapple : MonoBehaviour
     // used in Physics.Raycast
     private LineRenderer _lineRenderer;
     private Vector3 _grapplePoint;
-    private Camera _camera; 
+    private Camera _camera;
 
-
+    #region Grappling
+    [Header("GRAPPLE")]
     [SerializeField]
     private LayerMask _grappleLayer;
     [SerializeField]
     private GameObject _player; // also used for referencing rigidbody
     [SerializeField, Range(10f, 100f), Tooltip("max distance that the player can grapple")]
     private float _maxDistance;
-    [SerializeField, Range(1f, 10f), Tooltip("reduces speed during grappling via Player Controls")]
-    private float _cancelSpeed;
+    [SerializeField, Range(0f, 1f)]
+    private float _percentageDistance = .2f;
+    [SerializeField]
+    private float _speedDirection = 3f;
+    #endregion
+
+
 
     #region Hookshot
     [Header("HOOKSHOT")]
     [SerializeField, Range(1f, 20f), Tooltip("Determines how fast the player goes towards the grapplepoint")]
-    private float _hookShotSpeed = 5f;
+    private float _maxHookShotSpeed = 5f;
+    [SerializeField, Tooltip("acceleration when the player use the hookshot")]
+    private float _accelerationMultiplier = 2f;
 
-    private float _speedHook = 0;
 
     #endregion
 
     #region private variables
 
-    private bool _tethered;
-    private bool _disableGrapple;
-    private float _tetherLength;
-    private Vector3 _tetherPoint;
-    private Vector3 _grappleDirection;
-    private Rigidbody _rb;
+    private float _speedHook = 0;
+    private float _tetherLength; // length of the grapple
+    private float _distanceToGrapplePull; // length of the player to grapple
+   
+    private bool _tethered; // bool variable that detects if the player has hit a grappable wall upon raycasting
+    private bool _disableGrapple; 
+    private bool _canPull; // Hookshot Bool
+    private bool _isPulling; // Hookshot bool
 
+    
+    private Vector3 _tetherPoint; // position where the grapple got hit
+    private Vector3 _grappleDirection;   
+    private Vector3 _inputDirection;
 
-    private bool _canPull; // 
-    private bool _isPulling;
+    private Rigidbody _rb; // referencing from player's rb
+
 
 
     #endregion
@@ -67,7 +80,8 @@ public class Grapple : MonoBehaviour
     private void OnEnable()
     {
         InputManager.onStartGrapple += StartGrapple;
-        //InputManager.onEndGrapple += StopGrapple;
+        InputManager.onStartMovement += GetDirection;
+        InputManager.onEndMovement += StopControlling;
 
         InputManager.onStartHook += StartHook;
         InputManager.onEndHook += StopHook;
@@ -76,7 +90,8 @@ public class Grapple : MonoBehaviour
     private void OnDisable()
     {
         InputManager.onStartGrapple -= StartGrapple;
-       // InputManager.onEndGrapple -= StopGrapple;
+        InputManager.onStartMovement -= GetDirection;
+        InputManager.onEndMovement -= StopControlling;
 
         InputManager.onStartHook -= StartHook;
         InputManager.onEndHook -= StopHook;
@@ -123,8 +138,10 @@ public class Grapple : MonoBehaviour
                _tethered = true;
                _tetherPoint = hit.point;
                _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-                Debug.Log($"_tetherLength: {_tetherLength} units");
                 _canPull = true;
+
+                _distanceToGrapplePull = _tetherLength * _percentageDistance;
+
                 //_rb.AddForce(transform.forward * _hookShotSpeed, ForceMode.VelocityChange);
             }
         }else
@@ -135,21 +152,44 @@ public class Grapple : MonoBehaviour
 
     private void StopGrapple()
     {
+        Player.movementState = MovementState.GroundMovement;
         _disableGrapple = true;
         _tethered = false;
         _canPull = false;
-        Player.movementState = MovementState.GroundMovement;
         _lineRenderer.positionCount = 0;
     }
+
+    // Rope Swing 
     private void ApplyGrapplePhysics()
     {
         Vector3 directionToGrapple = Vector3.Normalize(_tetherPoint - _player.transform.position);
         float currentDistanceToGrapple = Vector3.Distance(_tetherPoint, _player.transform.position);
         float speedTowardsGrapplePoint = Mathf.Round(Vector3.Dot(_rb.velocity, directionToGrapple) * 100) / 100;
+        
+
+        if (Player.movementState == MovementState.Grappling)
+        {
+            
+            //Acceleration here upon controls
+            if (_inputDirection.z > 0) // W [Forward input = faster acceleration]
+            {
+
+            } 
+            else if (_inputDirection.z < 0) // S [Backward input = deceleration]
+            {
+
+            }
+            else
+            {
+
+            }
 
 
+            if (_tetherLength - currentDistanceToGrapple < _distanceToGrapplePull)
+             _rb.MovePosition(_player.transform.position + directionToGrapple * _speedDirection * Time.deltaTime);
 
-        //_player.transform.position += directionToGrapple * _hookShotSpeed * Time.deltaTime;
+        }
+
         
         if (speedTowardsGrapplePoint < 0)
         {
@@ -212,11 +252,23 @@ public class Grapple : MonoBehaviour
 
         _rb.useGravity = false;
         _rb.MovePosition(_player.transform.position + startHooking * _speedHook);
-        //_rb.velocity += startHooking * _speedHook;
 
 
     }
 
+    #endregion
+
+    #region Player Input
+    private void GetDirection(Vector2 direction)
+    {
+        _inputDirection = new Vector3(direction.x, _player.transform.position.y, direction.y);
+    }
+
+    private void StopControlling()
+    {
+        _inputDirection.x = 0;
+        _inputDirection.z = 0;
+    }
     #endregion
 
 }
