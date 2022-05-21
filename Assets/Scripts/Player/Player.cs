@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum MovementState
+{
+    GroundMovement,
+    Grappling
+};
+
 public class Player : MonoBehaviour
 {
+    public static MovementState movementState = MovementState.GroundMovement;
 
-    [SerializeField]
 
     private void Start()
     {
@@ -16,3 +22,5 @@ public class Player : MonoBehaviour
     }
 
 }
+
+
