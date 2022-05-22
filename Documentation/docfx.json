@@ -3,14 +3,16 @@
     {
       "src": [
         {
-          "files": [
-            "src/**.csproj"
+          "exclude": [
+            "Plugins/**"
           ]
         }
       ],
       "dest": "api",
+      "filter": "filterConfig.yml",
+      "globalNamespaceId": "Global",
       "disableGitFeatures": false,
-      "disableDefaultFilter": false
+      "disableDefaultFilter": true
     }
   ],
   "build": {
@@ -39,9 +41,6 @@
     ],
     "overwrite": [
       {
-        "files": [
-          "apidoc/**.md"
-        ],
         "exclude": [
           "obj/**",
           "_site/**"
@@ -59,6 +58,12 @@
     "noLangKeyword": false,
     "keepFileLink": false,
     "cleanupCacheHistory": false,
-    "disableGitFeatures": false
+    "disableGitFeatures": false,
+    "xref": [
+      "https://normanderwan.github.io/UnityXrefMaps/xrefmap.yml"
+    ],
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
   }
 }
