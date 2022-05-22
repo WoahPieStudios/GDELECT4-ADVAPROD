@@ -161,6 +161,7 @@ public class Grapple : MonoBehaviour
         _tethered = false;
         _canPull = false;
         _lineRenderer.positionCount = 0;
+
     }
 
     // Rope Swing 
@@ -175,22 +176,22 @@ public class Grapple : MonoBehaviour
         {
             
             //Acceleration here upon controls
-            if (_inputDirection.z != 0) 
+            if (_inputDirection.z != 0 || _inputDirection.x != 0) 
             {
-            // W [Forward input = faster acceleration]
+                // W [Forward input = faster acceleration]
 
 
-            // S [Backward input = deceleration]
-
-            _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + (_player.transform.forward * -_inputDirection.z);
+                // S [Backward input = deceleration]
+                Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
+            _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction;
             }
 
 
-            if (_tetherLength - currentDistanceToGrapple < _distanceToGrapplePull)
-            {
-                _rb.MovePosition(_player.transform.position + directionToGrapple * _speedDirection * Time.deltaTime);
+            //if (_tetherLength - currentDistanceToGrapple < _distanceToGrapplePull)
+            //{
+            //    _rb.MovePosition(_player.transform.position + directionToGrapple * _speedDirection * Time.deltaTime);
 
-            }
+            //}
 
         }
 
