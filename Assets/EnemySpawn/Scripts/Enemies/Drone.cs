@@ -9,7 +9,7 @@ namespace EnemySpawn.Scripts.Enemies
         [Header("Properties")]
         [SerializeField] float movementSpeed;
         private Rigidbody _rigidBody;
-        
+
         [Header("Player Reference")]
         private Transform _playerTransform;
 
@@ -51,13 +51,17 @@ namespace EnemySpawn.Scripts.Enemies
         /// <param name="playerTransform">The transform of the player.</param>
         public void SetPlayerTransform(Transform playerTransform) => _playerTransform = playerTransform;
 
-        public void SetPool(ObjectPool<Drone> dronePool) => _dronePool = dronePool; 
-        
+        /// <summary>
+        /// Sets a reference to which pool this drone came from.
+        /// </summary>
+        /// <param name="dronePool"></param>
+        public void SetPool(ObjectPool<Drone> dronePool) => _dronePool = dronePool;
+
         private void OnCollisionEnter(Collision other)
         {
             if (other.collider.CompareTag("Player"))
             {
-               _dronePool.Release(this);
+                _dronePool.Release(this);
             }
         }
     }

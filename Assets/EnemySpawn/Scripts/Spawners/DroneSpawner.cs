@@ -10,21 +10,43 @@ namespace EnemySpawn.Scripts.Spawners
     /// </summary>
     public class DroneSpawner : MonoBehaviour
     {
-        [Header("Drone Pool")]
-        [SerializeField] private DronePool dronePool;
+        /// <summary>
+        /// Reference to the pool this spawner will be using.
+        /// </summary>
+        [Header("Drone Pool"), SerializeField, Tooltip("Reference to the pool this spawner will be using.")]
+        private DronePool dronePool;
 
-        [Header("Spawn Properties")]
-        [SerializeField] private bool isSpawning;
-        [SerializeField] private Transform spawnPoint;
-        [SerializeField] private float spawnInterval;
-        [SerializeField] private float spawnRadius;
+        /// <summary>
+        /// Determines whether the spawner is active.
+        /// </summary>
+        [Header("Spawn Properties"), SerializeField, Tooltip("Determines whether the spawner is active.")]
+        private bool isActive;
+        /// <summary>
+        /// Determines the location where the drones will spawn.
+        /// </summary>
+        [SerializeField, Tooltip("Determines the location where the drones will spawn.")]
+        private Transform spawnPoint;
+        /// <summary>
+        /// The frequency of when drones will be spawned.
+        /// </summary>
+        [SerializeField, Tooltip("The frequency of when drones will be spawned.")]
+        private float spawnInterval;
 
-        [Header("Player Reference")] 
+        /// <summary>
+        /// The radius of the area which the drones will spawn at the <see cref= "spawnPoint"/>.
+        /// </summary>
+        [SerializeField, Tooltip("The radius of the area which the drones will spawn at the spawn point.")]
+        private float spawnRadius;
+
+        /// <summary>
+        /// References the transform of the player which is used by the drones.
+        /// </summary>
+        [Header("Player Reference")]
         private Transform _playerTransform;
 
         private void Reset()
         {
-            isSpawning = true;
+            isActive = true;
             spawnInterval = 1f;
             spawnRadius = 1f;
         }
@@ -38,18 +60,18 @@ namespace EnemySpawn.Scripts.Spawners
         {
             StartCoroutine(SpawnDrones());
         }
-        
+
         /// <summary>
         /// Sets the <see cref="_playerTransform"/> by looking for objects with the tag <c>Player</c>.
         /// </summary>
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
-        
+
         /// <summary>
         /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
         /// </summary>
         private IEnumerator SpawnDrones()
         {
-            while (isSpawning)
+            while (isActive)
             {
                 var drone = dronePool.Pool.Get();
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
@@ -58,18 +80,18 @@ namespace EnemySpawn.Scripts.Spawners
                 yield return new WaitForSeconds(spawnInterval);
             }
         }
-        
+
         /// <summary>
-        /// Flips the current state of <see cref="isSpawning"/>.
+        /// Flips the current state of <see cref="isActive"/>.
         /// </summary>
-        public void ToggleSpawn() => isSpawning = !isSpawning;
-        
+        public void ToggleSpawn() => isActive = !isActive;
+
         /// <summary>
-        /// Sets <see cref="isSpawning"/> according to the bypass value.
+        /// Sets <see cref="isActive"/> according to the bypass value.
         /// </summary>
-        /// <param name="bypassValue">The state that will be set to <see cref="isSpawning"/></param>
-        public void ToggleSpawn(bool bypassValue) => isSpawning = bypassValue;
-        
+        /// <param name="bypassValue">The state that will be set to <see cref="isActive"/></param>
+        public void ToggleSpawn(bool bypassValue) => isActive = bypassValue;
+
         private void OnDrawGizmosSelected()
         {
             if (spawnPoint == null) return;
