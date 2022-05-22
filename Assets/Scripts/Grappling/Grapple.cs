@@ -28,10 +28,7 @@ public class Grapple : MonoBehaviour
     private float _percentageDistance = .2f;
     [SerializeField]
     private float _speedDirection = 3f;
-    [SerializeField]
-    private float _accelerationRate;
 
-    private float currentGrapplingSpeed;
     #endregion
 
 
