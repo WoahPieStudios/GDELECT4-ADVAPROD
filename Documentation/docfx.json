@@ -3,6 +3,10 @@
     {
       "src": [
         {
+          "src": "../Assets/",
+          "files": [
+            "**/*.cs"
+          ],
           "exclude": [
             "Plugins/**"
           ]
