@@ -8,6 +8,7 @@ namespace EnemySpawn.Scripts.Spawners
     /// <summary>
     /// Responsible for spawning <see cref="Drone">Drones</see> into the scene.
     /// </summary>
+    [RequireComponent(typeof(DronePool))]
     public class DroneSpawner : MonoBehaviour
     {
         /// <summary>
@@ -46,6 +47,7 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Reset()
         {
+            dronePool = GetComponent<DronePool>();
             isActive = true;
             spawnInterval = 1f;
             spawnRadius = 1f;
