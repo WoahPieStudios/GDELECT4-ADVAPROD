@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone
       objectReference: {fileID: 0}
+    - target: {fileID: 1053614422555756815, guid: ed8f519cf5163124abd0c76f63802649,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1053614422555756850, guid: ed8f519cf5163124abd0c76f63802649,
         type: 3}
       propertyPath: isStandalone
@@ -143,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 1053614422555756850, guid: ed8f519cf5163124abd0c76f63802649,
         type: 3}
       propertyPath: attackDistance
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1053614422555756850, guid: ed8f519cf5163124abd0c76f63802649,
         type: 3}
@@ -335,6 +340,7 @@ GameObject:
   - component: {fileID: 494916009}
   - component: {fileID: 494916008}
   - component: {fileID: 494916012}
+  - component: {fileID: 494916013}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -436,6 +442,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &494916013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494916007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b9653d968d15f4abc25862b17f3b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMoving: 1
+  _movementRange: 2
 --- !u!1 &1592920077
 GameObject:
   m_ObjectHideFlags: 0
