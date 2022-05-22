@@ -11,7 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
     
-    [SerializeField, Range(1f, 50f)]
+    [SerializeField]
     private float _moveSpeed;
 
     [Header("Custom Accel Decel")]
@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour {
             _rigidBody.MovePosition(transform.position + (_goingTo * _speed * Time.deltaTime));
 
 
-        #region Custom Acceleration Deceleration
+        #region Custom Acceleration Deceleration [ Deprecated ]
         //if (_direction != Vector3.zero)
         //{
         //    _isMoving = true;
