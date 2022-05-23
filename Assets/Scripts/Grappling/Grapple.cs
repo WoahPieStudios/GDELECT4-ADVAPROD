@@ -18,14 +18,17 @@ public class Grapple : MonoBehaviour
     [Header("GRAPPLE")]
     [SerializeField]
     private LayerMask _grappleLayer;
+    [SerializeField, Tooltip("point where the line renderer starts")]
+    private Transform _gunTip;
     [SerializeField]
     private GameObject _player; // also used for referencing rigidbody
-    [SerializeField, Range(10f, 100f), Tooltip("max distance that the player can grapple")]
+    [SerializeField, Tooltip("max distance that the player can grapple")]
     private float _maxDistance;
     [SerializeField, Range(0f, 1f)]
     private float _percentageDistance = .2f;
     [SerializeField]
     private float _speedDirection = 3f;
+
     #endregion
 
 
@@ -45,6 +48,7 @@ public class Grapple : MonoBehaviour
     private float _speedHook = 0;
     private float _tetherLength; // length of the grapple
     private float _distanceToGrapplePull; // length of the player to grapple
+
    
     private bool _tethered; // bool variable that detects if the player has hit a grappable wall upon raycasting
     private bool _disableGrapple; 
@@ -113,7 +117,7 @@ public class Grapple : MonoBehaviour
         if (_isPulling)
         {
             Debug.Log($"_isPulling: {_isPulling}");
-            ApplyHookShotPhysics();
+          ApplyHookShotPhysics();
         }
     }
 
@@ -157,6 +161,7 @@ public class Grapple : MonoBehaviour
         _tethered = false;
         _canPull = false;
         _lineRenderer.positionCount = 0;
+
     }
 
     // Rope Swing 
@@ -171,22 +176,22 @@ public class Grapple : MonoBehaviour
         {
             
             //Acceleration here upon controls
-            if (_inputDirection.z > 0) // W [Forward input = faster acceleration]
+            if (_inputDirection.z != 0 || _inputDirection.x != 0) 
             {
+                // W [Forward input = faster acceleration]
 
-            } 
-            else if (_inputDirection.z < 0) // S [Backward input = deceleration]
-            {
 
-            }
-            else
-            {
-
+                // S [Backward input = deceleration]
+                Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
+            _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction;
             }
 
 
-            if (_tetherLength - currentDistanceToGrapple < _distanceToGrapplePull)
-             _rb.MovePosition(_player.transform.position + directionToGrapple * _speedDirection * Time.deltaTime);
+            //if (_tetherLength - currentDistanceToGrapple < _distanceToGrapplePull)
+            //{
+            //    _rb.MovePosition(_player.transform.position + directionToGrapple * _speedDirection * Time.deltaTime);
+
+            //}
 
         }
 
@@ -198,7 +203,7 @@ public class Grapple : MonoBehaviour
             if (currentDistanceToGrapple > _tetherLength)     
             {
                 _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple; // this makes the player swing to the opposite side
-                _rb.position = _tetherPoint - directionToGrapple; // this makes the player's direction to swing go to the opposite side
+                _rb.position = _tetherPoint - directionToGrapple * _tetherLength; // this makes the player's direction to swing go to the opposite side
             }
         }
     }
@@ -211,7 +216,7 @@ public class Grapple : MonoBehaviour
         if (_tethered)
         {
             _lineRenderer.positionCount = 2;
-            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(0, _gunTip.position);
             _lineRenderer.SetPosition(1, _tetherPoint);
 
         }
@@ -233,7 +238,7 @@ public class Grapple : MonoBehaviour
     {
         _isPulling = false;
         _rb.useGravity = true;
-        _rb.isKinematic = false;
+       _rb.isKinematic = false;
         _speedHook = 0;
         StopGrapple();
     }

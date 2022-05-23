@@ -104,6 +104,11 @@ namespace EnemySpawn.Scripts.Enemies
         /// <param name="isLookingForPlayer">The state of the drone.</param>
         public void SetPlayerLookState(bool isLookingForPlayer) => _isLookingForPlayer = isLookingForPlayer;
 
+        /// Sets a reference to which pool this drone came from.
+        /// </summary>
+        /// <param name="dronePool"></param>
+        public void SetPool(ObjectPool<Drone> dronePool) => _dronePool = dronePool;
+
         private void OnCollisionEnter(Collision other)
         {
             if (other.collider.CompareTag("Player"))
