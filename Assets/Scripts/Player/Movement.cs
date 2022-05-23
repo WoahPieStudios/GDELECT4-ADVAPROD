@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,26 +11,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
     
-    [Header("Force")]
-    [SerializeField, Range(1f, 100f)]
-    private float _forceSpeed; // Amount of force that will be given to the player
-    [SerializeField, Tooltip("The rate on how frequent adding the force")]
-    private float _rateOfPulseSpeed; 
-    private float _lastPulse;
-    [SerializeField, Tooltip("only ForceModes working: Impulse, ChangeVelocity")] 
-    private ForceMode _forceMode;
-
+    [SerializeField]
+    private float _moveSpeed;
 
     [Header("Custom Accel Decel")]
-    [SerializeField, Range(1f, 5f)]
-    private float _moveSpeed;
     [SerializeField]
     private float _accelerationRate;
     [SerializeField]
     private float _decelerationRate;
+    [SerializeField]
+    private bool _hasAcceleration;
+
+
     private float _currentSpeed;
+    private float _speed;
     private bool _canAccelerate = false;
-    private bool _isMoving = false;
 
     public float currentSpeed {
         get => _currentSpeed;
@@ -38,8 +34,8 @@ public class Movement : MonoBehaviour {
 
 
     private Rigidbody _rigidBody;
-    private Vector3 _direction;
-    private Vector3 _goingTo;
+    private Vector3 _direction; // stores input values
+    private Vector3 _goingTo; // stores the final values for the direction
 
     private void Awake()
     {
@@ -54,16 +50,19 @@ public class Movement : MonoBehaviour {
     private void OnEnable()
     {
         InputManager.onStartMovement += MoveDirection;
+        InputManager.onEndMovement += StopMoving;
     }
 
     private void OnDisable()
     {
         InputManager.onStartMovement -= MoveDirection;
+        InputManager.onEndMovement -= StopMoving;
     }
 
     private void Update()
     {
-        Debug.Log($"{currentSpeed}");
+        //Debug.Log($"{currentSpeed}");
+
         if (_canAccelerate)
         {
             currentSpeed += _accelerationRate * Time.deltaTime;
@@ -78,9 +77,13 @@ public class Movement : MonoBehaviour {
     {
         //references the "forward" of the player where ever the player looks horizontally 
         _goingTo = transform.right * _direction.x + transform.forward * _direction.z;
-        MovePosition(transform.position, _goingTo, _moveSpeed);
 
-        #region Custom Acceleration Deceleration
+        _speed = _hasAcceleration ? _currentSpeed : _moveSpeed;
+        if (Player.movementState == MovementState.GroundMovement)
+            _rigidBody.MovePosition(transform.position + (_goingTo * _speed * Time.deltaTime));
+
+
+        #region Custom Acceleration Deceleration [ Deprecated ]
         //if (_direction != Vector3.zero)
         //{
         //    _isMoving = true;
@@ -101,13 +104,16 @@ public class Movement : MonoBehaviour {
         #endregion
     }
 
-    public void MovePosition(in Vector3 position, Vector3 direction, float moveSpeed)
-    {
-        _rigidBody.MovePosition(position + (direction * moveSpeed * Time.deltaTime));
-    }
-
+    //for input direction
     private void MoveDirection(Vector2 direction)
     {
         _direction = new Vector3(direction.x, transform.position.y, direction.y);
+        _canAccelerate = true;
     }
+    private void StopMoving()
+    {
+        if (!_hasAcceleration) _direction = new Vector3(0, transform.position.y, 0);
+        _canAccelerate = false;
+    }
+
 }
