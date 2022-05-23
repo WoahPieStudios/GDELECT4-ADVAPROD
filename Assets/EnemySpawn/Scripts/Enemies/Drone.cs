@@ -13,7 +13,6 @@ namespace EnemySpawn.Scripts.Enemies
 
         [Header("Properties")]
         [SerializeField] float movementSpeed;
-        [SerializeField] LayerMask objectsToDetect;
         private Rigidbody _rigidBody;
         private Transform _transform;
         private bool _isLookingForPlayer;
@@ -21,7 +20,7 @@ namespace EnemySpawn.Scripts.Enemies
         [Header("Player Reference")]
         [SerializeField] float attackDistance;
         private Transform _playerTransform;
-        [SerializeField] private Collider _playerCollider;
+        private Collider _playerCollider;
 
         [Header("Drone Pool Reference")]
         private ObjectPool<Drone> _dronePool;
@@ -32,12 +31,11 @@ namespace EnemySpawn.Scripts.Enemies
             _rigidBody = GetComponent<Rigidbody>();
             _transform = transform;
 
-            if (isStandalone)
-            {
-                _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
-                _playerCollider = _playerTransform?.GetComponent<Collider>();
-                _isLookingForPlayer = true;
-            }
+            if (!isStandalone) return;
+            
+            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            _playerCollider = _playerTransform.GetComponent<Collider>();
+            _isLookingForPlayer = true;
         }
 
         private void Reset()
@@ -66,9 +64,10 @@ namespace EnemySpawn.Scripts.Enemies
             print("Looking for Player");
             var position = _rigidBody.transform.position;
             var direction = _playerTransform.position - position;
-            _rigidBody.MovePosition(position + direction.normalized * movementSpeed * Time.fixedDeltaTime);
+            _rigidBody.MovePosition(position + direction.normalized * (movementSpeed * Time.fixedDeltaTime));
         }
 
+        #region AttackPlayer
         /// <summary>
         /// Attack behavior of the drone towards the player.
         /// </summary>
@@ -76,6 +75,8 @@ namespace EnemySpawn.Scripts.Enemies
         {
             print("Attacking Player");
         }
+
+        #endregion
 
         /// <summary>
         /// Sets the reference of player transform for this drone.
