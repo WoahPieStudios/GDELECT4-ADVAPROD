@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
 
     private PlayerInputs _playerInputs;
     private Vector2 _mouseInput;
+    public AudioClip buttonSound;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class InputManager : MonoBehaviour
     }
     private void Start()
     {
+       
 
         #region Grappling & Hooking
         _playerInputs.PlayerControls.Grapple.performed += ctx =>
@@ -68,6 +70,8 @@ public class InputManager : MonoBehaviour
         #endregion
 
 
+
+
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
         {
@@ -80,6 +84,14 @@ public class InputManager : MonoBehaviour
             onMouseLook?.Invoke(_mouseInput);
         };
         #endregion
+    }
+
+    private void AudioTest(InputAction.CallbackContext obj) 
+    {
+       
+            Debug.Log("Space is pressed");
+            SoundManager.instance.PlaySFX(buttonSound);
+       
     }
 
 
