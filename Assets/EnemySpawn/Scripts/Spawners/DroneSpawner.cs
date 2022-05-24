@@ -2,6 +2,7 @@ using System.Collections;
 using EnemySpawn.Scripts.Enemies;
 using EnemySpawn.Scripts.Pools;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace EnemySpawn.Scripts.Spawners
 {
@@ -45,6 +46,12 @@ namespace EnemySpawn.Scripts.Spawners
         [Header("Player Reference")]
         private Transform _playerTransform;
 
+        [Header("Combat")]
+        [SerializeField] private float health;
+        
+        [Header("Events")]
+        [SerializeField] private UnityEvent onTotemDeath;
+
         private void Reset()
         {
             dronePool = GetComponent<DronePool>();
@@ -55,6 +62,7 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Awake()
         {
+            onTotemDeath.AddListener(DisableDrones);
             FindPlayerTransform();
         }
 
@@ -73,14 +81,25 @@ namespace EnemySpawn.Scripts.Spawners
         /// </summary>
         private IEnumerator SpawnDrones()
         {
-            while (isActive)
+            while (health > 0 && _playerTransform)
             {
-                var drone = dronePool.Pool.Get();
-                drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
-                drone.SetPlayerTransform(_playerTransform);
-                drone.SetPool(dronePool.Pool);
+                SpawnDrone();
                 yield return new WaitForSeconds(spawnInterval);
             }
+            onTotemDeath?.Invoke();
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
+        /// </summary>
+        private void SpawnDrone()
+        {
+            var drone = dronePool.Pool.Get();
+            drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
+            drone.SetPlayerTransform(_playerTransform);
+            drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
+            drone.SetPool(dronePool.Pool);
+            drone.SetPlayerLookState(true);
         }
 
         /// <summary>
@@ -98,6 +117,17 @@ namespace EnemySpawn.Scripts.Spawners
         {
             if (spawnPoint == null) return;
             Gizmos.DrawWireSphere(spawnPoint.position, spawnRadius);
+        }
+
+        public void TakeDamage(float damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0){onTotemDeath?.Invoke();}
+        }
+        
+        private void DisableDrones()
+        {
+            Destroy(gameObject);
         }
     }
 }
