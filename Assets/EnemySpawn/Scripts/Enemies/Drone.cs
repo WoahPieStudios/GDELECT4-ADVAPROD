@@ -74,7 +74,6 @@ namespace EnemySpawn.Scripts.Enemies
             _rigidBody.MovePosition(position + direction.normalized * (movementSpeed * Time.fixedDeltaTime));
         }
 
-        #region AttackPlayer
         /// <summary>
         /// Attack behavior of the drone towards the player.
         /// </summary>
@@ -82,8 +81,6 @@ namespace EnemySpawn.Scripts.Enemies
         {
             print("Attacking Player");
         }
-
-        #endregion
 
         /// <summary>
         /// Sets the reference of player transform for this drone.
