@@ -46,8 +46,11 @@ namespace EnemySpawn.Scripts.Spawners
         [Header("Player Reference")]
         private Transform _playerTransform;
 
+        [Header("Combat")]
+        [SerializeField] private float health;
+        
         [Header("Events")]
-        [SerializeField] private UnityEvent onTotemDisable;
+        [SerializeField] private UnityEvent onTotemDeath;
 
         private void Reset()
         {
@@ -59,7 +62,7 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Awake()
         {
-            onTotemDisable.AddListener(DisableDrones);
+            onTotemDeath.AddListener(DisableDrones);
             FindPlayerTransform();
         }
 
@@ -83,7 +86,7 @@ namespace EnemySpawn.Scripts.Spawners
                 SpawnDrone();
                 yield return new WaitForSeconds(spawnInterval);
             }
-            onTotemDisable?.Invoke();
+            onTotemDeath?.Invoke();
         }
 
         /// <summary>
@@ -116,6 +119,12 @@ namespace EnemySpawn.Scripts.Spawners
             Gizmos.DrawWireSphere(spawnPoint.position, spawnRadius);
         }
 
+        public void TakeDamage(float damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0){onTotemDeath?.Invoke();}
+        }
+        
         private void DisableDrones()
         {
             Destroy(gameObject);

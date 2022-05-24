@@ -19,7 +19,8 @@ namespace EnemySpawn.Scripts.Enemies
         private bool _isLookingForPlayer;
 
         [Header("Combat")]
-        [SerializeField] private float damageAmount;
+        [SerializeField] private float health;
+        [SerializeField] private float _damageAmount;
         [SerializeField] float attackDistance;
 
         [Header("Player Reference")]
@@ -32,7 +33,7 @@ namespace EnemySpawn.Scripts.Enemies
         private void Reset()
         {
             movementSpeed = 1f;
-            damageAmount = 1f;
+            _damageAmount = 1f;
             attackDistance = 1f;
         }
 
@@ -118,11 +119,17 @@ namespace EnemySpawn.Scripts.Enemies
         {
             if (!other.collider.CompareTag("Player")) return;
             
-            other.collider.GetComponent<PlayerCombat>().TakeDamage(damageAmount);
+            other.collider.GetComponent<PlayerCombat>().TakeDamage(_damageAmount);
             
             GetDestroyed();
         }
 
+        public void TakeDamage(float damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0){GetDestroyed();}
+        }
+        
         public void GetDestroyed()
         {
             if (isStandalone) Destroy(gameObject);
