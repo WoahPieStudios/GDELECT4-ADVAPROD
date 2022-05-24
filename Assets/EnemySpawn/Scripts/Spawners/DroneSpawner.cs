@@ -2,6 +2,7 @@ using System.Collections;
 using EnemySpawn.Scripts.Enemies;
 using EnemySpawn.Scripts.Pools;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace EnemySpawn.Scripts.Spawners
 {
@@ -45,6 +46,9 @@ namespace EnemySpawn.Scripts.Spawners
         [Header("Player Reference")]
         private Transform _playerTransform;
 
+        [Header("Events")]
+        [SerializeField] private UnityEvent onTotemDisable;
+
         private void Reset()
         {
             dronePool = GetComponent<DronePool>();
@@ -55,6 +59,7 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Awake()
         {
+            onTotemDisable.AddListener(DisableDrones);
             FindPlayerTransform();
         }
 
@@ -78,6 +83,7 @@ namespace EnemySpawn.Scripts.Spawners
                 SpawnDrone();
                 yield return new WaitForSeconds(spawnInterval);
             }
+            onTotemDisable?.Invoke();
         }
 
         /// <summary>
@@ -108,6 +114,11 @@ namespace EnemySpawn.Scripts.Spawners
         {
             if (spawnPoint == null) return;
             Gizmos.DrawWireSphere(spawnPoint.position, spawnRadius);
+        }
+
+        private void DisableDrones()
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -1,3 +1,4 @@
+using EnemySpawn.Scripts.Combat;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -17,14 +18,23 @@ namespace EnemySpawn.Scripts.Enemies
         private Transform _transform;
         private bool _isLookingForPlayer;
 
-        [Header("Player Reference")]
+        [Header("Combat")]
+        [SerializeField] private float damageAmount;
         [SerializeField] float attackDistance;
+
+        [Header("Player Reference")]
         private Transform _playerTransform;
         private Collider _playerCollider;
 
         [Header("Drone Pool Reference")]
         private ObjectPool<Drone> _dronePool;
 
+        private void Reset()
+        {
+            movementSpeed = 1f;
+            damageAmount = 1f;
+            attackDistance = 1f;
+        }
 
         private void Awake()
         {
@@ -36,12 +46,6 @@ namespace EnemySpawn.Scripts.Enemies
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
             _playerCollider = _playerTransform.GetComponent<Collider>();
             _isLookingForPlayer = true;
-        }
-
-        private void Reset()
-        {
-            movementSpeed = 1f;
-            attackDistance = 1f;
         }
 
         private void FixedUpdate()
@@ -112,12 +116,19 @@ namespace EnemySpawn.Scripts.Enemies
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.collider.CompareTag("Player"))
-            {
-                if (isStandalone) Destroy(gameObject);
-                else { _dronePool.Release(this); }
-            }
+            if (!other.collider.CompareTag("Player")) return;
+            
+            other.collider.GetComponent<PlayerCombat>().TakeDamage(damageAmount);
+            
+            GetDestroyed();
         }
+
+        public void GetDestroyed()
+        {
+            if (isStandalone) Destroy(gameObject);
+            else { _dronePool.Release(this); }
+        }
+        
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(transform.position, attackDistance);

@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 494916008}
   - component: {fileID: 494916012}
   - component: {fileID: 494916013}
+  - component: {fileID: 494916014}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -367,6 +368,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isMoving: 1
   _movementRange: 5
+--- !u!114 &494916014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494916007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3739de89cd5c4b88b26b437c68480926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  onPlayerDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2073299189}
+        m_TargetAssemblyTypeName: EnemySpawn.Scripts.Spawners.DroneSpawner, Assembly-CSharp
+        m_MethodName: ToggleSpawn
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1346480950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,3 +598,15 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &2073299189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4956965282725387026, guid: 3d32eda90cb812e4da34fb334553655f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1346480950}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e426d9969e063844aa6488008e9f1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
