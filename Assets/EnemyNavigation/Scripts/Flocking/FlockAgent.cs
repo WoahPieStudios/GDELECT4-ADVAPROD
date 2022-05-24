@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class FlockAgent : MonoBehaviour
+namespace EnemyNavigation.Scripts.Flocking
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(Collider))]
+    public class FlockAgent : MonoBehaviour
     {
-        
-    }
+        private Collider _agentCollider;
+        public Collider AgentCollider => _agentCollider;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private Transform _agentTransform;
+        
+        private void Start()
+        {
+            _agentCollider = GetComponent<Collider>();
+            _agentTransform = transform;
+        }
+
+        public void Move(Vector3 velocity)
+        {
+            _agentTransform.forward = velocity;
+            _agentTransform.position += velocity * Time.deltaTime;
+        }
         
     }
 }

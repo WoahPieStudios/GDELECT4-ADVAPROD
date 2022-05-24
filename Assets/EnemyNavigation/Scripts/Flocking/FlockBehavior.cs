@@ -1,18 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlockBehavior : MonoBehaviour
+namespace EnemyNavigation.Scripts.Flocking
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class FlockBehavior : ScriptableObject
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public abstract Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock);
     }
 }
