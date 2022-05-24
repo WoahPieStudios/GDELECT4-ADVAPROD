@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnemySpawn.Scripts.Enemies;
 
 /// <summary>
 /// - This is temporary hit scan pistol. 
@@ -13,14 +14,19 @@ public class Pistol : MonoBehaviour
     /// </summary>
     [SerializeField]
     private float _maxRange;
-
-
     /// <summary>
     /// Measured in seconds
     /// </summary>
     [SerializeField, Range(0.1f, 10f), Tooltip("Measured in seconds")]
     private float _rateOfFire;
+    /// <summary>
+    /// damage of the pistol
+    /// </summary>
+    [SerializeField, Tooltip("Damage of the pistol")]
+    private float _damage = 5;
 
+
+    #region Cooldown Mechanic
     [Header("OverHeat mechanic")]
     [SerializeField]
     private float _overHeatRate = 4.0f;
@@ -48,7 +54,11 @@ public class Pistol : MonoBehaviour
         get => _currentOverHeatRate;
         set => _currentOverHeatRate = Mathf.Clamp(value, 0, _maxOverHeat);
     }
+    #endregion 
 
+    /// <summary>
+    /// Crosshair
+    /// </summary>
     [Header("radius shot")]
     [SerializeField]
     private float _radius = 0.5f;
@@ -59,7 +69,7 @@ public class Pistol : MonoBehaviour
 
     void Start()
     {
-
+        _nextShotTime = 0;
         _camera = Camera.main;
         _canShoot = true;
     }
@@ -79,10 +89,20 @@ public class Pistol : MonoBehaviour
         if (_didShoot)
         {
             _didShoot = false;
-            currentOverHeatRate += Time.deltaTime * _overHeatRate;
-        }else
+            currentOverHeatRate += _overHeatRate;
+            if (currentOverHeatRate >= _maxOverHeat)
+            {
+                _canShoot = false;
+            }
+        }
+        else
         {
+
             currentOverHeatRate -= Time.deltaTime * _coolDownRate;
+            if (currentOverHeatRate <= _thresholdToAllowShootAfterCooldown)
+            {
+                _canShoot = true;
+            }
         }
 
     }
@@ -91,20 +111,22 @@ public class Pistol : MonoBehaviour
     {
         if (!_canShoot) return;
 
-        RaycastHit hit;
+
         if (Time.time > _nextShotTime)
         {
-            Debug.Log("Did Shoot");
+
             _nextShotTime = Time.time + _rateOfFire;
 
             //add overheat mechanic here
             _didShoot = true;
 
+            RaycastHit hit;
             if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward,out hit, _maxRange))
             {
-                if (hit.collider.CompareTag("Enemy"))
+                if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log($"Enemy hit!");
+                    Debug.Log("Enemy hit!");
+                    hit.collider.gameObject.GetComponent<Drone>().TakeDamage(_damage);
                 }else
                 {
                     Debug.Log("Did hit something");
