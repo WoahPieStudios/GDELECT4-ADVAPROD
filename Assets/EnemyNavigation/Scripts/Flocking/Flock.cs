@@ -26,7 +26,7 @@ namespace EnemyNavigation.Scripts.Flocking
         private float _squareNeighborRadius;
         private float _squareAvoidanceRadius;
         public float SquareAvoidanceRadius => _squareAvoidanceRadius;
-        
+
         // Start is called before the first frame update
         void Start()
         {
@@ -49,7 +49,39 @@ namespace EnemyNavigation.Scripts.Flocking
         // Update is called once per frame
         void Update()
         {
-        
+            foreach (var agent in _agents)
+            {
+                List<Transform> context = GetNearbyObjects(agent);
+
+                agent.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.red, context.Count / 6f);
+
+                // Vector3 move = behavior.CalculateMove(agent, context, this);
+
+                // move *= driveFactor;
+
+                // if (move.sqrMagnitude > _squareMaxSpeed)
+                // {
+                //     move = move.normalized * maxSpeed;
+                // }
+
+                // agent.Move(move);
+            }
+        }
+
+        private List<Transform> GetNearbyObjects(FlockAgent agent)
+        {
+            List<Transform> context = new List<Transform>();
+            Collider[] contextColliders = Physics.OverlapSphere(agent.transform.position, neighborRadius);
+
+            foreach (var c in contextColliders)
+            {
+                if (c != agent.AgentCollider)
+                {
+                    context.Add(c.transform);
+                }
+            }
+
+            return context;
         }
     }
 }
