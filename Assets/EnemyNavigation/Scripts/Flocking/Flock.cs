@@ -53,18 +53,18 @@ namespace EnemyNavigation.Scripts.Flocking
             {
                 List<Transform> context = GetNearbyObjects(agent);
 
-                agent.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.red, context.Count / 6f);
+                // agent.GetComponent<Renderer>().material.color = Color.Lerp(Color.white, Color.red, context.Count / 6f);
 
-                // Vector3 move = behavior.CalculateMove(agent, context, this);
+                Vector3 move = behavior.CalculateMove(agent, context, this);
 
-                // move *= driveFactor;
+                move *= driveFactor;
 
-                // if (move.sqrMagnitude > _squareMaxSpeed)
-                // {
-                //     move = move.normalized * maxSpeed;
-                // }
+                if (move.sqrMagnitude > _squareMaxSpeed)
+                {
+                    move = move.normalized * maxSpeed;
+                }
 
-                // agent.Move(move);
+                agent.Move(move);
             }
         }
 
