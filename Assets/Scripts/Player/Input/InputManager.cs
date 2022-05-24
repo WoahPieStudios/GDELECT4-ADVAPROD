@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     public static event Action onEndHook;
 
     public static event Action<Vector2> onMouseLook;
+
+    public static event Action onShoot;
     #endregion
 
     private PlayerInputs _playerInputs;
@@ -70,7 +72,12 @@ public class InputManager : MonoBehaviour
         #endregion
 
 
-
+        #region Shooting
+        _playerInputs.PlayerControls.Shoot.performed += ctx =>
+        {
+            onShoot?.Invoke();
+        };
+        #endregion
 
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
