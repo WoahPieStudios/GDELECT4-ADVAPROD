@@ -81,7 +81,7 @@ namespace EnemySpawn.Scripts.Spawners
         /// </summary>
         private IEnumerator SpawnDrones()
         {
-            while (isActive)
+            while (health > 0 && _playerTransform)
             {
                 SpawnDrone();
                 yield return new WaitForSeconds(spawnInterval);
