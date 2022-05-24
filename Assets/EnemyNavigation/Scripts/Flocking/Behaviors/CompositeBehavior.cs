@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemyNavigation.Scripts.Flocking
+namespace EnemyNavigation.Scripts.Flocking.Behaviors
 {
     [CreateAssetMenu(menuName = "Flock/Behavior/Composite")]
     public class CompositeBehavior : FlockBehavior
     {
-        [SerializeField] FlockBehavior[] behaviors;
-        [SerializeField] float[] weights;
+        public FlockBehavior[] behaviors;
+        public float[] weights;
 
         public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {

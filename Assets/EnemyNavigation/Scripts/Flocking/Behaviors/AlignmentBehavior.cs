@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemyNavigation.Scripts.Flocking
+namespace EnemyNavigation.Scripts.Flocking.Behaviors
 {
     [CreateAssetMenu(menuName = "Flock/Behavior/Alignment")]
     public class AlignmentBehavior : FlockBehavior
