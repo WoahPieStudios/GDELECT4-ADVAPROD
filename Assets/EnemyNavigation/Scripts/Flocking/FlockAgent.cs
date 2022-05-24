@@ -4,6 +4,9 @@ namespace EnemyNavigation.Scripts.Flocking
     [RequireComponent(typeof(Collider))]
     public class FlockAgent : MonoBehaviour
     {
+        private Flock _agentFlock;
+        public Flock AgentFlock => _agentFlock;
+        
         private Collider _agentCollider;
         public Collider AgentCollider => _agentCollider;
 
@@ -15,6 +18,11 @@ namespace EnemyNavigation.Scripts.Flocking
             _agentTransform = transform;
         }
 
+        public void Initialize(Flock flock)
+        {
+            _agentFlock = flock;
+        }
+        
         public void Move(Vector3 velocity)
         {
             _agentTransform.forward = velocity;

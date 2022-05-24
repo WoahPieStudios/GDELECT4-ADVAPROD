@@ -5,7 +5,7 @@ using UnityEngine;
 namespace EnemyNavigation.Scripts.Flocking.Behaviors
 {
     [CreateAssetMenu(menuName = "Flock/Behavior/Cohesion")]
-    public class CohesionBehavior : FlockBehavior
+    public class CohesionBehavior : FilteredFlockBehavior
     {
         public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
@@ -14,8 +14,8 @@ namespace EnemyNavigation.Scripts.Flocking.Behaviors
 
             // add all points together and average
             Vector3 cohesionMove = Vector3.zero;
-
-            foreach (var item in context)
+            List<Transform> filteredContext = filter == null ? context : filter.Filter(agent, context);
+            foreach (var item in filteredContext)
             {
                 cohesionMove += item.position;
             }

@@ -42,6 +42,7 @@ namespace EnemyNavigation.Scripts.Flocking
                     transform
                 );
                 agent.name = $"Agent {i}";
+                agent.Initialize(this);
                 _agents.Add(agent);
             }
         }

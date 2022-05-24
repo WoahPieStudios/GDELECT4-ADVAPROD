@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EnemyNavigation.Scripts.Flocking.Behaviors
 {
     [CreateAssetMenu(menuName = "Flock/Behavior/Avoidance")]
-    public class AvoidanceBehavior : FlockBehavior
+    public class AvoidanceBehavior : FilteredFlockBehavior
     {
         public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
@@ -15,8 +15,8 @@ namespace EnemyNavigation.Scripts.Flocking.Behaviors
             Vector3 avoidanceMove = Vector3.zero;
 
             int nAvoid = 0;
-
-            foreach (var item in context)
+            List<Transform> filteredContext = filter == null ? context : filter.Filter(agent, context);
+            foreach (var item in filteredContext)
             {
                 if (Vector3.SqrMagnitude(item.position - agent.transform.position) < flock.SquareAvoidanceRadius)
                 {
