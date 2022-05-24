@@ -66,6 +66,7 @@ public class Pistol : MonoBehaviour
     private bool _canShoot;
     private Camera _camera;
     private float _nextShotTime;
+    private RaycastHit _point;
 
     void Start()
     {
@@ -123,6 +124,7 @@ public class Pistol : MonoBehaviour
             RaycastHit hit;
             if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward,out hit, _maxRange))
             {
+                _point = hit;
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit!");
@@ -133,5 +135,11 @@ public class Pistol : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(_point.point, _radius);
     }
 }
