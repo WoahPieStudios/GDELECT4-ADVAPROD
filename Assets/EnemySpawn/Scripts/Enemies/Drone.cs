@@ -49,11 +49,13 @@ namespace EnemySpawn.Scripts.Enemies
             // Do not do anything if player is not yet found.
             if (_playerTransform == null) return;
 
-            // Sets the state depending on the distance of the drone to the player.
-            _isLookingForPlayer = !(Vector3.Distance(_transform.position, _playerTransform.position + _playerCollider.bounds.extents) < attackDistance);
-
-            if (_isLookingForPlayer) { LookForPlayer(); }
-            else { AttackPlayer(); }
+            // // Sets the state depending on the distance of the drone to the player.
+            // _isLookingForPlayer = !(Vector3.Distance(_transform.position, _playerTransform.position + _playerCollider.bounds.extents) < attackDistance);
+            //
+            // if (_isLookingForPlayer) { LookForPlayer(); }
+            // else { AttackPlayer(); }
+            
+            LookForPlayer();
         }
 
         /// <summary>

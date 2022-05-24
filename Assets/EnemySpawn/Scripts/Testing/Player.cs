@@ -20,6 +20,8 @@ namespace EnemySpawn.Scripts.Testing
 
             var _newPosition = transform.position;
             _newPosition.x += Mathf.Cos(Time.time) * Time.deltaTime * _movementRange;
+            _newPosition.y += Mathf.Sin(Time.time) * Time.deltaTime * _movementRange;
+            _newPosition.z += Mathf.Sin(Time.time) * Time.deltaTime * _movementRange;
             transform.position = _newPosition;
         }
     }
