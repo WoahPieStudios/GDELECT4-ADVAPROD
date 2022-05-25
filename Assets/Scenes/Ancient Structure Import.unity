@@ -184,6 +184,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6112645672079371528}
+  - {fileID: 1456746000907243243}
+  - {fileID: 1497395465610124587}
   - {fileID: 543450651924099293}
   - {fileID: 543450653426317596}
   m_Father: {fileID: 0}
@@ -659,10 +662,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectRG_Environment_RuinsAqueduct_Water
       objectReference: {fileID: 0}
+    - target: {fileID: 107881991881351235, guid: 5b618bcb225cb6f45823a5d9a20464ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 735378343319288569, guid: 5b618bcb225cb6f45823a5d9a20464ed,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 735378343319288569, guid: 5b618bcb225cb6f45823a5d9a20464ed,
         type: 3}
@@ -716,6 +724,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b618bcb225cb6f45823a5d9a20464ed, type: 3}
+--- !u!1001 &1160013409514858784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 243856433}
+    m_Modifications:
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730435225905553042, guid: b6fd3f6e25ef62e478eff400c4fca036,
+        type: 3}
+      propertyPath: m_Name
+      value: ProjectRG_Environment_RuinsAqueduct_Rail
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b6fd3f6e25ef62e478eff400c4fca036, type: 3}
 --- !u!1001 &1236897077422336836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -785,6 +862,87 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22c982cb865142649b9ac251dbba3867, type: 3}
+--- !u!4 &1456746000907243243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1942711046907566134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1497395465610124587 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4348699199161241531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1942711046907566134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 243856433}
+    m_Modifications:
+    - target: {fileID: 398941365596802151, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_Name
+      value: ProjectRG_Environment_RuinsAqueduct_FullPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063557195769779933, guid: 8c63aabd0117c6b4b87a02db26ce336b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c63aabd0117c6b4b87a02db26ce336b, type: 3}
 --- !u!1001 &2606702123025343755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -992,6 +1150,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39153e42e55844419ea862dd523663c, type: 3}
+--- !u!1001 &4348699199161241531
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 243856433}
+    m_Modifications:
+    - target: {fileID: 2582162870028503082, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_Name
+      value: ProjectRG_Environment_RuinsAqueduct_HalfPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926917406124200592, guid: 46052a9ea781c194fbcb509e48876c3b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46052a9ea781c194fbcb509e48876c3b, type: 3}
 --- !u!1001 &4805728463467181546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1061,6 +1288,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6c7b9bbfc9f74e47bed6e07fc3d4bcd, type: 3}
+--- !u!4 &6112645672079371528 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4957698851093611560, guid: b6fd3f6e25ef62e478eff400c4fca036,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160013409514858784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8570953662366321294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1071,7 +1304,7 @@ PrefabInstance:
     - target: {fileID: 8176458352328342099, guid: 65faaabe389f2994a85ec3a8f68a3277,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8176458352328342099, guid: 65faaabe389f2994a85ec3a8f68a3277,
         type: 3}
@@ -1127,6 +1360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ProjectRG_Environment_RuinsAqueduct_Walk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805466497917788393, guid: 65faaabe389f2994a85ec3a8f68a3277,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65faaabe389f2994a85ec3a8f68a3277, type: 3}
