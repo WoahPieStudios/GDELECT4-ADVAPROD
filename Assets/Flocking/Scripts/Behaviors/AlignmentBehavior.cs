@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemyNavigation.Scripts.Flocking.Behaviors
+namespace BoardToBits.Flocking.Scripts.Behaviors
 {
     [CreateAssetMenu(menuName = "Flock/Behavior/Alignment")]
     public class AlignmentBehavior : FilteredFlockBehavior

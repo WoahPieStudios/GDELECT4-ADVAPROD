@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace EnemyNavigation.Scripts.Flocking
+﻿namespace BoardToBits.Flocking.Scripts
 {
     public abstract class FilteredFlockBehavior : FlockBehavior
     {

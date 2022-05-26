@@ -1,5 +1,6 @@
 using UnityEngine;
-namespace EnemyNavigation.Scripts.Flocking
+
+namespace BoardToBits.Flocking.Scripts
 {
     [RequireComponent(typeof(Collider))]
     public class FlockAgent : MonoBehaviour

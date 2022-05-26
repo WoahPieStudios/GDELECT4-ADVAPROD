@@ -1,5 +1,5 @@
-using EnemyNavigation.Scripts.Flocking;
-using EnemyNavigation.Scripts.Flocking.Behaviors;
+using BoardToBits.Flocking.Scripts;
+using BoardToBits.Flocking.Scripts.Behaviors;
 using UnityEditor;
 using UnityEngine;
 

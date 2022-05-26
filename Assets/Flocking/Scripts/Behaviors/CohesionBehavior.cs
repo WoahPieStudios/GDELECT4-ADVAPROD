@@ -1,16 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemyNavigation.Scripts.Flocking.Behaviors
+namespace BoardToBits.Flocking.Scripts.Behaviors
 {
-    [CreateAssetMenu(menuName = "Flock/Behavior/Steered Cohesion")]
-    public class SteeredCohesionBehavior : FlockBehavior
+    [CreateAssetMenu(menuName = "Flock/Behavior/Cohesion")]
+    public class CohesionBehavior : FilteredFlockBehavior
     {
-
-        private Vector3 _currentVelocity;
-        [SerializeField] private float agentSmoothTime = 0.5f;
-
         public override Vector3 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
             // if no neighbors, return no adjustment
@@ -18,8 +13,8 @@ namespace EnemyNavigation.Scripts.Flocking.Behaviors
 
             // add all points together and average
             Vector3 cohesionMove = Vector3.zero;
-
-            foreach (var item in context)
+            List<Transform> filteredContext = filter == null ? context : filter.Filter(agent, context);
+            foreach (var item in filteredContext)
             {
                 cohesionMove += item.position;
             }
@@ -28,8 +23,6 @@ namespace EnemyNavigation.Scripts.Flocking.Behaviors
 
             // create offset from agent position
             cohesionMove -= agent.transform.position;
-
-            cohesionMove = Vector3.SmoothDamp(agent.transform.forward, cohesionMove, ref _currentVelocity, agentSmoothTime);
 
             return cohesionMove;
         }

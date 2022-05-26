@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemyNavigation.Scripts.Flocking
+namespace BoardToBits.Flocking.Scripts
 {
     public class Flock : MonoBehaviour
     {

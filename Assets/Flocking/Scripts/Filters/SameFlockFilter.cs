@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemyNavigation.Scripts.Flocking.Filters
+namespace BoardToBits.Flocking.Scripts.Filters
 {
     [CreateAssetMenu(menuName = "Flock/Filter/Same Flock")]
     public class SameFlockFilter : ContextFilter
