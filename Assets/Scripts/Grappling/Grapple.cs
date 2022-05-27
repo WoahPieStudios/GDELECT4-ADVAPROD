@@ -209,7 +209,6 @@ public class Grapple : MonoBehaviour
 
         if (Player.movementState == MovementState.Grappling)
         {
-            
             //This is the part where the player can control the movement speed and direction while on grapple
             if (_inputDirection.z != 0 || _inputDirection.x != 0) 
             {

@@ -18064,10 +18064,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (Place Holder)
       objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965577, guid: 877832b9f0d10fc4191d4d49414038a8,
+    - target: {fileID: 6920387210099965571, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
-      propertyPath: _gravity
-      value: 20
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387210099965571, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965577, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}

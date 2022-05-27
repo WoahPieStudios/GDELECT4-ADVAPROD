@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCheckerDistance: 1.25
-  _gravity: 9.8
+  _gravity: 20
 --- !u!114 &6920387210099965579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,9 +596,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 50
-  _accelerationRate: 100
-  _decelerationRate: 120
-  _hasAcceleration: 1
 --- !u!33 &6920387210099965580
 MeshFilter:
   m_ObjectHideFlags: 0

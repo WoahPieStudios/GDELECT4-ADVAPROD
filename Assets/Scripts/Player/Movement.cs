@@ -59,12 +59,14 @@ public class Movement : MonoBehaviour {
     {
         InputManager.onStartMovement += MoveDirection;
         InputManager.onEndMovement += StopMoving;
+
     }
 
     private void OnDisable()
     {
         InputManager.onStartMovement -= MoveDirection;
         InputManager.onEndMovement -= StopMoving;
+
     }
 
     private void Update()
@@ -117,5 +119,7 @@ public class Movement : MonoBehaviour {
     {
         _canAccelerate = false;
     }
+
+
 
 }

@@ -50,7 +50,11 @@ public class Player : MonoBehaviour
         }else
         {
             _onGround = false;
+            transform.position += -transform.up * _gravity *  Time.deltaTime;
         }
+
+
+
     }
 
     private void OnDrawGizmos()
