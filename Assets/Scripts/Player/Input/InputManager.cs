@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     #region Events
+    #region Player Movements & Actions
     public static event Action<Vector2> onStartMovement;
     public static event Action onEndMovement;
 
@@ -17,6 +18,12 @@ public class InputManager : MonoBehaviour
     public static event Action<Vector2> onMouseLook;
 
     public static event Action onShoot;
+    #endregion
+
+    #region UI Interactions
+    public static event Action onPause; 
+    public static event Action onResume;
+    #endregion
     #endregion
 
     private PlayerInputs _playerInputs;
@@ -90,6 +97,22 @@ public class InputManager : MonoBehaviour
             _mouseInput.y = ctx.ReadValue<float>();
             onMouseLook?.Invoke(_mouseInput);
         };
+        #endregion
+        
+        #region UI Interaction
+
+        #region Pause
+        
+        _playerInputs.UIInteraction.Pause.performed += ctx =>
+        {
+            //Subscribe to onPause for things that could happen during pause
+            onPause?.Invoke();
+        };
+
+
+        #endregion
+
+
         #endregion
     }
 
