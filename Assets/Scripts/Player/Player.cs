@@ -6,7 +6,8 @@ using System;
 public enum MovementState
 {
     GroundMovement,
-    Grappling
+    Grappling,
+    OnAir
 };
 
 public class Player : MonoBehaviour

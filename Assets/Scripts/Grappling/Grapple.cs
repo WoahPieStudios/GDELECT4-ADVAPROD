@@ -183,15 +183,8 @@ public class Grapple : MonoBehaviour
 
                 // S [Backward input = deceleration]
                 Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
-            _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction;
+                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction;
             }
-
-
-            //if (_tetherLength - currentDistanceToGrapple < _distanceToGrapplePull)
-            //{
-            //    _rb.MovePosition(_player.transform.position + directionToGrapple * _speedDirection * Time.deltaTime);
-
-            //}
 
         }
 
@@ -250,12 +243,12 @@ public class Grapple : MonoBehaviour
         Vector3 startHooking = Vector3.Normalize(_tetherPoint - _player.transform.position);
 
         _rb.isKinematic = true;
+        _rb.useGravity = false;
         float speedMultiplier = 2f;
         _speedHook += speedMultiplier * Time.deltaTime;
         _speedHook = Mathf.Clamp(_speedHook, 0, Vector3.Distance(_player.transform.position, _tetherPoint));
   
 
-        _rb.useGravity = false;
         _rb.MovePosition(_player.transform.position + startHooking * _speedHook);
 
 

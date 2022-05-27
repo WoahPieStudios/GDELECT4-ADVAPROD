@@ -222,6 +222,34 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UIInteraction"",
+            ""id"": ""31dc9fd2-2e88-4c15-a951-e2eb1eac4a4f"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ac3fddf5-f7f2-458e-9a3e-52b15d15168c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0ab69a4d-cb25-4afd-acda-307da449c97f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -237,6 +265,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         // Testing
         m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
         m_Testing_Test = m_Testing.FindAction("Test", throwIfNotFound: true);
+        // UIInteraction
+        m_UIInteraction = asset.FindActionMap("UIInteraction", throwIfNotFound: true);
+        m_UIInteraction_Pause = m_UIInteraction.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -398,6 +429,39 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         }
     }
     public TestingActions @Testing => new TestingActions(this);
+
+    // UIInteraction
+    private readonly InputActionMap m_UIInteraction;
+    private IUIInteractionActions m_UIInteractionActionsCallbackInterface;
+    private readonly InputAction m_UIInteraction_Pause;
+    public struct UIInteractionActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public UIInteractionActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_UIInteraction_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_UIInteraction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIInteractionActions set) { return set.Get(); }
+        public void SetCallbacks(IUIInteractionActions instance)
+        {
+            if (m_Wrapper.m_UIInteractionActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_UIInteractionActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_UIInteractionActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_UIInteractionActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_UIInteractionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public UIInteractionActions @UIInteraction => new UIInteractionActions(this);
     public interface IPlayerControlsActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -410,5 +474,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     public interface ITestingActions
     {
         void OnTest(InputAction.CallbackContext context);
+    }
+    public interface IUIInteractionActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }
