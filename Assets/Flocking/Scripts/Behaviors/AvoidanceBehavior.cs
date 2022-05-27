@@ -20,7 +20,6 @@ namespace BoardToBits.Flocking.Scripts.Behaviors
             {
                 if (Vector3.SqrMagnitude(item.position - agent.transform.position) < flock.SquareAvoidanceRadius)
                 {
-
                     nAvoid++;
                     avoidanceMove += agent.transform.position - item.position;
                 }

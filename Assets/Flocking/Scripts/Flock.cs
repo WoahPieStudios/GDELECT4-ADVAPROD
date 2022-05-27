@@ -37,8 +37,8 @@ namespace BoardToBits.Flocking.Scripts
             for (int i = 0; i < startingCount; i++)
             {
                 FlockAgent agent = Instantiate(agentPrefab,
-                    Random.insideUnitSphere * startingCount * AgentDensity,
-                    Quaternion.Euler(Vector3.up * Random.Range(0, 360f)),
+                    Random.insideUnitSphere * startingCount * AgentDensity + transform.position,
+                    Quaternion.Euler(Vector3.forward * Random.Range(0, 360f)),
                     transform
                 );
                 agent.name = $"Agent {i}";
@@ -83,6 +83,11 @@ namespace BoardToBits.Flocking.Scripts
             }
 
             return context;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(transform.position, AgentDensity * startingCount);
         }
     }
 }
