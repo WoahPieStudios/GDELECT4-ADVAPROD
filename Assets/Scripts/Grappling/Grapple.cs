@@ -9,34 +9,50 @@ using UnityEngine;
 /// </summary>
 public class Grapple : MonoBehaviour
 {
-    // used in Physics.Raycast
-    private LineRenderer _lineRenderer;
-    private Vector3 _grapplePoint;
-    private Camera _camera;
+
+
 
     #region Grappling
     [Header("GRAPPLE")]
     [SerializeField]
     private LayerMask _grappleLayer;
+    /// <summary>
+    /// point where the line renderer starts
+    /// </summary>
     [SerializeField, Tooltip("point where the line renderer starts")]
     private Transform _gunTip;
+    /// <summary>
+    /// // also used for referencing rigidbody and position
+    /// </summary>
     [SerializeField]
-    private GameObject _player; // also used for referencing rigidbody
+    private GameObject _player; 
+
+    /// <summary>
+    /// max distance that the player can grapple
+    /// </summary>
     [SerializeField, Tooltip("max distance that the player can grapple")]
     private float _maxDistance;
-    [SerializeField, Range(0f, 1f)]
-    private float _percentageDistance = .2f;
-    [SerializeField]
-    private float _speedDirection = 3f;
+
+    /// <summary>
+    /// Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)
+    /// </summary>
+    [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
+    private float _grappleSpeedMovementMultiplier = 1f;
+
 
     #endregion
 
-
-
     #region Hookshot
+
     [Header("HOOKSHOT")]
+    /// <summary>
+    /// Determines how fast the player goes towards the grapplepoint
+    /// </summary>
     [SerializeField, Range(1f, 20f), Tooltip("Determines how fast the player goes towards the grapplepoint")]
     private float _maxHookShotSpeed = 5f;
+    /// <summary>
+    /// acceleration when the player use the hookshot
+    /// </summary>
     [SerializeField, Tooltip("acceleration when the player use the hookshot")]
     private float _accelerationMultiplier = 2f;
 
@@ -45,22 +61,51 @@ public class Grapple : MonoBehaviour
 
     #region private variables
 
+
+
+    private LineRenderer _lineRenderer;
+
+    private Camera _camera;
+
     private float _speedHook = 0;
-    private float _tetherLength; // length of the grapple
-    private float _distanceToGrapplePull; // length of the player to grapple
 
-   
-    private bool _tethered; // bool variable that detects if the player has hit a grappable wall upon raycasting
-    private bool _disableGrapple; 
-    private bool _canPull; // Hookshot Bool
-    private bool _isPulling; // Hookshot bool
+    /// <summary>
+    /// Length of the grapple
+    /// </summary>
+    private float _tetherLength;
 
-    
-    private Vector3 _tetherPoint; // position where the grapple got hit
-    private Vector3 _grappleDirection;   
+
+    /// <summary>
+    /// detects if the player has hit a grappable wall upon raycasting
+    /// </summary>
+    private bool _tethered; 
+
+    /// <summary>
+    /// relies on player input if the grapple should be disabled or enabled
+    /// </summary>
+    private bool _disableGrapple;
+
+    /// <summary>
+    /// determines if the player has grappled onto something and can be pulled towards the grapple point
+    /// </summary>
+    private bool _canPull;
+
+    /// <summary>
+    /// determines if the player is holding the HookShot button
+    /// </summary>
+    private bool _isPulling;
+
+    /// <summary>
+    /// point where the raycast has been hit
+    /// </summary>
+    private Vector3 _tetherPoint;
+ 
     private Vector3 _inputDirection;
 
-    private Rigidbody _rb; // referencing from player's rb
+    /// <summary>
+    /// Referencing player's Rigidbody
+    /// </summary>
+    private Rigidbody _rb;
 
 
 
@@ -101,12 +146,6 @@ public class Grapple : MonoBehaviour
         InputManager.onEndHook -= StopHook;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         if (_tethered)
@@ -142,11 +181,7 @@ public class Grapple : MonoBehaviour
                _tethered = true;
                _tetherPoint = hit.point;
                _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-                _canPull = true;
-
-                _distanceToGrapplePull = _tetherLength * _percentageDistance;
-
-                //_rb.AddForce(transform.forward * _hookShotSpeed, ForceMode.VelocityChange);
+               _canPull = true;
             }
         }else
         {
@@ -175,15 +210,11 @@ public class Grapple : MonoBehaviour
         if (Player.movementState == MovementState.Grappling)
         {
             
-            //Acceleration here upon controls
+            //This is the part where the player can control the movement speed and direction while on grapple
             if (_inputDirection.z != 0 || _inputDirection.x != 0) 
             {
-                // W [Forward input = faster acceleration]
-
-
-                // S [Backward input = deceleration]
                 Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
-                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction;
+                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction * _grappleSpeedMovementMultiplier;
             }
 
         }
@@ -242,15 +273,18 @@ public class Grapple : MonoBehaviour
 
         Vector3 startHooking = Vector3.Normalize(_tetherPoint - _player.transform.position);
 
-        _rb.isKinematic = true;
-        _rb.useGravity = false;
         float speedMultiplier = 2f;
         _speedHook += speedMultiplier * Time.deltaTime;
         _speedHook = Mathf.Clamp(_speedHook, 0, Vector3.Distance(_player.transform.position, _tetherPoint));
-  
 
-        _rb.MovePosition(_player.transform.position + startHooking * _speedHook);
 
+        if (_inputDirection.z != 0 || _inputDirection.x != 0)
+        {
+            Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
+            _rb.velocity -= _speedHook * startHooking + direction;
+        }
+
+        _rb.velocity += startHooking * _speedHook;
 
     }
 
