@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ namespace BoardToBits.Flocking.Scripts
 
         [Range(10, 500), SerializeField]
         private int startingCount = 250;
-        private const float AgentDensity = 0.08f;
+        [Range(0f, 1f)]
+        public float AgentDensity = 0.08f;
 
         [Range(1f, 100f), SerializeField]
         private float driveFactor = 10f;
@@ -21,6 +23,7 @@ namespace BoardToBits.Flocking.Scripts
         private float neighborRadius = 1.5f;
         [Range(0f, 1f), SerializeField]
         private float avoidanceRadiusMultiplier = 0.5f;
+        [SerializeField] float spawnInterval;
 
         private float _squareMaxSpeed;
         private float _squareNeighborRadius;
@@ -33,17 +36,25 @@ namespace BoardToBits.Flocking.Scripts
             _squareMaxSpeed = maxSpeed * maxSpeed;
             _squareNeighborRadius = neighborRadius * neighborRadius;
             _squareAvoidanceRadius = _squareNeighborRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
+            StartCoroutine(SpawnAgents());
+        }
 
-            for (int i = 0; i < startingCount; i++)
+        private IEnumerator SpawnAgents()
+        {
+            while (gameObject.activeSelf)
             {
-                FlockAgent agent = Instantiate(agentPrefab,
-                    Random.insideUnitSphere * startingCount * AgentDensity + transform.position,
-                    Quaternion.Euler(Vector3.forward * Random.Range(0, 360f)),
-                    transform
-                );
-                agent.name = $"Agent {i}";
-                agent.Initialize(this);
-                _agents.Add(agent);
+                for (int i = 0; i < startingCount; i++)
+                {
+                    FlockAgent agent = Instantiate(agentPrefab,
+                        Random.insideUnitSphere * startingCount * AgentDensity + transform.position,
+                        Quaternion.Euler(Vector3.forward * Random.Range(0, 360f)),
+                        transform
+                    );
+                    agent.name = $"Agent {i}";
+                    agent.Initialize(this);
+                    _agents.Add(agent);
+                }
+                yield return new WaitForSeconds(spawnInterval);
             }
         }
 
@@ -83,6 +94,11 @@ namespace BoardToBits.Flocking.Scripts
             }
 
             return context;
+        }
+
+        public void RemoveAgent(FlockAgent agent)
+        {
+            _agents.Remove(agent);
         }
 
         private void OnDrawGizmosSelected()

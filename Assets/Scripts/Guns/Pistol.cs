@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemySpawn.Scripts.Enemies;
+using BoardToBits.Flocking.Scripts;
 
 /// <summary>
 /// - This is temporary hit scan pistol. 
@@ -49,8 +50,8 @@ public class Pistol : MonoBehaviour
     /// </summary>
     private float _currentOverHeatRate;
 
-    public float currentOverHeatRate 
-    { 
+    public float currentOverHeatRate
+    {
         get => _currentOverHeatRate;
         set => _currentOverHeatRate = Mathf.Clamp(value, 0, _maxOverHeat);
     }
@@ -122,14 +123,20 @@ public class Pistol : MonoBehaviour
             _didShoot = true;
 
             RaycastHit hit;
-            if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward,out hit, _maxRange))
+            if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward, out hit, _maxRange))
             {
                 _point = hit;
-                if (hit.collider.gameObject.CompareTag("Enemy"))
+                if (hit.collider.CompareTag("Enemy") && hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+                {
+                    Debug.Log("Enemy hit!");
+                    hit.collider.gameObject.GetComponent<FlockAgent>().TakeDamage(_damage);
+                }
+                else if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit!");
                     hit.collider.gameObject.GetComponent<Drone>().TakeDamage(_damage);
-                }else
+                }
+                else
                 {
                     Debug.Log("Did hit something");
                 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &500156690981766174
+--- !u!1 &5658947227270552065
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 500156690981766168}
-  - component: {fileID: 500156690981766175}
+  - component: {fileID: 5658947227270552067}
+  - component: {fileID: 5658947227270552064}
   m_Layer: 0
-  m_Name: Flock Drones
+  m_Name: Flock Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &500156690981766168
+--- !u!4 &5658947227270552067
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500156690981766174}
+  m_GameObject: {fileID: 5658947227270552065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.46, y: 1.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &500156690981766175
+--- !u!114 &5658947227270552064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500156690981766174}
+  m_GameObject: {fileID: 5658947227270552065}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bec98e64fba5ad440b45fc003cc0805f, type: 3}
@@ -47,8 +47,8 @@ MonoBehaviour:
   agentPrefab: {fileID: 4402242229348942466, guid: 55b781c0c648d36438437a6ae8098b51,
     type: 3}
   behavior: {fileID: 11400000, guid: 563bb80724b137943b6619f8f78bb9e4, type: 2}
-  startingCount: 50
+  startingCount: 28
   driveFactor: 10
   maxSpeed: 5
-  neighborRadius: 5
-  avoidanceRadiusMultiplier: 0.5
+  neighborRadius: 2.06
+  avoidanceRadiusMultiplier: 0.26
