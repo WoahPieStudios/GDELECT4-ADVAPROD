@@ -82,10 +82,7 @@ public class Movement : MonoBehaviour {
             currentSpeed -= _decelerationRate * Time.deltaTime;
         }
 
-        if (!_player.onGround)
-        {
-            Player.movementState = MovementState.OnAir;
-        } 
+        
     }
 
     void FixedUpdate()
@@ -93,7 +90,7 @@ public class Movement : MonoBehaviour {
         //references the "forward" of the player where ever the player looks horizontally 
         _direction = transform.right * _inputDirection.x + transform.forward * _inputDirection.z;
 
-        if (Player.movementState == MovementState.GroundMovement || _player.onGround)
+        if (_player.onGround)
         {
             _rigidBody.velocity += _direction * _currentSpeed * Time.deltaTime; 
    
@@ -104,7 +101,7 @@ public class Movement : MonoBehaviour {
         ///</summary>
         if (Player.movementState == MovementState.OnAir)
         {
-            float speed_On_Air = _currentSpeed / 2;
+            float speed_On_Air = _currentSpeed / 2 + 25;
             _rigidBody.velocity += _direction * speed_On_Air * Time.deltaTime;
         }
     }
