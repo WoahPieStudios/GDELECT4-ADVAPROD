@@ -13,10 +13,10 @@ public enum MovementState
 /// <summary>
 /// Player Component makes it 
 /// </summary>
-public class Player : MonoBehaviour
-{
+public class Player : MonoBehaviour {
     public static MovementState movementState = MovementState.GroundMovement;
 
+    public static event Action<MovementState> onChangeMovementType;
 
     [SerializeField, Range(1, 3)]
     private float _groundCheckerDistance = 1.25f;
@@ -39,19 +39,43 @@ public class Player : MonoBehaviour
         Physics.gravity = new Vector3(0, -_gravity, 0);
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     private void Update()
     {
-        if(Physics.Raycast(transform.position, -transform.up, out RaycastHit hitInfo, _groundCheckerDistance))
+        
+        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hitInfo, _groundCheckerDistance))
         {
-            if(hitInfo.collider != null)
+            if (hitInfo.collider != null)
             {
                 _onGround = true;
             }
-        }else
+        } else
         {
             _onGround = false;
+            //transform.position += -transform.up * _gravity *  Time.deltaTime;
         }
+
+        if (_onGround)
+        {
+            movementState = MovementState.GroundMovement;
+        }
+        else
+        {
+            movementState = MovementState.Grappling;
+        }
+
     }
+
+
 
     private void OnDrawGizmos()
     {

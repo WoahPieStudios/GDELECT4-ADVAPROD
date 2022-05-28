@@ -107,6 +107,7 @@ public class Grapple : MonoBehaviour
     /// </summary>
     private Rigidbody _rb;
 
+    private Player _p;
 
 
     #endregion
@@ -116,6 +117,7 @@ public class Grapple : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _rb = _player.GetComponent<Rigidbody>();
+        _p = _player.GetComponent<Player>();
 
     }
     // Start is called before the first frame update
@@ -191,7 +193,7 @@ public class Grapple : MonoBehaviour
 
     private void StopGrapple()
     {
-        Player.movementState = MovementState.GroundMovement;
+        Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
         _disableGrapple = true;
         _tethered = false;
         _canPull = false;
@@ -206,15 +208,15 @@ public class Grapple : MonoBehaviour
         float currentDistanceToGrapple = Vector3.Distance(_tetherPoint, _player.transform.position);
         float speedTowardsGrapplePoint = Mathf.Round(Vector3.Dot(_rb.velocity, directionToGrapple) * 100) / 100;
         
-
+        //Debug.Log($"{directionToGrapple}");
         if (Player.movementState == MovementState.Grappling)
         {
-            
             //This is the part where the player can control the movement speed and direction while on grapple
-            if (_inputDirection.z != 0 || _inputDirection.x != 0) 
+            if ((_inputDirection.z != 0 || _inputDirection.x != 0 )) 
             {
                 Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
                 _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction * _grappleSpeedMovementMultiplier;
+                _rb.position = _tetherPoint - directionToGrapple * _tetherLength;
             }
 
         }
