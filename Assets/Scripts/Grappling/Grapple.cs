@@ -73,7 +73,10 @@ public class Grapple : MonoBehaviour
     /// Length of the grapple
     /// </summary>
     private float _tetherLength;
-
+    /// <summary>
+    /// Length of grapple can be changed due to circumstances so the initial length should be stored to give a maximum extension
+    /// </summary>
+    private float _initialLength;
 
     /// <summary>
     /// detects if the player has hit a grappable wall upon raycasting
@@ -183,6 +186,7 @@ public class Grapple : MonoBehaviour
                _tethered = true;
                _tetherPoint = hit.point;
                _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+                _initialLength = _tetherLength;
                _canPull = true;
             }
         }else
@@ -208,6 +212,11 @@ public class Grapple : MonoBehaviour
         float currentDistanceToGrapple = Vector3.Distance(_tetherPoint, _player.transform.position);
         float speedTowardsGrapplePoint = Mathf.Round(Vector3.Dot(_rb.velocity, directionToGrapple) * 100) / 100;
         
+        if (_p.onGround)
+        {
+            _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+            _tetherLength = Mathf.Clamp(_tetherLength, 0, _initialLength);
+        }
         //Debug.Log($"{directionToGrapple}");
         if (Player.movementState == MovementState.Grappling)
         {
