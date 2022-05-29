@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2533708376019072488}
   - component: {fileID: 346070262356934945}
   - component: {fileID: 346070262356934944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ConeBoid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,5 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8cdabc6d0f6f7498532ed72d1f7b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 5
   neighborRadius: 2
   avoidanceRange: 0.85
+  driveFactor: 10
+  agentSmoothTime: 0

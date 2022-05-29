@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Flocking.Revised.Scripts
 {
@@ -13,6 +15,9 @@ namespace Flocking.Revised.Scripts
         [SerializeField] private float spawnRadius;
         [SerializeField] private int spawnAmount;
         [SerializeField] private float spawnRate;
+
+        [Header("Boid Settings")]
+        [SerializeField] private LayerMask layersToAvoid;
 
         private List<Boid> boids = new List<Boid>();
 
@@ -39,6 +44,31 @@ namespace Flocking.Revised.Scripts
 
             if (!isRepeating) { SpawnBoids(); }
             else { InvokeRepeating(nameof(SpawnBoids), 1f, spawnRate); }
+        }
+
+        private void Update()
+        {
+            foreach (var boid in boids)
+            {
+                var nearbyObjects = GetNearbyObjects(boid);
+                boid.Move(nearbyObjects);
+            }
+        }
+
+        private List<Transform> GetNearbyObjects(Boid boid)
+        {
+            List<Transform> context = new List<Transform>();
+            Collider[] contextColliders = Physics.OverlapSphere(boid.transform.position, boid.NeighborRadius, layersToAvoid);
+
+            foreach (var collider in contextColliders)
+            {
+                if (collider != boid.Collider)
+                {
+                    context.Add(collider.transform);
+                }
+            }
+
+            return context;
         }
 
         private void SpawnBoids()
