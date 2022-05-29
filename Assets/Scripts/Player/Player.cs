@@ -10,16 +10,77 @@ public enum MovementState
     OnAir
 };
 
-public class Player : MonoBehaviour
-{
+/// <summary>
+/// Player Component makes it 
+/// </summary>
+public class Player : MonoBehaviour {
     public static MovementState movementState = MovementState.GroundMovement;
 
+    public static event Action<MovementState> onChangeMovementType;
+
+    [SerializeField, Range(1, 3)]
+    private float _groundCheckerDistance = 1.25f;
+
+    [SerializeField]
+    private float _gravity = 9.8f;
+
+    private bool _onGround;
+    public bool onGround
+    {
+        get => _onGround;
+        set => _onGround = value;
+    }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+
+        Physics.gravity = new Vector3(0, -_gravity, 0);
+    }
+
+    private void OnEnable()
+    {
         
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    private void Update()
+    {
+        
+        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hitInfo, _groundCheckerDistance))
+        {
+            if (hitInfo.collider != null)
+            {
+                _onGround = true;
+            }
+        } else
+        {
+            _onGround = false;
+            //transform.position += -transform.up * _gravity *  Time.deltaTime;
+        }
+
+        if (_onGround)
+        {
+            movementState = MovementState.GroundMovement;
+        }
+        else
+        {
+            movementState = MovementState.Grappling;
+        }
+
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, -transform.up * _groundCheckerDistance);
+        Gizmos.color = Color.yellow;
     }
 
 }
