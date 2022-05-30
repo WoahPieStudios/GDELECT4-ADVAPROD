@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Flocking.Revised.Scripts
 {
-    public class BoidSpawner : MonoBehaviour
+    public class BoidSpawner : MonoBehaviour, IDamageable
     {
         [Header("Debugging")]
         [SerializeField] private bool isRepeating;
@@ -13,10 +13,13 @@ namespace Flocking.Revised.Scripts
         [SerializeField] private float spawnRadius;
         [SerializeField] private int spawnAmount;
         [SerializeField] private float spawnRate;
+        [SerializeField] private Vector3 offset;
+
+        [Header("Totem Settings")]
+        [SerializeField] private float totemHealth;
 
         [Header("Boid Settings")]
         [SerializeField] private LayerMask layersToAvoid;
-        private List<Boid> boids = new List<Boid>();
 
         [Header("Follow Settings")]
         [SerializeField] private bool useTag;
@@ -29,6 +32,8 @@ namespace Flocking.Revised.Scripts
             spawnRadius = 1f;
             spawnAmount = 10;
             spawnRate = 1f;
+            totemHealth = 1f;
+            layersToAvoid = 1 << 6 | 1 << 7;
             useTag = true;
             tagOfTarget = "Player";
         }
@@ -57,17 +62,31 @@ namespace Flocking.Revised.Scripts
             {
                 var boid = pool.Pool.Get();
                 boid.Initialize(
-                    pool,
-                    Random.insideUnitSphere * spawnRadius + transform.position,
-                    Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward),
-                    targetToFollow);
-                boids.Add(boid);
+                    pool: pool,
+                    position: Random.insideUnitSphere * spawnRadius + transform.position + offset,
+                    rotation: Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward),
+                    layersToAvoid: layersToAvoid,
+                    target: targetToFollow);
             }
         }
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(transform.position, spawnRadius);
+            Gizmos.DrawWireSphere(transform.position + offset, spawnRadius);
+        }
+
+        public void TakeDamage(float damageAmount)
+        {
+            totemHealth -= damageAmount;
+            if (totemHealth <= 0)
+            {
+                DestroyTotem();
+            }
+        }
+
+        private void DestroyTotem()
+        {
+            Destroy(gameObject);
         }
     }
 }
