@@ -8,6 +8,7 @@ namespace EnemySpawn.Scripts.Containers
     public class SpawnPoints : MonoBehaviour
     {
         [SerializeField] private List<Transform> points;
+        public List<Transform> Points => points;
 
         private void Reset()
         {
