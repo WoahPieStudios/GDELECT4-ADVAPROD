@@ -18061,6 +18061,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
+      propertyPath: _maxHookShotSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _accelerationMultiplier
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _minDistanceToGrapplePoint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
       propertyPath: _grappleSpeedMovementMultiplier
       value: 2
       objectReference: {fileID: 0}
@@ -18068,36 +18083,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player (Place Holder)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965571, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_Drag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965571, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965571, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965576, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: _moveSpeed
-      value: 125
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965577, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: _gravity
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387210099965577, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: _groundCheckerDistance
-      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965583, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
