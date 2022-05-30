@@ -9,6 +9,8 @@ using EnemySpawn.Scripts.Enemies;
 /// </summary>
 public class Pistol : MonoBehaviour
 {
+    [SerializeField] AudioClip GunShot;
+
     /// <summary>
     /// Range in Units
     /// </summary>
@@ -115,7 +117,8 @@ public class Pistol : MonoBehaviour
 
         if (Time.time > _nextShotTime)
         {
-
+            //insert pag pumutok ang baril sound
+            SoundManager.instance.PlaySFX(GunShot);
             _nextShotTime = Time.time + _rateOfFire;
 
             //add overheat mechanic here
