@@ -1,14 +1,11 @@
-using System;
-using EnemySpawn.Scripts.Containers;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace EnemySpawn.Scripts.Managers
 {
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] private GameObject objectToSpawn;
-        [SerializeField] private SpawnPoints spawnPoints;
+        [SerializeField] private SpawnPointManager spawnPointManager;
 
         private void Start()
         {
@@ -17,7 +14,9 @@ namespace EnemySpawn.Scripts.Managers
 
         public virtual void SpawnObject()
         {
-            var obj = Instantiate(objectToSpawn, spawnPoints.Points[Random.Range(0, spawnPoints.Points.Count)].position, Quaternion.identity, transform);
+            var spawnPoint = spawnPointManager.Points[Random.Range(0, spawnPointManager.Points.Count)]; 
+            var obj = Instantiate(objectToSpawn, spawnPoint.TakePointPosition(), Quaternion.identity, transform);
+            
         }
 
     }
