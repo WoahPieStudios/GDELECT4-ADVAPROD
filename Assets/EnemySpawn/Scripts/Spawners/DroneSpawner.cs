@@ -10,7 +10,7 @@ namespace EnemySpawn.Scripts.Spawners
     /// Responsible for spawning <see cref="Drone">Drones</see> into the scene.
     /// </summary>
     [RequireComponent(typeof(DronePool))]
-    public class DroneSpawner : MonoBehaviour
+    public class DroneSpawner : MonoBehaviour, IDamageable
     {
         /// <summary>
         /// Reference to the pool this spawner will be using.
@@ -19,26 +19,26 @@ namespace EnemySpawn.Scripts.Spawners
         private DronePool dronePool;
 
         /// <summary>
-        /// Determines whether the spawner is active.
+        /// The radius of the area which the drones will spawn at the <see cref= "SpawnPoint"/>.
         /// </summary>
-        [Header("Spawn Properties"), SerializeField, Tooltip("Determines whether the spawner is active.")]
-        private bool isActive;
+        [SerializeField, Tooltip("The radius of the area which the drones will spawn at the spawn point.")]
+        private float spawnRadius;
+
         /// <summary>
         /// Determines the location where the drones will spawn.
         /// </summary>
         [SerializeField, Tooltip("Determines the location where the drones will spawn.")]
-        private Transform spawnPoint;
+        private Vector3 spawnPointOffset;
+        private Vector3 SpawnPoint => transform.position + spawnPointOffset;
+        
         /// <summary>
         /// The frequency of when drones will be spawned.
         /// </summary>
         [SerializeField, Tooltip("The frequency of when drones will be spawned.")]
         private float spawnInterval;
 
-        /// <summary>
-        /// The radius of the area which the drones will spawn at the <see cref= "spawnPoint"/>.
-        /// </summary>
-        [SerializeField, Tooltip("The radius of the area which the drones will spawn at the spawn point.")]
-        private float spawnRadius;
+
+        [SerializeField] private int spawnAmount;
 
         /// <summary>
         /// References the transform of the player which is used by the drones.
@@ -47,28 +47,26 @@ namespace EnemySpawn.Scripts.Spawners
         private Transform _playerTransform;
 
         [Header("Combat")]
-        [SerializeField] private float health;
-        
-        [Header("Events")]
-        [SerializeField] private UnityEvent onTotemDeath;
+        [SerializeField] private float health; 
+        public float Health { get => health; set => health = value; }
+
 
         private void Reset()
         {
             dronePool = GetComponent<DronePool>();
-            isActive = true;
             spawnInterval = 1f;
             spawnRadius = 1f;
+            health = 1f;
         }
 
         private void Awake()
         {
-            onTotemDeath.AddListener(DisableDrones);
             FindPlayerTransform();
         }
 
         private void Start()
         {
-            StartCoroutine(SpawnDrones());
+            InvokeRepeating(nameof(SpawnDrone), spawnInterval, spawnInterval);
         }
 
         /// <summary>
@@ -77,55 +75,33 @@ namespace EnemySpawn.Scripts.Spawners
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         /// <summary>
-        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
-        /// </summary>
-        private IEnumerator SpawnDrones()
-        {
-            while (health > 0 && _playerTransform)
-            {
-                SpawnDrone();
-                yield return new WaitForSeconds(spawnInterval);
-            }
-            onTotemDeath?.Invoke();
-        }
-
-        /// <summary>
-        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnPoint"/> and <see cref="spawnRadius"/>.
+        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="SpawnPoint"/> and <see cref="spawnRadius"/>.
         /// </summary>
         private void SpawnDrone()
         {
-            var drone = dronePool.Pool.Get();
-            drone.transform.position = Random.insideUnitSphere * spawnRadius + spawnPoint.position;
-            drone.SetPlayerTransform(_playerTransform);
-            drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
-            drone.SetPool(dronePool.Pool);
-            drone.SetPlayerLookState(true);
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                var drone = dronePool.Pool.Get();
+                drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
+                drone.SetPlayerTransform(_playerTransform);
+                drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
+                drone.SetPool(dronePool.Pool);
+                drone.SetPlayerLookState(true);
+            }
         }
-
-        /// <summary>
-        /// Flips the current state of <see cref="isActive"/>.
-        /// </summary>
-        public void ToggleSpawn() => isActive = !isActive;
-
-        /// <summary>
-        /// Sets <see cref="isActive"/> according to the bypass value.
-        /// </summary>
-        /// <param name="bypassValue">The state that will be set to <see cref="isActive"/></param>
-        public void ToggleSpawn(bool bypassValue) => isActive = bypassValue;
 
         private void OnDrawGizmosSelected()
         {
-            if (spawnPoint == null) return;
-            Gizmos.DrawWireSphere(spawnPoint.position, spawnRadius);
+            Gizmos.DrawWireSphere(SpawnPoint, spawnRadius);
         }
 
         public void TakeDamage(float damageAmount)
         {
-            health -= damageAmount;
-            if (health <= 0){onTotemDeath?.Invoke();}
+            Health -= damageAmount;
+            if (Health <= 0) { GetDestroyed(); }
         }
-        
-        private void DisableDrones()
+
+        public void GetDestroyed()
         {
             Destroy(gameObject);
         }

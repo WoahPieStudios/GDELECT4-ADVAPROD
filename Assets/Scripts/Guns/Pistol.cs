@@ -131,7 +131,7 @@ public class Pistol : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit!");
-                    hit.collider.gameObject.GetComponent<Drone>().TakeDamage(_damage);
+                    hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_damage);
                 }else
                 {
                     Debug.Log("Did hit something");

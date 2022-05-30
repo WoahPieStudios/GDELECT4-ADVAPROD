@@ -7,7 +7,7 @@ namespace EnemySpawn.Scripts.Enemies
     /// <summary>
     /// Basic enemy type.
     /// </summary>
-    public class Drone : MonoBehaviour
+    public class Drone : MonoBehaviour, IDamageable
     {
         [Header("Debug")]
         [SerializeField] bool isStandalone;
@@ -123,6 +123,8 @@ namespace EnemySpawn.Scripts.Enemies
             
             GetDestroyed();
         }
+
+        public float Health { get => health; set => health = value; }
 
         public void TakeDamage(float damageAmount)
         {
