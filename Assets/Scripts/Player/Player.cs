@@ -16,8 +16,6 @@ public enum MovementState
 public class Player : MonoBehaviour {
     public static MovementState movementState = MovementState.GroundMovement;
 
-    public static event Action<MovementState> onChangeMovementType;
-
     [SerializeField, Range(1, 3)]
     private float _groundCheckerDistance = 1.25f;
 
@@ -31,22 +29,16 @@ public class Player : MonoBehaviour {
         set => _onGround = value;
     }
 
+    private void Awake()
+    {
+        Physics.gravity = new Vector3(0, -_gravity, 0);
+        
+    }
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
-
-        Physics.gravity = new Vector3(0, -_gravity, 0);
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
     }
 
     private void Update()
