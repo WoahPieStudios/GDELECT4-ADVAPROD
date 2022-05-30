@@ -50,6 +50,7 @@ public class Movement : MonoBehaviour {
 
     private void Start()
     {
+        if (_moveSpeed < Physics.gravity.y) _moveSpeed = -Physics.gravity.y; 
         _accelerationRate = _moveSpeed * _moveSpeed / 10;
         _decelerationRate = _moveSpeed * 10f + 20;
     }
