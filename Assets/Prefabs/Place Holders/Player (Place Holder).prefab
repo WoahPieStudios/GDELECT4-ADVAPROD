@@ -392,15 +392,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b156c3b55c90678469f1e7343fe86c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GrappleLaunch: {fileID: 0}
+  GrappleHooked: {fileID: 8300000, guid: 8fefd5d23b5b5964aa467d41994eb631, type: 3}
+  GrapplePull: {fileID: 8300000, guid: d04a6cd16a0d4e3479c7fb4f431b0b95, type: 3}
+  GrappleRelease: {fileID: 8300000, guid: 54007d22715f75c4b8f9e6386a4d0bd8, type: 3}
   _grappleLayer:
     serializedVersion: 2
     m_Bits: 1024
   _gunTip: {fileID: 6920387209198240518}
   _player: {fileID: 6920387210099965568}
   _maxDistance: 100
-  _grappleSpeedMovementMultiplier: 1
+  _grappleSpeedMovementMultiplier: 2
   _maxHookShotSpeed: 5
   _accelerationMultiplier: 2
+  _minDistanceToGrapplePoint: 0
 --- !u!1 &6920387209733465593
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +755,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3616305314555771062, guid: ef2d5f4e5f78b9d4b9c999862de0f6b6,
         type: 3}
+      propertyPath: GunShot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f0563fee24f9a346a21d042c94ca260, type: 3}
+    - target: {fileID: 3616305314555771062, guid: ef2d5f4e5f78b9d4b9c999862de0f6b6,
+        type: 3}
       propertyPath: _radius
       value: 5
       objectReference: {fileID: 0}
@@ -757,11 +767,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _maxRange
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616305314555771062, guid: ef2d5f4e5f78b9d4b9c999862de0f6b6,
-        type: 3}
-      propertyPath: _rateOfFire
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3616305314555771062, guid: ef2d5f4e5f78b9d4b9c999862de0f6b6,
         type: 3}
