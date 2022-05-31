@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace EnemySpawn.Scripts.Combat
+namespace Spawning.Scripts.Combat
 {
     public class PlayerCombat : MonoBehaviour
     {

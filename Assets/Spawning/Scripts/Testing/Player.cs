@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemySpawn.Scripts.Testing
+namespace Spawning.Scripts.Testing
 {
     public class Player : MonoBehaviour
     {
