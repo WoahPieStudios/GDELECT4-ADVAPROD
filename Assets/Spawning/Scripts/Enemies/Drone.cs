@@ -1,13 +1,16 @@
-using EnemySpawn.Scripts.Combat;
+using System;
+using Spawning.Scripts.Combat;
+using Spawning.Scripts.Managers;
+using Spawning.Scripts.Pools;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace EnemySpawn.Scripts.Enemies
+namespace Spawning.Scripts.Enemies
 {
     /// <summary>
     /// Basic enemy type.
     /// </summary>
-    public class Drone : MonoBehaviour
+    public class Drone : MonoBehaviour, IDamageable
     {
         [Header("Debug")]
         [SerializeField] bool isStandalone;
@@ -26,9 +29,6 @@ namespace EnemySpawn.Scripts.Enemies
         [Header("Player Reference")]
         private Transform _playerTransform;
         private Collider _playerCollider;
-
-        [Header("Drone Pool Reference")]
-        private ObjectPool<Drone> _dronePool;
 
         private void Reset()
         {
@@ -104,12 +104,6 @@ namespace EnemySpawn.Scripts.Enemies
         public void SetPlayerCollider(Collider playerCollider) => _playerCollider = playerCollider;
 
         /// <summary>
-        /// Sets a reference to which pool this drone belongs to.
-        /// </summary>
-        /// <param name="dronePool">The pool where the drone came from.</param>
-        public void SetPool(ObjectPool<Drone> dronePool) => _dronePool = dronePool;
-
-        /// <summary>
         /// Sets whether the drone should be looking for the player.
         /// </summary>
         /// <param name="isLookingForPlayer">The state of the drone.</param>
@@ -124,16 +118,23 @@ namespace EnemySpawn.Scripts.Enemies
             GetDestroyed();
         }
 
+        public float Health { get => health; set => health = value; }
+
         public void TakeDamage(float damageAmount)
         {
             health -= damageAmount;
             if (health <= 0){GetDestroyed();}
         }
-        
+
+        private void OnDisable()
+        {
+            GetDestroyed();
+        }
+
         public void GetDestroyed()
         {
             if (isStandalone) Destroy(gameObject);
-            else { _dronePool.Release(this); }
+            else { DronePool.Instance.Release(this); }
         }
         
         private void OnDrawGizmosSelected()
