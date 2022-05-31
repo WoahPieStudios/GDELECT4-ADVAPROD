@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4956965282725387036}
   - component: {fileID: 4956965282725387039}
   - component: {fileID: 4956965282725387038}
-  - component: {fileID: 4956965282725387027}
   - component: {fileID: 4956965282725387026}
   m_Layer: 0
   m_Name: Totem
@@ -100,23 +99,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4956965282725387027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4956965282725387033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896e36a76eaf4dc983d33d4b34a928e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dronePrefab: {fileID: 1053614422555756850, guid: ed8f519cf5163124abd0c76f63802649,
-    type: 3}
-  collectionCheck: 1
-  defaultCapacity: 10
-  maxSize: 50
 --- !u!114 &4956965282725387026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,10 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e426d9969e063844aa6488008e9f1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSpawning: 0
-  dronePool: {fileID: 4956965282725387027}
+  isSpawning: 1
   spawnRadius: 3
   spawnPointOffset: {x: 0, y: 4, z: 0}
-  spawnInterval: 5
+  spawnInterval: 20
   spawnAmount: 5
   health: 1

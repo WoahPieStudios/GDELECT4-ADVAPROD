@@ -2730,6 +2730,7 @@ Transform:
   m_Children:
   - {fileID: 1521970206}
   - {fileID: 1998085023}
+  - {fileID: 664165445}
   m_Father: {fileID: 1417636283}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5845,6 +5846,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8915656769030311205, guid: 5ec4e9708ab16824bbd596a5f970ec80, type: 3}
+--- !u!4 &664165445 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+    type: 3}
+  m_PrefabInstance: {fileID: 4433566354418887250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &668238671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 36db00ee78a0cd54d8bba78845726e41,
@@ -13602,7 +13609,7 @@ MonoBehaviour:
     type: 3}
   spawnPointManager: {fileID: 1468078189}
   initialDelay: 10
-  spawnInterval: 5
+  spawnInterval: 60
 --- !u!114 &1521970208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19328,3 +19335,82 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145393632}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &4433566354418887250
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 266227594}
+    m_Modifications:
+    - target: {fileID: -3080341377610306513, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: maxAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -3080341377610306513, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: initialAmount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348438, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_Name
+      value: Drone Pool
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433566353908348439, guid: 568a29589af2e694db2807eef17ffede,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 568a29589af2e694db2807eef17ffede, type: 3}

@@ -1,92 +1,76 @@
-﻿using Spawning.Scripts.Enemies;
-using Spawning.Scripts.Spawners;
+﻿using System.Collections.Generic;
+using Spawning.Scripts.Enemies;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Spawning.Scripts.Pools
 {
-    /// <summary>
-    /// A pool of <see cref="Drone"/> objects for <see cref="DroneSpawner"> Drone Spawners </see> to use.
-    /// </summary>
-    /// <seealso cref="ObjectPool{T}"/>
-    public class DronePool : MonoBehaviour
+    public class DronePool : Singleton<DronePool>
     {
-        /// <summary>
-        /// The type of <see cref="Drone"/> this pool contains.
-        /// </summary>
-        [Header("Drone Pool"), SerializeField, Tooltip("The type of drone this pool contains.")]
-        private Drone dronePrefab;
-
-        /// <summary>
-        /// Collection checks are performed when an instance is returned back to the pool.
-        /// An exception will be thrown if the instance is already in the pool.
-        /// Collection checks are only performed in the Editor.
-        /// </summary>
-        [SerializeField, Tooltip("Collection checks are performed when an instance is returned back to the pool.")]
-        private bool collectionCheck;
-
-        /// <summary>
-        /// The default capacity the stack will be created with.
-        /// </summary>
-        [SerializeField, Tooltip("The default capacity the stack will be created with.")]
-        private int defaultCapacity;
-
-        /// <summary>
-        /// The maximum size of the pool.
-        /// When the pool reaches the max size then any further instances returned to the pool will be ignored and can be garbage collected.
-        /// This can be used to prevent the pool growing to a very large size.
-        /// </summary>
-        [SerializeField, Tooltip("The maximum size of the pool.")]
-        private int maxSize;
-
-        /// <summary>
-        /// The object pool itself.
-        /// </summary>
-        public ObjectPool<Drone> Pool { get; private set; }
+        [Header("Pool Settings")]
+        [SerializeField] private Drone dronePrefab;
+        [SerializeField] private Transform droneParent;
+        [SerializeField] private int initialAmount;
+        [SerializeField] private int maxAmount;
+        public Stack<Drone> AvailableDrones { get; private set; }
+        private List<Drone> _totalDrones;
 
         private void Reset()
         {
-            collectionCheck = true;
-            defaultCapacity = 10;
-            maxSize = 50;
+            droneParent = transform;
+            initialAmount = 100;
+            maxAmount = 300;
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             InitializePool();
         }
 
         private void InitializePool()
         {
-            Pool = new ObjectPool<Drone>(
-                CreateDrone,
-                OnDroneGet,
-                OnDroneRelease,
-                OnDroneDestroy,
-                collectionCheck,
-                defaultCapacity,
-                maxSize
-            );
+            AvailableDrones = new Stack<Drone>();
+            _totalDrones = new List<Drone>();
+            CreateDrones();
         }
 
-        private void OnDroneDestroy(Drone drone)
+        private void CreateDrones()
         {
-            Destroy(drone.gameObject);
+            Debug.LogWarning(_totalDrones.Count);
+            if(_totalDrones.Count <= maxAmount-initialAmount)
+            {
+                for (int i = 0; i < initialAmount; i++)
+                {
+                    var drone = Instantiate(dronePrefab, droneParent);
+                    drone.gameObject.SetActive(false);
+                    AvailableDrones.Push(drone);
+                    _totalDrones.Add(drone);
+                }
+            }
+            else
+            {
+                Debug.LogError("Max amount of drones for this scene reached.");
+            }
         }
 
-        private void OnDroneRelease(Drone drone)
+        public Drone GetDrone()
+        {
+            if (!AvailableDrones.TryPop(out var drone))
+            {
+                CreateDrones();
+                return AvailableDrones.TryPop(out drone) ? drone : null;
+            }
+            else
+            {
+                drone.gameObject.SetActive(true);
+                return drone;
+            }
+        }
+
+        public void Release(Drone drone)
         {
             drone.gameObject.SetActive(false);
-        }
-
-        private void OnDroneGet(Drone drone)
-        {
-            drone.gameObject.SetActive(true);
-        }
-
-        private Drone CreateDrone()
-        {
-            return Instantiate(dronePrefab, transform);
+            AvailableDrones.Push(drone);
         }
 
     }

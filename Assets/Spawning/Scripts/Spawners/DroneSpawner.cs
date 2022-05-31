@@ -1,5 +1,6 @@
 using Spawning.Scripts.Containers;
 using Spawning.Scripts.Enemies;
+using Spawning.Scripts.Managers;
 using Spawning.Scripts.Pools;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,19 +8,12 @@ using Random = UnityEngine.Random;
 namespace Spawning.Scripts.Spawners
 {
     /// <summary>
-    /// Responsible for spawning <see cref="Drone">Drones</see> into the scene.
+    /// Responsible for spawning <see cref="Drone">AvailableDrones</see> into the scene.
     /// </summary>
-    [RequireComponent(typeof(DronePool))]
     public class DroneSpawner : MonoBehaviour, IDamageable
     {
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
-
-        /// <summary>
-        /// Reference to the pool this spawner will be using.
-        /// </summary>
-        [Header("Drone Pool"), SerializeField, Tooltip("Reference to the pool this spawner will be using.")]
-        private DronePool dronePool;
 
         /// <summary>
         /// The radius of the area which the drones will spawn at the <see cref= "SpawnPoint"/>.
@@ -58,7 +52,6 @@ namespace Spawning.Scripts.Spawners
 
         private void Reset()
         {
-            dronePool = GetComponent<DronePool>();
             spawnInterval = 1f;
             spawnRadius = 1f;
             health = 1f;
@@ -87,11 +80,15 @@ namespace Spawning.Scripts.Spawners
         {
             for (int i = 0; i < spawnAmount; i++)
             {
-                var drone = dronePool.Pool.Get();
+                var drone = DronePool.Instance.GetDrone();
+                if (drone == null)
+                {
+                    Debug.LogError("No more available drones");
+                    return;
+                }
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                 drone.SetPlayerTransform(_playerTransform);
                 drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
-                drone.SetPool(dronePool.Pool);
                 drone.SetPlayerLookState(true);
             }
         }
