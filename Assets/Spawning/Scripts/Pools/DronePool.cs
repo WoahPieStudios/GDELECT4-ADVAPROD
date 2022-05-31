@@ -1,9 +1,9 @@
-﻿using EnemySpawn.Scripts.Enemies;
-using EnemySpawn.Scripts.Spawners;
+﻿using Spawning.Scripts.Enemies;
+using Spawning.Scripts.Spawners;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace EnemySpawn.Scripts.Pools
+namespace Spawning.Scripts.Pools
 {
     /// <summary>
     /// A pool of <see cref="Drone"/> objects for <see cref="DroneSpawner"> Drone Spawners </see> to use.

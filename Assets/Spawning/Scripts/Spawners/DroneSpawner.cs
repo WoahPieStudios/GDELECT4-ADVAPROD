@@ -1,10 +1,10 @@
-using System.Collections;
-using EnemySpawn.Scripts.Enemies;
-using EnemySpawn.Scripts.Pools;
+using Spawning.Scripts.Containers;
+using Spawning.Scripts.Enemies;
+using Spawning.Scripts.Pools;
 using UnityEngine;
-using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
-namespace EnemySpawn.Scripts.Spawners
+namespace Spawning.Scripts.Spawners
 {
     /// <summary>
     /// Responsible for spawning <see cref="Drone">Drones</see> into the scene.
@@ -12,6 +12,9 @@ namespace EnemySpawn.Scripts.Spawners
     [RequireComponent(typeof(DronePool))]
     public class DroneSpawner : MonoBehaviour, IDamageable
     {
+        [Header("Debugging")]
+        [SerializeField] private bool isSpawning;
+
         /// <summary>
         /// Reference to the pool this spawner will be using.
         /// </summary>
@@ -46,10 +49,12 @@ namespace EnemySpawn.Scripts.Spawners
         [Header("Player Reference")]
         private Transform _playerTransform;
 
+
         [Header("Combat")]
         [SerializeField] private float health; 
         public float Health { get => health; set => health = value; }
 
+        public SpawnPoint SpawnerPoint { get; set; }
 
         private void Reset()
         {
@@ -66,6 +71,7 @@ namespace EnemySpawn.Scripts.Spawners
 
         private void Start()
         {
+            if (!isSpawning) return;
             InvokeRepeating(nameof(SpawnDrone), spawnInterval, spawnInterval);
         }
 
@@ -75,7 +81,7 @@ namespace EnemySpawn.Scripts.Spawners
         private void FindPlayerTransform() => _playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         /// <summary>
-        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="SpawnPoint"/> and <see cref="spawnRadius"/>.
+        /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnerPosition"/> and <see cref="spawnRadius"/>.
         /// </summary>
         private void SpawnDrone()
         {
@@ -101,9 +107,15 @@ namespace EnemySpawn.Scripts.Spawners
             if (Health <= 0) { GetDestroyed(); }
         }
 
+        private void OnDisable()
+        {
+            GetDestroyed();
+        }
+
         public void GetDestroyed()
         {
             Destroy(gameObject);
+            SpawnerPoint.SetFree();
         }
     }
 }

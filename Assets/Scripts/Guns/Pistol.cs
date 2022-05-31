@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EnemySpawn.Scripts.Enemies;
 
 /// <summary>
 /// - This is temporary hit scan pistol. 

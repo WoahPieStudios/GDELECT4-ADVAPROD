@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EnemySpawn.Scripts.Containers
+namespace Spawning.Scripts.Containers
 {
     public class SpawnPoint : MonoBehaviour
     {
@@ -9,6 +9,10 @@ namespace EnemySpawn.Scripts.Containers
         {
             IsTaken = true;
             return transform.position;
+        }
+        public void SetFree()
+        {
+            IsTaken = false;
         }
     }
 }

@@ -1,8 +1,8 @@
-using EnemySpawn.Scripts.Combat;
+using Spawning.Scripts.Combat;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace EnemySpawn.Scripts.Enemies
+namespace Spawning.Scripts.Enemies
 {
     /// <summary>
     /// Basic enemy type.
