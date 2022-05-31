@@ -13563,6 +13563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521970206}
   - component: {fileID: 1521970207}
+  - component: {fileID: 1521970208}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -13602,6 +13603,20 @@ MonoBehaviour:
   spawnPointManager: {fileID: 1468078189}
   initialDelay: 10
   spawnInterval: 5
+--- !u!114 &1521970208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521970205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3361766b04277364abd0d4d202f3483f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2135698015}
+  spawnPointManager: {fileID: 893409792}
 --- !u!1001 &1522996241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19204,6 +19219,18 @@ MonoBehaviour:
   onPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2135698026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135698015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71efaf6b3ca58044b8501117d309a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2145393632
 GameObject:
   m_ObjectHideFlags: 0

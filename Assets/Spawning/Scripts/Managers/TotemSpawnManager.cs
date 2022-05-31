@@ -35,7 +35,7 @@ namespace Spawning.Scripts.Managers
 
         private SpawnPoint LookForAvailablePoint()
         {
-            var spawnPoint = spawnPointManager.Points[Random.Range(0, spawnPointManager.Points.Count)];
+            var spawnPoint = spawnPointManager.GetRandomPoint();
             return !spawnPoint.IsTaken ? spawnPoint : LookForAvailablePoint();
         }
 

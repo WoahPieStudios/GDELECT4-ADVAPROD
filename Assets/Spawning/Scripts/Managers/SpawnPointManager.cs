@@ -21,5 +21,7 @@ namespace Spawning.Scripts.Managers
             return taken == points.Count;
         }
 
+        public SpawnPoint GetRandomPoint() => points[Random.Range(0, points.Count)];
+
     }
 }
