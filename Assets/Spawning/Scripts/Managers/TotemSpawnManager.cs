@@ -18,7 +18,7 @@ namespace Spawning.Scripts.Managers
         }
 
         // TODO: Change to something non-recursive in the future
-        public virtual IEnumerator SpawnObject()
+        private IEnumerator SpawnObject()
         {
             yield return new WaitForSeconds(initialDelay);
             while(!spawnPointManager.AllPointsTaken())
