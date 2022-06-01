@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4956965282725387033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpawning: 1
-  spawnRadius: 3
-  spawnPointOffset: {x: 0, y: 4, z: 0}
-  spawnInterval: 20
-  spawnAmount: 5
-  health: 1
+  spawnRadius: 3.11
+  spawnPointOffset: {x: 0, y: 7, z: 0}
+  spawnInterval: 10
+  spawnAmount: 7
+  health: 10

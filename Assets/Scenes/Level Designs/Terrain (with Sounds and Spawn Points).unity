@@ -6134,6 +6134,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 399785758446786737, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 399785758446786737, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _overHeatRate
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965568, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_Name
@@ -6147,7 +6157,7 @@ PrefabInstance:
     - target: {fileID: 6920387210099965576, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: _moveSpeed
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965577, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
@@ -13609,7 +13619,7 @@ MonoBehaviour:
     type: 3}
   spawnPointManager: {fileID: 1468078189}
   initialDelay: 10
-  spawnInterval: 60
+  spawnInterval: 10
 --- !u!114 &1521970208
 MonoBehaviour:
   m_ObjectHideFlags: 0
