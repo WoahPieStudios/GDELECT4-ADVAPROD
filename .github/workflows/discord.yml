@@ -5,9 +5,9 @@ on:
     branches: [ main ]
 jobs:
   send-message:
-  runs-on: windows-latest
+    runs-on: windows-latest
   
-  steps:
+    steps:
       - name: Actions Status Discord
         uses: sarisia/actions-status-discord@v1.9.0
         if: always()
