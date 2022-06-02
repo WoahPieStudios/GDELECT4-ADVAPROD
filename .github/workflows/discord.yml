@@ -1,5 +1,0 @@
-- name: Actions Status Discord
-  uses: sarisia/actions-status-discord@v1.9.0
-  if: always()
-  with:
-    webhook: ${{secrets.DISCORD_WEBHOOK}}
