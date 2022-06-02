@@ -120,7 +120,7 @@ namespace Spawning.Scripts.Spawners
         public void GetDestroyed()
         {
             Destroy(gameObject);
-            SpawnerPoint.SetFree();
+            SpawnerPoint.StartCooldown();
         }
     }
 }
