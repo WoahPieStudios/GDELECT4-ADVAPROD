@@ -10,7 +10,7 @@ namespace Spawning.Scripts.Enemies
     /// <summary>
     /// Basic enemy type.
     /// </summary>
-    public class Drone : MonoBehaviour, IDamageable
+    public class Drone : MonoBehaviour, IDamageable, IScoreable
     {
         [Header("Debug")]
         [SerializeField] bool isStandalone;
@@ -20,6 +20,7 @@ namespace Spawning.Scripts.Enemies
         private Rigidbody _rigidBody;
         private Transform _transform;
         private bool _isLookingForPlayer;
+        public bool isInitialized;
 
         [Header("Combat")]
         [SerializeField] private float health;
@@ -133,6 +134,10 @@ namespace Spawning.Scripts.Enemies
 
         public void GetDestroyed()
         {
+            if(isInitialized){
+                ScoreManager.OnAddScore(scoreAmount);
+            }
+            isInitialized = false;
             if (isStandalone) Destroy(gameObject);
             else { DronePool.Instance.Release(this); }
         }
@@ -140,6 +145,14 @@ namespace Spawning.Scripts.Enemies
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(transform.position, attackDistance);
+        }
+
+        [SerializeField] private int scoreAmount;
+
+        public int ScoreAmount
+        {
+            get => scoreAmount;
+            set => scoreAmount = value;
         }
     }
 }

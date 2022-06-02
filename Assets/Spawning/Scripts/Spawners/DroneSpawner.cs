@@ -10,7 +10,7 @@ namespace Spawning.Scripts.Spawners
     /// <summary>
     /// Responsible for spawning <see cref="Drone">AvailableDrones</see> into the scene.
     /// </summary>
-    public class DroneSpawner : MonoBehaviour, IDamageable
+    public class DroneSpawner : MonoBehaviour, IDamageable, IScoreable
     {
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
@@ -27,7 +27,7 @@ namespace Spawning.Scripts.Spawners
         [SerializeField, Tooltip("Determines the location where the drones will spawn.")]
         private Vector3 spawnPointOffset;
         private Vector3 SpawnPoint => transform.position + spawnPointOffset;
-        
+
         /// <summary>
         /// The frequency of when drones will be spawned.
         /// </summary>
@@ -46,14 +46,16 @@ namespace Spawning.Scripts.Spawners
 
         [Header("Combat")]
         [SerializeField] private float health;
+        [SerializeField] private int scoreAmount;
 
         private float maxHealth;
         public float Health { get => health; set => health = value; }
+        public int ScoreAmount { get => scoreAmount; set => scoreAmount = value; }
 
         public SpawnPoint SpawnerPoint { get; set; }
-        
+
         private Material _material;
-        
+
         private void Reset()
         {
             spawnInterval = 1f;
@@ -96,6 +98,7 @@ namespace Spawning.Scripts.Spawners
                 drone.SetPlayerTransform(_playerTransform);
                 drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
                 drone.SetPlayerLookState(true);
+                drone.isInitialized = true;
             }
         }
 
@@ -121,6 +124,7 @@ namespace Spawning.Scripts.Spawners
         {
             Destroy(gameObject);
             SpawnerPoint.StartCooldown();
+            ScoreManager.OnAddScore(ScoreAmount);
         }
     }
 }

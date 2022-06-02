@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject controlUI;
 
 
     private void OnEnable()
@@ -48,6 +49,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        controlUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
         Cursor.lockState = CursorLockMode.Confined;
