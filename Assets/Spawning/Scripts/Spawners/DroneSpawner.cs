@@ -123,8 +123,8 @@ namespace Spawning.Scripts.Spawners
         public void GetDestroyed()
         {
             Destroy(gameObject);
+            SpawnerPoint.StartCooldown();
             ScoreManager.OnAddScore(ScoreAmount);
-            SpawnerPoint.SetFree();
         }
     }
 }

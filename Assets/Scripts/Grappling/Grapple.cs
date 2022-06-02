@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spawning.Scripts.Managers;
 using UnityEngine;
 
 
@@ -146,6 +147,9 @@ public class Grapple : MonoBehaviour
 
         InputManager.onStartHook += StartHook;
         InputManager.onEndHook += StopHook;
+
+        PlayerSpawnManager.RespawnPlayer += StopGrapple;
+
     }
        
     private void OnDisable()
@@ -156,6 +160,7 @@ public class Grapple : MonoBehaviour
 
         InputManager.onStartHook -= StartHook;
         InputManager.onEndHook -= StopHook;
+        PlayerSpawnManager.RespawnPlayer -= StopGrapple;
     }
 
     private void FixedUpdate()

@@ -14,9 +14,19 @@ namespace Spawning.Scripts.Managers
             player = GameObject.FindGameObjectWithTag("Player");
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             RespawnPlayer += SetPlayerPosition;
+        }
+
+        private void OnDisable()
+        {
+            RespawnPlayer -= SetPlayerPosition;
+        }
+
+        private void Start()
+        {
+            OnRespawnPlayer();
         }
 
         private void SetPlayerPosition()
