@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
 
     public static SoundManager instance;
     public AudioSource musicSource, sfxSource;
+    public AudioMixer audioMixer;
+    public AudioMixer audioMixer2;
     //public AudioClip clip;
 
     private void Awake()
@@ -33,7 +36,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
-        sfxSource.volume = 0.3f;
+        sfxSource.volume = 1f;
     }
 
     public void PlayMusic(AudioClip music)
