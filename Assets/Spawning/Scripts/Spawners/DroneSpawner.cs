@@ -45,11 +45,15 @@ namespace Spawning.Scripts.Spawners
 
 
         [Header("Combat")]
-        [SerializeField] private float health; 
+        [SerializeField] private float health;
+
+        private float maxHealth;
         public float Health { get => health; set => health = value; }
 
         public SpawnPoint SpawnerPoint { get; set; }
-
+        
+        private Material _material;
+        
         private void Reset()
         {
             spawnInterval = 1f;
@@ -64,6 +68,8 @@ namespace Spawning.Scripts.Spawners
 
         private void Start()
         {
+            maxHealth = health;
+            _material = GetComponent<Renderer>().material;
             if (!isSpawning) return;
             InvokeRepeating(nameof(SpawnDrone), spawnInterval, spawnInterval);
         }
@@ -101,6 +107,8 @@ namespace Spawning.Scripts.Spawners
         public void TakeDamage(float damageAmount)
         {
             Health -= damageAmount;
+            var color = Color.Lerp(Color.red, Color.white, Health / maxHealth);
+            _material.color = color;
             if (Health <= 0) { GetDestroyed(); }
         }
 
