@@ -9854,6 +9854,7 @@ GameObject:
   - component: {fileID: 903656289}
   - component: {fileID: 903656290}
   - component: {fileID: 903656291}
+  - component: {fileID: 903656292}
   m_Layer: 5
   m_Name: UI MANAGER
   m_TagString: Untagged
@@ -9990,6 +9991,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlUI: {fileID: 1723729832}
+--- !u!114 &903656292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903656284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0389d70c35e01364d9a15884c621c4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCounterDisplay: {fileID: 568327611}
 --- !u!1 &923054711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8805466497917788393, guid: 65faaabe389f2994a85ec3a8f68a3277,
