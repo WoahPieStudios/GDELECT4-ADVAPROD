@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        if (myCoroutine.isRunning) return;
         pauseMenuUI.SetActive(true);
         controlUI.SetActive(true);
         Time.timeScale = 0f;

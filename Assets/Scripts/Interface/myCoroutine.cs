@@ -7,6 +7,7 @@ public class myCoroutine : MonoBehaviour
 {
     public GameObject controlUI;
     TextMeshProUGUI cooldownCounter;
+    public static bool isRunning;
 
     // Start is called before the first frame update
     void Start()
@@ -15,24 +16,23 @@ public class myCoroutine : MonoBehaviour
        // controlUI.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        StartCoroutine(Remove());
-        Debug.Log("StartCoroutine(Remove)");
-    }
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    StartCoroutine(Remove());
+    //    Debug.Log("StartCoroutine(Remove)");
+    //}
 
     IEnumerator Cooldown()
     {
        // Time.timeScale = 0f;
-        yield return new WaitForSeconds(1f);
+       Time.timeScale = 0f;
+        isRunning = true;
+        yield return new WaitForSecondsRealtime(1f);
         controlUI.SetActive(true);
-    }
-
-    IEnumerator Remove()
-    {
-       // Time.timeScale = 1f;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSecondsRealtime(5f);
         controlUI.SetActive(false);
+        isRunning = false;
+        Time.timeScale = 1f;
     }
 }
