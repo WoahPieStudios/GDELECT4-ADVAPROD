@@ -50,8 +50,8 @@ public class Pistol : MonoBehaviour
     /// </summary>
     private float _currentOverHeatRate;
 
-    public float currentOverHeatRate 
-    { 
+    public float currentOverHeatRate
+    {
         get => _currentOverHeatRate;
         set => _currentOverHeatRate = Mathf.Clamp(value, 0, _maxOverHeat);
     }
@@ -111,7 +111,7 @@ public class Pistol : MonoBehaviour
 
     private void Shoot()
     {
-        if (!_canShoot) return;
+        if (!_canShoot || myCoroutine.isRunning || PauseMenu.isPaused) return;
 
 
         if (Time.time > _nextShotTime)
@@ -124,14 +124,15 @@ public class Pistol : MonoBehaviour
             _didShoot = true;
 
             RaycastHit hit;
-            if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward,out hit, _maxRange))
+            if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward, out hit, _maxRange))
             {
                 _point = hit;
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit!");
                     hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_damage);
-                }else
+                }
+                else
                 {
                     Debug.Log("Did hit something");
                 }
