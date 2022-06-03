@@ -103,6 +103,10 @@ public class Movement : MonoBehaviour {
         if (Player.movementState == MovementState.OnAir)
         {
             float speed_On_Air = _currentSpeed / 2 + 25;
+            if (speed_On_Air < Physics.gravity.y)
+            {
+                speed_On_Air = Physics.gravity.y;
+            }
             _rigidBody.velocity += _direction * speed_On_Air * Time.deltaTime;
         }
     }
