@@ -89,6 +89,7 @@ public class InputManager : MonoBehaviour
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
         {
+            if (!PauseMenu.isPaused)
             _mouseInput.x = ctx.ReadValue<float>();
             onMouseLook?.Invoke(_mouseInput);
         };

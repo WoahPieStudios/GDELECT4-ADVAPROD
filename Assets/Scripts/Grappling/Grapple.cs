@@ -260,6 +260,11 @@ public class Grapple : MonoBehaviour
             }
         }
 
+        if (_player.transform.position.y > _tetherPoint.y + 5f)
+        {
+            _isPulling = true;
+        }
+
         
         if (speedTowardsGrapplePoint < 0)
         {
