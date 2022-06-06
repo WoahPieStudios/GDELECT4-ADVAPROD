@@ -113,7 +113,7 @@ public class Pistol : MonoBehaviour
 
     private void Shoot()
     {
-        if (!_canShoot) return;
+        if (!_canShoot || myCoroutine.isRunning || PauseMenu.isPaused) return;
 
 
         if (Time.time > _nextShotTime)

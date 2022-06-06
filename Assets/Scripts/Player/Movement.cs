@@ -8,6 +8,7 @@ using UnityEngine;
 /// didn't feel very pleasing to move around. 
 /// </summary>
 
+[DefaultExecutionOrder(1000)]
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
     
@@ -72,7 +73,7 @@ public class Movement : MonoBehaviour {
 
     private void Update()
     {
-        //Debug.Log($"{currentSpeed}");
+        Debug.LogError($"{_canAccelerate}");
 
         if (_canAccelerate)
         {
@@ -103,6 +104,10 @@ public class Movement : MonoBehaviour {
         if (Player.movementState == MovementState.OnAir)
         {
             float speed_On_Air = _currentSpeed / 2 + 25;
+            if (speed_On_Air < Physics.gravity.y)
+            {
+                speed_On_Air = Physics.gravity.y + 10f;
+            }
             _rigidBody.velocity += _direction * speed_On_Air * Time.deltaTime;
         }
     }

@@ -34,7 +34,8 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-       transform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
+        if (PauseMenu.isPaused || myCoroutine.isRunning) return;
+        transform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
 
         _xRotation -= _mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -_xClamp, _xClamp);

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Spawning.Scripts.Enemies;
 using UnityEngine;
 
@@ -37,7 +37,8 @@ namespace Spawning.Scripts.Pools
         private void CreateDrones()
         {
             Debug.LogWarning(_totalDrones.Count);
-            if(_totalDrones.Count <= maxAmount-initialAmount)
+            // Initial amount is subtracted to check if we can still spawn for another set of the initial amount
+            if (_totalDrones.Count <= maxAmount - initialAmount)
             {
                 for (int i = 0; i < initialAmount; i++)
                 {
@@ -58,7 +59,16 @@ namespace Spawning.Scripts.Pools
             if (!AvailableDrones.TryPop(out var drone))
             {
                 CreateDrones();
-                return AvailableDrones.TryPop(out drone) ? drone : null;
+
+                if (AvailableDrones.TryPop(out drone))
+                {
+                    drone.gameObject.SetActive(true);
+                    return drone;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
@@ -69,6 +79,7 @@ namespace Spawning.Scripts.Pools
 
         public void Release(Drone drone)
         {
+            if (!drone.isInitialized) return;
             drone.gameObject.SetActive(false);
             AvailableDrones.Push(drone);
         }

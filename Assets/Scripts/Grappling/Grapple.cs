@@ -207,6 +207,13 @@ public class Grapple : MonoBehaviour
                _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
                 _initialLength = _tetherLength;
                _canPull = true;
+
+
+                // if player is higher than the tether point, pull the player instead
+                //if (_tetherPoint.y < _player.transform.position.y)
+                //{
+                //    _isPulling = true;
+                //}
             }
         }else
         {
@@ -248,9 +255,14 @@ public class Grapple : MonoBehaviour
             {
 
                 Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
-                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction* _grappleSpeedMovementMultiplier;
+                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction * _grappleSpeedMovementMultiplier;
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength;
             }
+        }
+
+        if (_player.transform.position.y > _tetherPoint.y + 5f)
+        {
+            _isPulling = true;
         }
 
         
@@ -312,7 +324,7 @@ public class Grapple : MonoBehaviour
         _speedHook = Mathf.Clamp(_speedHook, 0, Vector3.Distance(_player.transform.position, _tetherPoint));
 
         _rb.velocity += startHooking * _speedHook;
-        // AUtomatically disables HookShot upon reaching a certain distance 
+        // Automatically disables HookShot upon reaching a certain distance 
         if (Vector3.Distance(_tetherPoint , _player.transform.position) <= _minDistanceToGrapplePoint)
         {
             _rb.velocity = new Vector3 (_rb.velocity.x, _rb.velocity.y + 5f, _rb.velocity.z);
