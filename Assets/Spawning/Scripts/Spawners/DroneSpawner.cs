@@ -95,10 +95,7 @@ namespace Spawning.Scripts.Spawners
                     return;
                 }
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
-                drone.SetPlayerTransform(_playerTransform);
-                drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
-                drone.SetPlayerLookState(true);
-                drone.isInitialized = true;
+                drone.Initialize(_playerTransform);
             }
         }
 
