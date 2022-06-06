@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EnemySpawn.Scripts.Enemies;
-using BoardToBits.Flocking.Scripts;
 
 /// <summary>
 /// - This is temporary hit scan pistol. 
@@ -129,12 +127,7 @@ public class Pistol : MonoBehaviour
             if (Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward, out hit, _maxRange))
             {
                 _point = hit;
-                if (hit.collider.CompareTag("Enemy") && hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
-                {
-                    Debug.Log("Enemy hit!");
-                    hit.collider.gameObject.GetComponent<FlockAgent>().TakeDamage(_damage);
-                }
-                else if (hit.collider.gameObject.CompareTag("Enemy"))
+                if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit!");
                     hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_damage);
