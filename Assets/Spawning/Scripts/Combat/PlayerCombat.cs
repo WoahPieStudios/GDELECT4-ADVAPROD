@@ -26,7 +26,8 @@ namespace Spawning.Scripts.Combat
 
         private void DeathSequence()
         {
-            Destroy(gameObject);
+            Debug.Log("Player died");
+            //Destroy(gameObject);
         }
     }
 }
