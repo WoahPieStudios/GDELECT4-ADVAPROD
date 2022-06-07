@@ -25,29 +25,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-      
-      - name: Build 
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-        with:
-          targetPlatform: WebGL
-
       - name: Generate Documentation
         uses: nikeee/docfx-action@v1.0.0
         with:
           args: Documentation/docfx.json
-
-      - name: Copy build files to docfx location
-        run: sudo cp -vr build/WebGL Documentation/_site/build
 
       - name: Publish to Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -56,14 +37,9 @@ jobs:
           publish_dir: Documentation/_site
           force_orphan: true
 
-      - name: Return License
-        uses: game-ci/unity-return-license@v2
-        if: always()
-
       - name: Notify Discord
         uses: sarisia/actions-status-discord@v1.9.0
         if: always()
         with:
           webhook: ${{secrets.DISCORD_WEBHOOK}}
-          url: "https://woahpiestudios.github.io/GDELECT4-ADVAPROD/build/WebGL/index.html"
           avatar_url: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
