@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 8035693146488128763}
   - component: {fileID: 8035693146488128760}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Health Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1564,10 +1564,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: bb7cb109be472604094405533bd07359, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2858,6 +2858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8035693147837260459}
+  - component: {fileID: 4944142464688076852}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -2888,6 +2889,20 @@ RectTransform:
   m_AnchoredPosition: {x: 171, y: 51}
   m_SizeDelta: {x: 280.67224, y: 40.313416}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4944142464688076852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035693147837260456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02881f6aefb739345a75171dc2b3590f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 8035693146727173431}
+  healthDisplay: {fileID: 8035693146488128760}
 --- !u!1 &8035693147984154765
 GameObject:
   m_ObjectHideFlags: 0

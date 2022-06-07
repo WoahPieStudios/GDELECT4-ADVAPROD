@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Spawning.Scripts.Combat
@@ -7,6 +8,8 @@ namespace Spawning.Scripts.Combat
     {
         [SerializeField] private float health;
         [SerializeField] private UnityEvent onPlayerDeath;
+        public float Health => health;
+        public static event Action onHealthUpdate; 
 
         private void Reset()
         {
@@ -18,9 +21,16 @@ namespace Spawning.Scripts.Combat
             onPlayerDeath.AddListener(DeathSequence);
         }
 
+        public void ResetHealth()
+        {
+            health = 100f;
+            onHealthUpdate?.Invoke();
+        }
+        
         public void TakeDamage(float damageAmount)
         {
             health -= damageAmount;
+            onHealthUpdate?.Invoke();
             if (health <= 0){onPlayerDeath?.Invoke();}
         }
 
