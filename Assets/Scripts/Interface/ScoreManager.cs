@@ -1,4 +1,5 @@
 using System;
+using Enums;
 using UnityEngine;
 using TMPro;
 public class ScoreManager : MonoBehaviour
@@ -6,7 +7,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI killCounterDisplay;
     private int totalScore;
 
-    public static event Action<int> AddScore;
+    public static event Action<int,EnemyType> AddScore;
 
     private void OnEnable()
     {
@@ -18,14 +19,14 @@ public class ScoreManager : MonoBehaviour
         killCounterDisplay.text = $"Kill Counter: {totalScore:00}";
     }
 
-    private void UpdateScore(int score)
+    private void UpdateScore(int score, EnemyType type)
     {
         totalScore += score;
         killCounterDisplay.text = $"Kill Counter: {totalScore:00}";
     }
 
-    public static void OnAddScore(int score)
+    public static void OnAddScore(int score,EnemyType type)
     {
-        AddScore?.Invoke(score);
+        AddScore?.Invoke(score, type);
     }
 }
