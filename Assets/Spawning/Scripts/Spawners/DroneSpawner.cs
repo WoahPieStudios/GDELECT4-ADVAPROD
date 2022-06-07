@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Spawning.Scripts.Containers;
 using Spawning.Scripts.Enemies;
 using Spawning.Scripts.Managers;
@@ -52,6 +53,8 @@ namespace Spawning.Scripts.Spawners
         public float Health { get => health; set => health = value; }
         public int ScoreAmount { get => scoreAmount; set => scoreAmount = value; }
 
+        private List<Drone> flock = new List<Drone>();
+
         public SpawnPoint SpawnerPoint { get; set; }
 
         private Material _material;
@@ -95,7 +98,12 @@ namespace Spawning.Scripts.Spawners
                     return;
                 }
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
-                drone.Initialize(_playerTransform);
+                flock.Add(drone);
+            }
+
+            foreach (var drone in flock)
+            {
+                drone.Initialize(_playerTransform, flock);
             }
         }
 
