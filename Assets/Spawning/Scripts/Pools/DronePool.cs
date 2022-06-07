@@ -84,5 +84,13 @@ namespace Spawning.Scripts.Pools
             AvailableDrones.Push(drone);
         }
 
+        public void ClearDrones()
+        {
+            foreach (var drone in _totalDrones)
+            {
+                Release(drone);
+            }
+        }
+        
     }
 }

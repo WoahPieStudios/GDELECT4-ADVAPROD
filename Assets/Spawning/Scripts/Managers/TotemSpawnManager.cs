@@ -11,12 +11,12 @@ namespace Spawning.Scripts.Managers
         [SerializeField] private SpawnPointManager spawnPointManager;
         [SerializeField] private float initialDelay;
         [SerializeField] private float spawnInterval;
-
-        private void Start()
+        
+        public void StartSpawning()
         {
             StartCoroutine(SpawnObject());
         }
-
+        
         // TODO: Change to something non-recursive in the future
         private IEnumerator SpawnObject()
         {
@@ -37,6 +37,17 @@ namespace Spawning.Scripts.Managers
         {
             var spawnPoint = spawnPointManager.GetRandomPoint();
             return !spawnPoint.IsTaken ? spawnPoint : LookForAvailablePoint();
+        }
+
+        public void ClearAllTotems()
+        {
+            StopCoroutine(SpawnObject());
+            var totems = FindObjectsOfType<DroneSpawner>();
+            if (totems.Length <= 0) return;
+            foreach (var totem in totems)
+            {
+                Destroy(totem.gameObject);
+            }
         }
 
     }
