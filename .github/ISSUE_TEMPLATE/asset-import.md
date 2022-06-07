@@ -1,9 +1,9 @@
 ---
-name: Asset Import
-about: Create a report for assets that are not yet imported to the game.
-title: "[ASSET IMPORT]"
-labels: asset
-assignees: zerogeorson
+name: 3D Asset Import
+about: Create a report for 3D assets that are not yet made or imported to the game.
+title: "[3D IMPORT]"
+labels: 3D Asset
+assignees: Xyvyc
 
 ---
 

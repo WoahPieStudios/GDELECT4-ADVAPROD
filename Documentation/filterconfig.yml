@@ -1,0 +1,6 @@
+apiRules:
+- include:
+  hasAttribute:
+    uid: UnityEngine.CoreModule
+    ctorArguments:
+    - UnityEngine.CoreModule.SerializeField
