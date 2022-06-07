@@ -8,7 +8,8 @@
             "**/*.cs"
           ],
           "exclude": [
-            "Plugins/**"
+            "Plugins/**",
+            "Editor/**"
           ]
         }
       ],
@@ -39,7 +40,8 @@
     "resource": [
       {
         "files": [
-          "images/**"
+          "images/**",
+          "_site/build/"
         ]
       }
     ],
