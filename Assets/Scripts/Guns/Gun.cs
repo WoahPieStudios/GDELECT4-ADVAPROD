@@ -148,6 +148,7 @@ public class Gun : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy Raycast Hit");
+                    hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_baseDamage);
                 }
             }
             else
@@ -162,6 +163,7 @@ public class Gun : MonoBehaviour
                     if (sphereHit.collider.gameObject.CompareTag("Enemy"))
                     {
                         Debug.Log("Enemy Spherecast Hit");
+                        sphereHit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_baseDamage);
                     }
 
                 }
