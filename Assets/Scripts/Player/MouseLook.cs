@@ -34,7 +34,7 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-        if (PauseMenu.isPaused || myCoroutine.isRunning) return;
+        if (PauseMenu.isPaused || myCoroutine.isRunning || GameManager.Instance.IsGameOver) return;
         transform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
 
         _xRotation -= _mouseY;
