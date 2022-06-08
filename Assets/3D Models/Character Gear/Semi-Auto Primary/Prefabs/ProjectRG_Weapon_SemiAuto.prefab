@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1384112146150572083}
   - component: {fileID: 2637562629271637910}
   - component: {fileID: 251768875346312028}
+  - component: {fileID: 2475269701254481327}
   m_Layer: 0
   m_Name: ProjectRG_Weapon_SemiAuto
   m_TagString: Untagged
@@ -83,3 +84,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2475269701254481327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764999860104960649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f8229a74f2bb147b2a2db22a7b5df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSound: {fileID: 0}
+  fireMode: 0
+  fireRate: 0.75
+  maxRange: 100
+  _radius: 0.5
+  _baseDamage: 150
+  _headshotDamageMultiplier: 1
+  _overHeatMultiplier: 0
+  _coolDownMultiplier: 1
+  _maxCapacity: 10
+  _thresholdBeforeAllowingToShoot: 1

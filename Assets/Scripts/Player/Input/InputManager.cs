@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     public static event Action<Vector2> onMouseLook;
 
     public static event Action onShoot;
+    public static event Action onReleaseShooting;
     #endregion
 
     #region UI Interactions
@@ -83,6 +84,11 @@ public class InputManager : MonoBehaviour
         _playerInputs.PlayerControls.Shoot.performed += ctx =>
         {
             onShoot?.Invoke();
+        };
+
+        _playerInputs.PlayerControls.Shoot.canceled += ctx =>
+        {
+            onReleaseShooting?.Invoke();
         };
         #endregion
 
