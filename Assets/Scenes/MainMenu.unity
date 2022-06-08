@@ -809,10 +809,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedGraphicsSetting: 0
+  ObjectMusic: {fileID: 0}
+  ObjectSfx: {fileID: 0}
   mainSource: {fileID: 1981341944}
   sfxSource: {fileID: 870364275}
   audioMixer: {fileID: 24100000, guid: 74bf2e3cda7a88948a36ca3664714f13, type: 2}
   audioMixer2: {fileID: 24100000, guid: 75d02aa580f460e4c8a9290c4b2797df, type: 2}
+  masterSlider: {fileID: 1509476422}
+  sfxSlider: {fileID: 1280962101}
 --- !u!1 &292040967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1181,7 @@ GameObject:
   - component: {fileID: 870364275}
   m_Layer: 0
   m_Name: SfxSource
-  m_TagString: Untagged
+  m_TagString: GameSFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,6 +1433,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243785153}
   m_CullTransparentMesh: 1
+--- !u!114 &1280962101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1727087974989742470, guid: 1382c5e41ec02894591fef1ebb5f0484,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727087974187476821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1322876453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,6 +1712,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1509476422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1727087973815000353, guid: 1382c5e41ec02894591fef1ebb5f0484,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727087974187476821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1847863521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,7 +1786,7 @@ GameObject:
   - component: {fileID: 1981341944}
   m_Layer: 0
   m_Name: MusicSource
-  m_TagString: Untagged
+  m_TagString: GameMusic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
