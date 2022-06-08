@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class SettingsMenu : MonoBehaviour
 
     public GraphicsSettings selectedGraphicsSetting;
 
+    public GameObject ObjectMusic;
+
+    public GameObject ObjectSfx;
+
     public AudioSource mainSource;
 
     public AudioSource sfxSource;
@@ -21,9 +26,26 @@ public class SettingsMenu : MonoBehaviour
 
     public AudioMixer audioMixer2;
 
-    private void Awake()
+    public Slider masterSlider;
+
+    public Slider sfxSlider;
+
+    private void Start()
     {
-        SetQualityLow(true);
+        ObjectMusic = GameObject.FindWithTag("GameMusic");
+        mainSource = ObjectMusic.GetComponent<AudioSource>();
+        ObjectSfx = GameObject.FindWithTag("GameSFX");
+        sfxSource = ObjectSfx.GetComponent<AudioSource>();
+        mainSource.volume = PlayerPrefs.GetFloat("MasterVol");
+        sfxSource.volume = PlayerPrefs.GetFloat("SfxVol");
+        masterSlider.value = mainSource.volume;
+        sfxSlider.value = sfxSource.volume;
+    }
+
+    public void Update()
+    {
+        PlayerPrefs.SetFloat("MasterVol", mainSource.volume);
+        PlayerPrefs.SetFloat("SfxVol", sfxSource.volume);
     }
 
     public void SetMasterVolume(float MasterVol)
