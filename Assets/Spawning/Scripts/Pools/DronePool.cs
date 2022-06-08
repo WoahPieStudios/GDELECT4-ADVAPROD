@@ -77,14 +77,9 @@ namespace Spawning.Scripts.Pools
             }
         }
         
-        /// <summary>
-        /// Returns drones to the pool
-        /// </summary>
-        /// <param name="drone">The drone to return to the pool</param>
-        /// <param name="bypass">Ensures all drones are returned to the pool</param>
-        public void Release(Drone drone, bool bypass = false)
+        public void Release(Drone drone)
         {
-            if(!bypass && !drone.isInitialized) return;
+            if(!drone.isInitialized) return;
             drone.gameObject.SetActive(false);
             AvailableDrones.Push(drone);
         }
@@ -93,7 +88,7 @@ namespace Spawning.Scripts.Pools
         {
             foreach (var drone in _totalDrones)
             {
-                Release(drone, true);
+                Release(drone);
             }
         }
         
