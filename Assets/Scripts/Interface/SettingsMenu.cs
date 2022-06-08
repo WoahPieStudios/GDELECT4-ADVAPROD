@@ -14,6 +14,8 @@ public class SettingsMenu : MonoBehaviour
     public GraphicsSettings selectedGraphicsSetting;
 
     public AudioSource mainSource;
+
+    public AudioSource sfxSource;
     
     public AudioMixer audioMixer;
 
@@ -29,9 +31,9 @@ public class SettingsMenu : MonoBehaviour
         mainSource.volume = MasterVol;
     }
 
-    public void SetSFXVolume(float SFXVol)
+    public void SetSFXVolume(float SfxVol)
     {
-        audioMixer2.SetFloat("SFXVolume", SFXVol);
+        sfxSource.volume = SfxVol;
     }
 
     public void SetQualityLow (bool isLow)
