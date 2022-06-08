@@ -126,12 +126,10 @@ namespace Spawning.Scripts.Enemies
 
         public void GetDestroyed()
         {
-            if(isInitialized){
-                ScoreManager.OnAddScore(scoreAmount,EnemyType);
-            }
+            if (!isInitialized) return;
+            ScoreManager.OnAddScore(scoreAmount,EnemyType);
+            DronePool.Instance.Release(this);
             isInitialized = false;
-            if (isStandalone) Destroy(gameObject);
-            else { DronePool.Instance.Release(this); }
         }
         
         private void OnDrawGizmosSelected()
