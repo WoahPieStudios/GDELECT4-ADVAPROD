@@ -200,7 +200,7 @@ public class Grapple : MonoBehaviour
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 //pag tumama yung grapple insert hooked audio
-                SoundManager.instance.PlaySFX(GrappleHooked);
+               // SoundManager.instance.PlaySFX(GrappleHooked);
                 Player.movementState = MovementState.Grappling;
                _tethered = true;
                _tetherPoint = hit.point;
@@ -224,7 +224,7 @@ public class Grapple : MonoBehaviour
     private void StopGrapple()
     {
         //insert release sound
-        SoundManager.instance.PlaySFX(GrappleRelease);
+       // SoundManager.instance.PlaySFX(GrappleRelease);
         Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
         _disableGrapple = true;
         _tethered = false;
@@ -299,7 +299,7 @@ public class Grapple : MonoBehaviour
     {
         if (!_canPull) return;
         // hinihila si player pull audio
-        SoundManager.instance.PlaySFX(GrapplePull);
+        //SoundManager.instance.PlaySFX(GrapplePull);
         _isPulling = true;
 
 

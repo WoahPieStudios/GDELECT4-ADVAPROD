@@ -73,7 +73,7 @@ public class Movement : MonoBehaviour {
 
     private void Update()
     {
-        Debug.LogError($"{_canAccelerate}");
+        //Debug.LogError($"{_canAccelerate}");
 
         if (_canAccelerate)
         {
