@@ -43,7 +43,8 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
     private float _grappleSpeedMovementMultiplier = 1f;
 
-
+    [SerializeField]
+    private float _heightToAutoPull = 10f;
     #endregion
 
     #region Hookshot
@@ -200,7 +201,7 @@ public class Grapple : MonoBehaviour
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 //pag tumama yung grapple insert hooked audio
-               // SoundManager.instance.PlaySFX(GrappleHooked);
+               SoundManager.instance.PlaySFX(GrappleHooked);
                 Player.movementState = MovementState.Grappling;
                _tethered = true;
                _tetherPoint = hit.point;
@@ -210,10 +211,10 @@ public class Grapple : MonoBehaviour
 
 
                 // if player is higher than the tether point, pull the player instead
-                //if (_tetherPoint.y < _player.transform.position.y)
-                //{
-                //    _isPulling = true;
-                //}
+                if (_tetherPoint.y < _player.transform.position.y + _heightToAutoPull)
+                {
+                    _isPulling = true;
+                }
             }
         }else
         {
@@ -224,7 +225,7 @@ public class Grapple : MonoBehaviour
     private void StopGrapple()
     {
         //insert release sound
-       // SoundManager.instance.PlaySFX(GrappleRelease);
+       SoundManager.instance.PlaySFX(GrappleRelease);
         Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
         _disableGrapple = true;
         _tethered = false;
@@ -299,7 +300,7 @@ public class Grapple : MonoBehaviour
     {
         if (!_canPull) return;
         // hinihila si player pull audio
-        //SoundManager.instance.PlaySFX(GrapplePull);
+        SoundManager.instance.PlaySFX(GrapplePull);
         _isPulling = true;
 
 

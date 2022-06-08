@@ -5,16 +5,26 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [SerializeField]
-    private Gun _currentGun;
+    private Gun _toEquip;
+
+    private Gun _toUseGun;
     // Start is called before the first frame update
     void Start()
     {
-        
+        EquipGun(_toEquip);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void EquipGun(Gun gun)
     {
-        
+        if (_toUseGun != null)
+        {
+            Destroy(_toUseGun.gameObject);
+        }
+
+        _toUseGun = Instantiate(_toEquip) as Gun;
+        _toUseGun.gameObject.transform.SetParent(transform);
+        _toUseGun.transform.localPosition = Vector3.zero;
+
     }
+
 }
