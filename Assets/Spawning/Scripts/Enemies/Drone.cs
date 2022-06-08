@@ -1,4 +1,6 @@
 using System;
+using Enums;
+using Interface;
 using Spawning.Scripts.Combat;
 using Spawning.Scripts.Managers;
 using Spawning.Scripts.Pools;
@@ -10,7 +12,7 @@ namespace Spawning.Scripts.Enemies
     /// <summary>
     /// Basic enemy type.
     /// </summary>
-    public class Drone : MonoBehaviour, IDamageable, IScoreable
+    public class Drone : MonoBehaviour, IEnemy
     {
         [Header("Debug")]
         [SerializeField] bool isStandalone;
@@ -23,14 +25,14 @@ namespace Spawning.Scripts.Enemies
         public bool isInitialized;
 
         [Header("Combat")]
+        [SerializeField] private EnemyType enemyType;
         [SerializeField] private float health;
         [SerializeField] private float _damageAmount;
         [SerializeField] float attackDistance;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
-        private Collider _playerCollider;
-
+        
         private void Reset()
         {
             movementSpeed = 1f;
@@ -46,7 +48,6 @@ namespace Spawning.Scripts.Enemies
             if (!isStandalone) return;
             
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-            _playerCollider = _playerTransform.GetComponent<Collider>();
             _isLookingForPlayer = true;
         }
 
@@ -96,15 +97,6 @@ namespace Spawning.Scripts.Enemies
         public void SetPlayerTransform(Transform playerTransform) => _playerTransform = playerTransform;
 
         /// <summary>
-        /// Sets the reference of player collider for this drone.
-        /// </summary>
-        /// <param name="playerCollider">The collider of the player.</param>
-        /// <remarks>
-        /// The collider of the player is needed in order to quickly accurately compute the distance between the drone and the player.
-        /// </remarks>
-        public void SetPlayerCollider(Collider playerCollider) => _playerCollider = playerCollider;
-
-        /// <summary>
         /// Sets whether the drone should be looking for the player.
         /// </summary>
         /// <param name="isLookingForPlayer">The state of the drone.</param>
@@ -135,7 +127,7 @@ namespace Spawning.Scripts.Enemies
         public void GetDestroyed()
         {
             if(isInitialized){
-                ScoreManager.OnAddScore(scoreAmount);
+                ScoreManager.OnAddScore(scoreAmount,EnemyType);
             }
             isInitialized = false;
             if (isStandalone) Destroy(gameObject);
@@ -153,6 +145,12 @@ namespace Spawning.Scripts.Enemies
         {
             get => scoreAmount;
             set => scoreAmount = value;
+        }
+
+        public EnemyType EnemyType
+        {
+            get => enemyType;
+            set => enemyType = value;
         }
     }
 }

@@ -100,8 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStandalone: 0
   movementSpeed: 5
+  isInitialized: 0
+  enemyType: 1
   health: 1
-  _damageAmount: 0
+  _damageAmount: 25
   attackDistance: 1
   scoreAmount: 1
 --- !u!135 &1053614422555756814
