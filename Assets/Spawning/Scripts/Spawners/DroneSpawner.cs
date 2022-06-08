@@ -1,3 +1,5 @@
+using Enums;
+using Interface;
 using Spawning.Scripts.Containers;
 using Spawning.Scripts.Enemies;
 using Spawning.Scripts.Managers;
@@ -8,9 +10,9 @@ using Random = UnityEngine.Random;
 namespace Spawning.Scripts.Spawners
 {
     /// <summary>
-    /// Responsible for spawning <see cref="Drone">AvailableDrones</see> into the scene.
+    /// Responsible for spawning <see cref="Drone">Drones</see> into the scene.
     /// </summary>
-    public class DroneSpawner : MonoBehaviour, IDamageable, IScoreable
+    public class DroneSpawner : MonoBehaviour, IEnemy
     {
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
@@ -44,7 +46,7 @@ namespace Spawning.Scripts.Spawners
         private Transform _playerTransform;
 
 
-        [Header("Combat")]
+        [Header("Combat")] [SerializeField] private EnemyType enemyType;
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
@@ -96,7 +98,6 @@ namespace Spawning.Scripts.Spawners
                 }
                 drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                 drone.SetPlayerTransform(_playerTransform);
-                drone.SetPlayerCollider(_playerTransform.GetComponent<Collider>());
                 drone.SetPlayerLookState(true);
                 drone.isInitialized = true;
             }
@@ -124,7 +125,13 @@ namespace Spawning.Scripts.Spawners
         {
             Destroy(gameObject);
             SpawnerPoint.StartCooldown();
-            ScoreManager.OnAddScore(ScoreAmount);
+            ScoreManager.OnAddScore(ScoreAmount, EnemyType);
+        }
+
+        public EnemyType EnemyType
+        {
+            get => enemyType;
+            set => enemyType = value;
         }
     }
 }
