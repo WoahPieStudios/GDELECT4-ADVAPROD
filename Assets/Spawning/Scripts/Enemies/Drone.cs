@@ -130,11 +130,6 @@ namespace Spawning.Scripts.Enemies
             _material.color = Color.white;
         }
 
-        private void OnDisable()
-        {
-            GetDestroyed();
-        }
-
         public void GetDestroyed(bool killedByPlayer = true)
         {
             if (!isInitialized) return;
