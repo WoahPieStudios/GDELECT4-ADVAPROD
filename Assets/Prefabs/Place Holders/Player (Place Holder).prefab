@@ -31,9 +31,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6920387208623870352}
-  - {fileID: 6920387209258077862}
   m_Father: {fileID: 6920387208353234072}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4730200246850712666
 Camera:
@@ -59,7 +58,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 46.51
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -142,6 +141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6920387209258077862}
   - {fileID: 1611330624377052876}
   m_Father: {fileID: 6920387209733465592}
   m_RootOrder: 0
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6920387209198240518}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GunTip
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 6920387209258077856}
   - component: {fileID: 6920387209258077857}
   - component: {fileID: 6920387209258077869}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GrappleGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,13 +337,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6920387209258077863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1333336, y: -1.5, z: 3.8049989}
+  m_LocalPosition: {x: -1.1333405, y: -1.5000012, z: 3.8049555}
   m_LocalScale: {x: 0.33333334, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6920387209198240518}
-  m_Father: {fileID: 1611330624377052876}
-  m_RootOrder: 1
+  m_Father: {fileID: 6920387208353234072}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6920387209258077858
 MeshFilter:
