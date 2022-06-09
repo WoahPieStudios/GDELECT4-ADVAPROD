@@ -46,7 +46,7 @@ namespace Spawning.Scripts.Spawners
         private Transform _playerTransform;
 
 
-        [Header("Combat")] [SerializeField] private EnemyType enemyType;
+        [Header("Combat")][SerializeField] private EnemyType enemyType;
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
@@ -121,11 +121,11 @@ namespace Spawning.Scripts.Spawners
             GetDestroyed();
         }
 
-        public void GetDestroyed()
+        public void GetDestroyed(bool killedByPlayer = true)
         {
             Destroy(gameObject);
             SpawnerPoint.StartCooldown();
-            ScoreManager.OnAddScore(ScoreAmount, EnemyType);
+            if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
         }
 
         public EnemyType EnemyType

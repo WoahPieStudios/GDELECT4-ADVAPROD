@@ -5,8 +5,8 @@ public interface IDamageable
     public void TakeDamage(float damageAmount)
     {
         Health -= damageAmount;
-        if(Health <= 0) 
+        if (Health <= 0)
             GetDestroyed();
     }
-    public void GetDestroyed();
+    public void GetDestroyed(bool killedByPlayer = true);
 }
