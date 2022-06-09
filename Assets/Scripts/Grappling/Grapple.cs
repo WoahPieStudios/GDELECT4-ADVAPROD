@@ -211,7 +211,7 @@ public class Grapple : MonoBehaviour
 
 
                 // if player is higher than the tether point, pull the player instead
-                if (_tetherPoint.y < _player.transform.position.y + _heightToAutoPull)
+                if (_tetherPoint.y + _heightToAutoPull < _player.transform.position.y )
                 {
                     _isPulling = true;
                 }
