@@ -11,22 +11,23 @@ namespace Spawning.Scripts.Managers
         [SerializeField] private SpawnPointManager spawnPointManager;
         [SerializeField] private float initialDelay;
         [SerializeField] private float spawnInterval;
-        
+
         public void StartSpawning()
         {
             StartCoroutine(SpawnObject());
         }
-        
+
         // TODO: Change to something non-recursive in the future
         private IEnumerator SpawnObject()
         {
             yield return new WaitForSeconds(initialDelay);
-            while(!spawnPointManager.AllPointsTaken())
+            while (!spawnPointManager.AllPointsTaken())
             {
                 print($"Spawning {objectToSpawn.name}");
                 var point = LookForAvailablePoint();
                 var spawner = Instantiate(objectToSpawn, point.TakePointPosition(), Quaternion.identity, transform);
                 spawner.SpawnerPoint = point;
+                spawner.isInitialized = true;
                 yield return new WaitForSeconds(spawnInterval);
             }
             print("All points taken");
