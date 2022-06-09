@@ -73,6 +73,7 @@ namespace Spawning.Scripts.Enemies
             print("Looking for Player");
             var position = _rigidBody.transform.position;
             var direction = _playerTransform.position - position;
+            transform.forward = direction;
             _rigidBody.MovePosition(position + direction.normalized * (movementSpeed * Time.fixedDeltaTime));
         }
 
