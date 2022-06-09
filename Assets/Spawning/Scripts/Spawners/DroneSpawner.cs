@@ -16,6 +16,7 @@ namespace Spawning.Scripts.Spawners
     {
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
+        public bool isInitialized;
 
         /// <summary>
         /// The radius of the area which the drones will spawn at the <see cref= "SpawnPoint"/>.
@@ -123,6 +124,8 @@ namespace Spawning.Scripts.Spawners
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
+            if (!isInitialized) return;
+            isInitialized = false;
             Destroy(gameObject);
             SpawnerPoint.StartCooldown();
             if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
