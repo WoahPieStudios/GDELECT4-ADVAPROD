@@ -29,6 +29,8 @@ namespace Spawning.Scripts.Enemies
         [SerializeField] private float health;
         [SerializeField] private float _damageAmount;
         [SerializeField] float attackDistance;
+        private Material _material;
+        private float maxHealth;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -44,7 +46,8 @@ namespace Spawning.Scripts.Enemies
         {
             _rigidBody = GetComponent<Rigidbody>();
             _transform = transform;
-
+            _material = GetComponent<Renderer>().material;
+            maxHealth = health;
             if (!isStandalone) return;
 
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -117,6 +120,8 @@ namespace Spawning.Scripts.Enemies
         public void TakeDamage(float damageAmount)
         {
             health -= damageAmount;
+            var color = Color.Lerp(Color.black, Color.white, Health / maxHealth);
+            _material.color = color;
             if (health <= 0) { GetDestroyed(); }
         }
 
