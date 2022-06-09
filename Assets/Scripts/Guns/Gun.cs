@@ -142,14 +142,13 @@ public class Gun : MonoBehaviour
 
             RaycastHit hit;
             Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, maxRange);
-            if (hit.collider != null)
+            if (hit.collider.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log("Using Raycast");
-                if (hit.collider.gameObject.CompareTag("Enemy"))
-                {
-                    Debug.Log("Enemy Raycast Hit");
-                    hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_baseDamage);
-                }
+
+                Debug.Log("Enemy Raycast Hit");
+                hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_baseDamage);
+                
             }
             else
             {
