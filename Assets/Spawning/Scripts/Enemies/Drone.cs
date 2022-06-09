@@ -32,7 +32,7 @@ namespace Spawning.Scripts.Enemies
 
         [Header("Player Reference")]
         private Transform _playerTransform;
-        
+
         private void Reset()
         {
             movementSpeed = 1f;
@@ -46,7 +46,7 @@ namespace Spawning.Scripts.Enemies
             _transform = transform;
 
             if (!isStandalone) return;
-            
+
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
             _isLookingForPlayer = true;
         }
@@ -61,7 +61,7 @@ namespace Spawning.Scripts.Enemies
             //
             // if (_isLookingForPlayer) { LookForPlayer(); }
             // else { AttackPlayer(); }
-            
+
             LookForPlayer();
         }
 
@@ -106,10 +106,10 @@ namespace Spawning.Scripts.Enemies
         private void OnCollisionEnter(Collision other)
         {
             if (!other.collider.CompareTag("Player")) return;
-            
+
             other.collider.GetComponent<PlayerCombat>().TakeDamage(_damageAmount);
-            
-            GetDestroyed();
+
+            GetDestroyed(false);
         }
 
         public float Health { get => health; set => health = value; }
@@ -117,7 +117,7 @@ namespace Spawning.Scripts.Enemies
         public void TakeDamage(float damageAmount)
         {
             health -= damageAmount;
-            if (health <= 0){GetDestroyed();}
+            if (health <= 0) { GetDestroyed(); }
         }
 
         private void OnDisable()
@@ -125,14 +125,14 @@ namespace Spawning.Scripts.Enemies
             GetDestroyed();
         }
 
-        public void GetDestroyed()
+        public void GetDestroyed(bool killedByPlayer = true)
         {
             if (!isInitialized) return;
-            ScoreManager.OnAddScore(scoreAmount,EnemyType);
+            if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
             DronePool.Instance.Release(this);
             isInitialized = false;
         }
-        
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(transform.position, attackDistance);
