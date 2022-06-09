@@ -45,6 +45,9 @@ public class Grapple : MonoBehaviour
 
     [SerializeField]
     private float _heightToAutoPull = 10f;
+
+    [SerializeField, Range(0f,100f)]
+    private float _minimumPercentLength;
     #endregion
 
     #region Hookshot
@@ -211,7 +214,7 @@ public class Grapple : MonoBehaviour
 
 
                 // if player is higher than the tether point, pull the player instead
-                if (_tetherPoint.y + _heightToAutoPull < _player.transform.position.y )
+                if (_tetherPoint.y + _heightToAutoPull < _player.transform.position.y)
                 {
                     _isPulling = true;
                 }
