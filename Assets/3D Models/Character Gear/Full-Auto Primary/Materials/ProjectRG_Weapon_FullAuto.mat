@@ -30,6 +30,7 @@ Material:
   - TCP2_SHADOW_LIGHT_COLOR
   - TCP2_UV_NORMALS_FULL
   - _EMISSION
+  - _NORMALMAP
   m_InvalidKeywords:
   - _METALLICSPECGLOSSMAP
   - _OCCLUSIONMAP
@@ -189,7 +190,7 @@ Material:
     - _UseMatCap: 0
     - _UseMatCapMask: 0
     - _UseMobileMode: 0
-    - _UseNormalMap: 0
+    - _UseNormalMap: 1
     - _UseOcclusion: 0
     - _UseOutline: 1
     - _UseReflections: 0

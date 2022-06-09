@@ -125,6 +125,11 @@ namespace Spawning.Scripts.Enemies
             if (health <= 0) { GetDestroyed(); }
         }
 
+        private void OnEnable()
+        {
+            _material.color = Color.white;
+        }
+
         private void OnDisable()
         {
             GetDestroyed();
