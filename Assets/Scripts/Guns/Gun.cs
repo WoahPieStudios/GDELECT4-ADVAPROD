@@ -132,7 +132,7 @@ public class Gun : MonoBehaviour
 
         if(Time.time > nextShot)
         {
-            SoundManager.instance.PlaySFX(gunSound);
+            SoundManager.Instance.OnPlaySFX(gunSound);
             nextShot = Time.time + 1 / fireRate;
             
             if (fireMode == FireMode.Semi)

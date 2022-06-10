@@ -1,30 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-
-    public static SoundManager instance;
     public AudioSource musicSource, sfxSource;
-    public AudioMixer audioMixer;
-    public AudioMixer audioMixer2;
-    //public AudioClip clip;
 
-    private void Awake()
+    private event Action<AudioClip> onPlaySFX;
+
+    private void OnEnable()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
+        onPlaySFX += PlaySFX;
+    }
+
+    private void OnDisable()
+    {
+        onPlaySFX -= PlaySFX;
     }
 
     public void PlayAudio(AudioSource source, AudioClip clip, float volume)
@@ -33,7 +27,7 @@ public class SoundManager : MonoBehaviour
         source.volume = volume;
     }
 
-    public void PlaySFX(AudioClip clip)
+    private void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
         //sfxSource.volume = 1f;
@@ -46,10 +40,8 @@ public class SoundManager : MonoBehaviour
         musicSource.volume = 1f;
     }
 
-    public void ChangeScene()
+    public void OnPlaySFX(AudioClip clip)
     {
-        SceneManager.LoadScene(1);
-            
+        onPlaySFX?.Invoke(clip);
     }
-
 }

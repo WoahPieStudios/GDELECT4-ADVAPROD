@@ -123,14 +123,6 @@ public class InputManager : MonoBehaviour
         #endregion
     }
 
-    private void AudioTest(InputAction.CallbackContext obj) 
-    {
-       
-            Debug.Log("Space is pressed");
-            SoundManager.instance.PlaySFX(buttonSound);
-       
-    }
-
 
     private void OnEnable()
     {
