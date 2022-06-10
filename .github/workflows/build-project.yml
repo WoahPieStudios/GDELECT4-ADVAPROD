@@ -1,7 +1,7 @@
 name: Build Project
 on:
   push:
-    branches: [main]
+    branches: [release]
 
 jobs:
   build-standalone-windows-64:
