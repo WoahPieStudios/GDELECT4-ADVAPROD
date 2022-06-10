@@ -7,13 +7,6 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    
-    public enum GraphicsSettings{
-        Low, Medium, High
-    }
-
-    public GraphicsSettings selectedGraphicsSetting;
-
     public GameObject ObjectMusic;
 
     public GameObject ObjectSfx;
@@ -56,24 +49,5 @@ public class SettingsMenu : MonoBehaviour
     public void SetSFXVolume(float SfxVol)
     {
         sfxSource.volume = SfxVol;
-    }
-
-    public void SetQualityLow (bool isLow)
-    {
-        selectedGraphicsSetting = GraphicsSettings.Low;
-        QualitySettings.SetQualityLevel(0, isLow);
-        Debug.Log("SetQualityLow");
-    }
-
-    public void SetQualityMedium(bool isMedium)
-    {
-        selectedGraphicsSetting = GraphicsSettings.Medium;
-        QualitySettings.SetQualityLevel(1, isMedium);
-    }
-
-    public void SetQualityHigh(bool isHigh)
-    {
-        selectedGraphicsSetting = GraphicsSettings.High;
-        QualitySettings.SetQualityLevel(2, isHigh);
     }
 }
