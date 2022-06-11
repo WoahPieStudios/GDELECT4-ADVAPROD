@@ -2,6 +2,8 @@ name: Build Project
 on:
   push:
     branches: [release]
+  pull_request:
+    branches: [release]
 
 jobs:
   build-standalone-windows-64:
@@ -32,17 +34,29 @@ jobs:
       
       - name: Compress build
         run: zip -r ${{ steps.build.outputs.buildVersion }}.zip build/StandaloneWindows64
-      
-      - name: Send standalone to public repo
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+
+      - name: Clone public repo
+        uses: actions/checkout@v3
         with:
-          source_file: '${{ steps.build.outputs.buildVersion }}.zip'
-          destination_repo: 'WoahPieStudios/GDELECT4-ADVAPROD-BUILDS'
-          destination_folder: 'build/StandaloneWindows64/'
-          user_email: '57520402+bulletproofpancake@users.noreply.github.com'
-          user_name: 'bulletproofpancake'
+          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS/
+          path: public-builds
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+        
+      - name: Copy build to public repo
+        run: cp ${{ steps.build.outputs.buildVersion }}.zip public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.zip
+
+      - name: Push build to public repo
+        uses: actions/checkout@v3
+        with:
+          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS/
+          path: public-builds
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+        run: |
+          git config user.name bulletproofpancake
+          git config user.email 57520402+bulletproofpancake@users.noreply.github.com
+          git add .
+          git commit -m "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          git push --force
 
       - name: Return License
         uses: game-ci/unity-return-license@v2
@@ -50,7 +64,7 @@ jobs:
 
       - name: Notify Discord
         uses: sarisia/actions-status-discord@v1.9.0
-        if: always()
+        if: success()
         with:
           webhook: ${{secrets.DISCORD_WEBHOOK_BUILD}}
           avatar_url: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
