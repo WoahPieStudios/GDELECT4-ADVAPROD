@@ -46,12 +46,8 @@ jobs:
         run: cp ${{ steps.build.outputs.buildVersion }}.zip public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.zip
 
       - name: Push build to public repo
-        uses: actions/checkout@v3
-        with:
-          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS/
-          path: public-builds
-          token: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
+          cd public-builds
           git config user.name bulletproofpancake
           git config user.email 57520402+bulletproofpancake@users.noreply.github.com
           git add .
