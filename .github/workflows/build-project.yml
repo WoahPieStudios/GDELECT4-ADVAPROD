@@ -4,6 +4,7 @@ on:
     branches: [release]
   pull_request:
     branches: [release]
+  workflow_dispatch:
 
 jobs:
   build-standalone-windows-64:
