@@ -46,7 +46,7 @@ jobs:
           token: ${{ secrets.API_TOKEN_GITHUB }}
         
       - name: Copy build to public repo
-        run: cp ${{ steps.build.outputs.buildVersion }}.7z public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.zip
+        run: cp ${{ steps.build.outputs.buildVersion }}.7z public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.7z
 
       - name: Push build to public repo
         run: |
@@ -60,11 +60,3 @@ jobs:
       - name: Return License
         uses: game-ci/unity-return-license@v2
         if: always()
-
-      - name: Notify Discord
-        uses: sarisia/actions-status-discord@v1.9.0
-        if: success()
-        with:
-          webhook: ${{secrets.DISCORD_WEBHOOK_BUILD}}
-          avatar_url: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-          url: "https://woahpiestudios.github.io/gdelect4-advaprod-builds/"
