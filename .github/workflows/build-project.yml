@@ -39,7 +39,7 @@ jobs:
       - name: Clone public repo
         uses: actions/checkout@v3
         with:
-          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS/
+          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS
           path: public-builds
           token: ${{ secrets.API_TOKEN_GITHUB }}
         
