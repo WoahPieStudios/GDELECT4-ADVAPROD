@@ -33,8 +33,10 @@ jobs:
           targetPlatform: StandaloneWindows64
           versioning: Semantic
       
-      - name: Compress build
-        run: zip -r ${{ steps.build.outputs.buildVersion }}.zip build/StandaloneWindows64
+      - name: Compress Build
+        uses: edgarrc/action-7z@v1
+        with:
+          args: 7z a -t7z -mx=9 ${{ steps.build.outputs.buildVersion }}.7z ./build/StandaloneWindows64/*
 
       - name: Clone public repo
         uses: actions/checkout@v3
@@ -44,7 +46,7 @@ jobs:
           token: ${{ secrets.API_TOKEN_GITHUB }}
         
       - name: Copy build to public repo
-        run: cp ${{ steps.build.outputs.buildVersion }}.zip public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.zip
+        run: cp ${{ steps.build.outputs.buildVersion }}.7z public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.zip
 
       - name: Push build to public repo
         run: |
