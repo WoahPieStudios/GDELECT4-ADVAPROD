@@ -2,7 +2,7 @@
 
 namespace AdditiveScenes.Scripts.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "SFX Channel", menuName = "Channels/New SFX Channel")]
+    [CreateAssetMenu(fileName = "SFX Channel", menuName = "Channels/Audio/New SFX Channel")]
     public class SFXChannel : ScriptableObject
     {
         [SerializeField] private AudioClip audioClip;

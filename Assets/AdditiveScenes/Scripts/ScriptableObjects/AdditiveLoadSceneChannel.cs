@@ -2,7 +2,7 @@
 
 namespace AdditiveScenes.Scripts.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "Additive Load Scene Channel", menuName = "Channels/New Additive Load Scene Channel")]
+    [CreateAssetMenu(fileName = "Additive Load Scene Channel", menuName = "Channels/Scenes/New Additive Load Scene Channel")]
     public class AdditiveLoadSceneChannel : ScriptableObject
     {
         [SerializeField] private string sceneName;
