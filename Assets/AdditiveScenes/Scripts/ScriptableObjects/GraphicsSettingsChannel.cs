@@ -9,6 +9,7 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
     public class GraphicsSettingsChannel : ScriptableObject
     {
         [SerializeField] private GraphicsSettings selectedGraphicsSettings;
+        public GraphicsSettings SelectedGraphicsSettings => selectedGraphicsSettings;
 
         public void SetGraphics()
         {
