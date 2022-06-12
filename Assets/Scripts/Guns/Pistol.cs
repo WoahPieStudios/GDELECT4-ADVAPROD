@@ -111,13 +111,13 @@ public class Pistol : MonoBehaviour
 
     private void Shoot()
     {
-        if (!_canShoot || myCoroutine.isRunning || PauseMenu.isPaused) return;
+        //if (!_canShoot || myCoroutine.isRunning || PauseMenu.isPaused) return;
 
 
         if (Time.time > _nextShotTime)
         {
             //insert pag pumutok ang baril sound
-            SoundManager.instance.PlaySFX(GunShot);
+            SoundManager.Instance.OnPlaySFX(GunShot);
             _nextShotTime = Time.time + _rateOfFire;
 
             //add overheat mechanic here

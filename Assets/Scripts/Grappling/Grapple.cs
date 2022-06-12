@@ -204,7 +204,7 @@ public class Grapple : MonoBehaviour
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 //pag tumama yung grapple insert hooked audio
-               SoundManager.instance.PlaySFX(GrappleHooked);
+               SoundManager.Instance.OnPlaySFX(GrappleHooked);
                 Player.movementState = MovementState.Grappling;
                _tethered = true;
                _tetherPoint = hit.point;
@@ -228,7 +228,7 @@ public class Grapple : MonoBehaviour
     private void StopGrapple()
     {
         //insert release sound
-       SoundManager.instance.PlaySFX(GrappleRelease);
+        SoundManager.Instance.OnPlaySFX(GrappleRelease);
         Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
         _disableGrapple = true;
         _tethered = false;
@@ -241,7 +241,7 @@ public class Grapple : MonoBehaviour
     // Rope Swing 
     private void ApplyGrapplePhysics()
     {
-        Vector3 directionToGrapple = Vector3.Normalize(_tetherPoint - _player.transform.position);
+        Vector3 directionToGrapple = GetDirection();
         float currentDistanceToGrapple = Vector3.Distance(_tetherPoint, _player.transform.position);
         float speedTowardsGrapplePoint = Mathf.Round(Vector3.Dot(_rb.velocity, directionToGrapple) * 100) / 100;
         
@@ -303,7 +303,7 @@ public class Grapple : MonoBehaviour
     {
         if (!_canPull) return;
         // hinihila si player pull audio
-        SoundManager.instance.PlaySFX(GrapplePull);
+        SoundManager.Instance.OnPlaySFX(GrapplePull);
         _isPulling = true;
 
 
@@ -322,7 +322,7 @@ public class Grapple : MonoBehaviour
     private void ApplyHookShotPhysics()
     {
 
-        Vector3 startHooking = Vector3.Normalize(_tetherPoint - _player.transform.position);
+        Vector3 startHooking = GetDirection();
 
         _speedHook += _accelerationMultiplier * Time.deltaTime;
         _speedHook = Mathf.Clamp(_speedHook, 0, Vector3.Distance(_player.transform.position, _tetherPoint));
@@ -351,4 +351,9 @@ public class Grapple : MonoBehaviour
     }
     #endregion
 
+
+    private Vector3 GetDirection()
+    {
+        return Vector3.Normalize(_tetherPoint - _player.transform.position);
+    }
 }

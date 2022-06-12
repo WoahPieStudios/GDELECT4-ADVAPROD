@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AdditiveScenes.Scripts.ScriptableObjects;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
@@ -16,6 +17,9 @@ public class MouseLook : MonoBehaviour
     private float _xClamp = 85f;
     private float _xRotation = 0f;
 
+    [SerializeField] private PauseEventChannel pauseEvent;
+    private bool canLook;
+
     public void MouseInput(Vector2 mouseInput)
     {
         _mouseX = mouseInput.x * _mouseSensitivityX;
@@ -25,22 +29,26 @@ public class MouseLook : MonoBehaviour
     private void OnEnable()
     {
         InputManager.onMouseLook += MouseInput;
+        pauseEvent.AddPauseListener(() => { canLook = false;});
+        pauseEvent.AddResumeListener(() => { canLook = true;});
     }
 
     private void OnDisable()
     {
         InputManager.onMouseLook -= MouseInput;
+        pauseEvent.RemovePauseListener(() => { canLook = false;});
+        pauseEvent.RemoveResumeListener(() => { canLook = true;});
     }
 
     private void Update()
     {
-        if (PauseMenu.isPaused || myCoroutine.isRunning || GameManager.Instance.IsGameOver) return;
-        transform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
+        if (!canLook) return;
+        _playerTransform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
 
         _xRotation -= _mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -_xClamp, _xClamp);
-        Vector3 targetRotation = _playerTransform.eulerAngles;
+        Vector3 targetRotation = transform.eulerAngles;
         targetRotation.x = _xRotation;
-        _playerTransform.eulerAngles = targetRotation;
+        transform.eulerAngles = targetRotation;
     }
 }

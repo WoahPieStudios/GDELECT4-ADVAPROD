@@ -95,7 +95,7 @@ public class InputManager : MonoBehaviour
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
         {
-            if (!PauseMenu.isPaused)
+            //if (!PauseMenu.isPaused)
             _mouseInput.x = ctx.ReadValue<float>();
             onMouseLook?.Invoke(_mouseInput);
         };
@@ -121,14 +121,6 @@ public class InputManager : MonoBehaviour
 
 
         #endregion
-    }
-
-    private void AudioTest(InputAction.CallbackContext obj) 
-    {
-       
-            Debug.Log("Space is pressed");
-            SoundManager.instance.PlaySFX(buttonSound);
-       
     }
 
 

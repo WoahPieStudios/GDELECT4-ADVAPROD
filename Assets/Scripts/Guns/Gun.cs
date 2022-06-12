@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using AdditiveScenes.Scripts.ScriptableObjects;
 
 public enum FireMode {
     Semi,
@@ -13,7 +14,7 @@ public class Gun : MonoBehaviour
 {
 
     [SerializeField]
-    protected AudioClip gunSound;
+    protected SFXChannel gunSoundChannel;
 
     #region WEAPON STATS
     [Space]
@@ -132,7 +133,7 @@ public class Gun : MonoBehaviour
 
         if(Time.time > nextShot)
         {
-            SoundManager.instance.PlaySFX(gunSound);
+            gunSoundChannel?.PlayAudio();
             nextShot = Time.time + 1 / fireRate;
             
             if (fireMode == FireMode.Semi)
