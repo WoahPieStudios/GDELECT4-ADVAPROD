@@ -579,7 +579,7 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 394e5e4f5cf5c7343bef8203e3b03a38, type: 2}
         m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.BGMVolumeChannel,
           Assembly-CSharp
-        m_MethodName: ChangeBGMVolume
+        m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
+  m_AllowSwitchOff: 0
 --- !u!1 &1727087973956238887
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1727087973956238886}
+  - component: {fileID: 8605863206560443236}
   m_Layer: 5
   m_Name: Volumes
   m_TagString: Untagged
@@ -892,6 +893,22 @@ RectTransform:
   m_AnchoredPosition: {x: 171.44727, y: -156.9862}
   m_SizeDelta: {x: 840.4414, y: 375.9825}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8605863206560443236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727087973956238887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096d1c4f954b6e54681e78b9eb9e86ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmVolumeSlider: {fileID: 1727087973815000353}
+  sfxVolumeSlider: {fileID: 1727087974989742470}
+  bgmVolumeChannel: {fileID: 11400000, guid: 394e5e4f5cf5c7343bef8203e3b03a38, type: 2}
+  sfxVolumeChannel: {fileID: 11400000, guid: 4f107fe49544a6c4a8524c62c415cdf1, type: 2}
 --- !u!1 &1727087973996217413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,6 +2093,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727087974622571774}
   - component: {fileID: 1727087974622571769}
+  - component: {fileID: 8059832612457359398}
   m_Layer: 5
   m_Name: ToggleLow
   m_TagString: Untagged
@@ -2169,7 +2187,7 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.GraphicsSettingsChannel,
           Assembly-CSharp
         m_MethodName: SetGraphics
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2179,6 +2197,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &8059832612457359398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727087974622571775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7227dd085f78440984283eeb01df9ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphicsToggle: {fileID: 1727087974622571769}
+  graphicsSettingsChannel: {fileID: 11400000, guid: 32432a05c4b295d4ea8c679f5e113d05,
+    type: 2}
+  selectedGraphicsSettingsChannel: {fileID: 11400000, guid: 16fe1fb21971b7540812aac0d918e941,
+    type: 2}
 --- !u!1 &1727087974666747789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,7 +2958,7 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 4f107fe49544a6c4a8524c62c415cdf1, type: 2}
         m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXVolumeChannel,
           Assembly-CSharp
-        m_MethodName: ChangeSFXVolume
+        m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3132,6 +3167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727087975059873200}
   - component: {fileID: 1727087975059873203}
+  - component: {fileID: 5256684297457553780}
   m_Layer: 5
   m_Name: ToggleMed
   m_TagString: Untagged
@@ -3225,7 +3261,7 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.GraphicsSettingsChannel,
           Assembly-CSharp
         m_MethodName: SetGraphics
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3235,6 +3271,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &5256684297457553780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727087975059873201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7227dd085f78440984283eeb01df9ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphicsToggle: {fileID: 1727087975059873203}
+  graphicsSettingsChannel: {fileID: 11400000, guid: f9b759c46ef466846b2438769bc3e8aa,
+    type: 2}
+  selectedGraphicsSettingsChannel: {fileID: 11400000, guid: 16fe1fb21971b7540812aac0d918e941,
+    type: 2}
 --- !u!1 &1727087975066163839
 GameObject:
   m_ObjectHideFlags: 0
@@ -3654,6 +3707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727087975383826820}
   - component: {fileID: 1727087975383826823}
+  - component: {fileID: 5443456152304417736}
   m_Layer: 5
   m_Name: ToggleHigh
   m_TagString: Untagged
@@ -3747,7 +3801,7 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.GraphicsSettingsChannel,
           Assembly-CSharp
         m_MethodName: SetGraphics
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3756,7 +3810,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
+--- !u!114 &5443456152304417736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727087975383826821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7227dd085f78440984283eeb01df9ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphicsToggle: {fileID: 1727087975383826823}
+  graphicsSettingsChannel: {fileID: 11400000, guid: 26137b4d36f0cac44a0789c2e9c73a4d,
+    type: 2}
+  selectedGraphicsSettingsChannel: {fileID: 11400000, guid: 16fe1fb21971b7540812aac0d918e941,
+    type: 2}
 --- !u!1 &1727087975426675025
 GameObject:
   m_ObjectHideFlags: 0
