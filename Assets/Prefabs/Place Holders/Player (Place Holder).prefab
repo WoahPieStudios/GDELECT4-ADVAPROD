@@ -531,6 +531,7 @@ MonoBehaviour:
   _maxDistance: 100
   _grappleSpeedMovementMultiplier: 2
   _heightToAutoPull: 10
+  _minimumPercentLength: 0
   _maxHookShotSpeed: 5
   _accelerationMultiplier: 2
   _minDistanceToGrapplePoint: 0
@@ -546,6 +547,7 @@ GameObject:
   - component: {fileID: 6920387209733465541}
   - component: {fileID: 6920387209733465594}
   - component: {fileID: 6920387209733465595}
+  - component: {fileID: 3821267406390462218}
   m_Layer: 0
   m_Name: eyes ( Camera )
   m_TagString: Untagged
@@ -632,6 +634,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3821267406390462218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920387209733465593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f639897b725e10a47b3d2e940c3df833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseSensitivityX: 5.7
+  _mouseSensitivityY: 0.1
+  _playerTransform: {fileID: 6920387210099965583}
+  _camera: {fileID: 6920387208353234072}
 --- !u!1 &6920387210099965568
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,9 +660,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6920387210099965583}
   - component: {fileID: 6920387210099965577}
-  - component: {fileID: 6920387210099965579}
   - component: {fileID: 6920387210099965582}
   - component: {fileID: 6920387210099965576}
+  - component: {fileID: 4560773091865682537}
   - component: {fileID: 6920387210099965580}
   - component: {fileID: 6920387210099965581}
   - component: {fileID: 6920387210099965571}
@@ -686,21 +704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundCheckerDistance: 1.4
   _gravity: 25
---- !u!114 &6920387210099965579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6920387210099965568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f639897b725e10a47b3d2e940c3df833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseSensitivityX: 5.7
-  _mouseSensitivityY: 0.1
-  _playerTransform: {fileID: 6920387208353234072}
 --- !u!114 &6920387210099965582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +729,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7920ba98385f545aafd933643f9ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 50
+  _moveSpeed: 25
+--- !u!114 &4560773091865682537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920387210099965568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebd060e8a0e1cc4f8ac6ec821ec1f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enableBobbing: 1
+  _amplitude: 0.005
+  _frequency: 22.1
+  _camera: {fileID: 6920387208353234072}
+  _cameraHolder: {fileID: 6920387209733465592}
 --- !u!33 &6920387210099965580
 MeshFilter:
   m_ObjectHideFlags: 0
