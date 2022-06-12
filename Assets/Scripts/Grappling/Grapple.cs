@@ -241,7 +241,7 @@ public class Grapple : MonoBehaviour
     // Rope Swing 
     private void ApplyGrapplePhysics()
     {
-        Vector3 directionToGrapple = Vector3.Normalize(_tetherPoint - _player.transform.position);
+        Vector3 directionToGrapple = GetDirection();
         float currentDistanceToGrapple = Vector3.Distance(_tetherPoint, _player.transform.position);
         float speedTowardsGrapplePoint = Mathf.Round(Vector3.Dot(_rb.velocity, directionToGrapple) * 100) / 100;
         
@@ -322,7 +322,7 @@ public class Grapple : MonoBehaviour
     private void ApplyHookShotPhysics()
     {
 
-        Vector3 startHooking = Vector3.Normalize(_tetherPoint - _player.transform.position);
+        Vector3 startHooking = GetDirection();
 
         _speedHook += _accelerationMultiplier * Time.deltaTime;
         _speedHook = Mathf.Clamp(_speedHook, 0, Vector3.Distance(_player.transform.position, _tetherPoint));
@@ -351,4 +351,9 @@ public class Grapple : MonoBehaviour
     }
     #endregion
 
+
+    private Vector3 GetDirection()
+    {
+        return Vector3.Normalize(_tetherPoint - _player.transform.position);
+    }
 }
