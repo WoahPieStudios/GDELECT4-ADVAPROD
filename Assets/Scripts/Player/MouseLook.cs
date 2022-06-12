@@ -35,12 +35,12 @@ public class MouseLook : MonoBehaviour
     private void Update()
     {
         //if (PauseMenu.isPaused || myCoroutine.isRunning || GameManager.Instance.IsGameOver) return;
-        transform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
+        _playerTransform.Rotate(Vector3.up, _mouseX * Time.deltaTime);
 
         _xRotation -= _mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -_xClamp, _xClamp);
-        Vector3 targetRotation = _playerTransform.eulerAngles;
+        Vector3 targetRotation = transform.eulerAngles;
         targetRotation.x = _xRotation;
-        _playerTransform.eulerAngles = targetRotation;
+        transform.eulerAngles = targetRotation;
     }
 }
