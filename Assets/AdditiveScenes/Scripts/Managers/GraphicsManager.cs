@@ -6,7 +6,8 @@ namespace AdditiveScenes.Scripts.Managers
 {
     public class GraphicsManager : MonoBehaviour
     {
-        private static event Action<bool> onSetLow, onSetMedium, onSetHigh;
+        public GraphicsSettings selectedGraphicsSetting;
+        public static event Action onSetLow, onSetMedium, onSetHigh;
 
         private void OnEnable()
         {
@@ -22,37 +23,40 @@ namespace AdditiveScenes.Scripts.Managers
             onSetHigh -= SetQualityHigh;
         }
 
-        public void SetQualityLow (bool isLow)
+        public void SetQualityLow ()
         {
-            QualitySettings.SetQualityLevel(0, isLow);
+            selectedGraphicsSetting = GraphicsSettings.Low;
+            QualitySettings.SetQualityLevel(0);
             Debug.LogWarning("Graphics set to Low");
         }
 
-        public void SetQualityMedium(bool isMedium)
+        public void SetQualityMedium()
         {
-            QualitySettings.SetQualityLevel(1, isMedium);
+            selectedGraphicsSetting = GraphicsSettings.Medium;
+            QualitySettings.SetQualityLevel(1);
             Debug.LogWarning("Graphics set to Medium");
         }
 
-        public void SetQualityHigh(bool isHigh)
+        public void SetQualityHigh()
         {
-            QualitySettings.SetQualityLevel(2, isHigh);
+            selectedGraphicsSetting = GraphicsSettings.High;
+            QualitySettings.SetQualityLevel(2);
             Debug.LogWarning("Graphics set to High");
         }
 
-        public static void OnSetLow(bool isLow)
+        public static void OnSetLow()
         {
-            onSetLow?.Invoke(isLow);
+            onSetLow?.Invoke();
         }
         
-        public static void OnSetMedium(bool isMedium)
+        public static void OnSetMedium()
         {
-            onSetMedium?.Invoke(isMedium);
+            onSetMedium?.Invoke();
         }
         
-        public static void OnSetHigh(bool isHigh)
+        public static void OnSetHigh()
         {
-            onSetHigh?.Invoke(isHigh);
+            onSetHigh?.Invoke();
         }
     }
 }

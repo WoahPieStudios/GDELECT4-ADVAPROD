@@ -10,18 +10,18 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
     {
         [SerializeField] private GraphicsSettings selectedGraphicsSettings;
 
-        public void SetGraphics(bool isSelected)
+        public void SetGraphics()
         {
             switch (selectedGraphicsSettings)
             {
                 case GraphicsSettings.Low:
-                    GraphicsManager.OnSetLow(isSelected);
+                    GraphicsManager.OnSetLow();
                     break;
                 case GraphicsSettings.Medium:
-                    GraphicsManager.OnSetMedium(isSelected);
+                    GraphicsManager.OnSetMedium();
                     break;
                 case GraphicsSettings.High:
-                    GraphicsManager.OnSetHigh(isSelected);
+                    GraphicsManager.OnSetHigh();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
