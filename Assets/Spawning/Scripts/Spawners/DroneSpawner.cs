@@ -47,7 +47,8 @@ namespace Spawning.Scripts.Spawners
         private Transform _playerTransform;
 
 
-        [Header("Combat")][SerializeField] private EnemyType enemyType;
+        [Header("Combat")]
+        [SerializeField] private EnemyType enemyType;
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
@@ -57,6 +58,7 @@ namespace Spawning.Scripts.Spawners
 
         public SpawnPoint SpawnerPoint { get; set; }
 
+        [SerializeField] private Renderer renderer;
         private Material _material;
 
         private void Reset()
@@ -74,7 +76,7 @@ namespace Spawning.Scripts.Spawners
         private void Start()
         {
             maxHealth = health;
-            _material = GetComponent<Renderer>().material;
+            _material = renderer != null ? renderer.material : GetComponent<Renderer>().material;
             if (!isSpawning) return;
             InvokeRepeating(nameof(SpawnDrone), spawnInterval, spawnInterval);
         }
@@ -112,7 +114,7 @@ namespace Spawning.Scripts.Spawners
         public void TakeDamage(float damageAmount)
         {
             Health -= damageAmount;
-            var color = Color.Lerp(Color.red, Color.white, Health / maxHealth);
+            var color = Color.Lerp(Color.black, Color.white, Health / maxHealth);
             _material.color = color;
             if (Health <= 0) { GetDestroyed(); }
         }
