@@ -6,12 +6,16 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
     public class AdditiveLoadSceneChannel : ScriptableObject
     {
         [SerializeField] private string sceneName;
-
         public void LoadScene()
         {
             AdditiveSceneManager.OnLoadScene(sceneName);
         }
 
+        public void SetSceneActive()
+        {
+            AdditiveSceneManager.SetSceneActive(sceneName);
+        }
+        
         public void UnloadScene()
         {
             AdditiveSceneManager.OnUnloadScene(sceneName);
