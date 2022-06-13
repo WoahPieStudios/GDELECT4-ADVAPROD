@@ -64,15 +64,15 @@ public class Player : MonoBehaviour {
         {
             movementState = MovementState.Grappling;
         }
-
+        
     }
-
 
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(transform.position, -transform.up * _groundCheckerDistance);
         Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 55);
+        Gizmos.DrawRay(transform.position, -transform.up * _groundCheckerDistance);
     }
 
 }

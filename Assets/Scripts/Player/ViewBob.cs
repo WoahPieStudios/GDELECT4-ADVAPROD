@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AdditiveScenes.Scripts.ScriptableObjects;
 
 public class ViewBob : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class ViewBob : MonoBehaviour
     [SerializeField]
     private Transform _cameraHolder = null;
 
+    [SerializeField]
+    private PauseEventChannel _pauseEventChannel = null;
+
     private float _toggleSpeed = 3.0f;
     private Vector3 _startPos;
     private Vector2 _input;
@@ -38,6 +42,19 @@ public class ViewBob : MonoBehaviour
     void Start()
     {
         
+    }
+
+
+    private void OnEnable()
+    {
+        _pauseEventChannel.AddPauseListener(() => _enableBobbing = false);
+        _pauseEventChannel.AddResumeListener(() => _enableBobbing = true);
+    }
+
+    private void OnDisable()
+    {
+        _pauseEventChannel.RemovePauseListener(() => _enableBobbing = false);
+        _pauseEventChannel.RemoveResumeListener(() => _enableBobbing = true);
     }
 
     // Update is called once per frame
@@ -67,8 +84,8 @@ public class ViewBob : MonoBehaviour
     private Vector3 FootStepMotion()
     {
         Vector3 pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.time * _frequency) * _amplitude;
-        pos.x += Mathf.Cos(Time.time * _frequency / 2) * _amplitude * 2;
+        pos.y += Mathf.Cos(Time.time * _frequency / 2) * _amplitude * 2;
+        pos.x += Mathf.Sin(Time.time * _frequency / 2) * _amplitude * 2;
         return pos;
     }
 
