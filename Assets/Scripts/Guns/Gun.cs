@@ -12,7 +12,7 @@ public enum FireMode {
  
 public class Gun : MonoBehaviour
 {
-
+    private bool _enableCrosshair;
     [SerializeField]
     protected SFXChannel gunSoundChannel;
 
@@ -95,7 +95,6 @@ public class Gun : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-
         canShoot = true;
     }
 
@@ -112,6 +111,14 @@ public class Gun : MonoBehaviour
     }
     private void Update()
     {
+        CHCasting();
+        if (_enableCrosshair)
+        {
+            EnemyCrosshair.OnUpdateEnemyCH(1);
+        } else
+        {
+            EnemyCrosshair.OnUpdateEnemyCH(0);
+        }
         OverHeat();
     }
 
@@ -145,11 +152,8 @@ public class Gun : MonoBehaviour
             Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, maxRange);
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("Using Raycast");
-
-                Debug.Log("Enemy Raycast Hit");
+                _enableCrosshair = true;
                 hit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_baseDamage);
-                
             }
             else
             {
@@ -157,20 +161,55 @@ public class Gun : MonoBehaviour
                 bool sphereCastDidHit = Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward, out sphereHit, maxRange);
                 if (sphereCastDidHit)
                 {
-                    Debug.Log("Using SphereCast");
                     center = sphereHit.point;
-  
                     if (sphereHit.collider.gameObject.CompareTag("Enemy"))
                     {
-                        Debug.Log("Enemy Spherecast Hit");
                         sphereHit.collider.gameObject.GetComponent<IDamageable>().TakeDamage(_baseDamage);
+                        _enableCrosshair = true;
                     }
-
                 }
-
+                else
+                {
+                    _enableCrosshair = false;
+                }
             }
           
         }
+
+    }
+    private void CHCasting()
+    {
+        RaycastHit hit;
+        Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, maxRange);
+        if (hit.collider == null)
+        {
+                _enableCrosshair = false;
+        }else
+        {
+
+            if (hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                _enableCrosshair = true;
+            }
+            else
+            {
+                RaycastHit sphereHit;
+                bool sphereCastDidHit = Physics.SphereCast(_camera.transform.position, _radius, _camera.transform.forward, out sphereHit, maxRange);
+                if (sphereCastDidHit)
+                {
+                    center = sphereHit.point;
+                    if (sphereHit.collider.gameObject.CompareTag("Enemy"))
+                    {
+                        _enableCrosshair = true;
+                    }else
+                    {
+                        _enableCrosshair = false;
+                    }
+                }
+            
+            }
+        }
+
     }
 
     private void OverHeat()

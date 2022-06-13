@@ -29,6 +29,7 @@ public class MouseLook : MonoBehaviour
     private void OnEnable()
     {
         InputManager.onMouseLook += MouseInput;
+        canLook = true;
         pauseEvent.AddPauseListener(() => { canLook = false;});
         pauseEvent.AddResumeListener(() => { canLook = true;});
     }
