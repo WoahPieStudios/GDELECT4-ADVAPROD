@@ -7,8 +7,7 @@ public class AdditiveSceneManager : MonoBehaviour
     [SerializeField] private string[] initialScenes;
 
     private static event Action<string> onLoadScene; 
-    private static event Action<string,bool> onLoadSceneAdditive;
-    private static event Action<string> onUnloadScene; 
+    private static event Action<string> onUnloadScene;
 
     private void Start()
     {
@@ -21,14 +20,12 @@ public class AdditiveSceneManager : MonoBehaviour
     private void OnEnable()
     {
         onLoadScene += LoadScene;
-        onLoadSceneAdditive += LoadSceneAdditive;
         onUnloadScene += UnloadScene;
     }
 
     private void OnDisable()
     {
         onLoadScene -= LoadScene;
-        onLoadSceneAdditive -= LoadSceneAdditive;
         onUnloadScene -= UnloadScene;
     }
 
@@ -36,12 +33,6 @@ public class AdditiveSceneManager : MonoBehaviour
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-    }
-    
-    private void LoadSceneAdditive(string sceneName, bool isAdditive)
-    {
-        if (!SceneManager.GetSceneByName(sceneName).isLoaded)
-            SceneManager.LoadScene(sceneName, isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
     }
 
     private void UnloadScene(string sceneName)
@@ -55,11 +46,29 @@ public class AdditiveSceneManager : MonoBehaviour
         onLoadScene?.Invoke(sceneName);
     }
 
-    private static void OnOnLoadSceneAdditive(string sceneName, bool isAdditive)
+    public static void SetSceneActive(string sceneName)
     {
-        onLoadSceneAdditive?.Invoke(sceneName, isAdditive);
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            var scene = SceneManager.GetSceneAt(i);
+            print($"{scene.name}:{i}");
+            if (scene.name == sceneName)
+            {
+                if(scene.isLoaded){
+                    SceneManager.SetActiveScene(scene);
+                }
+                else
+                {
+                    Debug.LogWarning($"{sceneName} has not yet been loaded.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"{sceneName} has not been found.");
+            }
+        }
     }
-
+    
     public static void OnUnloadScene(string sceneName)
     {
         onUnloadScene?.Invoke(sceneName);
