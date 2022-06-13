@@ -112,9 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpawning: 1
-  spawnRadius: 3.11
-  spawnPointOffset: {x: 0, y: 7, z: 0}
-  spawnInterval: 10
+  isInitialized: 0
+  spawnRadius: 10
+  spawnPointOffset: {x: 0, y: 15.86, z: 0}
+  spawnInterval: 20
   spawnAmount: 7
   enemyType: 0
   health: 500
