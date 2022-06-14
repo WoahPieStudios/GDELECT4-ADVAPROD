@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
 
     public static event Action onShoot;
     public static event Action onReleaseShooting;
+
+    public static event Action onManualReloading;
     #endregion
 
     #region UI Interactions
@@ -89,6 +91,11 @@ public class InputManager : MonoBehaviour
         _playerInputs.PlayerControls.Shoot.canceled += ctx =>
         {
             onReleaseShooting?.Invoke();
+        };
+
+        _playerInputs.PlayerControls.Reload.performed += ctx =>
+        {
+            onManualReloading?.Invoke();
         };
         #endregion
 
