@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07858e4281c29b74ca34b18bdecb83d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toEquip: {fileID: 6423561062646507809, guid: cbf13a0e7bf5f884fb84cfe6512f5b0a,
+  _toEquip: {fileID: 2475269701254481327, guid: da250a56fea98ed47891f364619983b9,
     type: 3}
 --- !u!1 &6920387209198240519
 GameObject:
@@ -739,6 +739,9 @@ MonoBehaviour:
   _grappleLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _ungrappables:
+    serializedVersion: 2
+    m_Bits: 0
   _gunTip: {fileID: 6920387209198240518}
   _player: {fileID: 6920387210099965568}
   _maxDistance: 55
