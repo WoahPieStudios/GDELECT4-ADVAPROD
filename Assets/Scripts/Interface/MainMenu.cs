@@ -1,10 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame()
+    public Transform startBtn;
+    public Transform settingsBtn;
+    public Transform quitBtn;
+    public Transform GameTitle;
+
+    private void Start()
+    {
+        Move();
+    }
+
+    public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -13,5 +24,14 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("QUIT!");
         Application.Quit();
+    }
+
+    public void Move()
+    {
+        startBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
+        settingsBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
+        quitBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
+
+        GameTitle.DOMoveY(700, 1).SetEase(Ease.InOutSine);
     }
 }
