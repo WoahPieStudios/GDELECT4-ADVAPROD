@@ -17,7 +17,8 @@ namespace Spawning.Scripts.Spawners
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
         public bool isInitialized;
-
+        
+        [Header("Drone Spawn Settings")]
         /// <summary>
         /// The radius of the area which the drones will spawn at the <see cref= "SpawnPoint"/>.
         /// </summary>
@@ -36,9 +37,11 @@ namespace Spawning.Scripts.Spawners
         /// </summary>
         [SerializeField, Tooltip("The frequency of when drones will be spawned.")]
         private float spawnInterval;
-
-
+        
+        [Header("Drone Spawn Amounts")]
         [SerializeField] private int spawnAmount;
+        [SerializeField] private int spawnAmountTank;
+        [SerializeField, Range(0f, 1f)] private float tankSpawnChance;
 
         /// <summary>
         /// References the transform of the player which is used by the drones.
@@ -93,7 +96,7 @@ namespace Spawning.Scripts.Spawners
         {
             for (int i = 0; i < spawnAmount; i++)
             {
-                var drone = DronePool.Instance.GetDrone();
+                var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                 if (drone == null)
                 {
                     Debug.LogError("No more available drones");
@@ -103,6 +106,25 @@ namespace Spawning.Scripts.Spawners
                 drone.SetPlayerTransform(_playerTransform);
                 drone.SetPlayerLookState(true);
                 drone.isInitialized = true;
+            }
+
+            var _tankSpawnChance = Random.Range(0f, 1f);
+            if(_tankSpawnChance <= tankSpawnChance)
+            {
+                for (int i = 0; i < spawnAmountTank; i++)
+                {
+                    var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
+                    if (drone == null)
+                    {
+                        Debug.LogError("No more available drones");
+                        return;
+                    }
+
+                    drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
+                    drone.SetPlayerTransform(_playerTransform);
+                    drone.SetPlayerLookState(true);
+                    drone.isInitialized = true;
+                }
             }
         }
 
