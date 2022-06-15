@@ -98,11 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSoundChannel: {fileID: 11400000, guid: 6e782eec603786c419055e6ffec61880, type: 2}
   fireMode: 0
-  fireRate: 0.75
-  maxRange: 100
+  fireRate: 5.25
+  maxRange: 150
   bulletsPerMagazine: 12
   _radius: 0.5
   _resetCount: 0
-  _baseDamage: 150
+  _baseDamage: 75
   _headshotDamageMultiplier: 1
-  _reloadSpeed: 1.16
+  _reloadSpeed: 1.25
