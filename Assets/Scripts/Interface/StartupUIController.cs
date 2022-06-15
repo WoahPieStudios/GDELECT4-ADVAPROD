@@ -35,11 +35,13 @@ public class StartupUIController : MonoBehaviour
     {
        // Time.timeScale = 0f;
        //Time.timeScale = 0f;
+       pauseEventChannel.SetUseUI(false);
        pauseEventChannel.OnPause();
        yield return new WaitForSecondsRealtime(1f);
        controlUI.SetActive(true);
        yield return new WaitForSecondsRealtime(5f);
        controlUI.SetActive(false);
+       pauseEventChannel.SetUseUI(true);
        pauseEventChannel.OnResume();
        _hasRan = true;
        //Time.timeScale = 1f;

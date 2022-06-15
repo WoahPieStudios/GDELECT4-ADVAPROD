@@ -4788,7 +4788,7 @@ PrefabInstance:
     - target: {fileID: 8753375286403628734, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: onGameResume
+      value: OnGameResume
       objectReference: {fileID: 0}
     - target: {fileID: 8753375286403628734, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
@@ -12789,7 +12789,7 @@ MonoBehaviour:
   isPersist: 0
   totemsToKill: 1
   dronesToKill: 1
-  tanksToKill: 0
+  tanksToKill: 1
   pauseEventChannel: {fileID: 11400000, guid: 1d8e62ce2a200a0408bfbe96237ccf6a, type: 2}
   gameStart:
     m_PersistentCalls:
