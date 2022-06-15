@@ -1942,6 +1942,16 @@ PrefabInstance:
       propertyPath: _maxDistance
       value: 55
       objectReference: {fileID: 0}
+    - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _accelerationMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _grappleSpeedMovementMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965568, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_Name
@@ -1955,7 +1965,7 @@ PrefabInstance:
     - target: {fileID: 6920387210099965576, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: _moveSpeed
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965577, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
