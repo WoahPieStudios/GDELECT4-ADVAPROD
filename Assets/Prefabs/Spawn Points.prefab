@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786314713672972766}
   - component: {fileID: 1468078189}
+  - component: {fileID: 6544377073264193403}
   m_Layer: 0
   m_Name: Enemy Spawn Ponts
   m_TagString: Untagged
@@ -147,6 +148,20 @@ MonoBehaviour:
   points:
   - {fileID: 1726788828}
   - {fileID: 1402851742}
+  cooldown: 5
+--- !u!114 &6544377073264193403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786314713672972767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4aa55bbfdb929448ad4a549a07d030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
   - {fileID: 0}
   - {fileID: 0}
   cooldown: 5
