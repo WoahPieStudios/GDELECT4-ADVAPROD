@@ -245,8 +245,9 @@ public class Grapple : MonoBehaviour
         {
             _crosshairIndex = 1;
         }
-        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _ungrappables))
+        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _ungrappables))
         {
+            if (!hit.collider.CompareTag("Enemy"))
             _crosshairIndex = 2;
         }else
         {
