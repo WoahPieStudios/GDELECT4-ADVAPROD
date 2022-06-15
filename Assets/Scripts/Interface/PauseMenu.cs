@@ -52,7 +52,8 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         //if (myCoroutine.isRunning) return;
-        if (isPaused) return;
+        //print($"pauseEventChannel.canUseUI: {pauseEventChannel.canUseUI}");
+        if (isPaused || !pauseEventChannel.canUseUI) return;
         pauseMenuUI.SetActive(true);
         controlUI.SetActive(true);
         pauseEventChannel.OnPause();

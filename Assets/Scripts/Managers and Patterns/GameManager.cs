@@ -58,6 +58,7 @@ public class GameManager : Singleton<GameManager>
     {
         IsGameOver = false;
         //Time.timeScale = 1f;
+        pauseEventChannel.SetUseUI(true);
         pauseEventChannel.OnResume();
         gameStart?.Invoke();
         print("gameStart invoked");
@@ -69,6 +70,7 @@ public class GameManager : Singleton<GameManager>
     {
         IsGameOver = true;
         //Time.timeScale = 0f;
+        pauseEventChannel.SetUseUI(false);
         pauseEventChannel.OnPause();
         gameOver?.Invoke();
         Cursor.visible = true;

@@ -7,6 +7,13 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
     [CreateAssetMenu(fileName = "Pause Event Channel", menuName = "Channels/Gameplay/New Pause Event Channel")]
     public class PauseEventChannel : ScriptableObject
     {
+        public bool canUseUI => PauseManager.canUsePauseUI;
+        
+        public void SetUseUI(bool canUse)
+        {
+            PauseManager.SetPauseUIAvailability(canUse);
+        }
+        
         public void AddPauseListener(Action listener)
         {
             PauseManager.onPause += listener;
