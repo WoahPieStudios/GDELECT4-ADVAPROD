@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 3442074831657833408, guid: ef8231d73bb476d48bca7f5a5ed56a31,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef8231d73bb476d48bca7f5a5ed56a31, type: 3}
@@ -411,7 +411,7 @@ PrefabInstance:
     - target: {fileID: 8139702995527058636, guid: 0be1b50d620c5fa40be87e4947d87089,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 28.6
       objectReference: {fileID: 0}
     - target: {fileID: 8139702995527058636, guid: 0be1b50d620c5fa40be87e4947d87089,
         type: 3}
@@ -466,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 8916520413432028790, guid: 0be1b50d620c5fa40be87e4947d87089,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0be1b50d620c5fa40be87e4947d87089, type: 3}
@@ -482,6 +482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectRG_EnemyUnit_DroneSpwnr
       objectReference: {fileID: 0}
+    - target: {fileID: 8600064120659061595, guid: e8aa781f5105ea44381e724efff59326,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8940279043820319201, guid: e8aa781f5105ea44381e724efff59326,
         type: 3}
       propertyPath: m_RootOrder
@@ -490,7 +495,7 @@ PrefabInstance:
     - target: {fileID: 8940279043820319201, guid: e8aa781f5105ea44381e724efff59326,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -47.4
       objectReference: {fileID: 0}
     - target: {fileID: 8940279043820319201, guid: e8aa781f5105ea44381e724efff59326,
         type: 3}

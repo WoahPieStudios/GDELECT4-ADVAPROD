@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using AdditiveScenes.Scripts.ScriptableObjects;
+using System.Threading.Tasks;
 
 public enum FireMode {
     Semi,
@@ -22,20 +23,25 @@ public class Gun : MonoBehaviour
     [SerializeField]
     protected FireMode fireMode = FireMode.Semi;
     /// <summary>
-    /// rate is in ms (_fireRate/1000)
+    /// rate is in ms (1/_fireRate)
     /// </summary>
-    [SerializeField, Tooltip("rate is in ms (_fireRate/1000)")]
+    [SerializeField, Tooltip("rate is in ms (1/_fireRate)")]
     protected float fireRate = 100f;
 
     [SerializeField]
     protected float maxRange = 100f;
 
+    [SerializeField]
+    protected int bulletsPerMagazine = 10;
     /// <summary>
     /// radius indicates how big the spherecast will be once raycast doesn't hit but at the same time, close to hitting something
     /// </summary>
     [SerializeField, Tooltip("radius indicates how big the spherecast will be once raycast doesn't hit but at the same time, close to hitting something")]
     private float _radius;
-
+    [SerializeField]
+    private bool _resetCount = false;
+    
+    private int _shotsCounter;
 
     #region DAMAGE 
     [Space]
@@ -54,25 +60,13 @@ public class Gun : MonoBehaviour
 
     #endregion
 
-    #region OVERHEAT MECHANIC VARIABLES
+    #region RELOAD MECHANIC VARIABLES
     [Space]
-    [Header("OVERHEAT MECHANIC")]
-    [SerializeField]
-    private float _overHeatMultiplier = 1f;
-    [SerializeField]
-    private float _coolDownMultiplier = 1f;
-    [SerializeField]
-    private float _maxCapacity = 10f;
-    /// <summary>
-    /// minimum thermals before player can shoot
-    /// </summary>
-    [SerializeField, Tooltip("minimum thermals before player can shoot")]
-    private float _thresholdBeforeAllowingToShoot = 1;
-
-    /// <summary>
-    /// this is for the 
-    /// </summary>
-    private float _currentTemp;
+    [Header("RELOAD MECHANIC")]
+    [SerializeField, Range(0,3f)]
+    private float _reloadSpeed = 1f;
+    private static event Action onReloadTime;
+    private bool _isReloading;
     #endregion
 
 
@@ -95,6 +89,7 @@ public class Gun : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
+        _shotsCounter = bulletsPerMagazine;
         canShoot = true;
     }
 
@@ -102,15 +97,18 @@ public class Gun : MonoBehaviour
     {
         InputManager.onShoot += OnPressedTrigger;
         InputManager.onReleaseShooting += OnReleasedTrigger;
+        InputManager.onManualReloading += Reloading;
     }
 
     private void OnDisable()
     {
         InputManager.onShoot -= OnPressedTrigger;
         InputManager.onReleaseShooting -= OnReleasedTrigger;
+        InputManager.onManualReloading -= Reloading;
     }
     private void Update()
     {
+
         CHCasting();
         if (_enableCrosshair)
         {
@@ -119,8 +117,13 @@ public class Gun : MonoBehaviour
         {
             EnemyCrosshair.OnUpdateEnemyCH(0);
         }
-        OverHeat();
+        if (_shotsCounter == 0 && !_isReloading)
+        {
+            Reloading();
+        }
     }
+
+
 
     private void FixedUpdate()
     {
@@ -140,13 +143,16 @@ public class Gun : MonoBehaviour
 
         if(Time.time > nextShot)
         {
-            gunSoundChannel?.PlayAudio();
-            nextShot = Time.time + 1 / fireRate;
-            
+
             if (fireMode == FireMode.Semi)
             {
-                if (_triggerBeingPressed) return;
+                if (!_triggerBeingPressed) return;
             }
+
+            _shotsCounter--;
+            gunSoundChannel?.PlayAudio();
+            nextShot = Time.time + 1 / fireRate;
+
 
             RaycastHit hit;
             Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, maxRange);
@@ -204,7 +210,7 @@ public class Gun : MonoBehaviour
                     }else
                     {
                         _enableCrosshair = false;
-                    }
+                    } 
                 }
             
             }
@@ -212,27 +218,32 @@ public class Gun : MonoBehaviour
 
     }
 
-    private void OverHeat()
+    private async Task CountDown(float duration)
     {
-        _currentTemp = Mathf.Clamp(_currentTemp, 0, _maxCapacity);
-        if (!_triggerBeingPressed || !canShoot)
-        {
-            _currentTemp -= Time.deltaTime * _coolDownMultiplier;
-            if (_currentTemp <= _thresholdBeforeAllowingToShoot)
-            {
-                canShoot = true;
-            }
-        }
-        if(_triggerBeingPressed && canShoot)
-        {
+        var currentTimer = Time.time + duration;
 
-            _currentTemp += Time.deltaTime * _overHeatMultiplier;
-            if (_currentTemp >= _maxCapacity)
-            {
-                canShoot = false;
-            }
+        while (Time.time < currentTimer)
+        {
+            await Task.Yield();
         }
+        onReloadTime?.Invoke();
+    }
 
+    private async void Reloading()
+    {
+        canShoot = false;
+        _isReloading = true;
+        onReloadTime += Reload;
+        await CountDown(_reloadSpeed);
+        onReloadTime -= Reload;
+        return;
+    }
+
+    private void Reload()
+    {
+        _isReloading = false;
+        _shotsCounter = bulletsPerMagazine;
+        canShoot = true;
     }
 
     private void OnPressedTrigger()

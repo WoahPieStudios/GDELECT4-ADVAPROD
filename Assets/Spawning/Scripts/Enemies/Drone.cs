@@ -6,6 +6,7 @@ using Spawning.Scripts.Managers;
 using Spawning.Scripts.Pools;
 using UnityEngine;
 using UnityEngine.Pool;
+using AdditiveScenes.Scripts.ScriptableObjects;
 
 namespace Spawning.Scripts.Enemies
 {
@@ -31,6 +32,8 @@ namespace Spawning.Scripts.Enemies
         [SerializeField] float attackDistance;
         private Material _material;
         private float maxHealth;
+
+        [SerializeField] SFXChannel enemyDeathChannel;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -132,6 +135,7 @@ namespace Spawning.Scripts.Enemies
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
+            enemyDeathChannel?.PlayAudio();
             if (!isInitialized) return;
             if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
             DronePool.Instance.Release(this);
