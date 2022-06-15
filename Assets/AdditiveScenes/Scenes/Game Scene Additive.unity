@@ -12839,6 +12839,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 3c029c0790cc7074eac1def6bf2c6147, type: 2}
+        m_TargetAssemblyTypeName: PlayerRespawnChannel, Assembly-CSharp
+        m_MethodName: OnRespawnPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   gameOver:
     m_PersistentCalls:
       m_Calls:

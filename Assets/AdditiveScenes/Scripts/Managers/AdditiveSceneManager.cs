@@ -56,6 +56,7 @@ public class AdditiveSceneManager : MonoBehaviour
             {
                 if(scene.isLoaded){
                     SceneManager.SetActiveScene(scene);
+                    break;
                 }
                 else
                 {
