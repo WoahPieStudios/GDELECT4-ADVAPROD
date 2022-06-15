@@ -24,18 +24,20 @@ namespace Spawning.Scripts.Managers
             RespawnPlayer -= SetPlayerPosition;
         }
 
-        private void Start()
-        {
-            OnRespawnPlayer();
-        }
+        // private void Start()
+        // {
+        //     OnRespawnPlayer();
+        // }
 
         private void SetPlayerPosition()
         {
+            print("Setting Player Position");
             player.transform.position = spawnPointManager.GetRandomPoint().GetPointPosition();
         }
 
         public static void OnRespawnPlayer()
         {
+            print("Respawn player invoked");
             RespawnPlayer?.Invoke();
         }
     }

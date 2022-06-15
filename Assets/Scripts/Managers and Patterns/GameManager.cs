@@ -3,6 +3,7 @@ using AdditiveScenes.Scripts.ScriptableObjects;
 using Spawning.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -10,14 +11,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int totemsToKill;
     [SerializeField] private int dronesToKill;
     [SerializeField] private int tanksToKill;
-    
+
     public int TotemsToKill => totemsToKill;
     public int DronesToKill => dronesToKill;
     public int TanksToKill => tanksToKill;
 
     [Header("System Reference")]
     [SerializeField] private PauseEventChannel pauseEventChannel;
-    
+
     [Header("Game Events")]
     [SerializeField] private UnityEvent gameStart;
     [SerializeField] private UnityEvent gameOver;
@@ -29,6 +30,7 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         InputManager.onPause += OnGamePause;
+        SceneManager.sceneLoaded += (arg0, mode) => { OnGameStart(); };
     }
 
     private void OnDisable()
@@ -49,11 +51,6 @@ public class GameManager : Singleton<GameManager>
         pauseEventChannel.OnResume();
         gameResume?.Invoke();
     }
-    
-    private void Start()
-    {
-        OnGameStart();
-    }
 
     public void OnGameStart()
     {
@@ -61,10 +58,11 @@ public class GameManager : Singleton<GameManager>
         //Time.timeScale = 1f;
         pauseEventChannel.OnResume();
         gameStart?.Invoke();
+        print("gameStart invoked");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
+
     public void OnGameOver()
     {
         IsGameOver = true;
@@ -79,7 +77,7 @@ public class GameManager : Singleton<GameManager>
     {
         FindObjectOfType<ScoreManager>().ClearScore();
         OnGameStart();
-        PlayerSpawnManager.OnRespawnPlayer();
+        //PlayerSpawnManager.OnRespawnPlayer();
     }
 
     public void ExitGame()
