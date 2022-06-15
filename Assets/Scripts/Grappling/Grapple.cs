@@ -20,6 +20,8 @@ public class Grapple : MonoBehaviour
     [Header("GRAPPLE")]
     [SerializeField]
     private LayerMask _grappleLayer;
+    [SerializeField]
+    private LayerMask _ungrappables;
     /// <summary>
     /// point where the line renderer starts
     /// </summary>
@@ -30,6 +32,7 @@ public class Grapple : MonoBehaviour
     /// </summary>
     [SerializeField]
     private GameObject _player; 
+
 
     /// <summary>
     /// max distance that the player can grapple
@@ -127,6 +130,7 @@ public class Grapple : MonoBehaviour
 
     #endregion
 
+    private int _crosshairIndex;
 
     private void Awake()
     {
@@ -167,6 +171,11 @@ public class Grapple : MonoBehaviour
         PlayerSpawnManager.RespawnPlayer -= StopGrapple;
     }
 
+    private void Update()
+    {
+
+    }
+
     private void FixedUpdate()
     {
         if (_tethered)
@@ -184,6 +193,9 @@ public class Grapple : MonoBehaviour
             Debug.Log($"_isPulling: {_isPulling}");
           ApplyHookShotPhysics();
         }
+        CrosshairChange();
+        
+
     }
 
 
@@ -204,6 +216,7 @@ public class Grapple : MonoBehaviour
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 //pag tumama yung grapple insert hooked audio
+                _crosshairIndex = 1;
                SoundManager.Instance.OnPlaySFX(GrappleHooked);
                 Player.movementState = MovementState.Grappling;
                _tethered = true;
@@ -223,6 +236,24 @@ public class Grapple : MonoBehaviour
         {
             StopGrapple();
         }
+    }
+
+    private void CrosshairChange()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _grappleLayer))
+        {
+            _crosshairIndex = 1;
+        }
+        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _ungrappables))
+        {
+            if (!hit.collider.CompareTag("Enemy"))
+            _crosshairIndex = 2;
+        }else
+        {
+            _crosshairIndex = 0;
+        }
+        GrappleCrosshair.OnUpdateGrappleCH(_crosshairIndex);
     }
 
     private void StopGrapple()

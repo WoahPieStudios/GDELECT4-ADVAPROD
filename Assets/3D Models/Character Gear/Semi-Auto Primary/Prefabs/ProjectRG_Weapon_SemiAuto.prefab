@@ -96,14 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f8229a74f2bb147b2a2db22a7b5df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunSound: {fileID: 0}
+  gunSoundChannel: {fileID: 11400000, guid: 6e782eec603786c419055e6ffec61880, type: 2}
   fireMode: 0
   fireRate: 0.75
   maxRange: 100
+  bulletsPerMagazine: 12
   _radius: 0.5
+  _resetCount: 0
   _baseDamage: 150
   _headshotDamageMultiplier: 1
-  _overHeatMultiplier: 0
-  _coolDownMultiplier: 1
-  _maxCapacity: 10
-  _thresholdBeforeAllowingToShoot: 1
+  _reloadSpeed: 1.16
