@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     public void OnGamePause()
     {
         IsPaused = true;
+        Cursor.visible = true;
         pauseEventChannel.OnPause();
         gamePause?.Invoke();
     }
@@ -48,6 +49,7 @@ public class GameManager : Singleton<GameManager>
     public void OnGameResume()
     {
         IsPaused = false;
+        Cursor.visible = false;
         pauseEventChannel.OnResume();
         gameResume?.Invoke();
     }

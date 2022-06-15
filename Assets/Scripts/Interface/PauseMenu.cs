@@ -9,7 +9,6 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private PauseEventChannel pauseEventChannel;
     private bool isPaused = false;
-    private bool canPause;
 
     public GameObject pauseMenuUI;
     public GameObject controlUI;
@@ -42,12 +41,6 @@ public class PauseMenu : MonoBehaviour
     //     }*/
     // }
 
-    private void OnEnable()
-    {
-        pauseEventChannel.AddPauseListener(() => { canPause = false; });
-        pauseEventChannel.AddResumeListener(() => { canPause = true; });
-    }
-
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -59,7 +52,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         //if (myCoroutine.isRunning) return;
-        if (!canPause && isPaused) return;
+        if (isPaused) return;
         pauseMenuUI.SetActive(true);
         controlUI.SetActive(true);
         pauseEventChannel.OnPause();
