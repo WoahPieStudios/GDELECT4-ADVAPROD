@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3536982391183692619}
   - component: {fileID: 3536982391183692618}
   - component: {fileID: 3536982391183692617}
+  - component: {fileID: 8741076310145452617}
   m_Layer: 0
   m_Name: Enemy Hit
   m_TagString: Untagged
@@ -4872,6 +4873,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8741076310145452617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536982391183692616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640b7b921b8a49b1a26d9e3141aa2959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 3536982391183692618}
 --- !u!1 &6846877083777282053
 GameObject:
   m_ObjectHideFlags: 0

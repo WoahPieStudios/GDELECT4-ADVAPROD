@@ -135,9 +135,11 @@ namespace Spawning.Scripts.Enemies
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
-            enemyDeathChannel?.PlayAudio();
             if (!isInitialized) return;
             if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
+            enemyDeathChannel?.PlayAudio();
+            var vfx = DronePool.Instance.GetVFXHandler(transform.position);
+            vfx.particleSystem.Play();
             DronePool.Instance.Release(this);
             isInitialized = false;
         }
