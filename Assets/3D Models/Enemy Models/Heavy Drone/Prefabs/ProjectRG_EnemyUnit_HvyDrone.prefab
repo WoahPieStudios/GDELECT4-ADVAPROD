@@ -271,6 +271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStandalone: 0
   movementSpeed: 5
+  trailRenderers:
+  - {fileID: 4075621168253374655}
+  - {fileID: 8122341970337925152}
   isInitialized: 0
   enemyType: 2
   health: 150
