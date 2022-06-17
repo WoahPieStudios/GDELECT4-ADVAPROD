@@ -8,7 +8,7 @@ namespace Spawning.Scripts.Combat
     {
         [SerializeField] private float health;
         [SerializeField] private UnityEvent onPlayerDeath;
-        public float Health => health;
+        public float Health => health <= 0 ? 0 : health;
         public static event Action onHealthUpdate; 
 
         private void Reset()

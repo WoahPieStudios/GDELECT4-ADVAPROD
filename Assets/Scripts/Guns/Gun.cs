@@ -84,6 +84,8 @@ public class Gun : MonoBehaviour
     /// </summary>
     private bool _triggerBeingPressed;
 
+    private bool _didFire;
+
     private Vector3 center;
 
     void Start()
@@ -109,7 +111,7 @@ public class Gun : MonoBehaviour
     private void Update()
     {
 
-        CHCasting();
+        CrosshairCasting();
         if (_enableCrosshair)
         {
             EnemyCrosshair.OnUpdateEnemyCH(1);
@@ -130,8 +132,8 @@ public class Gun : MonoBehaviour
         if (!_triggerBeingPressed) return;
 
         Debug.DrawRay(_camera.transform.position, _camera.transform.forward * maxRange, Color.red);
-        Shoot();
-        
+       Shoot();
+
     }
 
     /// <summary>
@@ -143,10 +145,9 @@ public class Gun : MonoBehaviour
 
         if(Time.time > nextShot)
         {
-
             if (fireMode == FireMode.Semi)
             {
-                if (!_triggerBeingPressed) return;
+                if (_didFire) return;
             }
 
             _shotsCounter--;
@@ -179,11 +180,12 @@ public class Gun : MonoBehaviour
                     _enableCrosshair = false;
                 }
             }
-          
+
         }
+        _didFire = true;
 
     }
-    private void CHCasting()
+    private void CrosshairCasting()
     {
         RaycastHit hit;
         Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, maxRange);
@@ -248,12 +250,15 @@ public class Gun : MonoBehaviour
 
     private void OnPressedTrigger()
     {
+        //Shoot();
         _triggerBeingPressed = true;
+        
     }
 
     private void OnReleasedTrigger()
     {
         _triggerBeingPressed = false;
+        _didFire = false;
     }
 
     private void OnDrawGizmos()
