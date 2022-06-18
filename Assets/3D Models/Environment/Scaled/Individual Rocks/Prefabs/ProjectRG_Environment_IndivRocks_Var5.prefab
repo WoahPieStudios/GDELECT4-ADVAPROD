@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5272104628063855519}
   - component: {fileID: 9116865286190885946}
   - component: {fileID: 6440547574925465840}
-  m_Layer: 0
+  - component: {fileID: 6174473343709094817}
+  m_Layer: 10
   m_Name: ProjectRG_Environment_IndivRocks_Var5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6174473343709094817
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783270947274635557}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6004852790725050046, guid: f52d0eee50dcf2344a44682e5c880c28, type: 3}

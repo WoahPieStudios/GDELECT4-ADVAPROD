@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8034222313192217934}
   - component: {fileID: 6399774728224625387}
   - component: {fileID: 9166063828063561249}
-  m_Layer: 0
+  - component: {fileID: 4909089058369854813}
+  m_Layer: 10
   m_Name: ProjectRG_Environment_RuinsWall_Var3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4909089058369854813
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220565482853009396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.001951, y: 37.94822, z: 14.412191}
+  m_Center: {x: -0.00045621395, y: 18.974083, z: 0.22756195}

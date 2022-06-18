@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 4151342346761613718}
   - component: {fileID: 1023263021189578291}
   - component: {fileID: 3015066501496228601}
-  m_Layer: 0
+  - component: {fileID: 6042918130749098571}
+  - component: {fileID: 3373273961245830879}
+  - component: {fileID: 5387493130286826808}
+  m_Layer: 10
   m_Name: ProjectRG_Environment_RuinsPillar_Var0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +86,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6042918130749098571
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663492969118526252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.172252, y: 18.661455, z: 9.275551}
+  m_Center: {x: -0.052190304, y: 13.101157, z: 0}
+--- !u!65 &3373273961245830879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663492969118526252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.374535, y: 3.9588623, z: 12.374535}
+  m_Center: {x: -0.00054073334, y: 24.343761, z: 0}
+--- !u!65 &5387493130286826808
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663492969118526252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.374535, y: 3.8387308, z: 12.374535}
+  m_Center: {x: -0.00054073334, y: 1.9193654, z: 0}
