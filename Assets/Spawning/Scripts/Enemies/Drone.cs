@@ -20,6 +20,7 @@ namespace Spawning.Scripts.Enemies
 
         [Header("Properties")]
         [SerializeField] float movementSpeed;
+        [SerializeField] private TrailRenderer[] trailRenderers;
         private Rigidbody _rigidBody;
         private Transform _transform;
         private bool _isLookingForPlayer;
@@ -43,6 +44,7 @@ namespace Spawning.Scripts.Enemies
             movementSpeed = 1f;
             _damageAmount = 1f;
             attackDistance = 1f;
+            trailRenderers = GetComponentsInChildren<TrailRenderer>();
         }
 
         private void Awake()
@@ -131,13 +133,19 @@ namespace Spawning.Scripts.Enemies
         private void OnEnable()
         {
             _material.color = Color.white;
+            foreach (var trailRenderer in trailRenderers)
+            {
+                trailRenderer.Clear();
+            }
         }
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
-            enemyDeathChannel?.PlayAudio();
             if (!isInitialized) return;
             if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
+            enemyDeathChannel?.PlayAudio();
+            var vfx = DronePool.Instance.GetVFXHandler(transform.position);
+            vfx.particleSystem.Play();
             DronePool.Instance.Release(this);
             isInitialized = false;
         }
