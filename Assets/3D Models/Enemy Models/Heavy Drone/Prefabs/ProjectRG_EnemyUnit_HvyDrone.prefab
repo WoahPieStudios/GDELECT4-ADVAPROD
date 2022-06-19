@@ -131,9 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStandalone: 0
   movementSpeed: 5
-  trailRenderers:
-  - {fileID: 4075621168253374655}
-  - {fileID: 8122341970337925152}
+  trailRenderers: []
+  particles:
+  - {fileID: 6426940439277537730}
+  - {fileID: 6486513950749496807}
   isInitialized: 0
   enemyType: 2
   health: 150
@@ -216,6 +217,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5577709256589568784}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &6426940439277537730 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1466226532817494738, guid: 2e1593ffb8ac7e448811e5c7ea441435,
+    type: 3}
+  m_PrefabInstance: {fileID: 5577709256589568784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5646862271727335221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +295,12 @@ PrefabInstance:
 --- !u!4 &6486513950749496804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1466226532817494737, guid: 2e1593ffb8ac7e448811e5c7ea441435,
+    type: 3}
+  m_PrefabInstance: {fileID: 5646862271727335221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6486513950749496807 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1466226532817494738, guid: 2e1593ffb8ac7e448811e5c7ea441435,
     type: 3}
   m_PrefabInstance: {fileID: 5646862271727335221}
   m_PrefabAsset: {fileID: 0}

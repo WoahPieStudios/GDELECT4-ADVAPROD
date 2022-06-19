@@ -21,6 +21,7 @@ namespace Spawning.Scripts.Enemies
         [Header("Properties")]
         [SerializeField] float movementSpeed;
         [SerializeField] private TrailRenderer[] trailRenderers;
+        [SerializeField] private ParticleSystem[] particles;
         private Rigidbody _rigidBody;
         private Transform _transform;
         private bool _isLookingForPlayer;
@@ -133,10 +134,26 @@ namespace Spawning.Scripts.Enemies
         private void OnEnable()
         {
             _material.color = Color.white;
+            health = maxHealth;
+            foreach (var particle in particles)
+            {
+                particle.Play();
+            }
+        }
+
+        private void OnDisable()
+        {
             foreach (var trailRenderer in trailRenderers)
             {
                 trailRenderer.Clear();
             }
+
+            foreach (var particle in particles)
+            {
+                particle.Stop();
+                particle.Clear();
+            }
+            
         }
 
         public void GetDestroyed(bool killedByPlayer = true)
