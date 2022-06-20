@@ -259,7 +259,7 @@ public class Grapple : MonoBehaviour
                 _tethered = true;
                 _tetherPoint = hit.point;
                 _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-                //InitialGrapplingPull();
+                InitialGrapplingPull();
 
                 _initialLength = _tetherLength;
                 _canPull = true;
@@ -292,12 +292,8 @@ public class Grapple : MonoBehaviour
     {
         Vector3 directionToPull = GetDirection();
 
-        _rb.velocity = directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
-        while(Vector3.Distance(_tetherPoint, _player.transform.position) > _tetherLength - _initialPullLength)
-        {
-            
-        }
-            _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+        _rb.velocity = new Vector3 (1, 0, 0)+ directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
+        _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
     }
 
@@ -326,7 +322,7 @@ public class Grapple : MonoBehaviour
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength;
             }
         }
-        Debug.Log($"dot of Player and tetherpoint: {Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint))}");
+        
         if (_player.transform.position.y > _tetherPoint.y + _heightToAutoPull)
         {
             _isPulling = true;
