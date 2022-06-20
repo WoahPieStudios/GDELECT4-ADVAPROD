@@ -812,7 +812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4df335d45db181f4a93e90c4ee0858d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60f61c91e8a841d458e9d028092c0eff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: f4023b3129fa40f4d95d90d6f72bc9ac, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2182,7 +2182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4df335d45db181f4a93e90c4ee0858d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8be16212e5201f04695699d421a80354, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: badc634afab9ff149b6ae96ee0dffa5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4023b3129fa40f4d95d90d6f72bc9ac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5415,6 +5415,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1656964185521881849, guid: 8419a9199bb30454c94d4accc89eea57,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b63fa10660e3194482ea91c8402844b,
+        type: 3}
     - target: {fileID: 1656964185521881851, guid: 8419a9199bb30454c94d4accc89eea57,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -5465,6 +5471,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 298
       objectReference: {fileID: 0}
+    - target: {fileID: 1656964185699405744, guid: 8419a9199bb30454c94d4accc89eea57,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b63fa10660e3194482ea91c8402844b,
+        type: 3}
     - target: {fileID: 1656964185699405746, guid: 8419a9199bb30454c94d4accc89eea57,
         type: 3}
       propertyPath: m_SizeDelta.x
