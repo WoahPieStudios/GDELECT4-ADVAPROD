@@ -290,10 +290,6 @@ public class Grapple : MonoBehaviour
         Vector3 directionToPull = GetDirection();
         
         _rb.velocity = new Vector3 (0, 0, 3) + directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
-        while (_rb.velocity.y > 0.2f)
-        {
-
-        }
         _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
     }
