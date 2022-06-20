@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using AdditiveScenes.Scripts.ScriptableObjects;
 using System.Threading.Tasks;
+using Handlers;
 
 public enum FireMode {
     Semi,
@@ -16,6 +17,8 @@ public class Gun : MonoBehaviour
     private bool _enableCrosshair;
     [SerializeField]
     protected SFXChannel gunSoundChannel;
+    [SerializeField]
+    private VFXHandler droneHitEffect;
 
     #region WEAPON STATS
     [Space]
@@ -181,6 +184,9 @@ public class Gun : MonoBehaviour
                 }
             }
 
+            if(hit.collider != null){
+                Instantiate(droneHitEffect, hit.point, Quaternion.identity);
+            }
         }
         _didFire = true;
 
