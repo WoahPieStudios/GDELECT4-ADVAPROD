@@ -299,8 +299,6 @@ public class Grapple : MonoBehaviour
         }
             _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
-
-        
     }
 
     // Rope Swing 
@@ -329,7 +327,7 @@ public class Grapple : MonoBehaviour
             }
         }
         Debug.Log($"dot of Player and tetherpoint: {Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint))}");
-        if (Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint)) < -_autoPullAngleValue || Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint)) > _autoPullAngleValue)
+        if (_player.transform.position.y > _tetherPoint.y + _heightToAutoPull)
         {
             _isPulling = true;
         }
