@@ -23,6 +23,11 @@ public class Grapple : MonoBehaviour
     private SFXChannel _grappleReleaseChannel;
     #endregion
 
+    #region PARTICLE FX
+    [SerializeField]
+    private ParticleSystem _grappleSpeedLines;
+    #endregion
+
     #region Grappling
     [Header("GRAPPLE")]
     [SerializeField]
@@ -53,14 +58,6 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
     private float _grappleSpeedMovementMultiplier = 1f;
 
-    [SerializeField]
-    private float _heightToAutoPull = 10f;
-
-    /// <summary>
-    /// Use Dot Product instead of y axis to determine the autopull
-    /// </summary>
-    [SerializeField, Range (0f, 1f), Tooltip("Use Dot Product instead of y axis to determine the autopull")]
-    private float _autoPullAngleValue = 0.8f;
 
     [SerializeField, Range(0f,100f)]
     private float _minimumPercentLength;
@@ -291,8 +288,12 @@ public class Grapple : MonoBehaviour
     private void InitialGrapplingPull()
     {
         Vector3 directionToPull = GetDirection();
+        
+        _rb.velocity = new Vector3 (0, 0, 3) + directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
+        while (_rb.velocity.y > 0.2f)
+        {
 
-        _rb.velocity = new Vector3 (1, 0, 0)+ directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
+        }
         _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
     }
@@ -323,10 +324,6 @@ public class Grapple : MonoBehaviour
             }
         }
         
-        if (_player.transform.position.y > _tetherPoint.y + _heightToAutoPull)
-        {
-            _isPulling = true;
-        }
 
         
         if (speedTowardsGrapplePoint < 0)
