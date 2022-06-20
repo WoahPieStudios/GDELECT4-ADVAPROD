@@ -244,9 +244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshairImage: {fileID: 1490059353396408565}
   crosshairSprites:
-  - {fileID: 21300000, guid: 888111e6b3945294cbfa596993039691, type: 3}
-  - {fileID: 21300000, guid: 6be6fd2430edadf42bd28a9101de9969, type: 3}
-  - {fileID: 21300000, guid: e6928da854b111245b009c4b71766f1d, type: 3}
+  - {fileID: 21300000, guid: 4c511febf79edaf4188d45f9506ff343, type: 3}
+  - {fileID: 21300000, guid: 1d9e356c78a6251429613fb77e12d1e7, type: 3}
+  - {fileID: 21300000, guid: 475ddefcc4d3b4945b62aec8f6067314, type: 3}
 --- !u!1 &5003146012146718822
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c3dbe70e17ecb44d924240c138f973c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c511febf79edaf4188d45f9506ff343, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -732,10 +732,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b156c3b55c90678469f1e7343fe86c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GrappleLaunch: {fileID: 0}
-  GrappleHooked: {fileID: 8300000, guid: 8fefd5d23b5b5964aa467d41994eb631, type: 3}
-  GrapplePull: {fileID: 8300000, guid: d04a6cd16a0d4e3479c7fb4f431b0b95, type: 3}
-  GrappleRelease: {fileID: 8300000, guid: 54007d22715f75c4b8f9e6386a4d0bd8, type: 3}
+  _grappleLaunchChannel: {fileID: 0}
+  _grappleHookedChannel: {fileID: 11400000, guid: f4e5bdf20948a8145bfac668cd800d1d,
+    type: 2}
+  _grapplePullChannel: {fileID: 11400000, guid: 5e1683ee5e5075343926640a57ba7157,
+    type: 2}
+  _grappleReleaseChannel: {fileID: 11400000, guid: 54f56c81cd8db2644be3ef59fd7deb9c,
+    type: 2}
   _grappleLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -745,12 +748,15 @@ MonoBehaviour:
   _gunTip: {fileID: 6920387209198240518}
   _player: {fileID: 6920387210099965568}
   _maxDistance: 55
-  _grappleSpeedMovementMultiplier: 2
+  _grappleSpeedMovementMultiplier: 4
   _heightToAutoPull: 10
+  _autoPullAngleValue: -0.5
   _minimumPercentLength: 0
   _maxHookShotSpeed: 5
   _accelerationMultiplier: 2
   _minDistanceToGrapplePoint: 0
+  _percentLengthToSlowDown: 90.6
+  _percentPull: 0.206
 --- !u!1 &6920387209733465593
 GameObject:
   m_ObjectHideFlags: 0

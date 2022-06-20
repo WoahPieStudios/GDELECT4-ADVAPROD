@@ -132,7 +132,7 @@ public class Gun : MonoBehaviour
         if (!_triggerBeingPressed) return;
 
         Debug.DrawRay(_camera.transform.position, _camera.transform.forward * maxRange, Color.red);
-       Shoot();
+        Shoot();
 
     }
 
@@ -250,9 +250,7 @@ public class Gun : MonoBehaviour
 
     private void OnPressedTrigger()
     {
-        //Shoot();
         _triggerBeingPressed = true;
-        
     }
 
     private void OnReleasedTrigger()
