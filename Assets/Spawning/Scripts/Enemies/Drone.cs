@@ -137,6 +137,7 @@ namespace Spawning.Scripts.Enemies
             health = maxHealth;
             foreach (var particle in particles)
             {
+                particle.gameObject.SetActive(true);
                 particle.Play();
             }
         }
@@ -152,6 +153,7 @@ namespace Spawning.Scripts.Enemies
             {
                 particle.Stop();
                 particle.Clear();
+                particle.gameObject.SetActive(false);
             }
             
         }
