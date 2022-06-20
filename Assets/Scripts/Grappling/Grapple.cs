@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Spawning.Scripts.Managers;
-using UnityEngine;
+using AdditiveScenes.Scripts.ScriptableObjects;
+using UnityEngine; 
 
 
 /// <summary>
@@ -10,11 +11,17 @@ using UnityEngine;
 /// </summary>
 public class Grapple : MonoBehaviour
 {
-    
-    [SerializeField] AudioClip GrappleLaunch;
-    [SerializeField] AudioClip GrappleHooked;
-    [SerializeField] AudioClip GrapplePull;
-    [SerializeField] AudioClip GrappleRelease;
+
+    #region SFX
+    [SerializeField]
+    private SFXChannel _grappleLaunchChannel;
+    [SerializeField]
+    private SFXChannel _grappleHookedChannel;
+    [SerializeField]
+    private SFXChannel _grapplePullChannel;
+    [SerializeField]
+    private SFXChannel _grappleReleaseChannel;
+    #endregion
 
     #region Grappling
     [Header("GRAPPLE")]
@@ -49,6 +56,12 @@ public class Grapple : MonoBehaviour
     [SerializeField]
     private float _heightToAutoPull = 10f;
 
+    /// <summary>
+    /// Use Dot Product instead of y axis to determine the autopull
+    /// </summary>
+    [SerializeField, Range (0f, 1f), Tooltip("Use Dot Product instead of y axis to determine the autopull")]
+    private float _autoPullAngleValue = 0.8f;
+
     [SerializeField, Range(0f,100f)]
     private float _minimumPercentLength;
     #endregion
@@ -72,6 +85,16 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Minimum distance towards the grapple point before it automatically releases")]
     private float _minDistanceToGrapplePoint;
 
+    [SerializeField, Range(0.01f, 100f)]
+    private float _percentLengthToSlowDown;
+
+    #endregion
+
+    #region Initial Pull
+    [SerializeField, Range(0.01f,1f)]
+    private float _percentPull;
+
+    private float _initialPullLength;
     #endregion
 
     #region private variables
@@ -150,7 +173,7 @@ public class Grapple : MonoBehaviour
     private void OnEnable()
     {
         InputManager.onStartGrapple += StartGrapple;
-        InputManager.onStartMovement += GetDirection;
+        InputManager.onStartMovement += GetInputDirection;
         InputManager.onEndMovement += StopControlling;
 
         InputManager.onStartHook += StartHook;
@@ -163,7 +186,7 @@ public class Grapple : MonoBehaviour
     private void OnDisable()
     {
         InputManager.onStartGrapple -= StartGrapple;
-        InputManager.onStartMovement -= GetDirection;
+        InputManager.onStartMovement -= GetInputDirection;
         InputManager.onEndMovement -= StopControlling;
 
         InputManager.onStartHook -= StartHook;
@@ -189,12 +212,10 @@ public class Grapple : MonoBehaviour
         }
 
         if (_isPulling)
-        {
-            Debug.Log($"_isPulling: {_isPulling}");
+        {   
           ApplyHookShotPhysics();
         }
-        CrosshairChange();
-        
+        GrappleCrosshair.OnUpdateGrappleCH(HitType());
 
     }
 
@@ -203,6 +224,24 @@ public class Grapple : MonoBehaviour
     {
         DrawRope();
     } 
+    private int HitType()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _grappleLayer))
+        {
+            return 1;
+            
+        }
+        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _ungrappables))
+        {
+            if (!hit.collider.CompareTag("Enemy")) return 2;
+        }else
+        {
+            return 0;
+        }
+        return _crosshairIndex;
+
+    }
 
 
     #region GRAPPLING
@@ -215,22 +254,19 @@ public class Grapple : MonoBehaviour
         {
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
-                //pag tumama yung grapple insert hooked audio
-                _crosshairIndex = 1;
-               SoundManager.Instance.OnPlaySFX(GrappleHooked);
+                _grappleHookedChannel?.PlayAudio();
                 Player.movementState = MovementState.Grappling;
-               _tethered = true;
-               _tetherPoint = hit.point;
-               _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+                _tethered = true;
+                _tetherPoint = hit.point;
+                _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+                //InitialGrapplingPull();
+
                 _initialLength = _tetherLength;
-               _canPull = true;
+                _canPull = true;
 
+                _initialPullLength = _tetherLength * _percentPull;
+                
 
-                // if player is higher than the tether point, pull the player instead
-                if (_tetherPoint.y + _heightToAutoPull < _player.transform.position.y)
-                {
-                    _isPulling = true;
-                }
             }
         }else
         {
@@ -238,28 +274,11 @@ public class Grapple : MonoBehaviour
         }
     }
 
-    private void CrosshairChange()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _grappleLayer))
-        {
-            _crosshairIndex = 1;
-        }
-        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _ungrappables))
-        {
-            if (!hit.collider.CompareTag("Enemy"))
-            _crosshairIndex = 2;
-        }else
-        {
-            _crosshairIndex = 0;
-        }
-        GrappleCrosshair.OnUpdateGrappleCH(_crosshairIndex);
-    }
 
     private void StopGrapple()
     {
         //insert release sound
-        SoundManager.Instance.OnPlaySFX(GrappleRelease);
+        _grappleReleaseChannel?.PlayAudio();
         Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
         _disableGrapple = true;
         _tethered = false;
@@ -267,6 +286,21 @@ public class Grapple : MonoBehaviour
         _isPulling = false;
         _lineRenderer.positionCount = 0;
 
+    }
+
+    private void InitialGrapplingPull()
+    {
+        Vector3 directionToPull = GetDirection();
+
+        _rb.velocity = directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
+        while(Vector3.Distance(_tetherPoint, _player.transform.position) > _tetherLength - _initialPullLength)
+        {
+            
+        }
+            _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+
+
+        
     }
 
     // Rope Swing 
@@ -289,13 +323,13 @@ public class Grapple : MonoBehaviour
             if ((_inputDirection.z != 0 || _inputDirection.x != 0 ) && !_isPulling) 
             {
 
-                Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
-                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction * _grappleSpeedMovementMultiplier;
+                Vector3 direction = _player.transform.right * _inputDirection.x + _player.transform.forward * _inputDirection.z;
+                _rb.velocity += direction * _grappleSpeedMovementMultiplier;
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength;
             }
         }
-
-        if (_player.transform.position.y > _tetherPoint.y + 5f)
+        Debug.Log($"dot of Player and tetherpoint: {Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint))}");
+        if (Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint)) < -_autoPullAngleValue || Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint)) > _autoPullAngleValue)
         {
             _isPulling = true;
         }
@@ -334,7 +368,7 @@ public class Grapple : MonoBehaviour
     {
         if (!_canPull) return;
         // hinihila si player pull audio
-        SoundManager.Instance.OnPlaySFX(GrapplePull);
+        _grapplePullChannel?.PlayAudio();
         _isPulling = true;
 
 
@@ -370,7 +404,7 @@ public class Grapple : MonoBehaviour
     #endregion
 
     #region Player Input
-    private void GetDirection(Vector2 direction)
+    private void GetInputDirection(Vector2 direction)
     {
         _inputDirection = new Vector3(direction.x, _player.transform.position.y, direction.y);
     }
