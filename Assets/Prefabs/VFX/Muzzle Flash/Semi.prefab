@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1280559908584588682}
   - component: {fileID: 1060170210071700287}
   - component: {fileID: 6776500419061931940}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4881,7 +4881,8 @@ GameObject:
   - component: {fileID: 7121064159617538433}
   - component: {fileID: 4910990524290141273}
   - component: {fileID: 5000818953199594411}
-  m_Layer: 0
+  - component: {fileID: 6674924203787833456}
+  m_Layer: 14
   m_Name: Semi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4912,14 +4913,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6695182203254937745}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9683,3 +9684,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6674924203787833456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6695182203254937745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640b7b921b8a49b1a26d9e3141aa2959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStandalone: 1
+  particleSystem: {fileID: 4910990524290141273}

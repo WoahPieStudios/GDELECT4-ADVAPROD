@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1671700745909594975}
   - component: {fileID: 3570357363498719840}
   - component: {fileID: 838211434003334755}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 7121064159617538433}
   - component: {fileID: 4910990524290141273}
   - component: {fileID: 5000818953199594411}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4861,7 +4861,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
