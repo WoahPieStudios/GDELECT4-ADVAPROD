@@ -35,6 +35,7 @@ namespace Spawning.Scripts.Enemies
         private float maxHealth;
 
         [SerializeField] SFXChannel enemyDeathChannel;
+        [SerializeField] SFXChannel enemyExplosionChannel;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -144,6 +145,7 @@ namespace Spawning.Scripts.Enemies
             if (!isInitialized) return;
             if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
             enemyDeathChannel?.PlayAudio();
+            enemyExplosionChannel?.PlayAudio();
             var vfx = DronePool.Instance.GetVFXHandler(transform.position);
             vfx.particleSystem.Play();
             DronePool.Instance.Release(this);

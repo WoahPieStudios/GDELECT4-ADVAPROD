@@ -6,6 +6,7 @@ using Spawning.Scripts.Managers;
 using Spawning.Scripts.Pools;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using AdditiveScenes.Scripts.ScriptableObjects;
 
 namespace Spawning.Scripts.Spawners
 {
@@ -54,6 +55,9 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] private EnemyType enemyType;
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
+
+        [Header("SFX")] 
+        [SerializeField] SFXChannel explosionChannel;
 
         private float maxHealth;
         public float Health { get => health; set => health = value; }
@@ -151,6 +155,7 @@ namespace Spawning.Scripts.Spawners
             if (!isInitialized) return;
             isInitialized = false;
             Destroy(gameObject);
+            explosionChannel?.PlayAudio();
             SpawnerPoint.StartCooldown();
             if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
         }

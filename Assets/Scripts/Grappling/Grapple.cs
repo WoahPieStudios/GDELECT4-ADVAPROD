@@ -24,8 +24,11 @@ public class Grapple : MonoBehaviour
     #endregion
 
     #region PARTICLE FX
+    [Header("Particle System")]
     [SerializeField]
     private ParticleSystem _grappleSpeedLines;
+    [SerializeField, Range(1f, 20f), Tooltip("threshold for the speed for the speed lines to stop showing")]
+    private float _speedThreshold = 5f;
     #endregion
 
     #region Grappling
@@ -165,6 +168,7 @@ public class Grapple : MonoBehaviour
         _camera = Camera.main;
         _disableGrapple = true;
         _canPull = false;
+        _grappleSpeedLines.Stop();
     }
 
     private void OnEnable()
@@ -193,11 +197,27 @@ public class Grapple : MonoBehaviour
 
     private void Update()
     {
+        if (Player.movementState == MovementState.Grappling)
+        {
+            if (_rb.velocity.magnitude > _speedThreshold)
+            {
+                //play vfx
+                _grappleSpeedLines.Play();
+            }else
+            {
+                _grappleSpeedLines.Stop();
+            }
+        }
+        else
+        {
+            _grappleSpeedLines.Stop();
+        }
 
     }
 
     private void FixedUpdate()
     {
+
         if (_tethered)
         {
             ApplyGrapplePhysics();
@@ -212,6 +232,7 @@ public class Grapple : MonoBehaviour
         {   
           ApplyHookShotPhysics();
         }
+
         GrappleCrosshair.OnUpdateGrappleCH(HitType());
 
     }
@@ -256,7 +277,6 @@ public class Grapple : MonoBehaviour
                 _tethered = true;
                 _tetherPoint = hit.point;
                 _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-                InitialGrapplingPull();
 
                 _initialLength = _tetherLength;
                 _canPull = true;
