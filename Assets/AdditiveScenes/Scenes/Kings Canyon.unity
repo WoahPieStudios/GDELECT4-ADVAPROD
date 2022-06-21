@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5803922, g: 0.5254902, b: 0.7294118, a: 1}
+  m_FogColor: {r: 0.6367514, g: 0.57938766, b: 0.7924528, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.0035
+  m_FogDensity: 0.002
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -25,16 +25,16 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.15
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.28257388, g: 0.33609954, b: 0.4716981, a: 1}
+  m_SubtractiveShadowColor: {r: 0.18970275, g: 0.2141684, b: 0.2735849, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 5390ccc6cbba36142a51bb2d8a8b582d, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 1
   m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
+  m_FlareFadeSpeed: 2
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 512
-  m_ReflectionBounces: 2
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
@@ -789,7 +789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27481427}
   m_LocalRotation: {x: 0, y: 0.9929034, z: -0.118923835, w: 0}
-  m_LocalPosition: {x: 85.597046, y: -90, z: 96.6}
+  m_LocalPosition: {x: 85.597046, y: -90, z: 99.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -834,10 +834,10 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.8
+    m_Strength: 0.1
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -871,8 +871,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 6600
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -15861,6 +15861,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI MANAGER
       objectReference: {fileID: 0}
+    - target: {fileID: 8035693147984154765, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8035693147984154800, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
       propertyPath: pauseEventChannel
@@ -25653,6 +25658,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 6920387209733465594, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6920387209733465595, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_Enabled
@@ -25662,6 +25672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player (Place Holder)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387210099965568, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6920387210099965571, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
@@ -29450,16 +29465,16 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9811321, g: 0.9053912, b: 0.69882524, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 2.125
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.8
+    m_Strength: 0.3
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -29489,12 +29504,12 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1.35
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_BounceIntensity: 2
+  m_ColorTemperature: 6600
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -35307,7 +35322,7 @@ LightingSettings:
   m_Name: 
   serializedVersion: 4
   m_GIWorkflowMode: 1
-  m_EnableBakedLightmaps: 1
+  m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 1
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
