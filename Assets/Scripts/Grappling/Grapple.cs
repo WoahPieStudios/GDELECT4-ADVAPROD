@@ -5,7 +5,7 @@ using Spawning.Scripts.Managers;
 using AdditiveScenes.Scripts.ScriptableObjects;
 using UnityEngine;
 using System.Threading.Tasks;
-
+using Handlers;
 
 /// <summary>
 /// MUST be attached to a separate empty object and not to a player
@@ -24,6 +24,11 @@ public class Grapple : MonoBehaviour
     private SFXChannel _grappleReleaseChannel;
     #endregion
 
+    #region VFX
+    [Header("VFX")] 
+    [SerializeField] private VFXHandler dustHitEffect;
+    #endregion
+    
     #region PARTICLE FX
     [Header("Particle System")]
     [SerializeField]
@@ -269,6 +274,7 @@ public class Grapple : MonoBehaviour
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 _grappleHookedChannel?.PlayAudio();
+                Instantiate(dustHitEffect, _tetherPoint, Quaternion.identity);
                 Player.movementState = MovementState.Grappling;
                 _tethered = true;
                 _tetherPoint = hit.point;
