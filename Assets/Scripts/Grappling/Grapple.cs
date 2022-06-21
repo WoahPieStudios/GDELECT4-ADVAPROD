@@ -23,6 +23,14 @@ public class Grapple : MonoBehaviour
     private SFXChannel _grappleReleaseChannel;
     #endregion
 
+    #region PARTICLE FX
+    [Header("Particle System")]
+    [SerializeField]
+    private ParticleSystem _grappleSpeedLines;
+    [SerializeField, Range(1f, 20f), Tooltip("threshold for the speed for the speed lines to stop showing")]
+    private float _speedThreshold = 5f;
+    #endregion
+
     #region Grappling
     [Header("GRAPPLE")]
     [SerializeField]
@@ -53,14 +61,6 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
     private float _grappleSpeedMovementMultiplier = 1f;
 
-    [SerializeField]
-    private float _heightToAutoPull = 10f;
-
-    /// <summary>
-    /// Use Dot Product instead of y axis to determine the autopull
-    /// </summary>
-    [SerializeField, Range (0f, 1f), Tooltip("Use Dot Product instead of y axis to determine the autopull")]
-    private float _autoPullAngleValue = 0.8f;
 
     [SerializeField, Range(0f,100f)]
     private float _minimumPercentLength;
@@ -168,6 +168,7 @@ public class Grapple : MonoBehaviour
         _camera = Camera.main;
         _disableGrapple = true;
         _canPull = false;
+        _grappleSpeedLines.Stop();
     }
 
     private void OnEnable()
@@ -196,11 +197,27 @@ public class Grapple : MonoBehaviour
 
     private void Update()
     {
+        if (Player.movementState == MovementState.Grappling)
+        {
+            if (_rb.velocity.magnitude > _speedThreshold)
+            {
+                //play vfx
+                _grappleSpeedLines.Play();
+            }else
+            {
+                _grappleSpeedLines.Stop();
+            }
+        }
+        else
+        {
+            _grappleSpeedLines.Stop();
+        }
 
     }
 
     private void FixedUpdate()
     {
+
         if (_tethered)
         {
             ApplyGrapplePhysics();
@@ -215,6 +232,7 @@ public class Grapple : MonoBehaviour
         {   
           ApplyHookShotPhysics();
         }
+
         GrappleCrosshair.OnUpdateGrappleCH(HitType());
 
     }
@@ -259,7 +277,6 @@ public class Grapple : MonoBehaviour
                 _tethered = true;
                 _tetherPoint = hit.point;
                 _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-                //InitialGrapplingPull();
 
                 _initialLength = _tetherLength;
                 _canPull = true;
@@ -291,13 +308,9 @@ public class Grapple : MonoBehaviour
     private void InitialGrapplingPull()
     {
         Vector3 directionToPull = GetDirection();
-
-        _rb.velocity = directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
-        while(Vector3.Distance(_tetherPoint, _player.transform.position) > _tetherLength - _initialPullLength)
-        {
-            
-        }
-            _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+        
+        _rb.velocity = new Vector3 (0, 0, 3) + directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
+        _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
     }
 
@@ -326,11 +339,7 @@ public class Grapple : MonoBehaviour
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength;
             }
         }
-        Debug.Log($"dot of Player and tetherpoint: {Vector3.Dot(GetDirection(), Vector3.Normalize(_tetherPoint))}");
-        if (_player.transform.position.y > _tetherPoint.y + _heightToAutoPull)
-        {
-            _isPulling = true;
-        }
+        
 
         
         if (speedTowardsGrapplePoint < 0)
