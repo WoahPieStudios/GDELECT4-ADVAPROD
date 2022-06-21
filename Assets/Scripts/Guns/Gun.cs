@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using AdditiveScenes.Scripts.ScriptableObjects;
 using System.Threading.Tasks;
+using DG.Tweening;
+using Handlers;
 
 public enum FireMode {
     Semi,
@@ -14,9 +16,20 @@ public enum FireMode {
 public class Gun : MonoBehaviour
 {
     private bool _enableCrosshair;
+    
+    #region EFFECTS
+    [Header("Effects")]
     [SerializeField]
     protected SFXChannel gunSoundChannel;
+    
+    [SerializeField]
+    private VFXHandler droneHitEffect;
 
+    [Header("MuzzleFlash")]
+    [SerializeField] private Transform muzzlePoint;
+    [SerializeField] private VFXHandler muzzleFlash;
+    #endregion
+    
     #region WEAPON STATS
     [Space]
     [Header("WEAPON STATS")]
@@ -132,7 +145,7 @@ public class Gun : MonoBehaviour
         if (!_triggerBeingPressed) return;
 
         Debug.DrawRay(_camera.transform.position, _camera.transform.forward * maxRange, Color.red);
-       Shoot();
+        Shoot();
 
     }
 
@@ -152,6 +165,7 @@ public class Gun : MonoBehaviour
 
             _shotsCounter--;
             gunSoundChannel?.PlayAudio();
+            Instantiate(muzzleFlash, muzzlePoint);
             nextShot = Time.time + 1 / fireRate;
 
 
@@ -181,6 +195,9 @@ public class Gun : MonoBehaviour
                 }
             }
 
+            if(hit.collider != null){
+                Instantiate(droneHitEffect, hit.point, Quaternion.identity);
+            }
         }
         _didFire = true;
 
@@ -250,9 +267,7 @@ public class Gun : MonoBehaviour
 
     private void OnPressedTrigger()
     {
-        //Shoot();
         _triggerBeingPressed = true;
-        
     }
 
     private void OnReleasedTrigger()
@@ -265,5 +280,7 @@ public class Gun : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(center, _radius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(muzzlePoint.position, Vector3.one * 0.1f);
     }
 }

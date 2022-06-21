@@ -20,6 +20,8 @@ namespace Spawning.Scripts.Enemies
 
         [Header("Properties")]
         [SerializeField] float movementSpeed;
+        [SerializeField] private TrailRenderer[] trailRenderers;
+        [SerializeField] private ParticleSystem[] particles;
         private Rigidbody _rigidBody;
         private Transform _transform;
         private bool _isLookingForPlayer;
@@ -34,6 +36,7 @@ namespace Spawning.Scripts.Enemies
         private float maxHealth;
 
         [SerializeField] SFXChannel enemyDeathChannel;
+        [SerializeField] SFXChannel enemyExplosionChannel;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -43,6 +46,7 @@ namespace Spawning.Scripts.Enemies
             movementSpeed = 1f;
             _damageAmount = 1f;
             attackDistance = 1f;
+            trailRenderers = GetComponentsInChildren<TrailRenderer>();
         }
 
         private void Awake()
@@ -131,6 +135,28 @@ namespace Spawning.Scripts.Enemies
         private void OnEnable()
         {
             _material.color = Color.white;
+            health = maxHealth;
+            foreach (var particle in particles)
+            {
+                particle.gameObject.SetActive(true);
+                particle.Play();
+            }
+        }
+
+        private void OnDisable()
+        {
+            foreach (var trailRenderer in trailRenderers)
+            {
+                trailRenderer.Clear();
+            }
+
+            foreach (var particle in particles)
+            {
+                particle.Stop();
+                particle.Clear();
+                particle.gameObject.SetActive(false);
+            }
+            
         }
 
         public void GetDestroyed(bool killedByPlayer = true)
@@ -138,6 +164,7 @@ namespace Spawning.Scripts.Enemies
             if (!isInitialized) return;
             if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
             enemyDeathChannel?.PlayAudio();
+            enemyExplosionChannel?.PlayAudio();
             var vfx = DronePool.Instance.GetVFXHandler(transform.position);
             vfx.particleSystem.Play();
             DronePool.Instance.Release(this);

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Spawning.Scripts.Managers;
-using UnityEngine;
+using AdditiveScenes.Scripts.ScriptableObjects;
+using Handlers;
+using UnityEngine; 
 
 
 /// <summary>
@@ -10,11 +12,30 @@ using UnityEngine;
 /// </summary>
 public class Grapple : MonoBehaviour
 {
+
+    #region SFX
+    [SerializeField]
+    private SFXChannel _grappleLaunchChannel;
+    [SerializeField]
+    private SFXChannel _grappleHookedChannel;
+    [SerializeField]
+    private SFXChannel _grapplePullChannel;
+    [SerializeField]
+    private SFXChannel _grappleReleaseChannel;
+    #endregion
+
+    #region VFX
+    [Header("VFX")] 
+    [SerializeField] private VFXHandler dustHitEffect;
+    #endregion
     
-    [SerializeField] AudioClip GrappleLaunch;
-    [SerializeField] AudioClip GrappleHooked;
-    [SerializeField] AudioClip GrapplePull;
-    [SerializeField] AudioClip GrappleRelease;
+    #region PARTICLE FX
+    [Header("Particle System")]
+    [SerializeField]
+    private ParticleSystem _grappleSpeedLines;
+    [SerializeField, Range(1f, 20f), Tooltip("threshold for the speed for the speed lines to stop showing")]
+    private float _speedThreshold = 5f;
+    #endregion
 
     #region Grappling
     [Header("GRAPPLE")]
@@ -46,8 +67,6 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
     private float _grappleSpeedMovementMultiplier = 1f;
 
-    [SerializeField]
-    private float _heightToAutoPull = 10f;
 
     [SerializeField, Range(0f,100f)]
     private float _minimumPercentLength;
@@ -72,6 +91,16 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Minimum distance towards the grapple point before it automatically releases")]
     private float _minDistanceToGrapplePoint;
 
+    [SerializeField, Range(0.01f, 100f)]
+    private float _percentLengthToSlowDown;
+
+    #endregion
+
+    #region Initial Pull
+    [SerializeField, Range(0.01f,1f)]
+    private float _percentPull;
+
+    private float _initialPullLength;
     #endregion
 
     #region private variables
@@ -145,12 +174,13 @@ public class Grapple : MonoBehaviour
         _camera = Camera.main;
         _disableGrapple = true;
         _canPull = false;
+        _grappleSpeedLines.Stop();
     }
 
     private void OnEnable()
     {
         InputManager.onStartGrapple += StartGrapple;
-        InputManager.onStartMovement += GetDirection;
+        InputManager.onStartMovement += GetInputDirection;
         InputManager.onEndMovement += StopControlling;
 
         InputManager.onStartHook += StartHook;
@@ -163,7 +193,7 @@ public class Grapple : MonoBehaviour
     private void OnDisable()
     {
         InputManager.onStartGrapple -= StartGrapple;
-        InputManager.onStartMovement -= GetDirection;
+        InputManager.onStartMovement -= GetInputDirection;
         InputManager.onEndMovement -= StopControlling;
 
         InputManager.onStartHook -= StartHook;
@@ -173,11 +203,27 @@ public class Grapple : MonoBehaviour
 
     private void Update()
     {
+        if (Player.movementState == MovementState.Grappling)
+        {
+            if (_rb.velocity.magnitude > _speedThreshold)
+            {
+                //play vfx
+                _grappleSpeedLines.Play();
+            }else
+            {
+                _grappleSpeedLines.Stop();
+            }
+        }
+        else
+        {
+            _grappleSpeedLines.Stop();
+        }
 
     }
 
     private void FixedUpdate()
     {
+
         if (_tethered)
         {
             ApplyGrapplePhysics();
@@ -189,12 +235,11 @@ public class Grapple : MonoBehaviour
         }
 
         if (_isPulling)
-        {
-            Debug.Log($"_isPulling: {_isPulling}");
+        {   
           ApplyHookShotPhysics();
         }
-        CrosshairChange();
-        
+
+        GrappleCrosshair.OnUpdateGrappleCH(HitType());
 
     }
 
@@ -203,6 +248,24 @@ public class Grapple : MonoBehaviour
     {
         DrawRope();
     } 
+    private int HitType()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _grappleLayer))
+        {
+            return 1;
+            
+        }
+        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _ungrappables))
+        {
+            if (!hit.collider.CompareTag("Enemy")) return 2;
+        }else
+        {
+            return 0;
+        }
+        return _crosshairIndex;
+
+    }
 
 
     #region GRAPPLING
@@ -215,22 +278,19 @@ public class Grapple : MonoBehaviour
         {
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
-                //pag tumama yung grapple insert hooked audio
-                _crosshairIndex = 1;
-               SoundManager.Instance.OnPlaySFX(GrappleHooked);
+                _grappleHookedChannel?.PlayAudio();
+                Instantiate(dustHitEffect, _tetherPoint, Quaternion.identity);
                 Player.movementState = MovementState.Grappling;
-               _tethered = true;
-               _tetherPoint = hit.point;
-               _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+                _tethered = true;
+                _tetherPoint = hit.point;
+                _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
+
                 _initialLength = _tetherLength;
-               _canPull = true;
+                _canPull = true;
 
+                _initialPullLength = _tetherLength * _percentPull;
+                
 
-                // if player is higher than the tether point, pull the player instead
-                if (_tetherPoint.y + _heightToAutoPull < _player.transform.position.y)
-                {
-                    _isPulling = true;
-                }
             }
         }else
         {
@@ -238,34 +298,26 @@ public class Grapple : MonoBehaviour
         }
     }
 
-    private void CrosshairChange()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _grappleLayer))
-        {
-            _crosshairIndex = 1;
-        }
-        else if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit, _maxDistance, _ungrappables))
-        {
-            if (!hit.collider.CompareTag("Enemy"))
-            _crosshairIndex = 2;
-        }else
-        {
-            _crosshairIndex = 0;
-        }
-        GrappleCrosshair.OnUpdateGrappleCH(_crosshairIndex);
-    }
 
     private void StopGrapple()
     {
         //insert release sound
-        SoundManager.Instance.OnPlaySFX(GrappleRelease);
+        _grappleReleaseChannel?.PlayAudio();
         Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
         _disableGrapple = true;
         _tethered = false;
         _canPull = false;
         _isPulling = false;
         _lineRenderer.positionCount = 0;
+
+    }
+
+    private void InitialGrapplingPull()
+    {
+        Vector3 directionToPull = GetDirection();
+        
+        _rb.velocity = new Vector3 (0, 0, 3) + directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
+        _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
     }
 
@@ -289,16 +341,12 @@ public class Grapple : MonoBehaviour
             if ((_inputDirection.z != 0 || _inputDirection.x != 0 ) && !_isPulling) 
             {
 
-                Vector3 direction = _player.transform.right * -_inputDirection.x + _player.transform.forward * -_inputDirection.z;
-                _rb.velocity -= speedTowardsGrapplePoint * directionToGrapple + direction * _grappleSpeedMovementMultiplier;
+                Vector3 direction = _player.transform.right * _inputDirection.x + _player.transform.forward * _inputDirection.z;
+                _rb.velocity += direction * _grappleSpeedMovementMultiplier;
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength;
             }
         }
-
-        if (_player.transform.position.y > _tetherPoint.y + 5f)
-        {
-            _isPulling = true;
-        }
+        
 
         
         if (speedTowardsGrapplePoint < 0)
@@ -323,9 +371,7 @@ public class Grapple : MonoBehaviour
             _lineRenderer.positionCount = 2;
             _lineRenderer.SetPosition(0, _gunTip.position);
             _lineRenderer.SetPosition(1, _tetherPoint);
-
         }
-
     }
 
     #region HOOKSHOT
@@ -334,7 +380,7 @@ public class Grapple : MonoBehaviour
     {
         if (!_canPull) return;
         // hinihila si player pull audio
-        SoundManager.Instance.OnPlaySFX(GrapplePull);
+        _grapplePullChannel?.PlayAudio();
         _isPulling = true;
 
 
@@ -370,7 +416,7 @@ public class Grapple : MonoBehaviour
     #endregion
 
     #region Player Input
-    private void GetDirection(Vector2 direction)
+    private void GetInputDirection(Vector2 direction)
     {
         _inputDirection = new Vector3(direction.x, _player.transform.position.y, direction.y);
     }
