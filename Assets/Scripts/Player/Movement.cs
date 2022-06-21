@@ -117,6 +117,7 @@ public class Movement : MonoBehaviour {
     }
     private void StopMoving()
     {
+        _inputDirection = Vector3.zero;
         _canAccelerate = false;
     }
 
