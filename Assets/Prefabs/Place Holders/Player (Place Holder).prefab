@@ -533,9 +533,9 @@ GameObject:
   - component: {fileID: 6920387209258077862}
   - component: {fileID: 6920387209258077858}
   - component: {fileID: 6920387209258077859}
-  - component: {fileID: 6920387209258077856}
   - component: {fileID: 6920387209258077857}
   - component: {fileID: 6920387209258077869}
+  - component: {fileID: 4856584183133505310}
   m_Layer: 0
   m_Name: GrappleGun
   m_TagString: Untagged
@@ -609,19 +609,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6920387209258077856
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6920387209258077863}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!120 &6920387209258077857
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -748,16 +735,69 @@ MonoBehaviour:
   _ungrappables:
     serializedVersion: 2
     m_Bits: 1
-  _gunTip: {fileID: 6920387209198240518}
   _player: {fileID: 6920387210099965568}
+  _angleToDisconnect: 30
+  _minHeightToAutoPull: 2.1
   _maxDistance: 55
-  _grappleSpeedMovementMultiplier: 4
-  _minimumPercentLength: 0
+  _grappleSpeedMovementMultiplier: 2
+  _delayAutoDisconnetinms: 0.5
   _maxHookShotSpeed: 5
   _accelerationMultiplier: 2
-  _minDistanceToGrapplePoint: 0
+  _minDistanceToGrapplePoint: 5
   _percentLengthToSlowDown: 90.6
-  _percentPull: 0.206
+--- !u!114 &4856584183133505310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920387209258077863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bb77cf6ddd86a4c804399c370eb47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gunTip: {fileID: 6920387209198240518}
+  _quality: 500
+  _velocity: 14
+  _strength: 800
+  _damper: 15
+  _waveHeight: 3
+  _waveCount: 1
+  _ropeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.7804413
+      outSlope: 1.7804413
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2509551
+      value: 0.44681084
+      inSlope: 0.43174252
+      outSlope: 0.43174252
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.062078256
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.59650743
+      outSlope: -0.59650743
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _test: 0
 --- !u!1 &6920387209733465593
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703b527642fd8b34d8f5bb93974bb8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSound: {fileID: 0}
 --- !u!114 &6920387210099965576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,6 +1193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794903242988971514, guid: 87c1c0b35caf82546b9136f2a8ed0fbc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 8794903242988971514, guid: 87c1c0b35caf82546b9136f2a8ed0fbc,
         type: 3}
