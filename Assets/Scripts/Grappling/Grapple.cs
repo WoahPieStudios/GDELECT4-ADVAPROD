@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Spawning.Scripts.Managers;
 using AdditiveScenes.Scripts.ScriptableObjects;
+using Handlers;
 using UnityEngine; 
 
 
@@ -23,6 +24,11 @@ public class Grapple : MonoBehaviour
     private SFXChannel _grappleReleaseChannel;
     #endregion
 
+    #region VFX
+    [Header("VFX")] 
+    [SerializeField] private VFXHandler dustHitEffect;
+    #endregion
+    
     #region Grappling
     [Header("GRAPPLE")]
     [SerializeField]
@@ -255,6 +261,7 @@ public class Grapple : MonoBehaviour
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 _grappleHookedChannel?.PlayAudio();
+                Instantiate(dustHitEffect, _tetherPoint, Quaternion.identity);
                 Player.movementState = MovementState.Grappling;
                 _tethered = true;
                 _tetherPoint = hit.point;
@@ -355,9 +362,7 @@ public class Grapple : MonoBehaviour
             _lineRenderer.positionCount = 2;
             _lineRenderer.SetPosition(0, _gunTip.position);
             _lineRenderer.SetPosition(1, _tetherPoint);
-
         }
-
     }
 
     #region HOOKSHOT

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1181276743225206352}
   - component: {fileID: 5878824342498137644}
   - component: {fileID: 7576055957185914331}
+  - component: {fileID: -7448403344039280806}
   m_Layer: 0
   m_Name: Grappling Dust
   m_TagString: Untagged
@@ -4870,3 +4871,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-7448403344039280806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685169590488071509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640b7b921b8a49b1a26d9e3141aa2959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStandalone: 1
+  particleSystem: {fileID: 5878824342498137644}
