@@ -249,7 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35931f21f78abd459725f1b0ea952c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseEventChannel: {fileID: 0}
   pauseMenuUI: {fileID: 1656964185507472504}
+  controlUI: {fileID: 0}
 --- !u!1 &1656964185424604596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5b63fa10660e3194482ea91c8402844b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
