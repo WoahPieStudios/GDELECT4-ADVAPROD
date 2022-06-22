@@ -10,11 +10,11 @@ namespace Spawning.Scripts.Managers
     public class SpawnPointManager : MonoBehaviour
     {
         [SerializeField] private List<SpawnPoint> points;
-        [SerializeField] private float cooldown;
+        //[SerializeField] private float cooldown;
 
         private void Reset()
         {
-            cooldown = 30f;
+            //cooldown = 30f;
             points = GetComponentsInChildren<SpawnPoint>().ToList();
         }
 
@@ -23,7 +23,8 @@ namespace Spawning.Scripts.Managers
             points ??= GetComponentsInChildren<SpawnPoint>().ToList();
             foreach (var point in points)
             {
-                point.Initialize(cooldown);
+                point.Initialize();
+                //point.Initialize(cooldown);
             }
         }
 

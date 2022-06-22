@@ -31,7 +31,6 @@ public class InputManager : MonoBehaviour
 
     private PlayerInputs _playerInputs;
     private Vector2 _mouseInput;
-    public AudioClip buttonSound;
 
     private void Awake()
     {

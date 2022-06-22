@@ -18,7 +18,7 @@ namespace Spawning.Scripts.Spawners
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
         public bool isInitialized;
-        
+
         [Header("Drone Spawn Settings")]
         /// <summary>
         /// The radius of the area which the drones will spawn at the <see cref= "SpawnPoint"/>.
@@ -38,7 +38,7 @@ namespace Spawning.Scripts.Spawners
         /// </summary>
         [SerializeField, Tooltip("The frequency of when drones will be spawned.")]
         private float spawnInterval;
-        
+
         [Header("Drone Spawn Amounts")]
         [SerializeField] private int spawnAmount;
         [SerializeField] private int spawnAmountTank;
@@ -56,7 +56,7 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
-        [Header("SFX")] 
+        [Header("SFX")]
         [SerializeField] SFXChannel explosionChannel;
 
         private float maxHealth;
@@ -113,7 +113,7 @@ namespace Spawning.Scripts.Spawners
             }
 
             var _tankSpawnChance = Random.Range(0f, 1f);
-            if(_tankSpawnChance <= tankSpawnChance)
+            if (_tankSpawnChance <= tankSpawnChance)
             {
                 for (int i = 0; i < spawnAmountTank; i++)
                 {
@@ -156,7 +156,9 @@ namespace Spawning.Scripts.Spawners
             isInitialized = false;
             Destroy(gameObject);
             explosionChannel?.PlayAudio();
-            SpawnerPoint.StartCooldown();
+            //SpawnerPoint.StartCooldown();
+            SpawnerPoint.FreePointPosition();
+            TotemSpawnManager.OnSpawnEvent();
             if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
         }
 
