@@ -13,6 +13,7 @@ namespace Spawning.Scripts.Managers
         [SerializeField] private float initialDelay;
         [SerializeField] private float spawnInterval;
         private static event Action onSpawnEvent;
+        private Coroutine spawnRoutine;
 
         #region Old Spawner Script
 
@@ -33,8 +34,8 @@ namespace Spawning.Scripts.Managers
 
         public void StartSpawning()
         {
-            StopCoroutine(SpawnObject());
-            StartCoroutine(SpawnObject());
+            if(spawnRoutine != null){ StopCoroutine(spawnRoutine); }
+            spawnRoutine = StartCoroutine(SpawnObject());
         }
 
         // TODO: Change to something non-recursive in the future
