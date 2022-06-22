@@ -24430,7 +24430,6 @@ MonoBehaviour:
   - {fileID: 432648249}
   - {fileID: 750310779}
   - {fileID: 687326280}
-  cooldown: 30
 --- !u!1001 &682246955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44916,7 +44915,6 @@ MonoBehaviour:
   - {fileID: 609420764}
   - {fileID: 862042018}
   - {fileID: 505968614}
-  cooldown: 0
 --- !u!1001 &1249454448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54182,7 +54180,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 4635084042541312402, guid: e8aa781f5105ea44381e724efff59326,
     type: 3}
   spawnPointManager: {fileID: 681843848}
-  initialDelay: 10
+  initialDelay: 5
   spawnInterval: 10
 --- !u!114 &1521970208
 MonoBehaviour:
