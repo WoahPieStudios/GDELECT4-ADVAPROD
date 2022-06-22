@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Spawning.Scripts.Containers;
 using Spawning.Scripts.Spawners;
@@ -11,10 +12,30 @@ namespace Spawning.Scripts.Managers
         [SerializeField] private SpawnPointManager spawnPointManager;
         [SerializeField] private float initialDelay;
         [SerializeField] private float spawnInterval;
+        private static event Action onSpawnEvent;
+        private Coroutine spawnRoutine;
+
+        #region Old Spawner Script
+
+        private void OnEnable()
+        {
+            onSpawnEvent += StartSpawning;
+        }
+
+        private void OnDisable()
+        {
+            onSpawnEvent -= StartSpawning;
+        }
+
+        public static void OnSpawnEvent()
+        {
+            onSpawnEvent?.Invoke();
+        }
 
         public void StartSpawning()
         {
-            StartCoroutine(SpawnObject());
+            if(spawnRoutine != null){ StopCoroutine(spawnRoutine); }
+            spawnRoutine = StartCoroutine(SpawnObject());
         }
 
         // TODO: Change to something non-recursive in the future
@@ -28,10 +49,11 @@ namespace Spawning.Scripts.Managers
                 var spawner = Instantiate(objectToSpawn, point.TakePointPosition(), Quaternion.identity, transform);
                 spawner.SpawnerPoint = point;
                 spawner.isInitialized = true;
+                print($"{spawner} spawned at {point}");
                 yield return new WaitForSeconds(spawnInterval);
             }
             print("All points taken");
-            StartCoroutine(SpawnObject());
+            StartSpawning();
         }
 
         private SpawnPoint LookForAvailablePoint()
@@ -50,6 +72,6 @@ namespace Spawning.Scripts.Managers
                 Destroy(totem.gameObject);
             }
         }
-
+        #endregion
     }
 }

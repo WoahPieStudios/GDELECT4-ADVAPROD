@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Spawning.Scripts.Managers;
 using AdditiveScenes.Scripts.ScriptableObjects;
+using UnityEngine;
+using System.Threading.Tasks;
 using Handlers;
-using UnityEngine; 
-
 
 /// <summary>
 /// MUST be attached to a separate empty object and not to a player
@@ -44,16 +44,15 @@ public class Grapple : MonoBehaviour
     [SerializeField]
     private LayerMask _ungrappables;
     /// <summary>
-    /// point where the line renderer starts
-    /// </summary>
-    [SerializeField, Tooltip("point where the line renderer starts")]
-    private Transform _gunTip;
-    /// <summary>
     /// // also used for referencing rigidbody and position
     /// </summary>
     [SerializeField]
-    private GameObject _player; 
+    private GameObject _player;
 
+    [SerializeField, Range(0,45)]
+    private int _angleToDisconnect;
+    [SerializeField, Range(0,20)]
+    private float _minHeightToAutoPull;
 
     /// <summary>
     /// max distance that the player can grapple
@@ -67,9 +66,8 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
     private float _grappleSpeedMovementMultiplier = 1f;
 
-
-    [SerializeField, Range(0f,100f)]
-    private float _minimumPercentLength;
+    [SerializeField, Range(0f,1f)]
+    private float _delayAutoDisconnetinms = 0.5f;
     #endregion
 
     #region Hookshot
@@ -96,21 +94,12 @@ public class Grapple : MonoBehaviour
 
     #endregion
 
-    #region Initial Pull
-    [SerializeField, Range(0.01f,1f)]
-    private float _percentPull;
-
-    private float _initialPullLength;
-    #endregion
 
     #region private variables
 
-
-
-    private LineRenderer _lineRenderer;
-
     private Camera _camera;
 
+    private bool _canCheck;
     private float _speedHook = 0;
 
     /// <summary>
@@ -126,6 +115,12 @@ public class Grapple : MonoBehaviour
     /// detects if the player has hit a grappable wall upon raycasting
     /// </summary>
     private bool _tethered; 
+
+    public bool tethered
+    {
+        get => _tethered;
+        set => _tethered = value;
+    }
 
     /// <summary>
     /// relies on player input if the grapple should be disabled or enabled
@@ -146,6 +141,12 @@ public class Grapple : MonoBehaviour
     /// point where the raycast has been hit
     /// </summary>
     private Vector3 _tetherPoint;
+
+    public Vector3 tetherPoint
+    {
+        get => _tetherPoint;
+        set => _tetherPoint = value;
+    } 
  
     private Vector3 _inputDirection;
 
@@ -153,7 +154,6 @@ public class Grapple : MonoBehaviour
     /// Referencing player's Rigidbody
     /// </summary>
     private Rigidbody _rb;
-
     private Player _p;
 
 
@@ -163,14 +163,14 @@ public class Grapple : MonoBehaviour
 
     private void Awake()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
         _rb = _player.GetComponent<Rigidbody>();
         _p = _player.GetComponent<Player>();
 
     }
-    // Start is called before the first frame update
+    
     void Start()
     {
+        _tethered = false;
         _camera = Camera.main;
         _disableGrapple = true;
         _canPull = false;
@@ -243,11 +243,6 @@ public class Grapple : MonoBehaviour
 
     }
 
-
-    private void LateUpdate()
-    {
-        DrawRope();
-    } 
     private int HitType()
     {
         RaycastHit hit;
@@ -284,12 +279,13 @@ public class Grapple : MonoBehaviour
                 _tethered = true;
                 _tetherPoint = hit.point;
                 _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-
+                AutoDisconnectDelay();
                 _initialLength = _tetherLength;
                 _canPull = true;
-
-                _initialPullLength = _tetherLength * _percentPull;
-                
+                if (_player.transform.position.y + _minHeightToAutoPull > _tetherPoint.y)
+                {
+                    StartHook();
+                }
 
             }
         }else
@@ -308,17 +304,21 @@ public class Grapple : MonoBehaviour
         _tethered = false;
         _canPull = false;
         _isPulling = false;
-        _lineRenderer.positionCount = 0;
+        _canCheck = false;
 
     }
 
-    private void InitialGrapplingPull()
-    {
-        Vector3 directionToPull = GetDirection();
-        
-        _rb.velocity = new Vector3 (0, 0, 3) + directionToPull * Vector3.Distance(_tetherPoint, _player.transform.position);
-        _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
 
+    private async void AutoDisconnectDelay()
+    {
+        var current = Time.time + _delayAutoDisconnetinms;
+        _canCheck = false;
+        while (Time.time < current)
+        {
+            await Task.Yield();
+        }
+        //insert here
+        _canCheck = _tethered ? true : false;
     }
 
     // Rope Swing 
@@ -359,20 +359,22 @@ public class Grapple : MonoBehaviour
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength; // this makes the player's direction to swing go to the opposite side
             }
         }
+        //Debug.Log($"Angle is {Vector3.SignedAngle(_tetherPoint, directionToGrapple, _player.transform.forward)}");
+
+        //if (!_canCheck) return;
+
+        //float angle = Vector3.SignedAngle(_tetherPoint, directionToGrapple, _player.transform.forward);
+        //if (angle < -_angleToDisconnect)
+        //{
+        //    StopGrapple();
+        //}
+
+
     }
 
     #endregion
 
 
-    private void DrawRope()
-    {
-        if (_tethered)
-        {
-            _lineRenderer.positionCount = 2;
-            _lineRenderer.SetPosition(0, _gunTip.position);
-            _lineRenderer.SetPosition(1, _tetherPoint);
-        }
-    }
 
     #region HOOKSHOT
 
