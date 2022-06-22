@@ -156,7 +156,8 @@ namespace Spawning.Scripts.Spawners
             isInitialized = false;
             Destroy(gameObject);
             explosionChannel?.PlayAudio();
-            SpawnerPoint.StartCooldown();
+            //SpawnerPoint.StartCooldown();
+            SpawnerPoint.FreePointPosition();
             TotemSpawnManager.OnSpawnEvent();
             if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
         }

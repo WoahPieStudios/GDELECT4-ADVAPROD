@@ -48,6 +48,7 @@ namespace Spawning.Scripts.Managers
                 var spawner = Instantiate(objectToSpawn, point.TakePointPosition(), Quaternion.identity, transform);
                 spawner.SpawnerPoint = point;
                 spawner.isInitialized = true;
+                print($"{spawner} spawned at {point}");
                 yield return new WaitForSeconds(spawnInterval);
             }
             print("All points taken");
