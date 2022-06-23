@@ -282,7 +282,8 @@ public class Grapple : MonoBehaviour
                 AutoDisconnectDelay();
                 _initialLength = _tetherLength;
                 _canPull = true;
-                if (_player.transform.position.y + _minHeightToAutoPull > _tetherPoint.y)
+
+                if (_player.transform.position.y > _tetherPoint.y + _minHeightToAutoPull)
                 {
                     StartHook();
                 }
