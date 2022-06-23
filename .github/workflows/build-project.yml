@@ -10,7 +10,7 @@ jobs:
   build-standalone-windows-64:
     name: Build Standalone Windows 64
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-
+            
       - name: Build StandaloneWindows64
         uses: game-ci/unity-builder@v2
         id: build
@@ -31,17 +31,20 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneWindows64
-          versioning: Tag
-
+          versioning: Semantic
+      
       - name: Compress Build
         uses: edgarrc/action-7z@v1
         with:
           args: 7z a -t7z -mx=9 ${{ steps.build.outputs.buildVersion }}.7z ./build/StandaloneWindows64/*
 
       - name: Clone public repo
-        run: |
-          git clone ${{secrets.AZURE_REPO}} public-builds
-
+        uses: actions/checkout@v3
+        with:
+          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS
+          path: public-builds
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+        
       - name: Copy build to public repo
         run: cp ${{ steps.build.outputs.buildVersion }}.7z public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.7z
 
