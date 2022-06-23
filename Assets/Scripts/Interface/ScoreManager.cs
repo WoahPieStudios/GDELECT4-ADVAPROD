@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI objectiveDisplay;
     private TextMeshProUGUI _totemDisplay, _droneDisplay, _tankDisplay, _timeDisplay; 
     private int _totalScore, _droneScore, _tankScore, _totemScore;
+    private int _roundDroneScore, _roundTankScore, _roundTotemScore;
     public static event Action<int,EnemyType> AddScore;
 
     [Header("Game Over Displays")]
@@ -18,11 +19,13 @@ public class ScoreManager : MonoBehaviour
     private void OnEnable()
     {
         AddScore += UpdateScore;
+        GameManager.Instance.gameStart.AddListener(ClearScore);
     }
 
     private void OnDisable()
     {
         AddScore -= UpdateScore;
+        GameManager.Instance.gameStart.RemoveListener(ClearScore);
     }
 
     public void SetupObjectiveDisplays()
@@ -51,7 +54,14 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         _timeDisplay.text = $"Round Time: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
-        timeSurvived.text = $"Time Survived: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
+        UpdateGameOverUI();
+    }
+
+    private void UpdateGameOverUI()
+    {
+        timeSurvived.text = $"1. Time Survived: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
+        enemiesKilled.text = $"2. Enemies killed: {_roundDroneScore:00} drones | {_roundTankScore:00} tanks";
+        towersKilled.text = $"3. Towers Destroyed: {_roundTotemScore:00} Towers";
     }
 
     private void UpdateScore(int score, EnemyType type)
@@ -79,7 +89,8 @@ public class ScoreManager : MonoBehaviour
 
     public static void OnAddScore(int score,EnemyType type)
     {
-        AddScore?.Invoke(score, type);
+        if(!GameManager.Instance.IsGameOver)
+            AddScore?.Invoke(score, type);
     }
 
     public void UpdateScoreDisplays()
@@ -89,7 +100,6 @@ public class ScoreManager : MonoBehaviour
                 ? FontStyles.Strikethrough
                 : FontStyles.Normal;
             _totemDisplay.text = $"Totems killed: {_totemScore:00} / {GameManager.Instance.TotemsToKill:00}";
-            towersKilled.text = $"3. Towers Destroyed: {_totemScore:00}";
         }
 
         if(_droneDisplay != null){
@@ -97,7 +107,6 @@ public class ScoreManager : MonoBehaviour
                 ? FontStyles.Strikethrough
                 : FontStyles.Normal;
             _droneDisplay.text = $"Drones killed: {_droneScore:00} / {GameManager.Instance.DronesToKill:00}";
-            enemiesKilled.text = $"2. Enemies killed: {_droneScore:00} drones | {_tankScore:00} tanks";
         }
 
         if(_tankDisplay != null){
@@ -105,12 +114,15 @@ public class ScoreManager : MonoBehaviour
                 ? FontStyles.Strikethrough
                 : FontStyles.Normal;
             _tankDisplay.text = $"Tanks killed: {_tankScore:00} / {GameManager.Instance.TanksToKill:00}";
-            enemiesKilled.text = $"2. Enemies killed: {_droneScore:00} drones | {_tankScore:00} tanks";
         }
     }
     
     public void ClearScore()
     {
+        _roundDroneScore = _droneScore;
+        _roundTankScore = _tankScore;
+        _roundTotemScore = _totemScore;
+        
         _totalScore = 0;
         _droneScore = 0;
         _totemScore = 0;

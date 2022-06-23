@@ -23,10 +23,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private PauseEventChannel pauseEventChannel;
 
     [Header("Game Events")]
-    [SerializeField] private UnityEvent gameStart;
-    [SerializeField] private UnityEvent gameOver;
-    [SerializeField] private UnityEvent gamePause;
-    [SerializeField] private UnityEvent gameResume;
+    public UnityEvent gameStart;
+    public UnityEvent gameOver;
+    public UnityEvent gamePause;
+    public UnityEvent gameResume;
     public bool IsPaused { get; private set; }
     public bool IsGameOver { get; private set; }
 
@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (Time.timeScale >= 1f)
+        if (!IsPaused && !IsGameOver)
             roundDuration += Time.deltaTime;
     }
 
@@ -89,7 +89,6 @@ public class GameManager : Singleton<GameManager>
 
     public void RetryGame()
     {
-        FindObjectOfType<ScoreManager>().ClearScore();
         OnGameStart();
         //PlayerSpawnManager.OnRespawnPlayer();
     }
