@@ -15550,11 +15550,51 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1344607276}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 217686809038058572, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 238669877962239959, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
       propertyPath: bgm
       value: 
       objectReference: {fileID: 8300000, guid: 6b0ac1963631332469a42b33416eb9c4, type: 3}
+    - target: {fileID: 366983831708760292, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_Name
+      value: Tower Killed
+      objectReference: {fileID: 0}
     - target: {fileID: 820532122549870041, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -15779,6 +15819,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036162014640480838, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy Killed
       objectReference: {fileID: 0}
     - target: {fileID: 2310500231779747268, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
@@ -16080,6 +16125,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6771502311925494439, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_Name
+      value: Time Survived
+      objectReference: {fileID: 0}
     - target: {fileID: 7313677737233802505, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -16104,6 +16154,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1344607276}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RetryGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393951278012747237, guid: 46b7a378c92ad664489a1dc04149d800,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7401458830681016116, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
@@ -48458,6 +48543,7 @@ MonoBehaviour:
   totemsToKill: 1
   dronesToKill: 1
   tanksToKill: 1
+  roundDuration: 0
   pauseEventChannel: {fileID: 11400000, guid: 1d8e62ce2a200a0408bfbe96237ccf6a, type: 2}
   gameStart:
     m_PersistentCalls:

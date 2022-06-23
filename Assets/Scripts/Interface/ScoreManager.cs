@@ -10,6 +10,11 @@ public class ScoreManager : MonoBehaviour
     private int _totalScore, _droneScore, _tankScore, _totemScore;
     public static event Action<int,EnemyType> AddScore;
 
+    [Header("Game Over Displays")]
+    [SerializeField] private TextMeshProUGUI timeSurvived;
+    [SerializeField] private TextMeshProUGUI enemiesKilled;
+    [SerializeField] private TextMeshProUGUI towersKilled;
+
     private void OnEnable()
     {
         AddScore += UpdateScore;
@@ -46,6 +51,7 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         _timeDisplay.text = $"Round Time: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
+        timeSurvived.text = $"Time Survived: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
     }
 
     private void UpdateScore(int score, EnemyType type)
@@ -83,6 +89,7 @@ public class ScoreManager : MonoBehaviour
                 ? FontStyles.Strikethrough
                 : FontStyles.Normal;
             _totemDisplay.text = $"Totems killed: {_totemScore:00} / {GameManager.Instance.TotemsToKill:00}";
+            towersKilled.text = $"3. Towers Destroyed: {_totemScore:00}";
         }
 
         if(_droneDisplay != null){
@@ -90,6 +97,7 @@ public class ScoreManager : MonoBehaviour
                 ? FontStyles.Strikethrough
                 : FontStyles.Normal;
             _droneDisplay.text = $"Drones killed: {_droneScore:00} / {GameManager.Instance.DronesToKill:00}";
+            enemiesKilled.text = $"2. Enemies killed: {_droneScore:00} drones | {_tankScore:00} tanks";
         }
 
         if(_tankDisplay != null){
@@ -97,6 +105,7 @@ public class ScoreManager : MonoBehaviour
                 ? FontStyles.Strikethrough
                 : FontStyles.Normal;
             _tankDisplay.text = $"Tanks killed: {_tankScore:00} / {GameManager.Instance.TanksToKill:00}";
+            enemiesKilled.text = $"2. Enemies killed: {_droneScore:00} drones | {_tankScore:00} tanks";
         }
     }
     
