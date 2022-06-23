@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Transform objectivesDisplay;
     [SerializeField] private TextMeshProUGUI objectiveDisplay;
-    private TextMeshProUGUI _totemDisplay, _droneDisplay, _tankDisplay; 
+    private TextMeshProUGUI _totemDisplay, _droneDisplay, _tankDisplay, _timeDisplay; 
     private int _totalScore, _droneScore, _tankScore, _totemScore;
     public static event Action<int,EnemyType> AddScore;
 
@@ -39,6 +39,13 @@ public class ScoreManager : MonoBehaviour
             _tankDisplay ??= Instantiate(objectiveDisplay, objectivesDisplay);
             _tankDisplay.text = $"Tanks killed: {_tankScore:00} / {GameManager.Instance.TanksToKill:00}";
         }
+
+        _timeDisplay ??= Instantiate(objectiveDisplay, objectivesDisplay);
+    }
+
+    private void Update()
+    {
+        _timeDisplay.text = $"Round Time: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
     }
 
     private void UpdateScore(int score, EnemyType type)
