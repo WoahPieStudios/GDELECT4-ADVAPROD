@@ -119,7 +119,7 @@ namespace Spawning.Scripts.Enemies
 
             other.collider.GetComponent<PlayerCombat>().TakeDamage(_damageAmount);
 
-            GetDestroyed(false);
+            GetDestroyed(true);
         }
 
         public float Health { get => health; set => health = value; }
@@ -156,15 +156,18 @@ namespace Spawning.Scripts.Enemies
                 particle.Clear();
                 particle.gameObject.SetActive(false);
             }
-            
+
         }
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
             if (!isInitialized) return;
-            if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
-            enemyDeathChannel?.PlayAudio();
-            enemyExplosionChannel?.PlayAudio();
+            if (killedByPlayer)
+            {
+                ScoreManager.OnAddScore(scoreAmount, EnemyType);
+                enemyDeathChannel?.PlayAudio();
+                enemyExplosionChannel?.PlayAudio();
+            }
             var vfx = DronePool.Instance.GetVFXHandler(transform.position);
             vfx.particleSystem.Play();
             DronePool.Instance.Release(this);
