@@ -1,4 +1,5 @@
 ﻿using System;
+using Handlers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +9,7 @@ namespace Spawning.Scripts.Combat
     {
         [SerializeField] private float health;
         [SerializeField] private UnityEvent onPlayerDeath;
+        [SerializeField] private VignetteMaterialHandler takeDamageVFX;
         public float Health => health <= 0 ? 0 : health;
         public static event Action onHealthUpdate; 
 
@@ -19,6 +21,12 @@ namespace Spawning.Scripts.Combat
         private void OnEnable()
         {
             onPlayerDeath.AddListener(DeathSequence);
+            onHealthUpdate += SetDamageVFX;
+        }
+
+        private void OnDisable()
+        {
+            onHealthUpdate -= SetDamageVFX;
         }
 
         public void ResetHealth()
@@ -31,7 +39,14 @@ namespace Spawning.Scripts.Combat
         {
             health -= damageAmount;
             onHealthUpdate?.Invoke();
+            SetDamageVFX();
             if (health <= 0){onPlayerDeath?.Invoke();}
+        }
+
+        private void SetDamageVFX()
+        {
+            var value = health / 100f;
+            takeDamageVFX.VignetteIntensityValue = Mathf.Lerp(1f, 0f, value);
         }
 
         private void DeathSequence()
