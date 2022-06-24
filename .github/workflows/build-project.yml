@@ -31,7 +31,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneWindows64
-          versioning: Semantic
+          versioning: Tag
       
       - name: Compress Build
         uses: edgarrc/action-7z@v1
