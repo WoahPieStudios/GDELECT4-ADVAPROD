@@ -11,7 +11,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int totemsToKill;
     [SerializeField] private int dronesToKill;
     [SerializeField] private int tanksToKill;
-
+    
+    [SerializeField] private float roundDuration;
+    public TimeSpan roundTime => TimeSpan.FromSeconds(roundDuration);
+    
     public int TotemsToKill => totemsToKill;
     public int DronesToKill => dronesToKill;
     public int TanksToKill => tanksToKill;
@@ -20,10 +23,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private PauseEventChannel pauseEventChannel;
 
     [Header("Game Events")]
-    [SerializeField] private UnityEvent gameStart;
-    [SerializeField] private UnityEvent gameOver;
-    [SerializeField] private UnityEvent gamePause;
-    [SerializeField] private UnityEvent gameResume;
+    public UnityEvent gameStart;
+    public UnityEvent gameOver;
+    public UnityEvent gamePause;
+    public UnityEvent gameResume;
     public bool IsPaused { get; private set; }
     public bool IsGameOver { get; private set; }
 
@@ -36,6 +39,12 @@ public class GameManager : Singleton<GameManager>
     private void OnDisable()
     {
         InputManager.onPause -= OnGamePause;
+    }
+
+    private void Update()
+    {
+        if (!IsPaused && !IsGameOver)
+            roundDuration += Time.deltaTime;
     }
 
     public void OnGamePause()
@@ -58,6 +67,7 @@ public class GameManager : Singleton<GameManager>
     {
         IsGameOver = false;
         //Time.timeScale = 1f;
+        roundDuration = 0f;
         pauseEventChannel.SetUseUI(true);
         pauseEventChannel.OnResume();
         gameStart?.Invoke();
@@ -79,7 +89,6 @@ public class GameManager : Singleton<GameManager>
 
     public void RetryGame()
     {
-        FindObjectOfType<ScoreManager>().ClearScore();
         OnGameStart();
         //PlayerSpawnManager.OnRespawnPlayer();
     }

@@ -282,7 +282,8 @@ public class Grapple : MonoBehaviour
                 AutoDisconnectDelay();
                 _initialLength = _tetherLength;
                 _canPull = true;
-                if (_player.transform.position.y + _minHeightToAutoPull > _tetherPoint.y)
+
+                if (_player.transform.position.y > _tetherPoint.y + _minHeightToAutoPull)
                 {
                     StartHook();
                 }
@@ -359,15 +360,15 @@ public class Grapple : MonoBehaviour
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength; // this makes the player's direction to swing go to the opposite side
             }
         }
-        Debug.Log($"Angle is {Vector3.SignedAngle(_tetherPoint, directionToGrapple, Vector3.forward)}");
+        //Debug.Log($"Angle is {Vector3.SignedAngle(_tetherPoint, directionToGrapple, _player.transform.forward)}");
 
-        if (!_canCheck) return;
+        //if (!_canCheck) return;
 
-        float angle = Vector3.SignedAngle(_tetherPoint, directionToGrapple, Vector3.forward);
-        if (angle < -_angleToDisconnect)
-        {
-            StopGrapple();
-        }
+        //float angle = Vector3.SignedAngle(_tetherPoint, directionToGrapple, _player.transform.forward);
+        //if (angle < -_angleToDisconnect)
+        //{
+        //    StopGrapple();
+        //}
 
 
     }

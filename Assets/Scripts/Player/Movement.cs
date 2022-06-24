@@ -1,3 +1,4 @@
+using Handlers;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +13,8 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private float _moveSpeed;
 
+    [SerializeField] private PlayerSpawnManagerHandler spawnManagerHandler;
+    
     private float _accelerationRate;
     private float _decelerationRate;
     private bool _canAccelerate = false;
@@ -58,14 +61,17 @@ public class Movement : MonoBehaviour {
     {
         InputManager.onStartMovement += MoveDirection;
         InputManager.onEndMovement += StopMoving;
-
+        spawnManagerHandler.AddListener(() =>
+        {
+            _rigidBody.velocity = Vector3.zero; 
+            StopMoving();
+        });
     }
 
     private void OnDisable()
     {
         InputManager.onStartMovement -= MoveDirection;
         InputManager.onEndMovement -= StopMoving;
-
     }
 
     private void Update()
