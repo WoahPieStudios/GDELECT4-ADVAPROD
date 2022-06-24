@@ -155,11 +155,14 @@ namespace Spawning.Scripts.Spawners
             if (!isInitialized) return;
             isInitialized = false;
             Destroy(gameObject);
-            explosionChannel?.PlayAudio();
             //SpawnerPoint.StartCooldown();
             SpawnerPoint.FreePointPosition();
             TotemSpawnManager.OnSpawnEvent();
-            if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
+            if (killedByPlayer)
+            {
+                ScoreManager.OnAddScore(ScoreAmount, EnemyType);
+                explosionChannel?.PlayAudio();
+            }
         }
 
         public EnemyType EnemyType

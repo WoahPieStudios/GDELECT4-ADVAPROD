@@ -34,7 +34,7 @@ namespace Spawning.Scripts.Managers
 
         public void StartSpawning()
         {
-            if(spawnRoutine != null){ StopCoroutine(spawnRoutine); }
+            if (spawnRoutine != null) { StopCoroutine(spawnRoutine); }
             spawnRoutine = StartCoroutine(SpawnObject());
         }
 
@@ -69,7 +69,7 @@ namespace Spawning.Scripts.Managers
             if (totems.Length <= 0) return;
             foreach (var totem in totems)
             {
-                Destroy(totem.gameObject);
+                totem.GetDestroyed(false);
             }
         }
         #endregion
