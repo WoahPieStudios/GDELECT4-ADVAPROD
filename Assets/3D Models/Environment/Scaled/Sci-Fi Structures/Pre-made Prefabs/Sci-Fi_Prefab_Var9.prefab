@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 864639246047324787}
   - component: {fileID: 9151622535436614524}
   - component: {fileID: 7324293745109653250}
+  - component: {fileID: 4765115196128395511}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerPanel_Var3_B.016
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4765115196128395511
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137784951689906953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.435417, y: 0.58971375, z: 9.435417}
+  m_Center: {x: 0, y: 0.29485676, z: 0}
 --- !u!1 &1704671614065459279
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +108,7 @@ GameObject:
   - component: {fileID: 4298008801160929413}
   - component: {fileID: 7037021663959612857}
   - component: {fileID: 1579407229825543542}
+  - component: {fileID: 8334236716968378390}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerTopBlockPiece_Var1.004
   m_TagString: Untagged
@@ -166,6 +181,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8334236716968378390
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704671614065459279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.250299, y: 9.09812, z: 9.250299}
+  m_Center: {x: -0.00000023841858, y: 4.9528627, z: 0.00000023841858}
 --- !u!1 &2025760709161980891
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +205,7 @@ GameObject:
   - component: {fileID: 3544044957740371518}
   - component: {fileID: 3489591263799838823}
   - component: {fileID: 1469562619337272195}
+  - component: {fileID: 7961838652984686830}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.038
   m_TagString: Untagged
@@ -249,6 +278,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7961838652984686830
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025760709161980891}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507403, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.0000013709068, y: -1.7253675, z: -1.7253686}
 --- !u!1 &2362588076269843072
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +302,7 @@ GameObject:
   - component: {fileID: 5149295525123815561}
   - component: {fileID: 2853590383581497623}
   - component: {fileID: 8913795281933982213}
+  - component: {fileID: 6902684935562844628}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.034
   m_TagString: Untagged
@@ -332,6 +375,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6902684935562844628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362588076269843072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.450738, y: 3.450736, z: 6.9014735}
+  m_Center: {x: 0.00000029802322, y: 1.725368, z: -1.7253678}
 --- !u!1 &2914943637542103011
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +399,7 @@ GameObject:
   - component: {fileID: 5539160198734101362}
   - component: {fileID: 7865885193099906412}
   - component: {fileID: 8393145119185831679}
+  - component: {fileID: 6999040216577004156}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerTopBlockPiece_Var1.006
   m_TagString: Untagged
@@ -415,6 +472,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6999040216577004156
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914943637542103011}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.250299, y: 9.098124, z: 9.250299}
+  m_Center: {x: -0.00000023841858, y: 4.9528646, z: 0.00000023841858}
 --- !u!1 &3915828737749989303
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +496,7 @@ GameObject:
   - component: {fileID: 8323456485266601559}
   - component: {fileID: 3006540074776986784}
   - component: {fileID: 2864181221917265356}
+  - component: {fileID: 2596726329118314503}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerPanel_Var3_B.019
   m_TagString: Untagged
@@ -498,6 +569,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2596726329118314503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3915828737749989303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.435417, y: 0.58971375, z: 9.435417}
+  m_Center: {x: 0, y: 0.29485676, z: 0}
 --- !u!1 &3969615399819039856
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +593,7 @@ GameObject:
   - component: {fileID: 2446711349914338835}
   - component: {fileID: 8102208612512275824}
   - component: {fileID: 7208331928006729515}
+  - component: {fileID: 3177036365055587880}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_FrameTower.019
   m_TagString: Untagged
@@ -581,6 +666,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3177036365055587880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969615399819039856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.398378, y: 9.09812, z: 9.398378}
+  m_Center: {x: -0.05533862, y: 4.549061, z: -0.04743433}
 --- !u!1 &4429275613173873738
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +690,7 @@ GameObject:
   - component: {fileID: 6123294149509673978}
   - component: {fileID: 828961747431844813}
   - component: {fileID: 2889320508485067939}
+  - component: {fileID: 6840941407004078524}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.039
   m_TagString: Untagged
@@ -664,6 +763,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6840941407004078524
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429275613173873738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.000001847744, y: -1.7253675, z: -1.7253685}
 --- !u!1 &4945914711120978509
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +787,7 @@ GameObject:
   - component: {fileID: 21031866316496805}
   - component: {fileID: 4353956062906309842}
   - component: {fileID: 7373627605461818199}
+  - component: {fileID: 2260476952353895403}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerPanel_Var3_B.018
   m_TagString: Untagged
@@ -747,6 +860,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2260476952353895403
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4945914711120978509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.435417, y: 0.58971375, z: 9.435417}
+  m_Center: {x: 0, y: 0.29485676, z: 0}
 --- !u!1 &5526130014665844291
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +884,7 @@ GameObject:
   - component: {fileID: 5330892361266116672}
   - component: {fileID: 4855146164170521973}
   - component: {fileID: 4024757089783413678}
+  - component: {fileID: 6713243531526511689}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_FrameTower.018
   m_TagString: Untagged
@@ -830,6 +957,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6713243531526511689
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526130014665844291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.398378, y: 9.09812, z: 9.398378}
+  m_Center: {x: -0.05533862, y: 4.549061, z: -0.04743433}
 --- !u!1 &5645580715190240195
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +981,7 @@ GameObject:
   - component: {fileID: 2755493533568853308}
   - component: {fileID: 5085187345653875265}
   - component: {fileID: 3377635209609256261}
+  - component: {fileID: 4256369494077223915}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_BaseFoundation_Small.003
   m_TagString: Untagged
@@ -913,6 +1054,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4256369494077223915
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645580715190240195}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.591019, y: 5, z: 12.591019}
+  m_Center: {x: 0, y: -2.5, z: 0}
 --- !u!1 &6221399088166248813
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +1078,7 @@ GameObject:
   - component: {fileID: 8809033404288097575}
   - component: {fileID: 4046603396639977420}
   - component: {fileID: 8651100971991016648}
+  - component: {fileID: 2623630303751399247}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerPanel_Var3_B.017
   m_TagString: Untagged
@@ -996,6 +1151,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2623630303751399247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6221399088166248813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.435417, y: 0.58971375, z: 9.435417}
+  m_Center: {x: 0, y: 0.29485676, z: 0}
 --- !u!1 &6420423132135126149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,6 +1175,7 @@ GameObject:
   - component: {fileID: 8674456011212982735}
   - component: {fileID: 5155286564117810283}
   - component: {fileID: 5588862032145210646}
+  - component: {fileID: 4858177289750529667}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerTopBlockPiece_Var1.005
   m_TagString: Untagged
@@ -1079,6 +1248,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4858177289750529667
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420423132135126149}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.250299, y: 9.098124, z: 9.250299}
+  m_Center: {x: -0.00000023841858, y: 4.9528646, z: 0.00000023841858}
 --- !u!1 &6467530469154212733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +1272,7 @@ GameObject:
   - component: {fileID: 8238682596272329808}
   - component: {fileID: 8360565352542679750}
   - component: {fileID: 3679594712477225244}
+  - component: {fileID: 8007133776493559657}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerPanel_Var3_B.015
   m_TagString: Untagged
@@ -1162,6 +1345,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8007133776493559657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6467530469154212733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.435417, y: 0.58971375, z: 9.435417}
+  m_Center: {x: 0, y: 0.29485676, z: 0}
 --- !u!1 &6503800714623837692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1369,7 @@ GameObject:
   - component: {fileID: 4422158293578769127}
   - component: {fileID: 1796423460215098757}
   - component: {fileID: 3106788568952408255}
+  - component: {fileID: 4489831617401103430}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.033
   m_TagString: Untagged
@@ -1245,6 +1442,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4489831617401103430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503800714623837692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.450738, y: 3.450736, z: 6.9014735}
+  m_Center: {x: 0.00000029802322, y: 1.725368, z: -1.7253678}
 --- !u!1 &6660353192221276957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1466,7 @@ GameObject:
   - component: {fileID: 2344566966624706588}
   - component: {fileID: 6592357468864187834}
   - component: {fileID: 412578405943793585}
+  - component: {fileID: 7083303131803947268}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.040
   m_TagString: Untagged
@@ -1328,6 +1539,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7083303131803947268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660353192221276957}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.000001847744, y: -1.7253675, z: -1.7253685}
 --- !u!1 &6941337512466402026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1563,7 @@ GameObject:
   - component: {fileID: 899456459258783441}
   - component: {fileID: 57789231938947666}
   - component: {fileID: 4159256809430841885}
+  - component: {fileID: 5139996320333882411}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.037
   m_TagString: Untagged
@@ -1411,6 +1636,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5139996320333882411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941337512466402026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507403, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.0000013709068, y: -1.7253675, z: -1.7253686}
 --- !u!1 &7573852291210126592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,6 +1660,7 @@ GameObject:
   - component: {fileID: 8334739873013508779}
   - component: {fileID: 3529420604837104251}
   - component: {fileID: 4320682243036433043}
+  - component: {fileID: 9144450569325470694}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerPanel_Var0_A.007
   m_TagString: Untagged
@@ -1494,6 +1733,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9144450569325470694
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7573852291210126592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.9014745, y: 6.901472, z: 0.41519874}
+  m_Center: {x: 1.7253692, y: 1.725368, z: -0.20759588}
 --- !u!1 &7598632090516373558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1757,7 @@ GameObject:
   - component: {fileID: 7598632090516373559}
   - component: {fileID: 7598632090516373557}
   - component: {fileID: 7598632090516373556}
+  - component: {fileID: 3607533293458364164}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.035 (2)
   m_TagString: Untagged
@@ -1577,6 +1830,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3607533293458364164
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632090516373558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450736, z: 6.9014764}
+  m_Center: {x: 0.0000013709068, y: 1.725368, z: -1.7253683}
 --- !u!1 &7598632090900698699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1854,7 @@ GameObject:
   - component: {fileID: 7598632090900698696}
   - component: {fileID: 7598632090900698694}
   - component: {fileID: 7598632090900698697}
+  - component: {fileID: 4635626924841302829}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.037 (1)
   m_TagString: Untagged
@@ -1660,6 +1927,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4635626924841302829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632090900698699}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507403, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.0000013709068, y: -1.7253675, z: -1.7253686}
 --- !u!1 &7598632091158996939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1951,7 @@ GameObject:
   - component: {fileID: 7598632091158996936}
   - component: {fileID: 7598632091158996934}
   - component: {fileID: 7598632091158996937}
+  - component: {fileID: 3626146814100899141}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.035 (1)
   m_TagString: Untagged
@@ -1743,6 +2024,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3626146814100899141
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632091158996939}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450736, z: 6.9014764}
+  m_Center: {x: 0.0000013709068, y: 1.725368, z: -1.7253683}
 --- !u!1 &7598632091388377909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +2048,7 @@ GameObject:
   - component: {fileID: 7598632091388377906}
   - component: {fileID: 7598632091388377904}
   - component: {fileID: 7598632091388377907}
+  - component: {fileID: 4251480723535210663}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.037 (2)
   m_TagString: Untagged
@@ -1826,6 +2121,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4251480723535210663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632091388377909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507403, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.0000013709068, y: -1.7253675, z: -1.7253686}
 --- !u!1 &7598632091585158513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +2145,7 @@ GameObject:
   - component: {fileID: 7598632091585158510}
   - component: {fileID: 7598632091585158508}
   - component: {fileID: 7598632091585158511}
+  - component: {fileID: 97353611449741275}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.039 (1)
   m_TagString: Untagged
@@ -1909,6 +2218,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &97353611449741275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632091585158513}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.000001847744, y: -1.7253675, z: -1.7253685}
 --- !u!1 &7598632091778319222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,6 +2242,7 @@ GameObject:
   - component: {fileID: 7598632091778319223}
   - component: {fileID: 7598632091778319221}
   - component: {fileID: 7598632091778319220}
+  - component: {fileID: 7014683947635655162}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.039 (2)
   m_TagString: Untagged
@@ -1992,6 +2315,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7014683947635655162
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632091778319222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450738, z: 6.901476}
+  m_Center: {x: 0.000001847744, y: -1.7253675, z: -1.7253685}
 --- !u!1 &7598632091877117271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2339,7 @@ GameObject:
   - component: {fileID: 7598632091877117268}
   - component: {fileID: 7598632091877117266}
   - component: {fileID: 7598632091877117269}
+  - component: {fileID: 2817647539737874479}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.033 (1)
   m_TagString: Untagged
@@ -2075,6 +2412,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2817647539737874479
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632091877117271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.450738, y: 3.450736, z: 6.9014735}
+  m_Center: {x: 0.00000029802322, y: 1.725368, z: -1.7253678}
 --- !u!1 &7598632092057563757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,6 +2436,7 @@ GameObject:
   - component: {fileID: 7598632092057563754}
   - component: {fileID: 7598632092057563752}
   - component: {fileID: 7598632092057563755}
+  - component: {fileID: 7844150661744833618}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.033 (2)
   m_TagString: Untagged
@@ -2158,6 +2509,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7844150661744833618
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598632092057563757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.450738, y: 3.450736, z: 6.9014735}
+  m_Center: {x: 0.00000029802322, y: 1.725368, z: -1.7253678}
 --- !u!1 &8243827093638010279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2595,7 @@ GameObject:
   - component: {fileID: 7631033903361916953}
   - component: {fileID: 3801796841788073097}
   - component: {fileID: 1659492562062853563}
+  - component: {fileID: 4220074949714744398}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.035
   m_TagString: Untagged
@@ -2303,6 +2668,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4220074949714744398
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263055252845381681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450736, z: 6.9014764}
+  m_Center: {x: 0.0000013709068, y: 1.725368, z: -1.7253683}
 --- !u!1 &8390090296595342276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +2692,7 @@ GameObject:
   - component: {fileID: 5576321041814202644}
   - component: {fileID: 5784821909660082586}
   - component: {fileID: 516934253653920960}
+  - component: {fileID: 5034818962270005261}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_FrameTower.020
   m_TagString: Untagged
@@ -2386,6 +2765,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5034818962270005261
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390090296595342276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.398378, y: 9.09812, z: 9.398378}
+  m_Center: {x: -0.05533862, y: 4.549061, z: -0.04743433}
 --- !u!1 &8588728067789942792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +2789,7 @@ GameObject:
   - component: {fileID: 949549418627397397}
   - component: {fileID: 4534643549962203873}
   - component: {fileID: 4136889625500012899}
+  - component: {fileID: 2638934071471882813}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_FrameTower.017
   m_TagString: Untagged
@@ -2469,6 +2862,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2638934071471882813
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588728067789942792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.398378, y: 9.09812, z: 9.398378}
+  m_Center: {x: -0.05533862, y: 4.549061, z: -0.04743433}
 --- !u!1 &8728773088865354439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,6 +2886,7 @@ GameObject:
   - component: {fileID: 9157264095811344294}
   - component: {fileID: 8790940676547494487}
   - component: {fileID: 4993080855496856544}
+  - component: {fileID: 5336799117031311722}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_ModBlock_Long.036
   m_TagString: Untagged
@@ -2552,6 +2959,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5336799117031311722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8728773088865354439}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4507422, y: 3.450736, z: 6.9014764}
+  m_Center: {x: 0.0000013709068, y: 1.725368, z: -1.7253683}
 --- !u!1 &9170075907419984916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,6 +2983,7 @@ GameObject:
   - component: {fileID: 2454514073233313278}
   - component: {fileID: 387483328562496243}
   - component: {fileID: 3111157208905447212}
+  - component: {fileID: 864587726219491670}
   m_Layer: 10
   m_Name: ProjectRG_Environment_Sci-Fi_TowerTopBlockPiece_Var1.007
   m_TagString: Untagged
@@ -2635,3 +3056,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &864587726219491670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170075907419984916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.250299, y: 9.098124, z: 9.250299}
+  m_Center: {x: -0.00000023841858, y: 4.9528646, z: 0.00000023841858}
