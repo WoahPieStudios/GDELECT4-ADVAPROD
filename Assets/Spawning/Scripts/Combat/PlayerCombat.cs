@@ -45,7 +45,8 @@ namespace Spawning.Scripts.Combat
 
         private void SetDamageVFX()
         {
-            
+            var value = health / 100f;
+            takeDamageVFX.VignetteIntensityValue = Mathf.Lerp(1f, 0f, value);
         }
 
         private void DeathSequence()
