@@ -46,7 +46,7 @@ jobs:
         #   args: 7z a -t7z -mx=9 ${{ steps.build.outputs.buildVersion }}.7z ./build/StandaloneWindows64/*
         run: |
           chmod +x .github/scripts/split-zipper.sh
-          ./.github/scripts/split-zipper.sh ./build/StandaloneWindows64 100m public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }} ${{ steps.build.outputs.buildVersion }}
+          ./.github/scripts/split-zipper.sh ./build/StandaloneWindows64 100 public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }} ${{ steps.build.outputs.buildVersion }}
 
       - name: Push build to public repo
         run: |
