@@ -16,14 +16,14 @@ then
     then
         if [ -d "$3" ]
         then
-            mv $1.z* $3'/'
+            mv $4.z* $3'/'
         else
             mkdir $3
-            mv $1.z* $3'/'
+            mv $4.z* $3'/'
         fi
-        echo "$1.zip can be found at $3"
+        echo "$4.zip can be found at $3"
     else
-        echo "$1.zip can be found at"
+        echo "$4.zip can be found at"
         pwd
     fi
 
