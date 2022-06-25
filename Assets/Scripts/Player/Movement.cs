@@ -8,24 +8,26 @@ using UnityEngine;
 
 [DefaultExecutionOrder(1000)]
 [RequireComponent(typeof(Rigidbody))]
-public class Movement : MonoBehaviour {
-    
+public class Movement : MonoBehaviour
+{
+
     [SerializeField]
     private float _moveSpeed;
 
     [SerializeField] private PlayerSpawnManagerHandler spawnManagerHandler;
-    
+
     private float _accelerationRate;
     private float _decelerationRate;
     private bool _canAccelerate = false;
 
     private Player _player;
-    
+
     /// <summary>
     /// stores current Speed of the player
     /// </summary>
     private float _currentSpeed;
-    public float currentSpeed {
+    public float currentSpeed
+    {
         get => _currentSpeed;
         set => _currentSpeed = Mathf.Clamp(value, 0f, _moveSpeed);
     }
@@ -51,7 +53,7 @@ public class Movement : MonoBehaviour {
 
     private void Start()
     {
-        if (_moveSpeed < Physics.gravity.y) _moveSpeed = -Physics.gravity.y; 
+        if (_moveSpeed < Physics.gravity.y) _moveSpeed = -Physics.gravity.y;
         _accelerationRate = _moveSpeed * _moveSpeed / 10;
         _decelerationRate = _moveSpeed * 10f + 20;
     }
@@ -61,11 +63,7 @@ public class Movement : MonoBehaviour {
     {
         InputManager.onStartMovement += MoveDirection;
         InputManager.onEndMovement += StopMoving;
-        spawnManagerHandler.AddListener(() =>
-        {
-            _rigidBody.velocity = Vector3.zero; 
-            StopMoving();
-        });
+        spawnManagerHandler.AddListener(() => { _rigidBody.velocity = Vector3.zero; });
     }
 
     private void OnDisable()
@@ -81,13 +79,14 @@ public class Movement : MonoBehaviour {
         if (_canAccelerate)
         {
             currentSpeed += _accelerationRate * Time.deltaTime;
-        }else
+        }
+        else
         {
-            
+
             currentSpeed -= _decelerationRate * Time.deltaTime;
         }
 
-        
+
     }
 
     void FixedUpdate()
@@ -97,8 +96,8 @@ public class Movement : MonoBehaviour {
 
         if (_player.onGround)
         {
-            _rigidBody.velocity += _direction * _currentSpeed * Time.deltaTime; 
-   
+            _rigidBody.velocity += _direction * _currentSpeed * Time.deltaTime;
+
         }
 
         ///<summary>

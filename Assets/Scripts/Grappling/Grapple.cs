@@ -12,7 +12,9 @@ using Handlers;
 /// </summary>
 public class Grapple : MonoBehaviour
 {
-
+    private bool _isPaused;
+    [SerializeField] private PauseEventChannel pauseEventChannel;
+    
     #region SFX
     [SerializeField]
     private SFXChannel _grappleLaunchChannel;
@@ -186,6 +188,15 @@ public class Grapple : MonoBehaviour
         InputManager.onStartHook += StartHook;
         InputManager.onEndHook += StopHook;
 
+        pauseEventChannel.AddPauseListener(() =>
+        {
+            _isPaused = false;
+        });
+        pauseEventChannel.AddResumeListener(() =>
+        {
+            _isPaused = true;
+        });
+
         PlayerSpawnManager.RespawnPlayer += StopGrapple;
 
     }
@@ -199,6 +210,15 @@ public class Grapple : MonoBehaviour
         InputManager.onStartHook -= StartHook;
         InputManager.onEndHook -= StopHook;
         PlayerSpawnManager.RespawnPlayer -= StopGrapple;
+
+        pauseEventChannel.RemovePauseListener(() =>
+        {
+            _isPaused = false;
+        });
+        pauseEventChannel.RemoveResumeListener(() =>
+        {
+            _isPaused = true;
+        });
     }
 
     private void Update()
@@ -266,6 +286,7 @@ public class Grapple : MonoBehaviour
     #region GRAPPLING
     private void StartGrapple()
     {
+        if (!_isPaused) return;
         RaycastHit hit;
         _disableGrapple = !_disableGrapple;
         //made grappling so that instead of holding the grapple button, player will just press again to release
@@ -298,6 +319,7 @@ public class Grapple : MonoBehaviour
 
     private void StopGrapple()
     {
+        if (!_isPaused) return;
         //insert release sound
         _grappleReleaseChannel?.PlayAudio();
         Player.movementState = _p.onGround ? MovementState.GroundMovement : MovementState.OnAir;
@@ -381,6 +403,7 @@ public class Grapple : MonoBehaviour
 
     private void StartHook()
     {
+        if (!_isPaused) return;
         if (!_canPull) return;
         // hinihila si player pull audio
         _grapplePullChannel?.PlayAudio();
@@ -391,6 +414,7 @@ public class Grapple : MonoBehaviour
 
     private void StopHook()
     {
+        if (!_isPaused) return;
         _isPulling = false;
         _rb.useGravity = true;
         _rb.isKinematic = false;
