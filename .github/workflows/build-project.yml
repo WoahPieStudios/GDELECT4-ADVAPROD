@@ -31,7 +31,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneWindows64
-          versioning: Tag
+          versioning: Semantic
 
       - name: Clone public repo
         uses: actions/checkout@v3
