@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Handlers;
 using Spawning.Scripts.Containers;
 using Spawning.Scripts.Spawners;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Spawning.Scripts.Managers
 {
     public class TotemSpawnManager : MonoBehaviour
     {
+        [SerializeField] private VFXHandler totemSpawnVFX;
         [SerializeField] private DroneSpawner objectToSpawn;
         [SerializeField] private SpawnPointManager spawnPointManager;
         [SerializeField] private float initialDelay;
@@ -46,10 +48,13 @@ namespace Spawning.Scripts.Managers
             {
                 print($"Spawning {objectToSpawn.name}");
                 var point = LookForAvailablePoint();
+                var vfx = Instantiate(totemSpawnVFX, point.GetPointPosition(), Quaternion.identity, transform);
+                yield return new WaitForSeconds(vfx.particleSystem.main.duration);
                 var spawner = Instantiate(objectToSpawn, point.TakePointPosition(), Quaternion.identity, transform);
                 spawner.SpawnerPoint = point;
                 spawner.isInitialized = true;
                 print($"{spawner} spawned at {point}");
+                Destroy(vfx.gameObject);
                 yield return new WaitForSeconds(spawnInterval);
             }
             print("All points taken");
