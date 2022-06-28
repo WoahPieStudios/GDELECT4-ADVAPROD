@@ -119,7 +119,7 @@ namespace Spawning.Scripts.Enemies
 
             other.collider.GetComponent<PlayerCombat>().TakeDamage(_damageAmount);
 
-            GetDestroyed(true);
+            GetDestroyed(false);
         }
 
         public float Health { get => health; set => health = value; }
@@ -129,7 +129,7 @@ namespace Spawning.Scripts.Enemies
             health -= damageAmount;
             var color = Color.Lerp(Color.black, Color.white, Health / maxHealth);
             _material.color = color;
-            if (health <= 0) { GetDestroyed(); }
+            if (health <= 0) { GetDestroyed(true); }
         }
 
         private void OnEnable()
@@ -162,11 +162,12 @@ namespace Spawning.Scripts.Enemies
         public void GetDestroyed(bool killedByPlayer = true)
         {
             if (!isInitialized) return;
+            enemyDeathChannel?.PlayAudio();
+            enemyExplosionChannel?.PlayAudio();
+
             if (killedByPlayer)
             {
                 ScoreManager.OnAddScore(scoreAmount, EnemyType);
-                enemyDeathChannel?.PlayAudio();
-                enemyExplosionChannel?.PlayAudio();
             }
             var vfx = DronePool.Instance.GetVFXHandler(transform.position);
             vfx.particleSystem.Play();
