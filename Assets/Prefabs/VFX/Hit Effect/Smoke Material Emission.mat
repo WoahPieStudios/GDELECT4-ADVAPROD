@@ -11,7 +11,6 @@ Material:
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _EMISSION
-  - _SPECULAR_SETUP
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 1
@@ -108,12 +107,12 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
-    - _WorkflowMode: 0
+    - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.08627451}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.08627451}
-    - _EmissionColor: {r: 0.8154376, g: 0.8154376, b: 0.8154376, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.03529412}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.03529412}
+    - _EmissionColor: {r: 1, g: 0.5656084, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8442572752553565230
