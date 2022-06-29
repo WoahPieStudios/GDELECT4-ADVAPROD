@@ -1995,6 +1995,8 @@ MonoBehaviour:
   isSpawning: 1
   isInitialized: 0
   spawnRadius: 20
+  droneSpawnVFX: {fileID: 1822502578590152393, guid: cc16e51a7e242564aae04046c6656cc0,
+    type: 3}
   spawnPointOffset: {x: 0, y: 72.5, z: 0}
   spawnInterval: 20
   spawnAmount: 7
@@ -2004,6 +2006,8 @@ MonoBehaviour:
   health: 500
   scoreAmount: 1
   explosionChannel: {fileID: 11400000, guid: 51aa7e757752fea4297a6c5196529a19, type: 2}
+  explosionVFX: {fileID: -1822743474417102883, guid: 4abf4df016d94a047ba141317678309b,
+    type: 3}
   renderer: {fileID: 4096007844341899631}
 --- !u!1 &8651473794139245721
 GameObject:
