@@ -1920,6 +1920,7 @@ GameObject:
   - component: {fileID: 8940279043820319201}
   - component: {fileID: 7361203314846692674}
   - component: {fileID: 4635084042541312402}
+  - component: {fileID: 9138578551904126214}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr
   m_TagString: Enemy
@@ -1937,7 +1938,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7581478303483572102}
   - {fileID: 5844237924552047081}
@@ -2009,6 +2010,26 @@ MonoBehaviour:
   explosionVFX: {fileID: -1822743474417102883, guid: 4abf4df016d94a047ba141317678309b,
     type: 3}
   renderer: {fileID: 4096007844341899631}
+--- !u!95 &9138578551904126214
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600064120659061595}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eadb7775636e82b4da4e8788f734bfb5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8651473794139245721
 GameObject:
   m_ObjectHideFlags: 0
