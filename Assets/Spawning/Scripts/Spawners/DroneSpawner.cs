@@ -1,3 +1,4 @@
+using System.Collections;
 using Enums;
 using Interface;
 using Spawning.Scripts.Containers;
@@ -7,6 +8,7 @@ using Spawning.Scripts.Pools;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using AdditiveScenes.Scripts.ScriptableObjects;
+using Handlers;
 
 namespace Spawning.Scripts.Spawners
 {
@@ -17,7 +19,7 @@ namespace Spawning.Scripts.Spawners
     {
         [Header("Debugging")]
         [SerializeField] private bool isSpawning;
-        public bool isInitialized;
+        [HideInInspector] public bool isInitialized;
 
         [Header("Drone Spawn Settings")]
         /// <summary>
@@ -25,7 +27,7 @@ namespace Spawning.Scripts.Spawners
         /// </summary>
         [SerializeField, Tooltip("The radius of the area which the drones will spawn at the spawn point.")]
         private float spawnRadius;
-
+        [SerializeField] private VFXHandler droneSpawnVFX;
         /// <summary>
         /// Determines the location where the drones will spawn.
         /// </summary>
@@ -58,6 +60,7 @@ namespace Spawning.Scripts.Spawners
 
         [Header("SFX")]
         [SerializeField] SFXChannel explosionChannel;
+        [SerializeField] private VFXHandler explosionVFX;
 
         private float maxHealth;
         public float Health { get => health; set => health = value; }
@@ -85,7 +88,7 @@ namespace Spawning.Scripts.Spawners
             maxHealth = health;
             _material = renderer != null ? renderer.material : GetComponent<Renderer>().material;
             if (!isSpawning) return;
-            InvokeRepeating(nameof(SpawnDrone), spawnInterval, spawnInterval);
+            StartCoroutine(SpawnDrone());
         }
 
         /// <summary>
@@ -96,38 +99,51 @@ namespace Spawning.Scripts.Spawners
         /// <summary>
         /// Gets a <see cref="Drone"/> from the <see cref="dronePool"/> and sets its position within the <see cref="spawnerPosition"/> and <see cref="spawnRadius"/>.
         /// </summary>
-        private void SpawnDrone()
+        private IEnumerator SpawnDrone()
         {
-            for (int i = 0; i < spawnAmount; i++)
+            while (!GameManager.Instance.IsGameOver)
             {
-                var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
-                if (drone == null)
+                yield return new WaitForSeconds(spawnInterval);
+                for (int i = 0; i < spawnAmount; i++)
                 {
-                    Debug.LogError("No more available drones");
-                    return;
-                }
-                drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
-                drone.SetPlayerTransform(_playerTransform);
-                drone.SetPlayerLookState(true);
-                drone.isInitialized = true;
-            }
-
-            var _tankSpawnChance = Random.Range(0f, 1f);
-            if (_tankSpawnChance <= tankSpawnChance)
-            {
-                for (int i = 0; i < spawnAmountTank; i++)
-                {
-                    var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
+                    var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
+                    var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
+                    yield return new WaitForSeconds(vfx.particleSystem.main.duration);
+                    var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
                     {
                         Debug.LogError("No more available drones");
-                        return;
+                        yield return null;
                     }
-
-                    drone.transform.position = Random.insideUnitSphere * spawnRadius + SpawnPoint;
+                    drone.transform.position = spawnPosition;
                     drone.SetPlayerTransform(_playerTransform);
                     drone.SetPlayerLookState(true);
                     drone.isInitialized = true;
+                    //Destroy(vfx.gameObject);
+                }
+
+                var _tankSpawnChance = Random.Range(0f, 1f);
+                if (_tankSpawnChance <= tankSpawnChance)
+                {
+                    for (int i = 0; i < spawnAmountTank; i++)
+                    {
+                        var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
+                        var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
+                        yield return new WaitForSeconds(vfx.particleSystem.main.duration);
+                    
+                        var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
+                        if (drone == null)
+                        {
+                            Debug.LogError("No more available drones");
+                            yield return null;
+                        }
+
+                        drone.transform.position = spawnPosition;
+                        drone.SetPlayerTransform(_playerTransform);
+                        drone.SetPlayerLookState(true);
+                        drone.isInitialized = true;
+                        //Destroy(vfx.gameObject);
+                    }
                 }
             }
         }
@@ -154,12 +170,16 @@ namespace Spawning.Scripts.Spawners
         {
             if (!isInitialized) return;
             isInitialized = false;
+            Instantiate(explosionVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            explosionChannel?.PlayAudio();
             //SpawnerPoint.StartCooldown();
             SpawnerPoint.FreePointPosition();
             TotemSpawnManager.OnSpawnEvent();
-            if (killedByPlayer) { ScoreManager.OnAddScore(ScoreAmount, EnemyType); }
+            if (killedByPlayer)
+            {
+                ScoreManager.OnAddScore(ScoreAmount, EnemyType);
+                explosionChannel?.PlayAudio();
+            }
         }
 
         public EnemyType EnemyType
