@@ -60,6 +60,7 @@ namespace Spawning.Scripts.Spawners
 
         [Header("SFX")]
         [SerializeField] SFXChannel explosionChannel;
+        [SerializeField] private VFXHandler explosionVFX;
 
         private float maxHealth;
         public float Health { get => health; set => health = value; }
@@ -118,7 +119,7 @@ namespace Spawning.Scripts.Spawners
                     drone.SetPlayerTransform(_playerTransform);
                     drone.SetPlayerLookState(true);
                     drone.isInitialized = true;
-                    Destroy(vfx.gameObject);
+                    //Destroy(vfx.gameObject);
                 }
 
                 var _tankSpawnChance = Random.Range(0f, 1f);
@@ -141,7 +142,7 @@ namespace Spawning.Scripts.Spawners
                         drone.SetPlayerTransform(_playerTransform);
                         drone.SetPlayerLookState(true);
                         drone.isInitialized = true;
-                        Destroy(vfx.gameObject);
+                        //Destroy(vfx.gameObject);
                     }
                 }
             }
@@ -169,6 +170,7 @@ namespace Spawning.Scripts.Spawners
         {
             if (!isInitialized) return;
             isInitialized = false;
+            Instantiate(explosionVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
             //SpawnerPoint.StartCooldown();
             SpawnerPoint.FreePointPosition();
