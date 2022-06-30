@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3283260703389993141}
   - component: {fileID: 6423561062646507809}
+  - component: {fileID: 8604470884228169880}
   m_Layer: 12
   m_Name: ProjectRG_Weapon_FullAuto
   m_TagString: Untagged
@@ -62,6 +63,26 @@ MonoBehaviour:
   _baseDamage: 51
   _headshotDamageMultiplier: 1
   _reloadSpeed: 1.5
+--- !u!95 &8604470884228169880
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800021371843711503}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94a415ec68c406f4ab77296649dc344c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5589705747722078390
 GameObject:
   m_ObjectHideFlags: 0
