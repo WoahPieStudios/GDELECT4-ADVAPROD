@@ -21,6 +21,8 @@ public class InputManager : MonoBehaviour
     public static event Action onReleaseShooting;
 
     public static event Action onManualReloading;
+
+    public static event Action onSkillActivate;
     #endregion
 
     #region UI Interactions
@@ -97,6 +99,14 @@ public class InputManager : MonoBehaviour
             onManualReloading?.Invoke();
         };
         #endregion
+
+        #region Skill
+        _playerInputs.PlayerControls.Skill.performed += ctx =>
+        {
+            onSkillActivate?.Invoke();
+        };
+        #endregion
+
 
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
