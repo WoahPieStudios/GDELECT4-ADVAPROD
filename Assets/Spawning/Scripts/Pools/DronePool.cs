@@ -175,7 +175,15 @@ namespace Spawning.Scripts.Pools
         {
             if(!drone.isInitialized) return;
             drone.gameObject.SetActive(false);
-            AvailableDrones.Push(drone);
+            switch (drone.EnemyType)
+            {
+                case EnemyType.Drone:
+                    AvailableDrones.Push(drone);
+                    break;
+                case EnemyType.Tank:
+                    AvailableTankDrones.Push(drone);
+                    break;
+            }
         }
 
         public VFXHandler GetVFXHandler(Vector3 position)
