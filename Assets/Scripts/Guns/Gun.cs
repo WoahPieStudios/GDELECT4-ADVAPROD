@@ -28,6 +28,9 @@ public class Gun : MonoBehaviour
     [Header("MuzzleFlash")]
     [SerializeField] private Transform muzzlePoint;
     [SerializeField] private VFXHandler muzzleFlash;
+    
+    [Header("Animations")]
+    [SerializeField] private Animator animator;
     #endregion
     
     #region WEAPON STATS
@@ -164,6 +167,7 @@ public class Gun : MonoBehaviour
             }
 
             _shotsCounter--;
+            animator.SetTrigger("isShooting");
             gunSoundChannel?.PlayAudio();
             Instantiate(muzzleFlash, muzzlePoint);
             nextShot = Time.time + 1 / fireRate;
@@ -252,6 +256,7 @@ public class Gun : MonoBehaviour
     {
         canShoot = false;
         _isReloading = true;
+        animator.SetBool("isReloading", _isReloading);
         onReloadTime += Reload;
         await CountDown(_reloadSpeed);
         onReloadTime -= Reload;
@@ -261,6 +266,7 @@ public class Gun : MonoBehaviour
     private void Reload()
     {
         _isReloading = false;
+        animator.SetBool("isReloading", _isReloading);
         _shotsCounter = bulletsPerMagazine;
         canShoot = true;
     }
