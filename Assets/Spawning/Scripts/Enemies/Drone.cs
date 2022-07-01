@@ -34,10 +34,13 @@ namespace Spawning.Scripts.Enemies
         [SerializeField] float attackDistance;
         private Material _material;
         private float maxHealth;
-
+        
+        [Header("SFX")]
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel enemyDeathChannel;
         [SerializeField] SFXChannel enemyExplosionChannel;
         [SerializeField] RandomSFXChannel RandomEnemySFX;
+        [SerializeField] private PauseEventChannel pauseEventChannel;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -139,6 +142,9 @@ namespace Spawning.Scripts.Enemies
         {
             _material.color = Color.white;
             health = maxHealth;
+            pauseEventChannel.AddPauseListener(() => RandomEnemySFX.PauseAudio(audioSource));
+            pauseEventChannel.AddResumeListener(() => RandomEnemySFX.ResumeAudio(audioSource));
+            RandomEnemySFX?.PlayAudio(audioSource);
             foreach (var particle in particles)
             {
                 particle.gameObject.SetActive(true);

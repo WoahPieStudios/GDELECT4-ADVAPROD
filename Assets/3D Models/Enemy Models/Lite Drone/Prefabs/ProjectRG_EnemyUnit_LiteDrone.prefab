@@ -392,10 +392,12 @@ MonoBehaviour:
   health: 50
   _damageAmount: 25
   attackDistance: 1
+  audioSource: {fileID: 4353023573562572503}
   enemyDeathChannel: {fileID: 11400000, guid: c6b3423183d7d6e48a10335ec5f97031, type: 2}
   enemyExplosionChannel: {fileID: 11400000, guid: 54f13785dcf81e845aec1b959e40a99f,
     type: 2}
   RandomEnemySFX: {fileID: 11400000, guid: 1ca199f6dacc90f489ed9cc49faa7c52, type: 2}
+  pauseEventChannel: {fileID: 11400000, guid: 1d8e62ce2a200a0408bfbe96237ccf6a, type: 2}
   scoreAmount: 1
 --- !u!135 &-6420379292074875852
 SphereCollider:
