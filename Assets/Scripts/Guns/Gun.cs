@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
     private float _maxRange = 100f;
 
     [SerializeField]
-    protected int bulletsPerMagazine = 10;
+    private int _bulletsPerMagazine = 10;
     /// <summary>
     /// radius indicates how big the spherecast will be once raycast doesn't hit but at the same time, close to hitting something
     /// </summary>
@@ -58,6 +58,9 @@ public class Gun : MonoBehaviour
     private bool _resetCount = false;
     
     private int _shotsCounter;
+
+    public static event Action<int> onUpdateCurrentAmmoUI;
+    public static event Action<int> onUpdateMaxAmmoUI;
 
     #region DAMAGE 
     [Space]
@@ -107,12 +110,15 @@ public class Gun : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        _shotsCounter = bulletsPerMagazine;
+        _shotsCounter = _bulletsPerMagazine;
+        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
     }
 
     private void OnEnable()
     {
+        onUpdateMaxAmmoUI?.Invoke(_bulletsPerMagazine);
+        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         InputManager.onShoot += OnPressedTrigger;
         InputManager.onReleaseShooting += OnReleasedTrigger;
         InputManager.onManualReloading += Reloading;
@@ -167,6 +173,7 @@ public class Gun : MonoBehaviour
             }
 
             _shotsCounter--;
+            onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
             animator.SetTrigger("isShooting");
             gunSoundChannel?.PlayAudio();
             Instantiate(muzzleFlash, muzzlePoint);
@@ -254,10 +261,11 @@ public class Gun : MonoBehaviour
 
     private async void Reloading()
     {
-        if (_shotsCounter == bulletsPerMagazine) return;
+        if (_shotsCounter == _bulletsPerMagazine) return;
         canShoot = false;
         _isReloading = true;
         animator.SetBool("isReloading", _isReloading);
+        
         onReloadTime += Reload;
         await CountDown(_reloadSpeed);
         onReloadTime -= Reload;
@@ -268,7 +276,8 @@ public class Gun : MonoBehaviour
     {
         _isReloading = false;
         animator.SetBool("isReloading", _isReloading);
-        _shotsCounter = bulletsPerMagazine;
+        _shotsCounter = _bulletsPerMagazine;
+        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
     }
 

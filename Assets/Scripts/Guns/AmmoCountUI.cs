@@ -4,27 +4,22 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class AmmoCountUI : MonoBehaviour
-{
+public class AmmoCountUI : MonoBehaviour {
     [SerializeField]
     private TextMeshProUGUI _maxAmmo;
 
     [SerializeField]
     private TextMeshProUGUI _currentAmmo;
-
-    public static event Action<int> onUpdateAmmoCount;
-    public static event Action<int> onUpdateMaxAmmoCount;
-
     private void OnEnable()
     {
-        onUpdateAmmoCount += UpdateAmmo;
-        onUpdateMaxAmmoCount += UpdateMaxAmmo;
+        Gun.onUpdateCurrentAmmoUI += UpdateAmmo;
+        Gun.onUpdateMaxAmmoUI += UpdateMaxAmmo;
     }
 
     private void OnDisable()
     {
-        onUpdateAmmoCount -= UpdateAmmo;
-        onUpdateMaxAmmoCount -= UpdateMaxAmmo;
+        Gun.onUpdateCurrentAmmoUI -= UpdateAmmo;
+        Gun.onUpdateMaxAmmoUI -= UpdateMaxAmmo;
     }
 
 
