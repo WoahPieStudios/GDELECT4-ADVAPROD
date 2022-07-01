@@ -1,18 +1,22 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using System;
 
 public class Skill : MonoBehaviour
 {
     [SerializeField]
-    private float _coolDown;
+    private float _coolDownTime = 5f;
 
     [SerializeField]
-    private float _equipTime;
+    private float _equipTime = 0.8f;
+
+
+    public static event Action onActivateSkill;
 
     [SerializeField]
-    private float _startTimer;
+    private GameObject _rocketLauncher;
     
-    private bool _startCoolDown;
+    public bool _startCoolDown = false;
     private float _countDown;
     private bool _canUseSkill;
 
@@ -20,14 +24,14 @@ public class Skill : MonoBehaviour
 
     public float countDown {
         get => _countDown;
-        set => _countDown = Mathf.Clamp(value, 0, _coolDown);
+        set => _countDown = Mathf.Clamp(value, 0, _coolDownTime);
     }
 
 
     private void Start()
     {
-        countDown = _coolDown;
-
+        countDown = _coolDownTime;
+        _rocketLauncher.SetActive(false);
     }
 
 
@@ -44,17 +48,48 @@ public class Skill : MonoBehaviour
 
     private void Update()
     {
-        
+        Debug.Log($"countdown timer: {countDown}");
+        if (_startCoolDown)
+        {
+            countDown -= Time.deltaTime;
+
+            if (countDown <= 0) 
+            {
+                _canUseSkill = true;
+            }
+        }
     }
 
-    private void ActivateSkill()
+    private async void ActivateSkill()
     {
         if (!_canUseSkill) return;
+        _canUseSkill = false;
 
-
-
+        //do  equipTimeDelay
+        await WaitForTimer(_equipTime);
+        _rocketLauncher.SetActive(true);
+        Debug.Log($"Rocket Set active to: {_rocketLauncher.activeSelf}");
+        onActivateSkill?.Invoke();
+        ResetTimer();
     }
 
+    private async Task WaitForTimer(float duration)
+    {
+        var currentTimer = Time.time + _equipTime;
+
+        while (Time.time < currentTimer)
+        {
+            await Task.Yield();
+        }
+    }
+
+    private async void ResetTimer()
+    {
+        countDown = _coolDownTime;
+
+        await WaitForTimer(_equipTime);
+        _rocketLauncher.SetActive(false);
+    }
 
 
 

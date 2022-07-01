@@ -250,6 +250,7 @@ public class Gun : MonoBehaviour
 
     private async void Reloading()
     {
+        if (_shotsCounter == bulletsPerMagazine) return;
         canShoot = false;
         _isReloading = true;
         onReloadTime += Reload;
