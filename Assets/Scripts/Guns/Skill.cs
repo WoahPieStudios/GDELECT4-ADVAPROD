@@ -48,7 +48,6 @@ public class Skill : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"countdown timer: {countDown}");
         if (_startCoolDown)
         {
             countDown -= Time.deltaTime;
@@ -60,15 +59,11 @@ public class Skill : MonoBehaviour
         }
     }
 
-    private async void ActivateSkill()
+    private void ActivateSkill()
     {
-        if (!_canUseSkill) return;
+        if (!_canUseSkill) return; 
         _canUseSkill = false;
-
-        //do  equipTimeDelay
-        await WaitForTimer(_equipTime);
         _rocketLauncher.SetActive(true);
-        Debug.Log($"Rocket Set active to: {_rocketLauncher.activeSelf}");
         onActivateSkill?.Invoke();
         ResetTimer();
     }
@@ -86,7 +81,7 @@ public class Skill : MonoBehaviour
     private async void ResetTimer()
     {
         countDown = _coolDownTime;
-
+        _canUseSkill = false;
         await WaitForTimer(_equipTime);
         _rocketLauncher.SetActive(false);
     }

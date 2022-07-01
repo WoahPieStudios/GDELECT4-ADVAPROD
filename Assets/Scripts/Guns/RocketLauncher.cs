@@ -18,6 +18,9 @@ public class RocketLauncher : MonoBehaviour
     [SerializeField]
     private float _damage;
 
+    [SerializeField, Tooltip("How long will the rocket last")]
+    private float _lifetime = 10f;
+
     private Rocket _thisRocket;
 
 
@@ -51,5 +54,7 @@ public class RocketLauncher : MonoBehaviour
 
 
         rocket.gameObject.SetActive(true);
+
+        Destroy(rocket, _lifetime);
     }
 }
