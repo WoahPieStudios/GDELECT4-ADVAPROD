@@ -58,7 +58,8 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
-        [Header("SFX")]
+        [Header("SFX")] 
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel explosionChannel;
         [SerializeField] private VFXHandler explosionVFX;
         [SerializeField] SFXChannel SpawnSFX;
@@ -111,7 +112,7 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                    randomTotemSfx?.PlayAudio();
+                    randomTotemSfx?.PlayAudio(audioSource);
                     SpawnSFX?.PlayAudio();
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)

@@ -11,5 +11,9 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
         {
             SoundManager.Instance.OnPlaySFX(audioClip);
         }
+        public void PlayAudio(AudioSource source)
+        {
+            SoundManager.Instance.OnPlayAtSource(audioClip, source);
+        }
     }
 }

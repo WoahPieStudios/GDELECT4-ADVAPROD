@@ -10,6 +10,7 @@ public class SoundManager : Singleton<SoundManager>
     public AudioSource musicSource, sfxSource;
 
     private event Action<AudioClip> onPlaySFX;
+    private event Action<AudioClip, AudioSource> onPlayAtSource;
     private event Action<float> onSetBGMVolume, onSetSFXVolume;
 
     private void OnEnable()
@@ -17,6 +18,7 @@ public class SoundManager : Singleton<SoundManager>
         onPlaySFX += PlaySFX;
         onSetBGMVolume += SetBGMVolume;
         onSetSFXVolume += SetSFXVolume;
+        onPlayAtSource += PlayAudio;
     }
 
     public float GetBGMVolume => musicSource.volume;
@@ -37,6 +39,7 @@ public class SoundManager : Singleton<SoundManager>
         onPlaySFX -= PlaySFX;
         onSetBGMVolume -= SetBGMVolume;
         onSetSFXVolume -= SetSFXVolume;
+        onPlayAtSource -= PlayAudio;
     }
 
     public void PlayAudio(AudioSource source, AudioClip clip, float volume)
@@ -45,6 +48,12 @@ public class SoundManager : Singleton<SoundManager>
         source.volume = volume;
     }
 
+    public void PlayAudio(AudioClip clip, AudioSource source)
+    {
+        source.clip = clip;
+        source.Play();
+    }
+    
     private void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
@@ -71,5 +80,10 @@ public class SoundManager : Singleton<SoundManager>
     public void OnSetSFXVolume(float volume)
     {
         onSetSFXVolume?.Invoke(volume);
+    }
+
+    public void OnPlayAtSource(AudioClip clip, AudioSource source)
+    {
+        onPlayAtSource?.Invoke(clip, source);
     }
 }

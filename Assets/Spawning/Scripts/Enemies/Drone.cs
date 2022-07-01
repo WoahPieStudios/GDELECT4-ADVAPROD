@@ -34,7 +34,9 @@ namespace Spawning.Scripts.Enemies
         [SerializeField] float attackDistance;
         private Material _material;
         private float maxHealth;
-
+        
+        [Header("SFX")]
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel enemyDeathChannel;
         [SerializeField] SFXChannel enemyExplosionChannel;
         [SerializeField] RandomSFXChannel RandomEnemySFX;

@@ -11,5 +11,10 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
         {
             SoundManager.Instance.OnPlaySFX(audioClips[Random.Range(0, audioClips.Length)]);
         }
+
+        public void PlayAudio(AudioSource source)
+        {
+            SoundManager.Instance.OnPlayAtSource(audioClips[Random.Range(0, audioClips.Length)], source);
+        }
     }
 }
