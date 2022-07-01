@@ -58,9 +58,13 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
-        [Header("SFX")]
+        [Header("SFX")] 
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel explosionChannel;
         [SerializeField] private VFXHandler explosionVFX;
+        [SerializeField] SFXChannel SpawnSFX;
+        [SerializeField] RandomSFXChannel randomTotemSfx;
+        [SerializeField] private PauseEventChannel pauseEventChannel;
 
         private float maxHealth;
         public float Health { get => health; set => health = value; }
@@ -88,6 +92,10 @@ namespace Spawning.Scripts.Spawners
             maxHealth = health;
             _material = renderer != null ? renderer.material : GetComponent<Renderer>().material;
             if (!isSpawning) return;
+            if (audioSource == null) audioSource = GetComponent<AudioSource>();
+            pauseEventChannel.AddPauseListener(() => randomTotemSfx.PauseAudio(audioSource));
+            pauseEventChannel.AddResumeListener(() => randomTotemSfx.ResumeAudio(audioSource));
+            randomTotemSfx?.PlayAudio(audioSource);
             StartCoroutine(SpawnDrone());
         }
 
@@ -109,6 +117,7 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
+                    SpawnSFX?.PlayAudio();
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
                     {
@@ -128,9 +137,9 @@ namespace Spawning.Scripts.Spawners
                     for (int i = 0; i < spawnAmountTank; i++)
                     {
                         var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
-                        var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
+                        var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);                       
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                    
+                        SpawnSFX?.PlayAudio();
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
                         if (drone == null)
                         {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Handlers;
 using Spawning.Scripts.Containers;
+using AdditiveScenes.Scripts.ScriptableObjects;
 using Spawning.Scripts.Spawners;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace Spawning.Scripts.Managers
         [SerializeField] private SpawnPointManager spawnPointManager;
         [SerializeField] private float initialDelay;
         [SerializeField] private float spawnInterval;
+        [SerializeField] SFXChannel totemSFX;
+        [SerializeField] RandomSFXChannel RandomTotemSFX;
         private static event Action onSpawnEvent;
         private Coroutine spawnRoutine;
 
@@ -50,6 +53,8 @@ namespace Spawning.Scripts.Managers
                 var point = LookForAvailablePoint();
                 var vfx = Instantiate(totemSpawnVFX, point.GetPointPosition(), Quaternion.identity, transform);
                 yield return new WaitForSeconds(vfx.particleSystem.main.duration);
+                totemSFX?.PlayAudio();
+                RandomTotemSFX?.PlayAudio();
                 var spawner = Instantiate(objectToSpawn, point.TakePointPosition(), Quaternion.identity, transform);
                 spawner.SpawnerPoint = point;
                 spawner.isInitialized = true;
