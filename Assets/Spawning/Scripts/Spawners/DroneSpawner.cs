@@ -62,6 +62,7 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] SFXChannel explosionChannel;
         [SerializeField] private VFXHandler explosionVFX;
         [SerializeField] SFXChannel SpawnSFX;
+        [SerializeField] RandomSFXChannel randomTotemSfx;
 
         private float maxHealth;
         public float Health { get => health; set => health = value; }
@@ -110,6 +111,7 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
+                    randomTotemSfx?.PlayAudio();
                     SpawnSFX?.PlayAudio();
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
@@ -133,6 +135,7 @@ namespace Spawning.Scripts.Spawners
                         var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);                       
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
                         SpawnSFX?.PlayAudio();
+                        randomTotemSfx?.PlayAudio();
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
                         if (drone == null)
                         {

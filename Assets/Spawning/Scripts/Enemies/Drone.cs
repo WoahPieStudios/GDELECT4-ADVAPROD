@@ -37,6 +37,7 @@ namespace Spawning.Scripts.Enemies
 
         [SerializeField] SFXChannel enemyDeathChannel;
         [SerializeField] SFXChannel enemyExplosionChannel;
+        [SerializeField] RandomSFXChannel RandomEnemySFX;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -51,6 +52,7 @@ namespace Spawning.Scripts.Enemies
 
         private void Awake()
         {
+           
             _rigidBody = GetComponent<Rigidbody>();
             _transform = transform;
             _material = GetComponent<Renderer>().material;
@@ -73,6 +75,7 @@ namespace Spawning.Scripts.Enemies
             // else { AttackPlayer(); }
 
             LookForPlayer();
+            
         }
 
         /// <summary>
