@@ -129,7 +129,7 @@ namespace Spawning.Scripts.Enemies
             health -= damageAmount;
             var color = Color.Lerp(Color.black, Color.white, Health / maxHealth);
             _material.color = color;
-            if (health <= 0) { GetDestroyed(); }
+            if (health <= 0) { GetDestroyed(true); }
         }
 
         private void OnEnable()
@@ -156,15 +156,19 @@ namespace Spawning.Scripts.Enemies
                 particle.Clear();
                 particle.gameObject.SetActive(false);
             }
-            
+
         }
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
             if (!isInitialized) return;
-            if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
             enemyDeathChannel?.PlayAudio();
             enemyExplosionChannel?.PlayAudio();
+
+            if (killedByPlayer)
+            {
+                ScoreManager.OnAddScore(scoreAmount, EnemyType);
+            }
             var vfx = DronePool.Instance.GetVFXHandler(transform.position);
             vfx.particleSystem.Play();
             DronePool.Instance.Release(this);
