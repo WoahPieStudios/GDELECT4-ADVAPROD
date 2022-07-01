@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public Transform settingsBtn;
     public Transform quitBtn;
     public Transform GameTitle;
+    public Transform aboutBtn;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class MainMenu : MonoBehaviour
     public void Move()
     {
         startBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
+        aboutBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
         settingsBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
         quitBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
 
