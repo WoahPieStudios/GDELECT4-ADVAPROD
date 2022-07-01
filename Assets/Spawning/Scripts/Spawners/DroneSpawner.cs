@@ -91,6 +91,7 @@ namespace Spawning.Scripts.Spawners
             maxHealth = health;
             _material = renderer != null ? renderer.material : GetComponent<Renderer>().material;
             if (!isSpawning) return;
+            randomTotemSfx?.PlayAudio(audioSource);
             StartCoroutine(SpawnDrone());
         }
 
@@ -112,7 +113,6 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                    randomTotemSfx?.PlayAudio(audioSource);
                     SpawnSFX?.PlayAudio();
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
@@ -136,7 +136,6 @@ namespace Spawning.Scripts.Spawners
                         var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);                       
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
                         SpawnSFX?.PlayAudio();
-                        randomTotemSfx?.PlayAudio();
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
                         if (drone == null)
                         {

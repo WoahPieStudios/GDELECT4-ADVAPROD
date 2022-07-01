@@ -141,6 +141,7 @@ namespace Spawning.Scripts.Enemies
         {
             _material.color = Color.white;
             health = maxHealth;
+            RandomEnemySFX?.PlayAudio(audioSource);
             foreach (var particle in particles)
             {
                 particle.gameObject.SetActive(true);
