@@ -18,5 +18,15 @@ namespace AdditiveScenes.Scripts.ScriptableObjects
             var clip = audioClips[Random.Range(0, audioClips.Length)];
             SoundManager.Instance.OnPlayAtSource(clip, source);
         }
+
+        public void PauseAudio(AudioSource source)
+        {
+            source.Pause();
+        }
+
+        public void ResumeAudio(AudioSource source)
+        {
+            source.UnPause();
+        }
     }
 }
