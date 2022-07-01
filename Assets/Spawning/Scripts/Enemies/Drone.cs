@@ -34,9 +34,13 @@ namespace Spawning.Scripts.Enemies
         [SerializeField] float attackDistance;
         private Material _material;
         private float maxHealth;
-
+        
+        [Header("SFX")]
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel enemyDeathChannel;
         [SerializeField] SFXChannel enemyExplosionChannel;
+        [SerializeField] RandomSFXChannel RandomEnemySFX;
+        [SerializeField] private PauseEventChannel pauseEventChannel;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -51,6 +55,7 @@ namespace Spawning.Scripts.Enemies
 
         private void Awake()
         {
+           
             _rigidBody = GetComponent<Rigidbody>();
             _transform = transform;
             _material = GetComponent<Renderer>().material;
@@ -73,6 +78,7 @@ namespace Spawning.Scripts.Enemies
             // else { AttackPlayer(); }
 
             LookForPlayer();
+            
         }
 
         /// <summary>
@@ -129,13 +135,16 @@ namespace Spawning.Scripts.Enemies
             health -= damageAmount;
             var color = Color.Lerp(Color.black, Color.white, Health / maxHealth);
             _material.color = color;
-            if (health <= 0) { GetDestroyed(); }
+            if (health <= 0) { GetDestroyed(true); }
         }
 
         private void OnEnable()
         {
             _material.color = Color.white;
             health = maxHealth;
+            pauseEventChannel.AddPauseListener(() => RandomEnemySFX.PauseAudio(audioSource));
+            pauseEventChannel.AddResumeListener(() => RandomEnemySFX.ResumeAudio(audioSource));
+            RandomEnemySFX?.PlayAudio(audioSource);
             foreach (var particle in particles)
             {
                 particle.gameObject.SetActive(true);
@@ -156,15 +165,19 @@ namespace Spawning.Scripts.Enemies
                 particle.Clear();
                 particle.gameObject.SetActive(false);
             }
-            
+
         }
 
         public void GetDestroyed(bool killedByPlayer = true)
         {
             if (!isInitialized) return;
-            if (killedByPlayer) { ScoreManager.OnAddScore(scoreAmount, EnemyType); }
             enemyDeathChannel?.PlayAudio();
             enemyExplosionChannel?.PlayAudio();
+
+            if (killedByPlayer)
+            {
+                ScoreManager.OnAddScore(scoreAmount, EnemyType);
+            }
             var vfx = DronePool.Instance.GetVFXHandler(transform.position);
             vfx.particleSystem.Play();
             DronePool.Instance.Release(this);

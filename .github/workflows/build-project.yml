@@ -31,19 +31,22 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneWindows64
-          versioning: Tag
-
-      - name: Compress Build
-        uses: edgarrc/action-7z@v1
-        with:
-          args: 7z a -t7z -mx=9 ${{ steps.build.outputs.buildVersion }}.7z ./build/StandaloneWindows64/*
+          versioning: Semantic
 
       - name: Clone public repo
-        run: |
-          git clone ${{secrets.AZURE_REPO}} public-builds
+        uses: actions/checkout@v3
+        with:
+          repository: WoahPieStudios/GDELECT4-ADVAPROD-BUILDS
+          path: public-builds
+          token: ${{ secrets.API_TOKEN_GITHUB }}
 
-      - name: Copy build to public repo
-        run: cp ${{ steps.build.outputs.buildVersion }}.7z public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }}.7z
+      - name: Compress and copy build to public repo
+        # uses: edgarrc/action-7z@v1
+        # with:
+        #   args: 7z a -t7z -mx=9 ${{ steps.build.outputs.buildVersion }}.7z ./build/StandaloneWindows64/*
+        run: |
+          chmod +x .github/scripts/split-zipper.sh
+          ./.github/scripts/split-zipper.sh ./build/StandaloneWindows64 100 public-builds/build/StandaloneWindows64/${{ steps.build.outputs.buildVersion }} ${{ steps.build.outputs.buildVersion }}
 
       - name: Push build to public repo
         run: |

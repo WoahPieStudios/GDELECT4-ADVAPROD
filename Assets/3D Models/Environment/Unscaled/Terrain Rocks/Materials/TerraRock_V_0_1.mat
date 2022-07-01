@@ -10,6 +10,7 @@ Material:
   m_Name: TerraRock_V_0_1
   m_Shader: {fileID: 4800000, guid: ef3178aabaab247448c46c904e37bf43, type: 3}
   m_ValidKeywords:
+  - TCP2_MOBILE
   - TCP2_OUTLINE_CONST_SIZE
   - TCP2_RAMP_BANDS
   - TCP2_REFLECTIONS_FRESNEL
@@ -19,8 +20,8 @@ Material:
   - _NORMALMAP
   m_InvalidKeywords:
   - _DETAIL_MULX2
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -174,7 +175,7 @@ Material:
     - _UseFresnelReflections: 1
     - _UseMatCap: 0
     - _UseMatCapMask: 0
-    - _UseMobileMode: 0
+    - _UseMobileMode: 1
     - _UseNormalMap: 1
     - _UseOcclusion: 0
     - _UseOutline: 1
@@ -194,7 +195,7 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5}
-    - _SColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SColor: {r: 0.68235296, g: 0.68235296, b: 0.68235296, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   m_BuildTextureStacks: []

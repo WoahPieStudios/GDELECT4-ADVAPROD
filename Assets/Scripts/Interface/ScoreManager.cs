@@ -6,18 +6,26 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Transform objectivesDisplay;
     [SerializeField] private TextMeshProUGUI objectiveDisplay;
-    private TextMeshProUGUI _totemDisplay, _droneDisplay, _tankDisplay; 
+    private TextMeshProUGUI _totemDisplay, _droneDisplay, _tankDisplay, _timeDisplay; 
     private int _totalScore, _droneScore, _tankScore, _totemScore;
+    private int _roundDroneScore, _roundTankScore, _roundTotemScore;
     public static event Action<int,EnemyType> AddScore;
+
+    [Header("Game Over Displays")]
+    [SerializeField] private TextMeshProUGUI timeSurvived;
+    [SerializeField] private TextMeshProUGUI enemiesKilled;
+    [SerializeField] private TextMeshProUGUI towersKilled;
 
     private void OnEnable()
     {
         AddScore += UpdateScore;
+        GameManager.Instance.gameStart.AddListener(ClearScore);
     }
 
     private void OnDisable()
     {
         AddScore -= UpdateScore;
+        GameManager.Instance.gameStart.RemoveListener(ClearScore);
     }
 
     public void SetupObjectiveDisplays()
@@ -39,6 +47,21 @@ public class ScoreManager : MonoBehaviour
             _tankDisplay ??= Instantiate(objectiveDisplay, objectivesDisplay);
             _tankDisplay.text = $"Tanks killed: {_tankScore:00} / {GameManager.Instance.TanksToKill:00}";
         }
+
+        _timeDisplay ??= Instantiate(objectiveDisplay, objectivesDisplay);
+    }
+
+    private void Update()
+    {
+        _timeDisplay.text = $"Round Time: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
+        UpdateGameOverUI();
+    }
+
+    private void UpdateGameOverUI()
+    {
+        timeSurvived.text = $"1. Time Survived: {GameManager.Instance.roundTime:hh\\:mm\\:ss}";
+        enemiesKilled.text = $"2. Enemies killed: {_roundDroneScore:00} drones | {_roundTankScore:00} tanks";
+        towersKilled.text = $"3. Towers Destroyed: {_roundTotemScore:00} Towers";
     }
 
     private void UpdateScore(int score, EnemyType type)
@@ -66,7 +89,8 @@ public class ScoreManager : MonoBehaviour
 
     public static void OnAddScore(int score,EnemyType type)
     {
-        AddScore?.Invoke(score, type);
+        if(!GameManager.Instance.IsGameOver)
+            AddScore?.Invoke(score, type);
     }
 
     public void UpdateScoreDisplays()
@@ -95,6 +119,10 @@ public class ScoreManager : MonoBehaviour
     
     public void ClearScore()
     {
+        _roundDroneScore = _droneScore;
+        _roundTankScore = _tankScore;
+        _roundTotemScore = _totemScore;
+        
         _totalScore = 0;
         _droneScore = 0;
         _totemScore = 0;
