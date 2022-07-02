@@ -26299,7 +26299,7 @@ PrefabInstance:
     - target: {fileID: 6920387208353234075, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_Cameras.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6920387209258077857, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
@@ -26435,6 +26435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143501217102020064, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 4096
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877832b9f0d10fc4191d4d49414038a8, type: 3}
