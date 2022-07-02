@@ -26355,6 +26355,27 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6006282211063349297, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: isGlobal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006282211063349297, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 36644762d7a03824f9215ea50423bdf7,
+        type: 2}
+    - target: {fileID: 6920387208353234075, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387208353234075, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6920387209258077857, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_Enabled
@@ -26484,6 +26505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143501217102020064, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877832b9f0d10fc4191d4d49414038a8, type: 3}
