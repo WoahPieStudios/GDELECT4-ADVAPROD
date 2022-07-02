@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3595976, g: 0.33408973, b: 0.56057507, a: 1}
+  m_IndirectSpecularColor: {r: 0.35960814, g: 0.33409694, b: 0.56057614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26281,45 +26281,24 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4648069261866411058, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_ShowToolkit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648069261866411058, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_ShowCustomSorter
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5323915419480434507, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 6006282211063349297, guid: 877832b9f0d10fc4191d4d49414038a8,
+    - target: {fileID: 6544275662574442477, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
-      propertyPath: isGlobal
+      propertyPath: weight
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6006282211063349297, guid: 877832b9f0d10fc4191d4d49414038a8,
+    - target: {fileID: 6544275662574442477, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 36644762d7a03824f9215ea50423bdf7,
-        type: 2}
-    - target: {fileID: 6017948528013012628, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6920387208353234075, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
       propertyPath: m_Cameras.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6920387208353234075, guid: 877832b9f0d10fc4191d4d49414038a8,
-        type: 3}
-      propertyPath: m_RenderPostProcessing
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6920387209258077857, guid: 877832b9f0d10fc4191d4d49414038a8,
@@ -26456,6 +26435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143501217102020064, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 4096
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877832b9f0d10fc4191d4d49414038a8, type: 3}
