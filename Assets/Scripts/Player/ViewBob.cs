@@ -84,8 +84,7 @@ public class ViewBob : MonoBehaviour
     private Vector3 FootStepMotion()
     {
         Vector3 pos = Vector3.zero;
-        pos.y += Mathf.Cos(Time.time * _frequency / 2) * _amplitude * 2;
-        pos.x += Mathf.Sin(Time.time * _frequency / 2) * _amplitude * 2;
+        pos.y += Mathf.Cos(Time.time * _frequency / 2) * _amplitude / 2;
         return pos;
     }
 
