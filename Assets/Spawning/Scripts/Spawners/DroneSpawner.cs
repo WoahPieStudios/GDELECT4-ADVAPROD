@@ -9,6 +9,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using AdditiveScenes.Scripts.ScriptableObjects;
 using Handlers;
+using AdditiveScenes.Scripts.Managers;
 
 namespace Spawning.Scripts.Spawners
 {
@@ -58,7 +59,7 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
 
-        [Header("SFX")] 
+        [Header("SFX")]
         [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel explosionChannel;
         [SerializeField] private VFXHandler explosionVFX;
@@ -93,8 +94,12 @@ namespace Spawning.Scripts.Spawners
             _material = renderer != null ? renderer.material : GetComponent<Renderer>().material;
             if (!isSpawning) return;
             if (audioSource == null) audioSource = GetComponent<AudioSource>();
-            pauseEventChannel.AddPauseListener(() => randomTotemSfx.PauseAudio(audioSource));
-            pauseEventChannel.AddResumeListener(() => randomTotemSfx.ResumeAudio(audioSource));
+            // TODO: Find a way to use the event channel for subscribing properly
+            // Needs to use the actual PauseManager class to subscribe because using the event channel brings issues in unsubscribing
+            PauseManager.onPause += PauseAudio;
+            PauseManager.onResume += ResumeAudio;
+            // pauseEventChannel.AddPauseListener(() => PauseAudio());
+            // pauseEventChannel.AddResumeListener(() => ResumeAudio());
             randomTotemSfx?.PlayAudio(audioSource);
             StartCoroutine(SpawnDrone());
         }
@@ -137,7 +142,7 @@ namespace Spawning.Scripts.Spawners
                     for (int i = 0; i < spawnAmountTank; i++)
                     {
                         var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
-                        var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);                       
+                        var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
                         SpawnSFX?.PlayAudio();
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
@@ -172,6 +177,8 @@ namespace Spawning.Scripts.Spawners
 
         private void OnDisable()
         {
+            PauseManager.onPause -= PauseAudio;
+            PauseManager.onResume -= ResumeAudio;
             GetDestroyed();
         }
 
@@ -189,6 +196,16 @@ namespace Spawning.Scripts.Spawners
                 ScoreManager.OnAddScore(ScoreAmount, EnemyType);
                 explosionChannel?.PlayAudio();
             }
+        }
+
+        private void ResumeAudio()
+        {
+            randomTotemSfx.ResumeAudio(audioSource);
+        }
+
+        private void PauseAudio()
+        {
+            randomTotemSfx.PauseAudio(audioSource);
         }
 
         public EnemyType EnemyType
