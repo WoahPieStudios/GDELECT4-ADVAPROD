@@ -21,6 +21,10 @@ public class Gun : MonoBehaviour
     [Header("Effects")]
     [SerializeField]
     protected SFXChannel gunSoundChannel;
+    [SerializeField]
+    private SFXChannel _reloadChannel;
+
+
     
     [SerializeField]
     private VFXHandler droneHitEffect;
@@ -31,6 +35,7 @@ public class Gun : MonoBehaviour
     
     [Header("Animations")]
     [SerializeField] private Animator animator;
+
     #endregion
     
     #region WEAPON STATS
@@ -61,6 +66,8 @@ public class Gun : MonoBehaviour
 
     public static event Action<int> onUpdateCurrentAmmoUI;
     public static event Action<int> onUpdateMaxAmmoUI;
+    public static event Action onEnableUI;
+    public static event Action onDisableUI;
 
     #region DAMAGE 
     [Space]
@@ -84,7 +91,7 @@ public class Gun : MonoBehaviour
     [Header("RELOAD MECHANIC")]
     [Range(0,3f)]
     public float _reloadSpeed = 1f;
-    protected static event Action onReloadTime;
+    public static event Action onReloadTime;
     protected bool _isReloading;
     #endregion
 
@@ -122,6 +129,7 @@ public class Gun : MonoBehaviour
         InputManager.onShoot += OnPressedTrigger;
         InputManager.onReleaseShooting += OnReleasedTrigger;
         InputManager.onManualReloading += Reloading;
+
     }
 
     private void OnDisable()
@@ -129,6 +137,8 @@ public class Gun : MonoBehaviour
         InputManager.onShoot -= OnPressedTrigger;
         InputManager.onReleaseShooting -= OnReleasedTrigger;
         InputManager.onManualReloading -= Reloading;
+
+
     }
     private void Update()
     {
@@ -248,6 +258,7 @@ public class Gun : MonoBehaviour
 
     }
 
+
     private async Task CountDown(float duration)
     {
         var currentTimer = Time.time + duration;
@@ -262,13 +273,17 @@ public class Gun : MonoBehaviour
     private async void Reloading()
     {
         if (_shotsCounter == _bulletsPerMagazine) return;
+
+        _reloadChannel?.PlayAudio();
         canShoot = false;
         _isReloading = true;
         animator.SetBool("isReloading", _isReloading);
-        
+        ReloadUI.StartFilling();
         onReloadTime += Reload;
         await CountDown(_reloadSpeed);
         onReloadTime -= Reload;
+        ReloadUI.FinishFilling();
+
         return;
     }
 
