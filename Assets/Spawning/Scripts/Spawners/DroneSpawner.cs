@@ -56,9 +56,10 @@ namespace Spawning.Scripts.Spawners
 
         [Header("Combat")]
         [SerializeField] private EnemyType enemyType;
-        [SerializeField] private float health;
         [SerializeField] private int scoreAmount;
-
+        [SerializeField] private Weakpoint[] weakpoints;
+        
+        
         [Header("SFX")]
         [SerializeField] private AudioSource audioSource;
         [SerializeField] SFXChannel explosionChannel;
@@ -68,7 +69,25 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] private PauseEventChannel pauseEventChannel;
 
         private float maxHealth;
-        public float Health { get => health; set => health = value; }
+        public float Health
+        {
+            get
+            {
+                var health = 0f;
+                foreach (var weakpoint in weakpoints)
+                {
+                    health += weakpoint.Health;
+                }
+                return health;
+            }
+            set {
+                foreach (var weakpoint in weakpoints)
+                {
+                    value += weakpoint.Health;
+                }
+            }
+        }
+
         public int ScoreAmount { get => scoreAmount; set => scoreAmount = value; }
 
         public SpawnPoint SpawnerPoint { get; set; }
@@ -80,7 +99,6 @@ namespace Spawning.Scripts.Spawners
         {
             spawnInterval = 1f;
             spawnRadius = 1f;
-            health = 1f;
         }
 
         private void Awake()
@@ -90,7 +108,7 @@ namespace Spawning.Scripts.Spawners
 
         private void Start()
         {
-            maxHealth = health;
+            maxHealth = Health;
             _material = renderer != null ? renderer.material : GetComponent<Renderer>().material;
             if (!isSpawning) return;
             if (audioSource == null) audioSource = GetComponent<AudioSource>();
