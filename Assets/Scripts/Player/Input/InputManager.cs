@@ -44,27 +44,35 @@ public class InputManager : MonoBehaviour
        
 
         #region Grappling & Hooking
-        _playerInputs.PlayerControls.Grapple.performed += ctx =>
-        {
-            Debug.Log("Grappling!");
-            onStartGrapple?.Invoke();
-        };
-        _playerInputs.PlayerControls.Grapple.canceled += ctx =>
-        {
-            Debug.Log("Stopped Grappling");
-            onEndGrapple?.Invoke();
-        };
 
-        _playerInputs.PlayerControls.Sprint.performed += ctx =>
+        if (TutorialTrigger.canGrapple)
         {
-            Debug.Log("Hooking forward");
-            onStartHook?.Invoke();
-        };
-        _playerInputs.PlayerControls.Sprint.canceled += ctx =>
+            _playerInputs.PlayerControls.Grapple.performed += ctx =>
+            {
+                Debug.Log("Grappling!");
+                onStartGrapple?.Invoke();
+            };
+            _playerInputs.PlayerControls.Grapple.canceled += ctx =>
+            {
+                Debug.Log("Stopped Grappling");
+                onEndGrapple?.Invoke();
+            };
+        }
+
+
+        if (TutorialTrigger.canHookShot)
         {
-            Debug.Log("Hook done");
-            onEndHook?.Invoke();
-        }; 
+            _playerInputs.PlayerControls.Sprint.performed += ctx =>
+            {
+                Debug.Log("Hooking forward");
+                onStartHook?.Invoke();
+            };
+            _playerInputs.PlayerControls.Sprint.canceled += ctx =>
+            {
+                Debug.Log("Hook done");
+                onEndHook?.Invoke();
+            }; 
+        }
 
         #endregion
 
@@ -84,27 +92,40 @@ public class InputManager : MonoBehaviour
 
 
         #region Shooting
-        _playerInputs.PlayerControls.Shoot.performed += ctx =>
-        {
-            onShoot?.Invoke();
-        };
 
-        _playerInputs.PlayerControls.Shoot.canceled += ctx =>
+        if (TutorialTrigger.canShoot)
         {
-            onReleaseShooting?.Invoke();
-        };
+            _playerInputs.PlayerControls.Shoot.performed += ctx =>
+            {
+                onShoot?.Invoke();
+            };
 
-        _playerInputs.PlayerControls.Reload.performed += ctx =>
+            _playerInputs.PlayerControls.Shoot.canceled += ctx =>
+            {
+                onReleaseShooting?.Invoke();
+            };
+        }
+
+
+        if (TutorialTrigger.canReload)
         {
-            onManualReloading?.Invoke();
-        };
+            _playerInputs.PlayerControls.Reload.performed += ctx =>
+            {
+                onManualReloading?.Invoke();
+            };
+
+        }
         #endregion
 
         #region Skill
-        _playerInputs.PlayerControls.Skill.performed += ctx =>
+
+        if (TutorialTrigger.canUseAbility)
         {
-            onSkillActivate?.Invoke();
-        };
+            _playerInputs.PlayerControls.Skill.performed += ctx =>
+            {
+                onSkillActivate?.Invoke();
+            };
+        }
         #endregion
 
 
