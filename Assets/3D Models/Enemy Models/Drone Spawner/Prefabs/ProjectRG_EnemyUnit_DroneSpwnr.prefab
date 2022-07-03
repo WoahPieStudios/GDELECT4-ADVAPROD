@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 7564836605942036774}
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8841562775794737231
 MeshFilter:
@@ -346,9 +346,11 @@ GameObject:
   - component: {fileID: 5844237924552047081}
   - component: {fileID: 3140186127638855513}
   - component: {fileID: 8534192652402071810}
+  - component: {fileID: 5316760726643057583}
+  - component: {fileID: 8245524113821431845}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr_EyesWeakPoint.001
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,12 +362,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817878967004795715}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8940279043820319201}
+  m_Father: {fileID: 2403631060101595706}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3140186127638855513
@@ -418,6 +420,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &5316760726643057583
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817878967004795715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.2034912
+  m_Center: {x: -7.834344, y: 36.83734, z: 2.1084375}
+--- !u!114 &8245524113821431845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817878967004795715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e18fecc3544a4d924eecb35fd594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  droneSpawner: {fileID: 4635084042541312402}
+  explosionVFX: {fileID: -1822743474417102883, guid: adb50253bd19eb04d84db08619243ee0,
+    type: 3}
+  explosionSFX: {fileID: 11400000, guid: 54f13785dcf81e845aec1b959e40a99f, type: 2}
 --- !u!1 &1994678051131629566
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +482,7 @@ Transform:
   m_Children:
   - {fileID: 5698962504482036915}
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4891922625871214159
 MeshFilter:
@@ -534,7 +566,7 @@ Transform:
   m_Children:
   - {fileID: 3777422668598739986}
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7603389590427074530
 MeshFilter:
@@ -617,7 +649,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8148802888876979059
 MeshFilter:
@@ -669,6 +701,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2947270362254392455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2403631060101595706}
+  m_Layer: 0
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2403631060101595706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947270362254392455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7581478303483572102}
+  - {fileID: 5844237924552047081}
+  - {fileID: 8038879840585009487}
+  - {fileID: 8548473639513507978}
+  - {fileID: 5785966293836270884}
+  m_Father: {fileID: 8940279043820319201}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3550636513782520444
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,9 +748,11 @@ GameObject:
   - component: {fileID: 5785966293836270884}
   - component: {fileID: 8125814378544419487}
   - component: {fileID: 4023471538191402774}
+  - component: {fileID: 8461360307069912042}
+  - component: {fileID: 427092607848900936}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr_EyesWeakPoint.004
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,12 +764,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3550636513782520444}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8940279043820319201}
+  m_Father: {fileID: 2403631060101595706}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8125814378544419487
@@ -752,6 +822,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &8461360307069912042
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550636513782520444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.2034874
+  m_Center: {x: -4.242919, y: 36.837337, z: -6.8324003}
+--- !u!114 &427092607848900936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550636513782520444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e18fecc3544a4d924eecb35fd594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  droneSpawner: {fileID: 4635084042541312402}
+  explosionVFX: {fileID: -1822743474417102883, guid: adb50253bd19eb04d84db08619243ee0,
+    type: 3}
+  explosionSFX: {fileID: 11400000, guid: 54f13785dcf81e845aec1b959e40a99f, type: 2}
 --- !u!1 &3635888899256692715
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,9 +1030,11 @@ GameObject:
   - component: {fileID: 7581478303483572102}
   - component: {fileID: 4565386919445966243}
   - component: {fileID: 3406168792853032283}
+  - component: {fileID: 9152858623575776742}
+  - component: {fileID: 57932455356965057}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr_EyesWeakPoint.000
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -944,12 +1046,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3945259679822309890}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8940279043820319201}
+  m_Father: {fileID: 2403631060101595706}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4565386919445966243
@@ -1002,6 +1104,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &9152858623575776742
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945259679822309890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.203495
+  m_Center: {x: 4.813044, y: 36.837345, z: -6.407482}
+--- !u!114 &57932455356965057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945259679822309890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e18fecc3544a4d924eecb35fd594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  droneSpawner: {fileID: 4635084042541312402}
+  explosionVFX: {fileID: -1822743474417102883, guid: adb50253bd19eb04d84db08619243ee0,
+    type: 3}
+  explosionSFX: {fileID: 11400000, guid: 54f13785dcf81e845aec1b959e40a99f, type: 2}
 --- !u!1 &4094456644523671947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1166,7 @@ Transform:
   m_Children:
   - {fileID: 956609465065834127}
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1376707879800959346
 MeshFilter:
@@ -1286,7 +1418,7 @@ Transform:
   m_Children:
   - {fileID: 2145224072264157391}
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4327341340025632325
 MeshFilter:
@@ -1432,9 +1564,11 @@ GameObject:
   - component: {fileID: 8038879840585009487}
   - component: {fileID: 1137821420419696152}
   - component: {fileID: 3880180302969436174}
+  - component: {fileID: 8609859626982628178}
+  - component: {fileID: 4690476202315405578}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr_EyesWeakPoint.002
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1446,12 +1580,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4947466890409773140}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8940279043820319201}
+  m_Father: {fileID: 2403631060101595706}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1137821420419696152
@@ -1504,6 +1638,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &8609859626982628178
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947466890409773140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.203497
+  m_Center: {x: 0.0026583672, y: 36.83734, z: 8.367339}
+--- !u!114 &4690476202315405578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947466890409773140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e18fecc3544a4d924eecb35fd594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  droneSpawner: {fileID: 4635084042541312402}
+  explosionVFX: {fileID: -1822743474417102883, guid: adb50253bd19eb04d84db08619243ee0,
+    type: 3}
+  explosionSFX: {fileID: 11400000, guid: 54f13785dcf81e845aec1b959e40a99f, type: 2}
 --- !u!1 &5000164163962103783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,7 +1867,7 @@ Transform:
   m_Children:
   - {fileID: 3055267008944757117}
   m_Father: {fileID: 8940279043820319201}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8115159369458392392
 MeshFilter:
@@ -1766,9 +1930,11 @@ GameObject:
   - component: {fileID: 8548473639513507978}
   - component: {fileID: 5345394014527413264}
   - component: {fileID: 6558115165543414331}
+  - component: {fileID: 3957877586115734040}
+  - component: {fileID: 2845531926496733103}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr_EyesWeakPoint.003
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1780,12 +1946,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7820887778788588945}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8940279043820319201}
+  m_Father: {fileID: 2403631060101595706}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5345394014527413264
@@ -1838,6 +2004,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3957877586115734040
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820887778788588945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.203493
+  m_Center: {x: 7.8746157, y: 36.83734, z: 2.0302057}
+--- !u!114 &2845531926496733103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820887778788588945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e18fecc3544a4d924eecb35fd594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  droneSpawner: {fileID: 4635084042541312402}
+  explosionVFX: {fileID: -1822743474417102883, guid: adb50253bd19eb04d84db08619243ee0,
+    type: 3}
+  explosionSFX: {fileID: 11400000, guid: 54f13785dcf81e845aec1b959e40a99f, type: 2}
 --- !u!1 &8104841426927511205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,7 +2133,7 @@ GameObject:
   - component: {fileID: -3663805044326780216}
   m_Layer: 0
   m_Name: ProjectRG_EnemyUnit_DroneSpwnr
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1954,11 +2150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 7581478303483572102}
-  - {fileID: 5844237924552047081}
-  - {fileID: 8038879840585009487}
-  - {fileID: 8548473639513507978}
-  - {fileID: 5785966293836270884}
+  - {fileID: 2403631060101595706}
   - {fileID: 2526678600726407632}
   - {fileID: 1293971332351330142}
   - {fileID: 8642375354262383433}
@@ -1980,7 +2172,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 11.24
+  m_Radius: 8.9
   m_Height: 60
   m_Direction: 1
   m_Center: {x: 0, y: 17.39, z: 0}
@@ -2007,8 +2199,13 @@ MonoBehaviour:
   spawnAmountTank: 1
   tankSpawnChance: 1
   enemyType: 0
-  health: 500
   scoreAmount: 1
+  weakpoints:
+  - {fileID: 57932455356965057}
+  - {fileID: 8245524113821431845}
+  - {fileID: 4690476202315405578}
+  - {fileID: 2845531926496733103}
+  - {fileID: 427092607848900936}
   audioSource: {fileID: -3663805044326780216}
   explosionChannel: {fileID: 11400000, guid: 51aa7e757752fea4297a6c5196529a19, type: 2}
   explosionVFX: {fileID: -1822743474417102883, guid: 4abf4df016d94a047ba141317678309b,
@@ -2322,7 +2519,7 @@ PrefabInstance:
     - target: {fileID: 4886448711544171403, guid: a4f621a8d0f2dc74b9329c92fb825f9f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4886448711544171403, guid: a4f621a8d0f2dc74b9329c92fb825f9f,
         type: 3}
