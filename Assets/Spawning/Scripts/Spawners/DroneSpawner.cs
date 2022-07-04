@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Enums;
 using Interface;
@@ -61,12 +62,13 @@ namespace Spawning.Scripts.Spawners
         
         
         [Header("SFX")]
-        [SerializeField] private AudioSource audioSource;
+        public AudioSource audioSource;
         [SerializeField] SFXChannel explosionChannel;
         [SerializeField] private VFXHandler explosionVFX;
         [SerializeField] SFXChannel SpawnSFX;
         [SerializeField] RandomSFXChannel randomTotemSfx;
         [SerializeField] private PauseEventChannel pauseEventChannel;
+        [SerializeField] private SFXVolumeChannel sfxVolumeChannel;
 
         private float maxHealth;
         public float Health
@@ -140,7 +142,7 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                    SpawnSFX?.PlayAudio();
+                    SpawnSFX?.PlayAudio(audioSource);
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
                     {
@@ -162,7 +164,7 @@ namespace Spawning.Scripts.Spawners
                         var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                         var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                        SpawnSFX?.PlayAudio();
+                        SpawnSFX?.PlayAudio(audioSource);
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
                         if (drone == null)
                         {
@@ -178,6 +180,11 @@ namespace Spawning.Scripts.Spawners
                     }
                 }
             }
+        }
+
+        private void Update()
+        {
+            audioSource.volume = sfxVolumeChannel.GetVolume;
         }
 
         private void OnDrawGizmosSelected()

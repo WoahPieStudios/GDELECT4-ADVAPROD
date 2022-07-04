@@ -53,9 +53,9 @@ namespace Spawning.Scripts.Managers
                 var point = LookForAvailablePoint();
                 var vfx = Instantiate(totemSpawnVFX, point.GetPointPosition(), Quaternion.identity, transform);
                 yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                totemSFX?.PlayAudio();
-                RandomTotemSFX?.PlayAudio();
                 var spawner = Instantiate(objectToSpawn, point.TakePointPosition(), Quaternion.identity, transform);
+                totemSFX?.PlayAudio(spawner.audioSource);
+                RandomTotemSFX?.PlayAudio(spawner.audioSource);
                 spawner.SpawnerPoint = point;
                 spawner.isInitialized = true;
                 print($"{spawner} spawned at {point}");
