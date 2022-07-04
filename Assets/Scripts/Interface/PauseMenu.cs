@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        pauseEventChannel.OnResume();
+        GameManager.Instance.OnGameResume();
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
