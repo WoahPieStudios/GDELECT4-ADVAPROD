@@ -36,6 +36,12 @@ public class Gun : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private Animator animator;
 
+    private const string DO_RELOAD = "DoReload";
+    private const string DO_SHOOTING = "DoShooting";
+
+    private int reload_Animation = Animator.StringToHash(DO_RELOAD);
+    private int shooting_Animation = Animator.StringToHash(DO_SHOOTING);
+
     #endregion
     
     #region WEAPON STATS
@@ -93,6 +99,7 @@ public class Gun : MonoBehaviour
     public float _reloadSpeed = 1f;
     public static event Action onReloadTime;
     protected bool _isReloading;
+    private bool _canReload;
     #endregion
 
 
@@ -116,8 +123,11 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
+
+
         _camera = Camera.main;
         _shotsCounter = _bulletsPerMagazine;
+        _canReload = true;
         onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
     }
@@ -184,7 +194,7 @@ public class Gun : MonoBehaviour
 
             _shotsCounter--;
             onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
-            animator.SetTrigger("isShooting");
+            animator.SetTrigger(shooting_Animation);
             gunSoundChannel?.PlayAudio();
             Instantiate(muzzleFlash, muzzlePoint);
             nextShot = Time.time + 1 / fireRate;
@@ -273,27 +283,40 @@ public class Gun : MonoBehaviour
     private async void Reloading()
     {
         if (_shotsCounter == _bulletsPerMagazine) return;
+        if (!_canReload) return;
 
+
+        _canReload = false;
+        if (!_isReloading)
         _reloadChannel?.PlayAudio();
         canShoot = false;
         _isReloading = true;
-        animator.SetBool("isReloading", _isReloading);
+        animator.SetTrigger(reload_Animation);
         ReloadUI.StartFilling();
         onReloadTime += Reload;
         await CountDown(_reloadSpeed);
         onReloadTime -= Reload;
         ReloadUI.FinishFilling();
-
-        return;
     }
 
     private void Reload()
     {
-        _isReloading = false;
-        animator.SetBool("isReloading", _isReloading);
-        _shotsCounter = _bulletsPerMagazine;
-        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
-        canShoot = true;
+
+        if (_isReloading)
+        {
+            _isReloading = false;
+            _shotsCounter = _bulletsPerMagazine;
+            onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
+            _canReload = true;
+            
+            canShoot = true;
+
+        }
+    }
+
+    private void EnableShootingAnimationEvent()
+    {
+        Debug.Log("Can now Shoot");
     }
 
     private void OnPressedTrigger()
