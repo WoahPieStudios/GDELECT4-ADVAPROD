@@ -17,8 +17,8 @@ public class UIBehavior : MonoBehaviour
 
     void Move()
     {
-        HealthBar.DOMoveY(50, 1).SetEase(Ease.InOutSine);
-        Ammo.DOMoveY(80, 1).SetEase(Ease.InOutSine);
+        HealthBar.DOMoveY(15, 1).SetEase(Ease.InOutSine);
+        Ammo.DOMoveY(150, 1).SetEase(Ease.InOutSine);
         Objectives.DOMoveY(1050, 1).SetEase(Ease.InOutSine);
 
     }
