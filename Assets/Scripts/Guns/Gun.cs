@@ -16,6 +16,8 @@ public enum FireMode {
 public class Gun : MonoBehaviour
 {
     private bool _enableCrosshair;
+
+    
     
     #region EFFECTS
     [Header("Effects")]
@@ -130,6 +132,7 @@ public class Gun : MonoBehaviour
         _canReload = true;
         onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
+        GameManager.Instance.gameStart.AddListener(ReloadReset);
     }
 
     private void OnEnable()
@@ -312,6 +315,11 @@ public class Gun : MonoBehaviour
             canShoot = true;
 
         }
+    }
+
+    private void ReloadReset()
+    {
+        _shotsCounter = _bulletsPerMagazine;
     }
 
     private void EnableShootingAnimationEvent()
