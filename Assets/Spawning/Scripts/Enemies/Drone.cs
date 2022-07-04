@@ -41,6 +41,7 @@ namespace Spawning.Scripts.Enemies
         [SerializeField] SFXChannel enemyExplosionChannel;
         [SerializeField] RandomSFXChannel RandomEnemySFX;
         [SerializeField] private PauseEventChannel pauseEventChannel;
+        [SerializeField] private SFXVolumeChannel sfxVolumeChannel;
 
         [Header("Player Reference")]
         private Transform _playerTransform;
@@ -65,7 +66,12 @@ namespace Spawning.Scripts.Enemies
             _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
             _isLookingForPlayer = true;
         }
-
+        
+        private void Update()
+        {
+            audioSource.volume = sfxVolumeChannel.GetVolume;
+        }
+        
         private void FixedUpdate()
         {
             // Do not do anything if player is not yet found.

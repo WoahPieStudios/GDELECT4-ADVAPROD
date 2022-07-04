@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Enums;
 using Interface;
@@ -67,6 +68,7 @@ namespace Spawning.Scripts.Spawners
         [SerializeField] SFXChannel SpawnSFX;
         [SerializeField] RandomSFXChannel randomTotemSfx;
         [SerializeField] private PauseEventChannel pauseEventChannel;
+        [SerializeField] private SFXVolumeChannel sfxVolumeChannel;
 
         private float maxHealth;
         public float Health
@@ -178,6 +180,11 @@ namespace Spawning.Scripts.Spawners
                     }
                 }
             }
+        }
+
+        private void Update()
+        {
+            audioSource.volume = sfxVolumeChannel.GetVolume;
         }
 
         private void OnDrawGizmosSelected()
