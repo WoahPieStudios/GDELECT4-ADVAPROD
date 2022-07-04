@@ -21,6 +21,10 @@ public class Gun : MonoBehaviour
     [Header("Effects")]
     [SerializeField]
     protected SFXChannel gunSoundChannel;
+    [SerializeField]
+    private SFXChannel _reloadChannel;
+
+
     
     [SerializeField]
     private VFXHandler droneHitEffect;
@@ -31,6 +35,7 @@ public class Gun : MonoBehaviour
     
     [Header("Animations")]
     [SerializeField] private Animator animator;
+
     #endregion
     
     #region WEAPON STATS
@@ -48,7 +53,7 @@ public class Gun : MonoBehaviour
     private float _maxRange = 100f;
 
     [SerializeField]
-    protected int bulletsPerMagazine = 10;
+    private int _bulletsPerMagazine = 10;
     /// <summary>
     /// radius indicates how big the spherecast will be once raycast doesn't hit but at the same time, close to hitting something
     /// </summary>
@@ -58,6 +63,11 @@ public class Gun : MonoBehaviour
     private bool _resetCount = false;
     
     private int _shotsCounter;
+
+    public static event Action<int> onUpdateCurrentAmmoUI;
+    public static event Action<int> onUpdateMaxAmmoUI;
+    public static event Action onEnableUI;
+    public static event Action onDisableUI;
 
     #region DAMAGE 
     [Space]
@@ -81,7 +91,7 @@ public class Gun : MonoBehaviour
     [Header("RELOAD MECHANIC")]
     [Range(0,3f)]
     public float _reloadSpeed = 1f;
-    protected static event Action onReloadTime;
+    public static event Action onReloadTime;
     protected bool _isReloading;
     #endregion
 
@@ -107,15 +117,19 @@ public class Gun : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        _shotsCounter = bulletsPerMagazine;
+        _shotsCounter = _bulletsPerMagazine;
+        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
     }
 
     private void OnEnable()
     {
+        onUpdateMaxAmmoUI?.Invoke(_bulletsPerMagazine);
+        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         InputManager.onShoot += OnPressedTrigger;
         InputManager.onReleaseShooting += OnReleasedTrigger;
         InputManager.onManualReloading += Reloading;
+
     }
 
     private void OnDisable()
@@ -123,6 +137,8 @@ public class Gun : MonoBehaviour
         InputManager.onShoot -= OnPressedTrigger;
         InputManager.onReleaseShooting -= OnReleasedTrigger;
         InputManager.onManualReloading -= Reloading;
+
+
     }
     private void Update()
     {
@@ -167,6 +183,7 @@ public class Gun : MonoBehaviour
             }
 
             _shotsCounter--;
+            onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
             animator.SetTrigger("isShooting");
             gunSoundChannel?.PlayAudio();
             Instantiate(muzzleFlash, muzzlePoint);
@@ -241,6 +258,7 @@ public class Gun : MonoBehaviour
 
     }
 
+
     private async Task CountDown(float duration)
     {
         var currentTimer = Time.time + duration;
@@ -254,13 +272,18 @@ public class Gun : MonoBehaviour
 
     private async void Reloading()
     {
-        if (_shotsCounter == bulletsPerMagazine) return;
+        if (_shotsCounter == _bulletsPerMagazine) return;
+
+        _reloadChannel?.PlayAudio();
         canShoot = false;
         _isReloading = true;
         animator.SetBool("isReloading", _isReloading);
+        ReloadUI.StartFilling();
         onReloadTime += Reload;
         await CountDown(_reloadSpeed);
         onReloadTime -= Reload;
+        ReloadUI.FinishFilling();
+
         return;
     }
 
@@ -268,7 +291,8 @@ public class Gun : MonoBehaviour
     {
         _isReloading = false;
         animator.SetBool("isReloading", _isReloading);
-        _shotsCounter = bulletsPerMagazine;
+        _shotsCounter = _bulletsPerMagazine;
+        onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
     }
 

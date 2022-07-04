@@ -11,10 +11,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int totemsToKill;
     [SerializeField] private int dronesToKill;
     [SerializeField] private int tanksToKill;
-    
+
     [SerializeField] private float roundDuration;
     public TimeSpan roundTime => TimeSpan.FromSeconds(roundDuration);
-    
+
     public int TotemsToKill => totemsToKill;
     public int DronesToKill => dronesToKill;
     public int TanksToKill => tanksToKill;
@@ -49,6 +49,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OnGamePause()
     {
+        if (!pauseEventChannel.canUseUI) return;
         IsPaused = true;
         Cursor.visible = true;
         pauseEventChannel.OnPause();
