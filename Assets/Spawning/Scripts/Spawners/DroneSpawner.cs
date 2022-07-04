@@ -62,7 +62,7 @@ namespace Spawning.Scripts.Spawners
         
         
         [Header("SFX")]
-        [SerializeField] private AudioSource audioSource;
+        public AudioSource audioSource;
         [SerializeField] SFXChannel explosionChannel;
         [SerializeField] private VFXHandler explosionVFX;
         [SerializeField] SFXChannel SpawnSFX;
@@ -142,7 +142,7 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                    SpawnSFX?.PlayAudio();
+                    SpawnSFX?.PlayAudio(audioSource);
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
                     {
@@ -164,7 +164,7 @@ namespace Spawning.Scripts.Spawners
                         var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                         var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                        SpawnSFX?.PlayAudio();
+                        SpawnSFX?.PlayAudio(audioSource);
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
                         if (drone == null)
                         {
