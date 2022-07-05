@@ -14,6 +14,16 @@ public class GunController : MonoBehaviour
         EquipGun(_toEquip);
     }
 
+    private void OnEnable()
+    {
+        WeaponItem.onGetWeapon += EquipGun;
+    }
+
+    private void OnDisable()
+    {
+        WeaponItem.onGetWeapon -= EquipGun;
+    }
+
     private void EquipGun(Gun gun)
     {
         if (_toUseGun != null)
@@ -21,7 +31,7 @@ public class GunController : MonoBehaviour
             Destroy(_toUseGun.gameObject);
         }
 
-        _toUseGun = Instantiate(_toEquip) as Gun;
+        _toUseGun = Instantiate(gun) as Gun;
         _toUseGun.gameObject.transform.SetParent(transform);
         _toUseGun.transform.localPosition = Vector3.zero;
         _toUseGun.transform.localEulerAngles = Vector3.zero;
