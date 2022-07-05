@@ -22,6 +22,12 @@ jobs:
           restore-keys: |
             Library-
 
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+
       - name: Build StandaloneWindows64
         uses: game-ci/unity-builder@v2
         id: build
@@ -50,11 +56,13 @@ jobs:
 
       - name: Push build to public repo
         run: |
+          git log --pretty="- %s" $(git describe --tags --abbrev=0 @^)..@ > changelog.txt
+          echo -e "${{ steps.build.outputs.buildVersion }} Changelog:\n$(cat changelog.txt)" > changelog.txt
           cd public-builds
           git config user.name bulletproofpancake
           git config user.email 57520402+bulletproofpancake@users.noreply.github.com
           git add .
-          git commit -m "Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          git commit -F ../changelog.txt
           git push --force
 
       - name: Return License
