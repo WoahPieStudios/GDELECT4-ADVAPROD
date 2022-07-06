@@ -142,13 +142,13 @@ namespace Spawning.Scripts.Spawners
                     var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                     var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                     yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                    SpawnSFX?.PlayAudio(audioSource);
                     var drone = DronePool.Instance.GetDrone(EnemyType.Drone);
                     if (drone == null)
                     {
                         Debug.LogError("No more available drones");
                         yield return null;
                     }
+                    SpawnSFX?.PlayAudio(drone.audioSource);
                     drone.transform.position = spawnPosition;
                     drone.SetPlayerTransform(_playerTransform);
                     drone.SetPlayerLookState(true);
@@ -164,14 +164,13 @@ namespace Spawning.Scripts.Spawners
                         var spawnPosition = Random.insideUnitSphere * spawnRadius + SpawnPoint;
                         var vfx = Instantiate(droneSpawnVFX, spawnPosition, Quaternion.identity, transform);
                         yield return new WaitForSeconds(vfx.particleSystem.main.duration);
-                        SpawnSFX?.PlayAudio(audioSource);
                         var drone = DronePool.Instance.GetDrone(EnemyType.Tank);
                         if (drone == null)
                         {
                             Debug.LogError("No more available drones");
                             yield return null;
                         }
-
+                        SpawnSFX?.PlayAudio(drone.audioSource);
                         drone.transform.position = spawnPosition;
                         drone.SetPlayerTransform(_playerTransform);
                         drone.SetPlayerLookState(true);
