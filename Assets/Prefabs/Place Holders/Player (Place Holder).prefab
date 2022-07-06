@@ -1539,6 +1539,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundCheckerDistance: 1.4
   _gravity: 25
+  _maxDistanceInteractable: 10
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 1048576
 --- !u!114 &6920387210099965582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1758,9 +1762,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb836997fb3bf9c429bf7a2fed5cd237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coolDownTime: 2
+  _coolDownTime: 60
   _equipTime: 0.8
+  _knockBackForce: 100
   _rocketLauncher: {fileID: 7572968825785253752}
+  _rb: {fileID: 6920387210099965571}
   _startCoolDown: 1
 --- !u!1 &8584265390714680908
 GameObject:
