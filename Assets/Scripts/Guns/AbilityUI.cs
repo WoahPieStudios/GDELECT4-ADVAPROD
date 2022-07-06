@@ -18,25 +18,27 @@ public class AbilityUI : MonoBehaviour
     private float _currentCoolDown;
     private float _maxCoolDownTime;
 
+    private float _currentPercent;
 
-
-
-    // Start is called before the first frame update
     private void OnEnable()
     {
         _maxCoolDownTime = (float)onSetCoolDownTime?.Invoke();
         _currentCoolDown = 0;
-        Debug.Log($"max cool down set to: {_maxCoolDownTime}");
-        _iconFiller.fillAmount = _currentCoolDown;
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        _currentCoolDown = (float)onUpdateCooldown?.Invoke();
+         _currentCoolDown = (float)onUpdateCooldown?.Invoke();
+        Debug.LogWarning($"MAX COOL DOWN SET TO: {_maxCoolDownTime}");
 
-        _iconFiller.fillAmount = _currentCoolDown / _maxCoolDownTime;
-        if (_iconFiller.fillAmount == 1)
+
+        //_currentCoolDown = Mathf.Lerp(0, 1, _maxCoolDownTime);
+
+        Debug.Log($"current cooldown: {_currentCoolDown / _maxCoolDownTime}");
+        _currentPercent = _currentCoolDown / _maxCoolDownTime;
+        _iconFiller.fillAmount = _currentPercent;
+        if (_currentPercent == 1)
         {
             _iconFiller.color = _readyColor;
         }
