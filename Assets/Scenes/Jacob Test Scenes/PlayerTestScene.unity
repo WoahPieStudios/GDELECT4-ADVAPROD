@@ -28212,7 +28212,7 @@ RectTransform:
   m_GameObject: {fileID: 677076839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 424706873}
@@ -38950,7 +38950,7 @@ RectTransform:
   m_GameObject: {fileID: 1212312068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 424706873}
@@ -39800,7 +39800,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holdInteraction: 3
   _filler: {fileID: 1212312069}
-  _spawnLocation: {fileID: 0}
+  _spawnLocation: {fileID: 234658451}
+  _UI: {fileID: 424706872}
   _weaponsList:
   - item: {fileID: 2892223817501923808}
     weight: 50
@@ -39876,7 +39877,7 @@ Transform:
   m_GameObject: {fileID: 1294834586}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 106.17, y: 0.7, z: 190.82}
-  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 424706873}
@@ -63004,6 +63005,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005645274750234813, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _coolDownTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2997927968732579803, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}

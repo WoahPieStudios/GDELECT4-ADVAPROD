@@ -78,9 +78,9 @@ public class Skill : MonoBehaviour
     {
         if (!_canUseSkill) return;
 
-        _rb.AddForce(-transform.forward * _knockBackForce, ForceMode.Impulse);
         _canUseSkill = false;
         _rocketLauncher.SetActive(true);
+        _rb.AddForce(-transform.forward * _knockBackForce, ForceMode.Impulse);
         onActivateSkill?.Invoke();
         ResetTimer();
     }
