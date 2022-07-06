@@ -12,11 +12,15 @@ public class WeaponItem : MonoBehaviour
     //    InputManager.onPlayerInteraction += GetGun;
     //}
 
-    //private void OnDisable()
-    //{
-    //    InputManager.onPlayerInteraction -= GetGun;
-    //}
-
+    private void OnDisable()
+    {
+        InputManager.onPlayerInteraction -= GetGun;
+    }
+     
+    public void EnableInteraction()
+    {
+        InputManager.onPlayerInteraction += GetGun;
+    }
     private void GetGun()
     {
         onGetWeapon?.Invoke(gun);

@@ -23,16 +23,25 @@ public class WeaponCrate : MonoBehaviour
     [SerializeField]
     private List<GunItem> _weaponsList = new List<GunItem>();
 
-    
+    private List<WeaponItem> _instantiatedWeapons = new List<WeaponItem>();
 
     void Start()
     {
         _filler.fillAmount = 0; 
-    }
+        foreach(GunItem weapon in _weaponsList)
+        {
+            WeaponItem weaponItem = Instantiate(weapon.item, _spawnLocation);
+            weaponItem.transform.position = _spawnLocation.position;
+            weaponItem.transform.rotation = _spawnLocation.rotation;
+            weaponItem.gameObject.SetActive(false);
+            _instantiatedWeapons.Add(weaponItem);
 
+        }
+    }
 
     private void OnEnable()
     {
+
         InputManager.onPlayerCancelInteraction += CancelInteraction;
         _canInteract = true;
         _UI.SetActive(true);
@@ -67,6 +76,30 @@ public class WeaponCrate : MonoBehaviour
         return null;
     }
 
+    private int GetRandomWeaponIndex()
+    {
+        float totalWeight = 0;
+
+        foreach (GunItem weapon in _weaponsList)
+        {
+            totalWeight += weapon.weight;
+        }
+
+        System.Random r = new System.Random();
+        double randomWeight = r.NextDouble() * totalWeight;
+
+
+        for (int i = 0; i < _weaponsList.Count; i++) {
+            randomWeight -= _weaponsList[i].weight;
+
+            if (randomWeight > 0) { continue; }
+
+            return i;
+        }
+
+        return 0;
+    }
+
     public void Holding(float duration)
     {
         if (!_canInteract) return;
@@ -76,11 +109,10 @@ public class WeaponCrate : MonoBehaviour
         Debug.Log($"{amt}");
         if (amt >= 1)
         {
-            WeaponItem weapon = Instantiate(GetRandomWeapon(), _spawnLocation);
-            weapon.transform.position = _spawnLocation.position; 
-            weapon.transform.rotation = _spawnLocation.rotation; 
-            weapon.gameObject.SetActive(true);
 
+            WeaponItem weapon = _instantiatedWeapons[GetRandomWeaponIndex()];
+            weapon.gameObject.SetActive(true);
+            weapon.EnableInteraction();
             _canInteract = false;
             _UI.SetActive(false);
         }
