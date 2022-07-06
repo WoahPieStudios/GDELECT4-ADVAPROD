@@ -1,5 +1,3 @@
-using System;
-using AdditiveScenes.Scripts.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -12,12 +10,6 @@ public class MainMenu : MonoBehaviour
     public Transform quitBtn;
     public Transform GameTitle;
     public Transform aboutBtn;
-    [SerializeField] private AdditiveLoadSceneChannel mainMenu;
-    
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += (arg0, mode) => { mainMenu.SetSceneActive(); };
-    }
 
     private void Start()
     {
