@@ -7,15 +7,15 @@ public class WeaponItem : MonoBehaviour
 
     public static event Action<Gun> onGetWeapon;
 
-    private void OnEnable()
-    {
-        InputManager.onPlayerInteraction += GetGun;
-    }
+    //private void OnEnable()
+    //{
+    //    InputManager.onPlayerInteraction += GetGun;
+    //}
 
-    private void OnDisable()
-    {
-        InputManager.onPlayerInteraction -= GetGun;
-    }
+    //private void OnDisable()
+    //{
+    //    InputManager.onPlayerInteraction -= GetGun;
+    //}
 
     private void GetGun()
     {

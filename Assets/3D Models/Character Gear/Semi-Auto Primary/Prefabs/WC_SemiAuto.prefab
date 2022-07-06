@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2951211988455454532}
   - component: {fileID: 1085430058858972046}
   - component: {fileID: 117018333178207943}
+  - component: {fileID: 7460703975497668199}
   m_Layer: 12
   m_Name: WC_SemiAuto
   m_TagString: Untagged
@@ -98,6 +99,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 2475269701254481327, guid: da250a56fea98ed47891f364619983b9, type: 3}
+--- !u!65 &7460703975497668199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445871616167617115}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13, y: 0.37, z: 1.8064584}
+  m_Center: {x: 0.000000009313226, y: -0.04158698, z: 0.43936616}
 --- !u!1 &8211737337213359458
 GameObject:
   m_ObjectHideFlags: 0

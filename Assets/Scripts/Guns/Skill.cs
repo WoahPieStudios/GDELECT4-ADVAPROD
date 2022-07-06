@@ -19,6 +19,7 @@ public class Skill : MonoBehaviour
     [SerializeField]
     private GameObject _rocketLauncher;
 
+    [SerializeField]
     private Rigidbody _rb;
 
     public bool _startCoolDown = false;
@@ -32,10 +33,6 @@ public class Skill : MonoBehaviour
         set => _countDown = Mathf.Clamp(value, 0, _coolDownTime);
     }
 
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
 
     private void Start()
     {
