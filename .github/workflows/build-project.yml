@@ -22,12 +22,6 @@ jobs:
           restore-keys: |
             Library-
 
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.36.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-
       - name: Build StandaloneWindows64
         uses: game-ci/unity-builder@v2
         id: build
