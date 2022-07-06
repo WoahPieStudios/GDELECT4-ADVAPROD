@@ -23,6 +23,9 @@ public class InputManager : MonoBehaviour
     public static event Action onManualReloading;
 
     public static event Action onSkillActivate;
+
+    public static event Action onPlayerInteraction;
+    public static event Action onPlayerCancelInteraction;
     #endregion
 
     #region UI Interactions
@@ -86,6 +89,7 @@ public class InputManager : MonoBehaviour
         #region Shooting
         _playerInputs.PlayerControls.Shoot.performed += ctx =>
         {
+            Debug.Log("Shooting");
             onShoot?.Invoke();
         };
 
@@ -121,11 +125,26 @@ public class InputManager : MonoBehaviour
             onMouseLook?.Invoke(_mouseInput);
         };
         #endregion
-        
+
+        #region Player Interaction
+        _playerInputs.PlayerControls.Interaction.performed += ctx =>
+        {
+            Debug.Log("Pressing Interact");
+            onPlayerInteraction?.Invoke();
+        };
+
+        _playerInputs.PlayerControls.Interaction.canceled += ctx =>
+        {
+            onPlayerCancelInteraction?.Invoke();
+        };
+        #endregion
+
+
+
         #region UI Interaction
 
         #region Pause
-        
+
         _playerInputs.UIInteraction.Pause.performed += ctx =>
         {
             //Subscribe to onPause for things that could happen during pause

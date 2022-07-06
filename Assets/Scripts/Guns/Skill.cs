@@ -10,12 +10,18 @@ public class Skill : MonoBehaviour
     [SerializeField]
     private float _equipTime = 0.8f;
 
+    [SerializeField]
+    private float _knockBackForce = 100f;
+
 
     public static event Action onActivateSkill;
 
     [SerializeField]
     private GameObject _rocketLauncher;
-    
+
+    [SerializeField]
+    private Rigidbody _rb;
+
     public bool _startCoolDown = false;
     private float _countDown;
     private bool _canUseSkill;
@@ -32,6 +38,15 @@ public class Skill : MonoBehaviour
     {
         countDown = _coolDownTime;
         _rocketLauncher.SetActive(false);
+        AbilityUI.onSetCoolDownTime += () =>
+        {
+           return _coolDownTime;
+        };
+
+        AbilityUI.onUpdateCooldown += () =>
+        {
+            return countDown;
+        };
     }
 
 
@@ -61,9 +76,11 @@ public class Skill : MonoBehaviour
 
     private void ActivateSkill()
     {
-        if (!_canUseSkill) return; 
+        if (!_canUseSkill) return;
+
         _canUseSkill = false;
         _rocketLauncher.SetActive(true);
+        _rb.AddForce(-transform.forward * _knockBackForce, ForceMode.Impulse);
         onActivateSkill?.Invoke();
         ResetTimer();
     }

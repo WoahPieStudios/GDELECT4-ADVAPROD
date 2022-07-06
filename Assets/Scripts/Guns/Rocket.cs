@@ -24,12 +24,24 @@ public class Rocket : MonoBehaviour
         _damage = damage;
     }
 
+    private void OnEnable()
+    {
+        Debug.Log($"blast radius: {_radius}");
+        Debug.Log($"damage: {_damage}");
+        Debug.Log($"bullet speed: {_velocity}");
+    }
+
 
     void Update()
     {
         _moveDistance = _velocity * Time.deltaTime;
         CollisionCheck(_moveDistance);
         transform.Translate(transform.forward * _velocity * Time.deltaTime,Space.World);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 
     private void CollisionCheck(float moveDistance)

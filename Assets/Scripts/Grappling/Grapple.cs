@@ -198,6 +198,7 @@ public class Grapple : MonoBehaviour
         });
 
         PlayerSpawnManager.RespawnPlayer += StopGrapple;
+        Skill.onActivateSkill += StopGrapple;
 
     }
        
@@ -210,6 +211,8 @@ public class Grapple : MonoBehaviour
         InputManager.onStartHook -= StartHook;
         InputManager.onEndHook -= StopHook;
         PlayerSpawnManager.RespawnPlayer -= StopGrapple;
+        Skill.onActivateSkill -= StopGrapple;
+
 
         pauseEventChannel.RemovePauseListener(() =>
         {
@@ -294,9 +297,9 @@ public class Grapple : MonoBehaviour
         {
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
-                _grappleHookedChannel?.PlayAudio();
-                Instantiate(dustHitEffect, _tetherPoint, Quaternion.identity);
                 Player.movementState = MovementState.Grappling;
+                Instantiate(dustHitEffect, _tetherPoint, Quaternion.identity);
+                _grappleHookedChannel?.PlayAudio();
                 _tethered = true;
                 _tetherPoint = hit.point;
                 _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
