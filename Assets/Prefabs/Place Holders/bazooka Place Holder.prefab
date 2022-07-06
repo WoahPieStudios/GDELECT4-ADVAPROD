@@ -2015,6 +2015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rocket: {fileID: 8900456480211032304, guid: 285661902599e9f40b270a43e0f98c87, type: 3}
   _muzzlePoint: {fileID: 6816964905478708695}
-  _rocketSpeed: 20
-  _blastRadius: 5
-  _damage: 25
+  _rocketSpeed: 100
+  _blastRadius: 10
+  _damage: 50
+  _lifetime: 10
