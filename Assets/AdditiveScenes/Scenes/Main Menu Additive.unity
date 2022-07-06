@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3595976, g: 0.33408973, b: 0.56057507, a: 1}
+  m_IndirectSpecularColor: {r: 0.35960814, g: 0.33409694, b: 0.56057614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -46870,7 +46870,7 @@ Transform:
   m_Children:
   - {fileID: 612330267}
   - {fileID: 967744705}
-  - {fileID: 1890516250}
+  - {fileID: 3583360127158246289}
   - {fileID: 1216452951}
   - {fileID: 429300258}
   m_Father: {fileID: 0}
@@ -70943,14 +70943,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectRG_Special_Bazooka
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2479566835531013880, guid: 352d10152162f0443b8019d34d195b40, type: 3}
+    - {fileID: 1839603446612025657, guid: 352d10152162f0443b8019d34d195b40, type: 3}
+    - {fileID: 7942664962982355441, guid: 352d10152162f0443b8019d34d195b40, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 352d10152162f0443b8019d34d195b40, type: 3}
---- !u!4 &1890516250 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3583360126347519624, guid: 352d10152162f0443b8019d34d195b40,
-    type: 3}
-  m_PrefabInstance: {fileID: 1890516249}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1891754268
 GameObject:
   m_ObjectHideFlags: 0
@@ -81400,4 +81397,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1727087973924602220, guid: 1382c5e41ec02894591fef1ebb5f0484,
     type: 3}
   m_PrefabInstance: {fileID: 1727087974187476821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3583360127158246289 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3583360126347519624, guid: 352d10152162f0443b8019d34d195b40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1890516249}
   m_PrefabAsset: {fileID: 0}
