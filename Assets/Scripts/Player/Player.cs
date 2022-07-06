@@ -29,21 +29,44 @@ public class Player : MonoBehaviour {
         set => _onGround = value;
     }
 
+    private bool _isWeaponCrateInteracting;
+
+    [SerializeField]
+    private float _maxDistanceInteractable;
+    [SerializeField]
+    private LayerMask _interactableLayer;
+
+
+    Camera _cam;
     private void Awake()
     {
         Physics.gravity = new Vector3(0, -_gravity, 0);
         
     }
 
+    private void OnEnable()
+    {
+        InputManager.onPlayerInteraction += CurrentlyInteracting;
+        InputManager.onPlayerCancelInteraction += StoppedInteracting;
+
+    }
+
+    private void OnDisable()
+    {
+        InputManager.onPlayerInteraction -= CurrentlyInteracting;
+        InputManager.onPlayerCancelInteraction -= StoppedInteracting;
+    }
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
+        _cam = Camera.main;
     }
 
     private void Update()
     {
-        
+        #region -= MOVEMENT STATES =-
         if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hitInfo, _groundCheckerDistance))
         {
             if (hitInfo.collider != null)
@@ -64,7 +87,46 @@ public class Player : MonoBehaviour {
         {
             movementState = MovementState.Grappling;
         }
-        
+
+        #endregion
+
+        if (_isWeaponCrateInteracting)
+        {
+            WeaponCrate interacted = OpenCrate();
+            interacted.Holding(Time.deltaTime);
+
+        }
+
+
+
+    }
+
+    private WeaponCrate OpenCrate()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hit, _maxDistanceInteractable, _interactableLayer))
+        {
+            WeaponCrate weaponCrate = hit.collider.GetComponent<WeaponCrate>();
+            if ( weaponCrate != null)
+            {
+                return weaponCrate;
+            }
+
+        }
+
+        return null;
+    }
+
+
+    private void CurrentlyInteracting()
+    {
+        _isWeaponCrateInteracting = true;
+    }
+
+    private void StoppedInteracting()
+    {
+        _isWeaponCrateInteracting = false;
     }
 
 

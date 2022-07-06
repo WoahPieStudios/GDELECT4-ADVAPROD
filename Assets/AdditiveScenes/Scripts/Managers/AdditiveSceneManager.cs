@@ -48,25 +48,9 @@ public class AdditiveSceneManager : MonoBehaviour
 
     public static void SetSceneActive(string sceneName)
     {
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-        {
-            var scene = SceneManager.GetSceneAt(i);
-            print($"{scene.name}:{i}");
-            if (scene.name == sceneName)
-            {
-                if(scene.isLoaded){
-                    SceneManager.SetActiveScene(scene);
-                    break;
-                }
-                else
-                {
-                    Debug.LogWarning($"{sceneName} has not yet been loaded.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"{sceneName} has not been found.");
-            }
+        var scene = SceneManager.GetSceneByName(sceneName);
+        if(scene.isLoaded){
+            SceneManager.SetActiveScene(scene);
         }
     }
     

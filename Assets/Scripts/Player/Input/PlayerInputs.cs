@@ -98,6 +98,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""62b9ac06-76e5-4729-9498-e49f92a77229"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.01,pressPoint=0.001)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,32 +241,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Testing"",
-            ""id"": ""2b0540de-d0ee-4146-8a5a-0903716811c8"",
-            ""actions"": [
-                {
-                    ""name"": ""Test"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""6b1de364-513f-4515-97bc-d8304376f02e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""7fa56243-9548-4d70-95f4-931b8789f70f"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""571276e1-294d-4ffd-90d5-82ffec5de5ad"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Test"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -304,9 +296,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerControls_Shoot = m_PlayerControls.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerControls_Reload = m_PlayerControls.FindAction("Reload", throwIfNotFound: true);
         m_PlayerControls_Skill = m_PlayerControls.FindAction("Skill", throwIfNotFound: true);
-        // Testing
-        m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
-        m_Testing_Test = m_Testing.FindAction("Test", throwIfNotFound: true);
+        m_PlayerControls_Interaction = m_PlayerControls.FindAction("Interaction", throwIfNotFound: true);
         // UIInteraction
         m_UIInteraction = asset.FindActionMap("UIInteraction", throwIfNotFound: true);
         m_UIInteraction_Pause = m_UIInteraction.FindAction("Pause", throwIfNotFound: true);
@@ -377,6 +367,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Shoot;
     private readonly InputAction m_PlayerControls_Reload;
     private readonly InputAction m_PlayerControls_Skill;
+    private readonly InputAction m_PlayerControls_Interaction;
     public struct PlayerControlsActions
     {
         private @PlayerInputs m_Wrapper;
@@ -389,6 +380,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_PlayerControls_Shoot;
         public InputAction @Reload => m_Wrapper.m_PlayerControls_Reload;
         public InputAction @Skill => m_Wrapper.m_PlayerControls_Skill;
+        public InputAction @Interaction => m_Wrapper.m_PlayerControls_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,6 +414,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Skill.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkill;
                 @Skill.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkill;
                 @Skill.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSkill;
+                @Interaction.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnInteraction;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -450,43 +445,13 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Skill.started += instance.OnSkill;
                 @Skill.performed += instance.OnSkill;
                 @Skill.canceled += instance.OnSkill;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
             }
         }
     }
     public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
-
-    // Testing
-    private readonly InputActionMap m_Testing;
-    private ITestingActions m_TestingActionsCallbackInterface;
-    private readonly InputAction m_Testing_Test;
-    public struct TestingActions
-    {
-        private @PlayerInputs m_Wrapper;
-        public TestingActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Test => m_Wrapper.m_Testing_Test;
-        public InputActionMap Get() { return m_Wrapper.m_Testing; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TestingActions set) { return set.Get(); }
-        public void SetCallbacks(ITestingActions instance)
-        {
-            if (m_Wrapper.m_TestingActionsCallbackInterface != null)
-            {
-                @Test.started -= m_Wrapper.m_TestingActionsCallbackInterface.OnTest;
-                @Test.performed -= m_Wrapper.m_TestingActionsCallbackInterface.OnTest;
-                @Test.canceled -= m_Wrapper.m_TestingActionsCallbackInterface.OnTest;
-            }
-            m_Wrapper.m_TestingActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Test.started += instance.OnTest;
-                @Test.performed += instance.OnTest;
-                @Test.canceled += instance.OnTest;
-            }
-        }
-    }
-    public TestingActions @Testing => new TestingActions(this);
 
     // UIInteraction
     private readonly InputActionMap m_UIInteraction;
@@ -530,10 +495,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
-    }
-    public interface ITestingActions
-    {
-        void OnTest(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
     }
     public interface IUIInteractionActions
     {

@@ -46,12 +46,12 @@ public class RocketLauncher : MonoBehaviour
     {
         Debug.Log("Rocket Shot");
         Rocket rocket = Instantiate(_rocket) as Rocket;
-        rocket.transform.position = _muzzlePoint.position;
-        rocket.transform.forward = _muzzlePoint.forward;
         rocket.SetSpeed(_rocketSpeed);
         rocket.SetBlastRadius(_blastRadius);
         rocket.SetDamage(_damage);
 
+        rocket.transform.position = _muzzlePoint.position;
+        rocket.transform.forward = _muzzlePoint.forward;
 
         rocket.gameObject.SetActive(true);
 
