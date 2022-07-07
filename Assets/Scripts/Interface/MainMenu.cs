@@ -18,10 +18,6 @@ public class MainMenu : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += (arg0, mode) => { mainMenuChannel.SetSceneActive(); };
-    }
-
-    private void Start()
-    {
         Move();
     }
 
