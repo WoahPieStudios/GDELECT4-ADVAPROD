@@ -13,7 +13,10 @@ namespace Tutorial.Scripts.Handlers
         private void OnTriggerEnter(Collider other)
         {
             if(other.CompareTag("Player"))
+            {
                 OnTutorialEvent();
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -166,6 +166,76 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &553171313349141578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7203384218174592681}
+  - component: {fileID: 8645233116679910053}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7203384218174592681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553171313349141578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4750843872734541944}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8645233116679910053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553171313349141578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974ea502a7b9c3643a81e475fd0d2d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseEventChannel: {fileID: 11400000, guid: 1d8e62ce2a200a0408bfbe96237ccf6a, type: 2}
+  onGameStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetPlayerToStartingPoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGamePause:
+    m_PersistentCalls:
+      m_Calls: []
+  onGameResume:
+    m_PersistentCalls:
+      m_Calls: []
+  onGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1019232063124417947
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +380,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7203384218174592681}
+  - {fileID: 5945981756487541670}
   m_Father: {fileID: 4463490656387609753}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -495,7 +567,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4179515692460879746}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4463490654403147994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1470,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4463490655381145291}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4463490655383295993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2174,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4463490655796110769}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4463490655857670911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2344,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4463490655874774639}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4463490655945371069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,7 +2604,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4463490655966344742}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4463490656004719531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,7 +2738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463490656019493722}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 139.25102, y: -105.55, z: -248.3606}
+  m_LocalPosition: {x: 139.25098, y: -105.55, z: -248.3606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2553,6 +2755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490656050358332}
   - component: {fileID: 4463490656050358333}
+  - component: {fileID: 4396715746039953453}
   m_Layer: 0
   m_Name: Grapple Hook Bounds
   m_TagString: Untagged
@@ -2583,11 +2786,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463490656050358467}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 22.732048, y: 3.7730072, z: 1.844772}
   m_Center: {x: -6.839077, y: 0.34406245, z: 0.05857401}
+--- !u!114 &4396715746039953453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463490656050358467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ed1ca6711071c47b35c341ad3bed8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4463490656070124648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2870,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4463490656070124649}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4463490656118863105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,7 +3223,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutorialEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5326260546937331814}
+        m_TargetAssemblyTypeName: Tutorial.Scripts.Managers.TutorialPlayerSpawnManager,
+          Assembly-CSharp
+        m_MethodName: SetRespawnPosition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 603916981419979522}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
+        m_TargetAssemblyTypeName: AdditiveScenes.Scripts.ScriptableObjects.SFXChannel,
+          Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5167030937799664760
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,3 +3482,50 @@ Transform:
   m_Father: {fileID: 4463490656513666665}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9113586677581794566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5945981756487541670}
+  - component: {fileID: 5326260546937331814}
+  m_Layer: 0
+  m_Name: Player Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5945981756487541670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113586677581794566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4750843872734541944}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5326260546937331814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113586677581794566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feabc5658bba48849bc610195262b2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPersist: 0
+  startingPoint: {fileID: 4463490656019493723}
+  respawnSFX: {fileID: 11400000, guid: 1df19ccee1dbe344ebf561f8ee2809e8, type: 2}
