@@ -166,6 +166,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1019232063124417947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3127858404229102990}
+  m_Layer: 0
+  m_Name: Zone Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3127858404229102990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019232063124417947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 603916981419979522}
+  - {fileID: 4463490655874774639}
+  - {fileID: 4463490655796110769}
+  m_Father: {fileID: 4463490656513666665}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1309688471298684126
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100019807691996855}
   - component: {fileID: 8645423069449689345}
+  - component: {fileID: 1840875791949639749}
   m_Layer: 10
   m_Name: GUN CHEST COLLIDER
   m_TagString: Untagged
@@ -289,11 +324,57 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3105988958716488695}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.1625619, y: 1.1631112, z: 2.3016062}
   m_Center: {x: 0.005879581, y: 0.3821147, z: 0}
+--- !u!114 &1840875791949639749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105988958716488695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda03f300faf443499a90441abaf6aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTutorialEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &3221323965547581279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4750843872734541944}
+  m_Layer: 0
+  m_Name: == MANAGERS ==
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4750843872734541944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221323965547581279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4463490656387609753}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3386345264631749138
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4179515692460879746}
   m_Layer: 0
-  m_Name: Grappling Pull
+  m_Name: OnGetPull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +525,7 @@ Transform:
   - {fileID: 5957152977325459887}
   - {fileID: 3487241963751180009}
   - {fileID: 5351153324059711791}
-  m_Father: {fileID: 4463490656513666665}
+  m_Father: {fileID: 9005954436619130564}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4463490654403147994
@@ -540,6 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490654533922197}
   - component: {fileID: 4463490654533922198}
+  - component: {fileID: 7280375075301901938}
   m_Layer: 10
   m_Name: GUN CHEST COLLIDER
   m_TagString: Untagged
@@ -570,11 +652,26 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463490654533922196}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.1625619, y: 1.1631112, z: 2.3016062}
   m_Center: {x: 0.005879581, y: 0.3821147, z: 0}
+--- !u!114 &7280375075301901938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463490654533922196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda03f300faf443499a90441abaf6aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTutorialEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4463490654554589377
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,6 +993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490654923353128}
   - component: {fileID: 4463490654923353129}
+  - component: {fileID: 3620997563967783823}
   m_Layer: 10
   m_Name: GUN CHEST COLLIDER
   m_TagString: Untagged
@@ -926,11 +1024,26 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463490654923353135}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.1625619, y: 1.1631112, z: 2.3016062}
   m_Center: {x: 0.005879581, y: 0.3821147, z: 0}
+--- !u!114 &3620997563967783823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463490654923353135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda03f300faf443499a90441abaf6aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTutorialEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4463490654949103981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490655381145291}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: OnGetGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1382,7 +1495,7 @@ Transform:
   - {fileID: 4463490655945371070}
   - {fileID: 4463490654949103982}
   - {fileID: 4463490656417566826}
-  m_Father: {fileID: 4463490656513666665}
+  m_Father: {fileID: 9005954436619130564}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4463490655383295993
@@ -2000,7 +2113,7 @@ Transform:
   - {fileID: 4463490654719234603}
   - {fileID: 6474643259881799089}
   m_Father: {fileID: 4463490656387609753}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4463490655796110768
 GameObject:
@@ -2013,7 +2126,7 @@ GameObject:
   - component: {fileID: 4463490655796110769}
   - component: {fileID: 4463490655796110770}
   m_Layer: 0
-  m_Name: Totem Spawn
+  m_Name: OnEntryTotem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2031,8 +2144,8 @@ Transform:
   m_LocalScale: {x: 5.206718, y: 52.547348, z: 32.255608}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4463490656513666665}
-  m_RootOrder: 6
+  m_Father: {fileID: 3127858404229102990}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4463490655796110770
 BoxCollider:
@@ -2141,7 +2254,7 @@ GameObject:
   - component: {fileID: 4463490655874774639}
   - component: {fileID: 4463490655874774632}
   m_Layer: 0
-  m_Name: All Spawn
+  m_Name: OnEntryAll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2159,8 +2272,8 @@ Transform:
   m_LocalScale: {x: 5.206718, y: 38.280285, z: 32.255608}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4463490656513666665}
-  m_RootOrder: 4
+  m_Father: {fileID: 3127858404229102990}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4463490655874774632
 BoxCollider:
@@ -2351,7 +2464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490655966344742}
   m_Layer: 0
-  m_Name: Skill
+  m_Name: OnGetSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2377,8 +2490,8 @@ Transform:
   - {fileID: 4463490655245369086}
   - {fileID: 4463490654403147995}
   - {fileID: 4463490656004719524}
-  m_Father: {fileID: 4463490656513666665}
-  m_RootOrder: 5
+  m_Father: {fileID: 9005954436619130564}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4463490656004719531
 GameObject:
@@ -2549,6 +2662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490656059162018}
   - component: {fileID: 4463490656059162019}
+  - component: {fileID: 3910820001269575150}
   m_Layer: 10
   m_Name: GUN CHEST COLLIDER
   m_TagString: Untagged
@@ -2579,11 +2693,26 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463490656059162017}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.1625619, y: 1.1631112, z: 2.3016062}
   m_Center: {x: 0.005879581, y: 0.3821147, z: 0}
+--- !u!114 &3910820001269575150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463490656059162017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda03f300faf443499a90441abaf6aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTutorialEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4463490656070124648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463490656070124649}
   m_Layer: 0
-  m_Name: Grappling Hook
+  m_Name: OnGetHook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2620,7 +2749,7 @@ Transform:
   - {fileID: 4463490654987545181}
   - {fileID: 4463490655383295994}
   - {fileID: 4463490655857670904}
-  m_Father: {fileID: 4463490656513666665}
+  m_Father: {fileID: 9005954436619130564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4463490656118863105
@@ -2653,7 +2782,7 @@ Transform:
   m_Children:
   - {fileID: 4463490656050358332}
   m_Father: {fileID: 4463490656387609753}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4463490656387609752
 GameObject:
@@ -2683,6 +2812,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4750843872734541944}
   - {fileID: 4463490655759912148}
   - {fileID: 4463490656118863106}
   - {fileID: 4463490656513666665}
@@ -2800,15 +2930,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4463490656070124649}
-  - {fileID: 4179515692460879746}
-  - {fileID: 4463490655381145291}
-  - {fileID: 603916981419979522}
-  - {fileID: 4463490655874774639}
-  - {fileID: 4463490655966344742}
-  - {fileID: 4463490655796110769}
+  - {fileID: 9005954436619130564}
+  - {fileID: 3127858404229102990}
   m_Father: {fileID: 4463490656387609753}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4562676747933272896
 GameObject:
@@ -2904,7 +3029,7 @@ GameObject:
   - component: {fileID: 603916981419979522}
   - component: {fileID: 7619056542209497363}
   m_Layer: 0
-  m_Name: Tank Spawn
+  m_Name: OnEntryTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2922,8 +3047,8 @@ Transform:
   m_LocalScale: {x: 5.206718, y: 18.474, z: 32.255608}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4463490656513666665}
-  m_RootOrder: 3
+  m_Father: {fileID: 3127858404229102990}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7619056542209497363
 BoxCollider:
@@ -3134,4 +3259,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4463490655759912148}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9000223926635269427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9005954436619130564}
+  m_Layer: 0
+  m_Name: Pickup Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9005954436619130564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000223926635269427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4463490656070124649}
+  - {fileID: 4179515692460879746}
+  - {fileID: 4463490655381145291}
+  - {fileID: 4463490655966344742}
+  m_Father: {fileID: 4463490656513666665}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
