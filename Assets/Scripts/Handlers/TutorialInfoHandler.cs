@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AdditiveScenes.Scripts.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,7 +15,7 @@ public class TutorialInfoHandler : MonoBehaviour
     [SerializeField] private Animator exampleDisplay;
 
     [SerializeField] private Button previousBtn, nextBtn;
-
+    [SerializeField] private SFXChannel buttonSFX;
     [SerializeField] private UnityEvent onFirstPage;
     
     public int _currentPage;
@@ -39,11 +40,13 @@ public class TutorialInfoHandler : MonoBehaviour
     public void GoNext()
     {
         _currentPage++;
+        buttonSFX.PlayAudio();
         SetPage();
     }
 
     public void GoBack()
     {
+        buttonSFX.PlayAudio();
         if (_currentPage == 0)
         {
             onFirstPage?.Invoke();
