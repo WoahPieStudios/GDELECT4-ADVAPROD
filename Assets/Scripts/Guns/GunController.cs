@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunController : MonoBehaviour
 {
     //temporary. Will change when tutorial branch merges
     public bool _onTutorial;
 
-    #region -= WEAPONLIST =-
 
     [SerializeField]
-    private List<WeaponItem> _items = new List<WeaponItem>();
-
-    #endregion
+    private WeaponItem _default;
 
     [SerializeField]
-    private Gun _default;
+    private Vector3 _offsetPosition;
 
     private Gun _toUseGun;
     
@@ -24,8 +22,12 @@ public class GunController : MonoBehaviour
     {
         if (!_onTutorial)
         {
-            EquipGun(_default);
+            EquipGun(_default.gun);
+            ChangeWeaponIcon.OnChangeIcon(_default.weaponIcon);
         }
+
+
+
     }
 
     private void OnEnable()
@@ -40,17 +42,23 @@ public class GunController : MonoBehaviour
 
     private void EquipGun(Gun gun)
     {
+
         if (_toUseGun != null)
         {
             //change this to drop
             Destroy(_toUseGun.gameObject);
         }
 
+
         _toUseGun = Instantiate(gun) as Gun;
         _toUseGun.gameObject.transform.SetParent(transform);
-        _toUseGun.transform.localPosition = Vector3.zero;
+        _toUseGun.transform.localPosition = gun.offset;
         _toUseGun.transform.localEulerAngles = Vector3.zero;
 
     }
+
+
+
+
 
 }

@@ -45,7 +45,19 @@ public class Gun : MonoBehaviour
     private int shooting_Animation = Animator.StringToHash(DO_SHOOTING);
 
     #endregion
-    
+
+    #region -= POSITIONING =-
+
+    [SerializeField]
+    private Vector3 _offset;
+
+    public Vector3 offset
+    {
+        get { return _offset; }
+    }
+
+    #endregion
+
     #region WEAPON STATS
     [Space]
     [Header("WEAPON STATS")]
