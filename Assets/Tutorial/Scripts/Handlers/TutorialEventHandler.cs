@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 namespace Tutorial.Scripts.Handlers
 {
+    [RequireComponent(typeof(Collider))]
     public class TutorialEventHandler : MonoBehaviour
     {
         [SerializeField] private UnityEvent onTutorialEvent;
