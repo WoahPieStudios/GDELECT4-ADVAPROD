@@ -8,6 +8,7 @@ using DG.Tweening;
 public class MainMenu : MonoBehaviour
 {
     public Transform startBtn;
+    public Transform tutorialBtn;
     public Transform settingsBtn;
     public Transform quitBtn;
     public Transform GameTitle;
@@ -18,10 +19,6 @@ public class MainMenu : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += (arg0, mode) => { mainMenuChannel.SetSceneActive(); };
-    }
-
-    private void Start()
-    {
         Move();
     }
 
@@ -38,12 +35,12 @@ public class MainMenu : MonoBehaviour
 
     public void Move()
     {
-        startBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
-        tutorialBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
-        aboutBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
-        settingsBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
-        quitBtn.DOMoveX(350, 1).SetEase(Ease.InOutSine);
+        startBtn.DOMoveX(250, 1).SetEase(Ease.InOutSine);
+        tutorialBtn.DOMoveX(250, 1).SetEase(Ease.InOutSine);
+        aboutBtn.DOMoveX(250, 1).SetEase(Ease.InOutSine);
+        settingsBtn.DOMoveX(250, 1).SetEase(Ease.InOutSine);
+        quitBtn.DOMoveX(250, 1).SetEase(Ease.InOutSine);
 
-        GameTitle.DOMoveY(700, 1).SetEase(Ease.InOutSine);
+        GameTitle.DOMoveY(800, 1).SetEase(Ease.InOutSine);
     }
 }

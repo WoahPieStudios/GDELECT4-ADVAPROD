@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.35960814, g: 0.33409694, b: 0.56057614, a: 1}
+  m_IndirectSpecularColor: {r: 0.35959792, g: 0.33408993, b: 0.5605751, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5422,11 +5422,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startBtn: {fileID: 209759587}
+  tutorialBtn: {fileID: 2117625019}
   settingsBtn: {fileID: 1322876454}
   quitBtn: {fileID: 237189763}
   GameTitle: {fileID: 479133488}
   aboutBtn: {fileID: 1567489765}
-  mainMenuChannel: {fileID: 0}
+  mainMenuChannel: {fileID: 11400000, guid: 8e5f175a834a435469bf8e51cab96eae, type: 2}
 --- !u!1001 &140026593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18202,7 +18203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -452, y: 309}
+  m_AnchoredPosition: {x: -400, y: 894}
   m_SizeDelta: {x: 950, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &479133490
@@ -54629,8 +54630,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -697, y: -118}
-  m_SizeDelta: {x: 496.16284, y: 392.40582}
+  m_AnchoredPosition: {x: -1483, y: -205}
+  m_SizeDelta: {x: 496.1628, y: 492.4743}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471306500
 MonoBehaviour:
