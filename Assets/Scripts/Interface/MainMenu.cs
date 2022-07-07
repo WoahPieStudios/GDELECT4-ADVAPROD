@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour
     public Transform quitBtn;
     public Transform GameTitle;
     public Transform aboutBtn;
-    public Transform tutorialBtn;
     [SerializeField] private AdditiveLoadSceneChannel mainMenuChannel;
 
     private void OnEnable()
