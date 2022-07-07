@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    //temporary. Will change when tutorial branch merges
+    public bool _onTutorial;
+
     [SerializeField]
-    private Gun _toEquip;
+    private Gun _default;
 
     private Gun _toUseGun;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
-        EquipGun(_toEquip);
+        if (!_onTutorial)
+        {
+            EquipGun(_default);
+        }
     }
 
     private void OnEnable()
@@ -28,6 +35,7 @@ public class GunController : MonoBehaviour
     {
         if (_toUseGun != null)
         {
+            //change this to drop
             Destroy(_toUseGun.gameObject);
         }
 

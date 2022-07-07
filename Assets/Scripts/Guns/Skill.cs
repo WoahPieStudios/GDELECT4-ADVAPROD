@@ -38,20 +38,22 @@ public class Skill : MonoBehaviour
     {
         countDown = _coolDownTime;
         _rocketLauncher.SetActive(false);
-        AbilityUI.onSetCoolDownTime += () =>
-        {
-           return _coolDownTime;
-        };
 
-        AbilityUI.onUpdateCooldown += () =>
-        {
-            return countDown;
-        };
+        
     }
 
 
     private void OnEnable()
     {
+        AbilityUI.onSetCoolDownTime += () =>
+        {
+           return _coolDownTime;
+        };
+        AbilityUI.onUpdateCooldown += () =>
+        {
+            return _coolDownTime - countDown;
+        };
+
         InputManager.onSkillActivate += ActivateSkill;
     }
 
