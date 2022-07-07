@@ -7,6 +7,7 @@ public class About_UIBehavior : MonoBehaviour
 {
     public Transform gameTitle;
     public Transform backBtn;
+    public Transform content;
    
     // Start is called before the first frame update
     void Start()
@@ -19,5 +20,6 @@ public class About_UIBehavior : MonoBehaviour
     {
         gameTitle.DOMoveY(900, 1).SetEase(Ease.InOutSine);
         backBtn.DOMoveX(200, 1).SetEase(Ease.InOutSine);
+        content.DOMoveY(800, 1).SetEase(Ease.InOutSine);
     }
 }
