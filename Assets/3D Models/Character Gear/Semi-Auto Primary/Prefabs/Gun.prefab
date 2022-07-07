@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2637562629271637910}
   - component: {fileID: 251768875346312028}
   - component: {fileID: 2475269701254481327}
+  - component: {fileID: 5164382399226457181}
   m_Layer: 12
-  m_Name: ProjectRG_Weapon_SemiAuto
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,20 +99,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSoundChannel: {fileID: 11400000, guid: 730b0a7dbca02154383aa7f5df23caec, type: 2}
+  _reloadChannel: {fileID: 0}
   droneHitEffect: {fileID: 1819804219169845983, guid: a8ea86189a816ce458d62c17edcd54b0,
     type: 3}
   muzzlePoint: {fileID: 3405339657786555816}
   muzzleFlash: {fileID: 6674924203787833456, guid: b4d225bd4e0082c43bbb409cfa5a927c,
     type: 3}
+  animator: {fileID: 0}
   fireMode: 0
   fireRate: 5.25
-  maxRange: 150
-  bulletsPerMagazine: 12
+  _maxRange: 100
+  _bulletsPerMagazine: 10
   _radius: 0.5
   _resetCount: 0
   _baseDamage: 75
   _headshotDamageMultiplier: 1
   _reloadSpeed: 1.25
+--- !u!95 &5164382399226457181
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764999860104960649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9432efd05fd370c448da40b80de73ca4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9051035751730130352
 GameObject:
   m_ObjectHideFlags: 0

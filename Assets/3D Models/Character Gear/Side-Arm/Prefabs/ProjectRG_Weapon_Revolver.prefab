@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1899360817214060783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262911941902375314}
+  m_Layer: 12
+  m_Name: MuzzlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262911941902375314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899360817214060783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.109, z: 0.4897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8851492478702897501}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5531569096208246811
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,7 @@ GameObject:
   - component: {fileID: 2397534587201542344}
   - component: {fileID: 7582352657308862191}
   - component: {fileID: 861153864234447530}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProjectRG_Character_SideArm_Revolver_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,8 +56,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5531569096208246811}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,7 +125,7 @@ GameObject:
   - component: {fileID: 2989698178728219800}
   - component: {fileID: 1978526035430185720}
   - component: {fileID: 2214160431002997525}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProjectRG_Character_SideArm_Revolver_Grip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,8 +139,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7009398193782779140}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -177,7 +208,7 @@ GameObject:
   - component: {fileID: 8950478691891435928}
   - component: {fileID: 5453900164803306592}
   - component: {fileID: 6248536411424144128}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProjectRG_Character_SideArm_Revolver_Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,8 +222,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8019886293928633486}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000044765798, y: 0.083638124, z: 0.06045338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.083638124, z: 0.06045338}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -258,7 +289,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8851492478702897501}
+<<<<<<< HEAD
+  - component: {fileID: 4319201679464786007}
+  m_Layer: 12
+=======
+  - component: {fileID: 6901464299404620010}
   m_Layer: 0
+>>>>>>> main
   m_Name: ProjectRG_Weapon_Revolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,6 +317,54 @@ Transform:
   - {fileID: 2397534587201542344}
   - {fileID: 8950478691891435928}
   - {fileID: 2989698178728219800}
+  - {fileID: 262911941902375314}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+--- !u!114 &4319201679464786007
+MonoBehaviour:
+=======
+--- !u!95 &6901464299404620010
+Animator:
+  serializedVersion: 4
+>>>>>>> main
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186701001278919655}
+  m_Enabled: 1
+<<<<<<< HEAD
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f8229a74f2bb147b2a2db22a7b5df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSoundChannel: {fileID: 0}
+  _reloadChannel: {fileID: 0}
+  droneHitEffect: {fileID: 0}
+  muzzlePoint: {fileID: 262911941902375314}
+  muzzleFlash: {fileID: 0}
+  animator: {fileID: 0}
+  fireMode: 0
+  fireRate: 4.75
+  _maxRange: 125
+  _bulletsPerMagazine: 6
+  _radius: 2
+  _resetCount: 0
+  _baseDamage: 75
+  _headshotDamageMultiplier: 2
+  _reloadSpeed: 1.75
+=======
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a3a3eef3d6faf74db276764c7ead014, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+>>>>>>> main
