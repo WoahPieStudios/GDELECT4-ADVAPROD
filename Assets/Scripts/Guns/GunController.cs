@@ -7,6 +7,13 @@ public class GunController : MonoBehaviour
     //temporary. Will change when tutorial branch merges
     public bool _onTutorial;
 
+    #region -= WEAPONLIST =-
+
+    [SerializeField]
+    private List<WeaponItem> _items = new List<WeaponItem>();
+
+    #endregion
+
     [SerializeField]
     private Gun _default;
 
