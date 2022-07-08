@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 {
     private bool _enableCrosshair;
 
-    
+    [SerializeField] private PauseEventChannel pauseEventChannel;
     
     #region EFFECTS
     [Header("Effects")]
@@ -154,16 +154,29 @@ public class Gun : MonoBehaviour
         InputManager.onShoot += OnPressedTrigger;
         InputManager.onReleaseShooting += OnReleasedTrigger;
         InputManager.onManualReloading += Reloading;
-
+        pauseEventChannel.AddPauseListener(DisableGuns);
+        pauseEventChannel.AddResumeListener(EnableGuns);
     }
 
+    void EnableGuns()
+    {
+        canShoot = false;
+        _canReload = false;
+    }
+    
+    void DisableGuns()
+    {
+        canShoot = false;
+        _canReload = false;
+    }
+    
     private void OnDisable()
     {
         InputManager.onShoot -= OnPressedTrigger;
         InputManager.onReleaseShooting -= OnReleasedTrigger;
         InputManager.onManualReloading -= Reloading;
-
-
+        pauseEventChannel.RemovePauseListener(DisableGuns);
+        pauseEventChannel.RemoveResumeListener(EnableGuns);
     }
     private void Update()
     {
