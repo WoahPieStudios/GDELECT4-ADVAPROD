@@ -16114,21 +16114,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 454
       objectReference: {fileID: 0}
-    - target: {fileID: 6090884329356919577, guid: 46b7a378c92ad664489a1dc04149d800,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 135.2171
-      objectReference: {fileID: 0}
-    - target: {fileID: 6090884329356919577, guid: 46b7a378c92ad664489a1dc04149d800,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 6090884329356919577, guid: 46b7a378c92ad664489a1dc04149d800,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -138
-      objectReference: {fileID: 0}
     - target: {fileID: 7079073761384471634, guid: 46b7a378c92ad664489a1dc04149d800,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -24779,8 +24764,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
-      propertyPath: _accelerationMultiplier
-      value: 2.5
+      propertyPath: _minHeightToAutoPull
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
+        type: 3}
+      propertyPath: _minHeightToAutoDisconnect
+      value: 6.2
       objectReference: {fileID: 0}
     - target: {fileID: 6920387209258077869, guid: 877832b9f0d10fc4191d4d49414038a8,
         type: 3}
@@ -51818,6 +51808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979454617154162203, guid: f91e52c94ddf27f42ac03e71aafe78c6,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5140292317688180898, guid: f91e52c94ddf27f42ac03e71aafe78c6,
         type: 3}
