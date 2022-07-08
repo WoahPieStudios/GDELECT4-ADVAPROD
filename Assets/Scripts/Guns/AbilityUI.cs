@@ -30,12 +30,12 @@ public class AbilityUI : MonoBehaviour
     void Update()
     {
          _currentCoolDown = (float)onUpdateCooldown?.Invoke();
-        Debug.LogWarning($"MAX COOL DOWN SET TO: {_maxCoolDownTime}");
+        //Debug.LogWarning($"MAX COOL DOWN SET TO: {_maxCoolDownTime}");
 
 
         //_currentCoolDown = Mathf.Lerp(0, 1, _maxCoolDownTime);
 
-        Debug.Log($"current cooldown: {_currentCoolDown / _maxCoolDownTime}");
+       // Debug.Log($"current cooldown: {_currentCoolDown / _maxCoolDownTime}");
         _currentPercent = _currentCoolDown / _maxCoolDownTime;
         _iconFiller.fillAmount = _currentPercent;
         if (_currentPercent == 1)
