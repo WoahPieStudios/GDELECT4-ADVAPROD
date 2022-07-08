@@ -156,12 +156,14 @@ public class Gun : MonoBehaviour
         InputManager.onManualReloading += Reloading;
         pauseEventChannel.AddPauseListener(DisableGuns);
         pauseEventChannel.AddResumeListener(EnableGuns);
+
+        ReloadReset();
     }
 
     void EnableGuns()
     {
-        canShoot = false;
-        _canReload = false;
+        canShoot = true;
+        _canReload = true;
     }
     
     void DisableGuns()
@@ -342,7 +344,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void ReloadReset()
+    public void ReloadReset()
     {
         _shotsCounter = _bulletsPerMagazine;
     }
