@@ -12,9 +12,6 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private WeaponItem _default;
 
-    [SerializeField]
-    private Vector3 _offsetPosition;
-
     private Gun _toUseGun;
     
 
