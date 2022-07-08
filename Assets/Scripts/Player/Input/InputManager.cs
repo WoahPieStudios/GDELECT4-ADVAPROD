@@ -34,6 +34,9 @@ public class InputManager : MonoBehaviour
     #endregion
     #endregion
 
+    [SerializeField]
+    private bool _useControls;
+
     private PlayerInputs _playerInputs;
     private Vector2 _mouseInput;
 
@@ -85,7 +88,6 @@ public class InputManager : MonoBehaviour
         };
         #endregion
 
-
         #region Shooting
         _playerInputs.PlayerControls.Shoot.performed += ctx =>
         {
@@ -110,7 +112,6 @@ public class InputManager : MonoBehaviour
             onSkillActivate?.Invoke();
         };
         #endregion
-
 
         #region Mouse Look
         _playerInputs.PlayerControls.LookX.performed += ctx =>
@@ -138,8 +139,6 @@ public class InputManager : MonoBehaviour
             onPlayerCancelInteraction?.Invoke();
         };
         #endregion
-
-
 
         #region UI Interaction
 

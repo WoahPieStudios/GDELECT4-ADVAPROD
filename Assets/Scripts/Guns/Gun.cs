@@ -17,7 +17,8 @@ public class Gun : MonoBehaviour
 {
     private bool _enableCrosshair;
 
-    
+    [SerializeField]
+    private PauseEventChannel _pause;
     
     #region EFFECTS
     [Header("Effects")]
