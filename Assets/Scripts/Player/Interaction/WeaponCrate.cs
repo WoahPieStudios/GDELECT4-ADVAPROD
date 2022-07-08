@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+using Handlers;
+using AdditiveScenes.Scripts.ScriptableObjects;
 
 
 public class WeaponCrate : MonoBehaviour
 {
+    #region -= EFFECTS =-
+
+    [SerializeField]
+    private VFXHandler _handler;
+
+    [SerializeField]
+    private SFXChannel _sfx;
+
+    #endregion
+
     [SerializeField, Tooltip("How many seconds to fully interact")]
     private float _holdInteraction = 3f;
     [SerializeField]
@@ -109,7 +120,8 @@ public class WeaponCrate : MonoBehaviour
         Debug.Log($"{amt}");
         if (amt >= 1)
         {
-
+            _sfx?.PlayAudio();
+            var vfx = Instantiate(_handler, _spawnLocation.position, Quaternion.identity, transform);
             WeaponItem weapon = _instantiatedWeapons[GetRandomWeaponIndex()];
             weapon.gameObject.SetActive(true);
             weapon.EnableInteraction();
