@@ -1,3 +1,4 @@
+using AdditiveScenes.Scripts.ScriptableObjects;
 using UnityEngine;
 using Handlers;
 public class RocketLauncher : MonoBehaviour
@@ -26,6 +27,9 @@ public class RocketLauncher : MonoBehaviour
 
     private Rocket _thisRocket;
 
+    [SerializeField] private PauseEventChannel pauseEventChannel;
+    private bool _canShoot;
+
 
     private void Awake()
     {
@@ -38,6 +42,8 @@ public class RocketLauncher : MonoBehaviour
     private void OnEnable()
     {
         Skill.onActivateSkill += Shoot;
+        pauseEventChannel.AddPauseListener(() => _canShoot = false);
+        pauseEventChannel.AddResumeListener(() => _canShoot = true);
     }
 
     private void OnDisable()
@@ -47,6 +53,7 @@ public class RocketLauncher : MonoBehaviour
 
     private void Shoot()
     {
+        if (!_canShoot) return;
         Debug.Log("Rocket Shot");
         var vfx = Instantiate(_handler, _muzzlePoint.position, Quaternion.identity, transform);
         Rocket rocket = Instantiate(_rocket) as Rocket;
