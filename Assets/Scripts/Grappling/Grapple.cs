@@ -72,8 +72,6 @@ public class Grapple : MonoBehaviour
     [SerializeField, Range(0, 20)]
     private float _minHeightToAutoDisconnect;
 
-    [SerializeField]
-    private float _coolDownGrappling = 0.25f;
     #endregion
 
     #region Hookshot
@@ -162,8 +160,6 @@ public class Grapple : MonoBehaviour
     private Rigidbody _rb;
     private Player _p;
 
-    private bool _isOnCoolDown;
-    private float _currentCountDown;
     #endregion
 
     private int _crosshairIndex;
@@ -247,17 +243,7 @@ public class Grapple : MonoBehaviour
             _grappleSpeedLines.Stop();
         }
 
-        if (_isOnCoolDown)
-        {
-            _currentCountDown += _coolDownGrappling * Time.deltaTime;
-            _currentCountDown = Mathf.Clamp(_currentCountDown , 0, 0.25f);
 
-            if (_currentCountDown >= _coolDownGrappling)
-            {
-                _isOnCoolDown = false;
-                _currentCountDown = 0;
-            }
-        }
 
     }
 
@@ -309,8 +295,6 @@ public class Grapple : MonoBehaviour
     {
         if (!_isPaused) return;
 
-        if (_isOnCoolDown) return;
-
         RaycastHit hit;
         _disableGrapple = !_disableGrapple;
         //made grappling so that instead of holding the grapple button, player will just press again to release
@@ -340,7 +324,6 @@ public class Grapple : MonoBehaviour
             }
         }else
         {
-            _isOnCoolDown = true;
             StopGrapple();
         }
     }

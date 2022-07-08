@@ -19,8 +19,7 @@ public class GunController : MonoBehaviour
     {
         if (!_onTutorial)
         {
-            EquipGun(_default.gun);
-            ChangeWeaponIcon.OnChangeIcon(_default.weaponIcon);
+            UseStarter();
         }
 
 
@@ -57,7 +56,11 @@ public class GunController : MonoBehaviour
     }
 
 
-
+    public void UseStarter ()
+    {
+        EquipGun(_default.gun);
+        ChangeWeaponIcon.OnChangeIcon(_default.weaponIcon);
+    }
 
 
 }

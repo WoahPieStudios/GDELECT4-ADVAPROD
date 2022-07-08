@@ -135,6 +135,16 @@ public class WeaponCrate : MonoBehaviour
         _filler.fillAmount = 0;
         amt = 0;
     }
+
+    public void CrateReset()
+    {
+        foreach (var weapon in _weaponsList)
+        {
+            weapon.item.gameObject.SetActive(false);
+        }
+        _canInteract = true;
+        _UI.SetActive(true);
+    }
 }
 
 [System.Serializable]
