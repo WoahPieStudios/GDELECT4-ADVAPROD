@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Handlers;
 public class RocketLauncher : MonoBehaviour
 {
 
@@ -20,6 +20,9 @@ public class RocketLauncher : MonoBehaviour
 
     [SerializeField, Tooltip("How long will the rocket last")]
     private float _lifetime = 10f;
+
+    [SerializeField]
+    private VFXHandler _handler;
 
     private Rocket _thisRocket;
 
@@ -45,6 +48,7 @@ public class RocketLauncher : MonoBehaviour
     private void Shoot()
     {
         Debug.Log("Rocket Shot");
+        var vfx = Instantiate(_handler, _muzzlePoint.position, Quaternion.identity, transform);
         Rocket rocket = Instantiate(_rocket) as Rocket;
         rocket.SetSpeed(_rocketSpeed);
         rocket.SetBlastRadius(_blastRadius);

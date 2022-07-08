@@ -1,9 +1,22 @@
 using UnityEngine;
 using System.Threading.Tasks;
 using System;
+using AdditiveScenes.Scripts.ScriptableObjects;
+using Handlers;
 
 public class Skill : MonoBehaviour
 {
+
+    #region -= EFFECTS =-
+    
+    [SerializeField]
+    private SFXChannel _rocketLaunch;
+
+    [SerializeField]
+    private VFXHandler _vfxHandler;
+
+    #endregion
+
     [SerializeField]
     private float _coolDownTime = 5f;
 
@@ -82,6 +95,8 @@ public class Skill : MonoBehaviour
 
         _canUseSkill = false;
         _rocketLauncher.SetActive(true);
+        _rocketLaunch?.PlayAudio();
+        
         _rb.AddForce(-transform.forward * _knockBackForce, ForceMode.Impulse);
         onActivateSkill?.Invoke();
         ResetTimer();
