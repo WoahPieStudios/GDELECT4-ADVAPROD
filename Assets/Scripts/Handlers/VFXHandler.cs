@@ -20,22 +20,21 @@ namespace Handlers
         }
 
         private void OnEnable()
-        { 
-            StartCoroutine(DestroyAfterLifetime());
+        {
+            if (isStandalone)
+                StartCoroutine(DestroyAfterLifetime());
         }
 
         private IEnumerator DestroyAfterLifetime()
         {
             yield return new WaitForSeconds(particleSystem.main.duration);
-            if (isStandalone)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                DronePool.Instance.Release(this);
-            }
+            Destroy(gameObject);
         }
 
+        private void OnDisable()
+        {
+            if(!isStandalone)
+                DronePool.Instance.Release(this);
+        }
     }
 }
