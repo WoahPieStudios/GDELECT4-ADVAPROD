@@ -49,7 +49,8 @@ public class GunController : MonoBehaviour
 
         _toUseGun = Instantiate(gun) as Gun;
         _toUseGun.gameObject.transform.SetParent(transform);
-        _toUseGun.transform.localPosition = gun.offset;
+        transform.position += gun.offset;
+        _toUseGun.transform.localPosition = Vector3.zero;
         _toUseGun.transform.localEulerAngles = Vector3.zero;
 
     }
