@@ -1,4 +1,6 @@
 using UnityEngine;
+using Handlers;
+using AdditiveScenes.Scripts.ScriptableObjects;
 
 public class Rocket : MonoBehaviour
 {
@@ -8,7 +10,11 @@ public class Rocket : MonoBehaviour
     private float _damage = 0f;
     private float _moveDistance;
 
+    [SerializeField]
+    private VFXHandler _vfxHandler;
 
+    [SerializeField]
+    private SFXChannel _sfx;
     public void SetSpeed(float newSpeed)
     {
         _velocity = newSpeed;
@@ -70,12 +76,14 @@ public class Rocket : MonoBehaviour
             }
         }
 
+        _sfx?.PlayAudio();
         Destroy(this.gameObject);
     }
 
     private void OnDestroy()
     {
         Debug.Log("Rocket Destroyed");
+        _sfx?.PlayAudio();
         OnHitObject(transform.position);
     }
 }

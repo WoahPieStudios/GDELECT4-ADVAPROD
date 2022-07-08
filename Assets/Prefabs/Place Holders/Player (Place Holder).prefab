@@ -875,10 +875,10 @@ MonoBehaviour:
   _minHeightToAutoPull: 2.1
   _maxDistance: 55
   _grappleSpeedMovementMultiplier: 2
-  _delayAutoDisconnetinms: 0.5
+  _minHeightToAutoDisconnect: 0
   _coolDownGrappling: 0.25
   _maxHookShotSpeed: 5
-  _accelerationMultiplier: 2
+  _accelerationMultiplier: 4
   _minDistanceToGrapplePoint: 5
   _percentLengthToSlowDown: 90.6
 --- !u!114 &4856584183133505310
@@ -1213,6 +1213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb836997fb3bf9c429bf7a2fed5cd237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rocketLaunch: {fileID: 11400000, guid: 92c662753502f47428162106715bffa1, type: 2}
+  _vfxHandler: {fileID: 9146405487861949491, guid: 0e02ffa5bd3df5e488ad3872d3e56129,
+    type: 3}
   _coolDownTime: 10
   _equipTime: 0.8
   _knockBackForce: 100
@@ -1496,6 +1499,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectRG_Specials_Bazooka_Body
       objectReference: {fileID: 0}
+    - target: {fileID: 8952625866014169743, guid: eb44b9b4ecb194b4a88b84cf6020a455,
+        type: 3}
+      propertyPath: _handler
+      value: 
+      objectReference: {fileID: 9146405487861949491, guid: 0e02ffa5bd3df5e488ad3872d3e56129,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb44b9b4ecb194b4a88b84cf6020a455, type: 3}
 --- !u!4 &2765112813921007524 stripped

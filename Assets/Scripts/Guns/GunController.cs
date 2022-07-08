@@ -13,8 +13,8 @@ public class GunController : MonoBehaviour
     private WeaponItem _default;
 
     private Gun _toUseGun;
-    
 
+    private Vector3 previousOffset;
     void Start()
     {
         if (!_onTutorial)
@@ -44,6 +44,7 @@ public class GunController : MonoBehaviour
         {
             //change this to drop
             Destroy(_toUseGun.gameObject);
+            transform.position -= previousOffset;
         }
 
 
@@ -52,7 +53,7 @@ public class GunController : MonoBehaviour
         transform.position += gun.offset;
         _toUseGun.transform.localPosition = Vector3.zero;
         _toUseGun.transform.localEulerAngles = Vector3.zero;
-
+        previousOffset = gun.offset;
     }
 
 
