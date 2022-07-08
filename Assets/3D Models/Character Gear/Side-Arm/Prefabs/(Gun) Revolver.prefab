@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3799667923352763487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0.04, z: 0.11}
+  m_LocalPosition: {x: 0.019, y: 0.085, z: 0.483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6192468134419612219}
   - component: {fileID: 4941959023758052754}
+  - component: {fileID: 5552015855360792281}
   m_Layer: 12
   m_Name: (Gun) Revolver
   m_TagString: Untagged
@@ -245,14 +246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f8229a74f2bb147b2a2db22a7b5df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunSoundChannel: {fileID: 0}
-  _reloadChannel: {fileID: 0}
-  droneHitEffect: {fileID: 0}
+  gunSoundChannel: {fileID: 11400000, guid: d88f8b65628519646be55804bb9d3806, type: 2}
+  _reloadChannel: {fileID: 11400000, guid: 9307be4f4ed227d479c98a1e4d1d0451, type: 2}
+  droneHitEffect: {fileID: 1569971994669865454, guid: a073c924b44fe6842ae8e5c40d98cb0c,
+    type: 3}
   muzzlePoint: {fileID: 777656571825497300}
   muzzleFlash: {fileID: -7073346783714224870, guid: 98b1f7d28d94cf14b8978faf9a74c643,
     type: 3}
-  animator: {fileID: 0}
-  _offset: {x: -0.2, y: 0.04, z: 0.11}
+  animator: {fileID: 5552015855360792281}
+  _offset: {x: 0.05, y: 0, z: -0.2}
   fireMode: 0
   fireRate: 4.75
   _maxRange: 125
@@ -262,6 +264,26 @@ MonoBehaviour:
   _baseDamage: 75
   _headshotDamageMultiplier: 2
   _reloadSpeed: 1.75
+--- !u!95 &5552015855360792281
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826261148991592577}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a3a3eef3d6faf74db276764c7ead014, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7197550172956812157
 GameObject:
   m_ObjectHideFlags: 0

@@ -144,7 +144,7 @@ public class Gun : MonoBehaviour
         _canReload = true;
         onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
-        GameManager.Instance.gameStart.AddListener(ReloadReset);
+       // GameManager.Instance.gameStart.AddListener(ReloadReset);
     }
 
     private void OnEnable()
