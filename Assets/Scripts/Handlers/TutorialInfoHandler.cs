@@ -14,6 +14,7 @@ public class TutorialInfoHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI title, body;
     [SerializeField] private Animator exampleDisplay;
 
+    [SerializeField] private bool showPreviousBtnOnFirstPage;
     [SerializeField] private Button previousBtn, nextBtn;
     [SerializeField] private SFXChannel buttonSFX;
     [SerializeField] private UnityEvent onFirstPage;
@@ -28,6 +29,17 @@ public class TutorialInfoHandler : MonoBehaviour
 
     private void SetPage()
     {
+        if (_currentPage == 0 && showPreviousBtnOnFirstPage)
+        {
+            previousBtn.gameObject.SetActive(true);
+        }
+        else if(_currentPage != 0){
+            previousBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            previousBtn.gameObject.SetActive(false);
+        }
         nextBtn.gameObject.SetActive(_currentPage != entries.Length - 1);
         
         var entry = entries[_currentPage];
