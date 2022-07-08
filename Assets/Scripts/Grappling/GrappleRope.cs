@@ -27,6 +27,8 @@ public class GrappleRope : MonoBehaviour
     private float _waveCount;
     [SerializeField]
     private AnimationCurve _ropeCurve;
+    [SerializeField]
+    private GameObject _hook;
 
     public bool _test;
 
@@ -52,6 +54,7 @@ public class GrappleRope : MonoBehaviour
         {
             _currentGrapplePosition = _gunTip.position;
             _spring.Reset();
+            _hook.transform.localPosition = Vector3.zero;
             if (_lr.positionCount > 0)
             {
                 _lr.positionCount = 0;
@@ -62,7 +65,7 @@ public class GrappleRope : MonoBehaviour
         if (_lr.positionCount == 0)
         {
             _spring.SetVelocity(_velocity);
-            _lr.positionCount = _quality;
+            _lr.positionCount = _quality + 1;
         }
 
         _spring.SetDamper(_damper); // slows down the rope
@@ -75,8 +78,8 @@ public class GrappleRope : MonoBehaviour
 
         //create line renderer
         _currentGrapplePosition = Vector3.Lerp(_currentGrapplePosition, grapplePoint, Time.deltaTime * 12f);
-
-        for (var i = 0; i < _quality; i++)
+        _hook.transform.position = Vector3.Lerp(_currentGrapplePosition, grapplePoint, Time.deltaTime * 12f);
+        for (var i = 0; i <= _quality; i++)
         {
             var delta = i / (float)_quality;
             //makes the wave effect of the rope
