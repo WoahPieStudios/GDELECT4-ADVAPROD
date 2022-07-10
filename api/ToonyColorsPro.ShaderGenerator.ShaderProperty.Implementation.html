@@ -1,0 +1,1278 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ShaderProperty.Implementation
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ShaderProperty.Implementation
+   ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation">
+  
+  
+  <h1 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation" class="text-break">Class ShaderProperty.Implementation
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ShaderProperty.Implementation</span></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_ConstantFloat.html">ShaderProperty.Imp_ConstantFloat</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_ConstantValue.html">ShaderProperty.Imp_ConstantValue</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_CustomCode.html">ShaderProperty.Imp_CustomCode</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_CustomMaterialProperty.html">ShaderProperty.Imp_CustomMaterialProperty</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_Enum.html">ShaderProperty.Imp_Enum</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_GenericFromTemplate.html">ShaderProperty.Imp_GenericFromTemplate</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_Hook.html">ShaderProperty.Imp_Hook</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_HSV.html">ShaderProperty.Imp_HSV</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_LocalNormal.html">ShaderProperty.Imp_LocalNormal</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_LocalPosition.html">ShaderProperty.Imp_LocalPosition</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_MaterialProperty.html">ShaderProperty.Imp_MaterialProperty</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_ShaderPropertyReference.html">ShaderProperty.Imp_ShaderPropertyReference</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_VertexColor.html">ShaderProperty.Imp_VertexColor</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_VertexTexcoord.html">ShaderProperty.Imp_VertexTexcoord</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_WorldNormal.html">ShaderProperty.Imp_WorldNormal</a></div>
+      <div class="level2"><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Imp_WorldPosition.html">ShaderProperty.Imp_WorldPosition</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="ToonyColorsPro.ShaderGenerator.html">ToonyColorsPro.ShaderGenerator</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Implementation</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation__ctor_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.#ctor*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation__ctor_ToonyColorsPro_ShaderGenerator_ShaderProperty_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.#ctor(ToonyColorsPro.ShaderGenerator.ShaderProperty)">Implementation(ShaderProperty)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Implementation(ShaderProperty shaderProperty)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.html">ShaderProperty</a></td>
+        <td><span class="parametername">shaderProperty</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_DefaultImplementationIndex" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.DefaultImplementationIndex">DefaultImplementationIndex</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serialization.SerializeAs(&quot;impl_index&quot;, null)]
+public int DefaultImplementationIndex</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_guid" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.guid">guid</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serialization.SerializeAs(&quot;guid&quot;, null)]
+public string guid</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_IsGpuInstanced" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.IsGpuInstanced">IsGpuInstanced</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serialization.SerializeAs(&quot;gpu_inst&quot;, null)]
+public bool IsGpuInstanced</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_IsLocked" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.IsLocked">IsLocked</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serialization.SerializeAs(&quot;locked&quot;, null)]
+public bool IsLocked</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_Label" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.Label">Label</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serialization.SerializeAs(&quot;lbl&quot;, null)]
+public string Label</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_MenuOrders" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.MenuOrders">MenuOrders</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type[] MenuOrders</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.type">Type</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_operator" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.operator">operator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serialization.SerializeAs(&quot;op&quot;, null)]
+public ShaderProperty.Operator operator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Operator.html">ShaderProperty.Operator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_ParentShaderProperty" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.ParentShaderProperty">ParentShaderProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ShaderProperty ParentShaderProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.html">ShaderProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_HasErrors_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.HasErrors*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_HasErrors" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.HasErrors">HasErrors</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool HasErrors { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_IsDefaultImplementation_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.IsDefaultImplementation*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_IsDefaultImplementation" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.IsDefaultImplementation">IsDefaultImplementation</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsDefaultImplementation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_BeginHorizontal_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.BeginHorizontal*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_BeginHorizontal_System_Single_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.BeginHorizontal(System.Single)">BeginHorizontal(Single)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void BeginHorizontal(float indentOffset = 0F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">indentOffset</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CanBeCopied_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CanBeCopied*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CanBeCopied" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CanBeCopied">CanBeCopied()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual bool CanBeCopied()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CheckErrors_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CheckErrors*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CheckErrors" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CheckErrors">CheckErrors()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void CheckErrors()</code></pre>
+  </div>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_Clone_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.Clone*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_Clone_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.Clone(System.String)">Clone(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ShaderProperty.Implementation Clone(string suffix = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">suffix</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.html">ShaderProperty.Implementation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CloneForNewShaderProperty_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CloneForNewShaderProperty*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CloneForNewShaderProperty_ToonyColorsPro_ShaderGenerator_ShaderProperty_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CloneForNewShaderProperty(ToonyColorsPro.ShaderGenerator.ShaderProperty,System.String)">CloneForNewShaderProperty(ShaderProperty, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ShaderProperty.Implementation CloneForNewShaderProperty(ShaderProperty sp, string suffix)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.html">ShaderProperty</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">suffix</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.html">ShaderProperty.Implementation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CompareToDefaultImplementation_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CompareToDefaultImplementation*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CompareToDefaultImplementation__1" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CompareToDefaultImplementation``1">CompareToDefaultImplementation&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CompareToDefaultImplementation&lt;T&gt;()
+    where T : ShaderProperty.Implementation</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CopyCommonProperties_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CopyCommonProperties*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_CopyCommonProperties_ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.CopyCommonProperties(ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation)">CopyCommonProperties(ShaderProperty.Implementation)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyCommonProperties(ShaderProperty.Implementation from)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.html">ShaderProperty.Implementation</a></td>
+        <td><span class="parametername">from</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_DebugSerializableProps_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.DebugSerializableProps*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_DebugSerializableProps" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.DebugSerializableProps">DebugSerializableProps()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string DebugSerializableProps()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_EndHorizontal_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.EndHorizontal*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_EndHorizontal" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.EndHorizontal">EndHorizontal()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void EndHorizontal()</code></pre>
+  </div>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_GetDefaultImplementation_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.GetDefaultImplementation*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_GetDefaultImplementation__1" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.GetDefaultImplementation``1">GetDefaultImplementation&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected T GetDefaultImplementation&lt;T&gt;()
+    where T : ShaderProperty.Implementation</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_GUILabel_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.GUILabel*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_GUILabel" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.GUILabel">GUILabel()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string GUILabel()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_HasOperator_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.HasOperator*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_HasOperator" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.HasOperator">HasOperator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual bool HasOperator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_NeededFeatures_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.NeededFeatures*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_NeededFeatures" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.NeededFeatures">NeededFeatures()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual ShaderProperty.OptionFeatures[] NeededFeatures()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ToonyColorsPro.ShaderGenerator.ShaderProperty.OptionFeatures.html">ShaderProperty.OptionFeatures</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_NeededFeaturesExtra_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.NeededFeaturesExtra*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_NeededFeaturesExtra" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.NeededFeaturesExtra">NeededFeaturesExtra()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string[] NeededFeaturesExtra()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_NewLineGUI_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.NewLineGUI*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_NewLineGUI_System_Boolean_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.NewLineGUI(System.Boolean)">NewLineGUI(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual void NewLineGUI(bool usedByCustomCode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">usedByCustomCode</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_OnPasted_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.OnPasted*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_OnPasted" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.OnPasted">OnPasted()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnPasted()</code></pre>
+  </div>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintOperator_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintOperator*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintOperator" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintOperator">PrintOperator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PrintOperator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintProperty_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintProperty*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintProperty_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintProperty(System.String)">PrintProperty(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintProperty(string indent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">indent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableDeclare_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableDeclare*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableDeclare_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableDeclare(System.String)">PrintVariableDeclare(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintVariableDeclare(string indent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">indent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableDeclare_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableDeclare*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableDeclare_System_String_System_Boolean_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableDeclare(System.String,System.Boolean)">PrintVariableDeclare(String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintVariableDeclare(string indent, bool gpuInstanced)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">indent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">gpuInstanced</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableDeclareOutsideCBuffer_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableDeclareOutsideCBuffer*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableDeclareOutsideCBuffer_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableDeclareOutsideCBuffer(System.String)">PrintVariableDeclareOutsideCBuffer(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintVariableDeclareOutsideCBuffer(string indent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">indent</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableFixedFunction_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableFixedFunction*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableFixedFunction" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableFixedFunction">PrintVariableFixedFunction()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintVariableFixedFunction()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableFragment_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableFragment*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableFragment_System_String_System_String_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableFragment(System.String,System.String,System.String)">PrintVariableFragment(String, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintVariableFragment(string inputSource, string outputSource, string arguments)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">inputSource</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">outputSource</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">arguments</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableVertex_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableVertex*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_PrintVariableVertex_System_String_System_String_System_String_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.PrintVariableVertex(System.String,System.String,System.String)">PrintVariableVertex(String, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual string PrintVariableVertex(string inputSource, string outputSource, string arguments)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">inputSource</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">outputSource</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">arguments</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_SetOperator_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.SetOperator*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_SetOperator_System_Object_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.SetOperator(System.Object)">SetOperator(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetOperator(object operator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">operator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_ToHashString_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.ToHashString*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_ToHashString" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.ToHashString">ToHashString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string ToHashString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_ToString_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.ToString*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_ToString" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a></div>
+  
+  
+  <a id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_WillBeRemoved_" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.WillBeRemoved*"></a>
+  <h4 id="ToonyColorsPro_ShaderGenerator_ShaderProperty_Implementation_WillBeRemoved" data-uid="ToonyColorsPro.ShaderGenerator.ShaderProperty.Implementation.WillBeRemoved">WillBeRemoved()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void WillBeRemoved()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
