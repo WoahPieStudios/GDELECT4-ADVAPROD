@@ -30,6 +30,10 @@ public class GameManager : Singleton<GameManager>
     public bool IsPaused { get; private set; }
     public bool IsGameOver { get; private set; }
 
+    private void Start()
+    {
+        Application.targetFrameRate = 75;
+    }
     private void OnEnable()
     {
         InputManager.onPause += OnGamePause;

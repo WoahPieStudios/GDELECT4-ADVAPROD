@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2608045101182081506}
-  m_Father: {fileID: 6208713702106320961}
+  m_Father: {fileID: 2607230385148338563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3452308659648457692
@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2607230385148338563}
   - component: {fileID: 1792060349599393405}
+  - component: {fileID: 5222878367285649508}
   m_Layer: 0
   m_Name: (Gun) Semi Auto 1
   m_TagString: Untagged
@@ -109,11 +110,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4243261751098890250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1035.7808, y: 507.0766, z: 1.4210514}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6208713702106320961}
+  - {fileID: 1749309780273849465}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,14 +130,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f8229a74f2bb147b2a2db22a7b5df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseEventChannel: {fileID: 11400000, guid: 1d8e62ce2a200a0408bfbe96237ccf6a, type: 2}
   gunSoundChannel: {fileID: 11400000, guid: 730b0a7dbca02154383aa7f5df23caec, type: 2}
-  _reloadChannel: {fileID: 0}
+  _reloadChannel: {fileID: 11400000, guid: 5bf4f1045ebf0b84baf1150e699d17c4, type: 2}
   droneHitEffect: {fileID: 1819804219169845983, guid: a8ea86189a816ce458d62c17edcd54b0,
     type: 3}
   muzzlePoint: {fileID: 2608045101182081506}
   muzzleFlash: {fileID: 6674924203787833456, guid: b4d225bd4e0082c43bbb409cfa5a927c,
     type: 3}
-  animator: {fileID: 0}
+  animator: {fileID: 5222878367285649508}
+  _offset: {x: 0, y: 0, z: 0}
   fireMode: 0
   fireRate: 5.25
   _maxRange: 100
@@ -146,6 +149,26 @@ MonoBehaviour:
   _baseDamage: 75
   _headshotDamageMultiplier: 1
   _reloadSpeed: 1.25
+--- !u!95 &5222878367285649508
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243261751098890250}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9432efd05fd370c448da40b80de73ca4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8568147065676302842
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,56 +200,3 @@ Transform:
   m_Father: {fileID: 1749309780273849465}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8674374914904549296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6208713702106320961}
-  - component: {fileID: 8223734690701948594}
-  m_Layer: 0
-  m_Name: Gun Offset
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6208713702106320961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8674374914904549296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1749309780273849465}
-  m_Father: {fileID: 2607230385148338563}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8223734690701948594
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8674374914904549296}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9432efd05fd370c448da40b80de73ca4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

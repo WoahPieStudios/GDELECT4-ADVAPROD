@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 {
     private bool _enableCrosshair;
 
-    
+    [SerializeField] private PauseEventChannel pauseEventChannel;
     
     #region EFFECTS
     [Header("Effects")]
@@ -45,7 +45,19 @@ public class Gun : MonoBehaviour
     private int shooting_Animation = Animator.StringToHash(DO_SHOOTING);
 
     #endregion
-    
+
+    #region -= POSITIONING =-
+
+    [SerializeField]
+    private Vector3 _offset;
+
+    public Vector3 offset
+    {
+        get { return _offset; }
+    }
+
+    #endregion
+
     #region WEAPON STATS
     [Space]
     [Header("WEAPON STATS")]
@@ -132,7 +144,7 @@ public class Gun : MonoBehaviour
         _canReload = true;
         onUpdateCurrentAmmoUI?.Invoke(_shotsCounter);
         canShoot = true;
-        GameManager.Instance.gameStart.AddListener(ReloadReset);
+       // GameManager.Instance.gameStart.AddListener(ReloadReset);
     }
 
     private void OnEnable()
@@ -142,16 +154,31 @@ public class Gun : MonoBehaviour
         InputManager.onShoot += OnPressedTrigger;
         InputManager.onReleaseShooting += OnReleasedTrigger;
         InputManager.onManualReloading += Reloading;
+        pauseEventChannel.AddPauseListener(DisableGuns);
+        pauseEventChannel.AddResumeListener(EnableGuns);
 
+        ReloadReset();
     }
 
+    void EnableGuns()
+    {
+        canShoot = true;
+        _canReload = true;
+    }
+    
+    void DisableGuns()
+    {
+        canShoot = false;
+        _canReload = false;
+    }
+    
     private void OnDisable()
     {
         InputManager.onShoot -= OnPressedTrigger;
         InputManager.onReleaseShooting -= OnReleasedTrigger;
         InputManager.onManualReloading -= Reloading;
-
-
+        pauseEventChannel.RemovePauseListener(DisableGuns);
+        pauseEventChannel.RemoveResumeListener(EnableGuns);
     }
     private void Update()
     {
@@ -317,7 +344,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void ReloadReset()
+    public void ReloadReset()
     {
         _shotsCounter = _bulletsPerMagazine;
     }

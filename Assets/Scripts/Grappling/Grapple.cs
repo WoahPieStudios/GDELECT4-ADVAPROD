@@ -51,7 +51,7 @@ public class Grapple : MonoBehaviour
     [SerializeField]
     private GameObject _player;
 
-    [SerializeField, Range(0,45)]
+    [SerializeField, Range(0,180)]
     private int _angleToDisconnect;
     [SerializeField, Range(0,20)]
     private float _minHeightToAutoPull;
@@ -68,8 +68,10 @@ public class Grapple : MonoBehaviour
     [SerializeField, Tooltip("Speed Multiplier for Player Movement while grappling (Multiplies direction value which is 1)")]
     private float _grappleSpeedMovementMultiplier = 1f;
 
-    [SerializeField, Range(0f,1f)]
-    private float _delayAutoDisconnetinms = 0.5f;
+
+    [SerializeField, Range(0, 20)]
+    private float _minHeightToAutoDisconnect;
+
     #endregion
 
     #region Hookshot
@@ -158,7 +160,6 @@ public class Grapple : MonoBehaviour
     private Rigidbody _rb;
     private Player _p;
 
-
     #endregion
 
     private int _crosshairIndex;
@@ -242,20 +243,23 @@ public class Grapple : MonoBehaviour
             _grappleSpeedLines.Stop();
         }
 
+
+
     }
 
     private void FixedUpdate()
     {
+        if (!_tethered && !_p.onGround)
+        {
+            Player.movementState = MovementState.OnAir;
+        }
 
+        
         if (_tethered)
         {
             ApplyGrapplePhysics();
         }
 
-        if (!_tethered && !_p.onGround)
-        {
-            Player.movementState = MovementState.OnAir;
-        }
 
         if (_isPulling)
         {   
@@ -290,11 +294,13 @@ public class Grapple : MonoBehaviour
     private void StartGrapple()
     {
         if (!_isPaused) return;
+
         RaycastHit hit;
         _disableGrapple = !_disableGrapple;
         //made grappling so that instead of holding the grapple button, player will just press again to release
         if (!_disableGrapple)
         {
+            //_isOnCoolDown = true;
             if (Physics.Raycast(_camera.transform.position,_camera.transform.forward, out hit, _maxDistance, _grappleLayer))
             {
                 Player.movementState = MovementState.Grappling;
@@ -303,13 +309,16 @@ public class Grapple : MonoBehaviour
                 _tethered = true;
                 _tetherPoint = hit.point;
                 _tetherLength = Vector3.Distance(_tetherPoint, _player.transform.position);
-                AutoDisconnectDelay();
+
                 _initialLength = _tetherLength;
                 _canPull = true;
 
                 if (_player.transform.position.y > _tetherPoint.y + _minHeightToAutoPull)
                 {
                     StartHook();
+                }else
+                {
+                    _canCheck = true;
                 }
 
             }
@@ -332,19 +341,6 @@ public class Grapple : MonoBehaviour
         _isPulling = false;
         _canCheck = false;
 
-    }
-
-
-    private async void AutoDisconnectDelay()
-    {
-        var current = Time.time + _delayAutoDisconnetinms;
-        _canCheck = false;
-        while (Time.time < current)
-        {
-            await Task.Yield();
-        }
-        //insert here
-        _canCheck = _tethered ? true : false;
     }
 
     // Rope Swing 
@@ -385,15 +381,21 @@ public class Grapple : MonoBehaviour
                 _rb.position = _tetherPoint - directionToGrapple * _tetherLength; // this makes the player's direction to swing go to the opposite side
             }
         }
-        //Debug.Log($"Angle is {Vector3.SignedAngle(_tetherPoint, directionToGrapple, _player.transform.forward)}");
 
-        //if (!_canCheck) return;
+        Debug.Log($"Angle is {Vector3.SignedAngle(_player.transform.position.normalized, directionToGrapple.normalized, Vector3.forward)}");
 
-        //float angle = Vector3.SignedAngle(_tetherPoint, directionToGrapple, _player.transform.forward);
+        if (!_canCheck) return;
+
+        //float angle = Vector3.SignedAngle(_player.transform.position.normalized, directionToGrapple.normalized, Vector3.forward);
         //if (angle < -_angleToDisconnect)
         //{
         //    StopGrapple();
         //}
+
+        if (_player.transform.position.y > _tetherPoint.y + _minHeightToAutoDisconnect)
+        {
+            StopGrapple();
+        }
 
 
     }
@@ -431,6 +433,8 @@ public class Grapple : MonoBehaviour
 
         Vector3 startHooking = GetDirection();
 
+        //_speedHook = Vector3.Distance(_player.transform.position, _tetherPoint);
+        Debug.Log($"SpeedHOok; {_speedHook}");
         _speedHook += _accelerationMultiplier * Time.deltaTime;
         _speedHook = Mathf.Clamp(_speedHook, 0, Vector3.Distance(_player.transform.position, _tetherPoint));
 

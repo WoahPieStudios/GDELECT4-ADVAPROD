@@ -1,13 +1,12 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using StringManager;
 
 public class WeaponItem : MonoBehaviour
 {
     public Gun gun;
-
-    [SerializeField]
-    private Sprite _weaponIcon;
+    public Sprite weaponIcon;
 
     public static event Action<Gun> onGetWeapon;
     public static event Action<Sprite> onGetIcon;
@@ -24,7 +23,7 @@ public class WeaponItem : MonoBehaviour
     private void GetGun()
     {
         onGetWeapon?.Invoke(gun);
-        onGetIcon?.Invoke(_weaponIcon);
+        ChangeWeaponIcon.OnChangeIcon(weaponIcon);
         this.gameObject.SetActive(false);
     }
 }

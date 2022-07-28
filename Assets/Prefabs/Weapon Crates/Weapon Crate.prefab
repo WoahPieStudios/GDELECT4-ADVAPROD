@@ -439,19 +439,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e260c78edbdad2b478fd2b5a2528bccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _handler: {fileID: 2278138578371884601, guid: 187ee30f2c12d9c4eab700452530c69c,
+    type: 3}
+  _sfx: {fileID: 11400000, guid: 4c9e3ae5ef90c24439c3e9b8da8aeb55, type: 2}
   _holdInteraction: 3
   _filler: {fileID: 7653796356375297446}
   _spawnLocation: {fileID: 8374624347239334539}
   _UI: {fileID: 3156292290318375103}
   _weaponsList:
   - item: {fileID: 6726587771383755570, guid: bd2aaa3df3d5bb2469075beecb804981, type: 3}
-    weight: 25
+    weight: 35.4
   - item: {fileID: 117018333178207943, guid: a6a0a8ced87f29b47bbcf2556e7227b8, type: 3}
-    weight: 25
+    weight: 37.1
   - item: {fileID: 9164188241289349136, guid: 6bea51c938eaeb044866dec95940940b, type: 3}
-    weight: 25
+    weight: 20.2
   - item: {fileID: 5289188204363900552, guid: ce06a406fbc9cc345a2bc0af4ee39f4d, type: 3}
-    weight: 25
+    weight: 36.3
 --- !u!65 &1752194051759043475
 BoxCollider:
   m_ObjectHideFlags: 0

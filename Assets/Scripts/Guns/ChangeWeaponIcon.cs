@@ -2,12 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public class ChangeWeaponIcon : MonoBehaviour
 {
+    public static event Func<Sprite> onChangeIconSprite;
+
+    public static event Action<Sprite> onIconChange;
 
     private Image _iconContainer;
+
+
+    public Image iconContainer
+    {
+        get {
+
+            _iconContainer.sprite = onChangeIconSprite?.Invoke();
+            return _iconContainer;
+        }
+
+        set => _iconContainer = value;
+    }
 
     private void Awake()
     {
@@ -16,12 +32,12 @@ public class ChangeWeaponIcon : MonoBehaviour
 
     private void OnEnable()
     {
-        WeaponItem.onGetIcon += ChangeIcon;
+        onIconChange += ChangeIcon;
     }
 
     private void OnDisable()
     {
-        WeaponItem.onGetIcon -= ChangeIcon;
+        onIconChange -= ChangeIcon;
     }
 
     private void ChangeIcon(Sprite changeIcon)
@@ -30,6 +46,6 @@ public class ChangeWeaponIcon : MonoBehaviour
     }
 
 
-
+    public static void OnChangeIcon(Sprite icon) { onIconChange?.Invoke(icon); }
 
 }
